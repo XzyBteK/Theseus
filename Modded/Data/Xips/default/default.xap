@@ -1886,7 +1886,7 @@ function MainMenuAttract()
 	c.ring.SetTranslation(-57.980000,-13.690000,-84.760002);
 	c.main_pod.SetTranslation(-61.689999,-13.400000,0.337400);
 	bMainMenuAttractFinish = true;
-	SetBackgroundMeshType();
+	//SetBackgroundMeshType();
 }
 
 function FloatMainMenuPanels()
@@ -4570,16 +4570,17 @@ function GetDrivePath(x,y)
 
 function SetBackgroundMeshType()
 {
-    var IniFile = new Settings;
-    IniFile.SetIniSection( "BackgroundMeshType" );
-    var Mesh1Name = IniFile.GetIniValue( "BgMesh1" );
-    var Mesh2Name = IniFile.GetIniValue( "BgMesh2" );
-    IniFile.CloseIniFile();
-    Mesh1Name = "Q:\\bgmeshs\\chains\\chains";
-    Mesh2Name = "Q:\\data\\bgmeshs\\dna\\dna";
-    ShowBgMesh1( Mesh1Name );
-    ShowBgMesh2( Mesh2Name );
+	var Mesh1Name = GetSavedValue("BackgroundMeshType","BgMesh1");
+    Mesh1Name = "Q:\\bgmeshs\\" + Mesh1Name + "\\" + Mesh1Name;
+	var Mesh2Name = GetSavedValue("BackgroundMeshType","BgMesh2");
+    Mesh2Name = "Q:\\bgmeshs\\" + Mesh2Name + "\\" + Mesh2Name;
+	var Mesh3Name = GetSavedValue("BackgroundMeshType","BgMesh3");
+    Mesh3Name = "Q:\\bgmeshs\\" + Mesh3Name + "\\" + Mesh3Name;
+    ShowBgMesh1(Mesh1Name);
+    ShowBgMesh2(Mesh2Name);
+	ShowBgMesh3(Mesh3Name);
 }
+
 /*function HideBgMesh()
 {
 bDNAVisable = false;
@@ -4589,7 +4590,7 @@ x.theDNA3.SetAlpha(0);
 x.theDNA5.SetAlpha(0);
 }   */
 
-function ShowBgMesh1( bgMesh1 )
+function ShowBgMesh1(bgMesh1)
 {
 
 var info = new Settings;
@@ -4608,90 +4609,36 @@ info.section = "mesh1";
      var rot12 = info.GetValue("Rot2");
      var rot13 = info.GetValue("Rot3");
      var rot14 = info.GetValue("Rot4");
-info.section = "mesh3";
-     var scale3x = info.GetValue("Scalex");
-     var scale3y = info.GetValue("Scaley");
-     var scale3z = info.GetValue("Scalez");
-     var trans3x = info.GetValue("Transx");
-     var trans3y = info.GetValue("Transy");
-     var trans3z = info.GetValue("Transz");
-     var sMaterial3 = info.GetValue("Material");
-     var sMaterial3S = info.GetValue("MaterialS");
-     var alpha3 = info.GetValue("Alpha");
-     var rot31 = info.GetValue("Rot1");
-     var rot32 = info.GetValue("Rot2");
-     var rot33 = info.GetValue("Rot3");
-     var rot34 = info.GetValue("Rot4");
-
-info.section = "mesh5";
-     var scale5x = info.GetValue("Scalex");
-     var scale5y = info.GetValue("Scaley");
-     var scale5z = info.GetValue("Scalez");
-     var trans5x = info.GetValue("Transx");
-     var trans5y = info.GetValue("Transy");
-     var trans5z = info.GetValue("Transz");
-     var sMaterial5 = info.GetValue("Material");
-     var sMaterial5S = info.GetValue("MaterialS");
-     var alpha5 = info.GetValue("Alpha");
-     var rot51 = info.GetValue("Rot1");
-     var rot52 = info.GetValue("Rot2");
-     var rot53 = info.GetValue("Rot3");
-     var rot54 = info.GetValue("Rot4");
 
 var x = theMainMenu.children[0].children[0];
+
 x.theMesh_a1.children[0].children[1].children[0].appearance.material.name = sMaterial1S;
 x.theMesh_a1.children[0].children[0].children[0].appearance.material.name = sMaterial1;
-x.theMesh_a3.children[0].children[1].children[0].appearance.material.name = sMaterial3S;
-x.theMesh_a3.children[0].children[0].children[0].appearance.material.name = sMaterial3;
-x.theMesh_a5.children[0].children[1].children[0].appearance.material.name = sMaterial5S;
-x.theMesh_a5.children[0].children[0].children[0].appearance.material.name = sMaterial5;
+
 x.theMesh_a1.children[0].children[1].children[0].geometry.url = bgMesh1 + "_sides.xm";
 x.theMesh_a1.children[0].children[0].children[0].geometry.url = bgMesh1 + ".xm";
-x.theMesh_a3.children[0].children[1].children[0].geometry.url = bgMesh1 + "_sides.xm";
-x.theMesh_a3.children[0].children[0].children[0].geometry.url = bgMesh1 + ".xm";
-x.theMesh_a5.children[0].children[1].children[0].geometry.url = bgMesh1 + "_sides.xm";
-x.theMesh_a5.children[0].children[0].children[0].geometry.url = bgMesh1 + ".xm";
+
 x.theMesh_a1.SetScale(scale1x, scale1y, scale1z);
-x.theMesh_a3.SetScale(scale3x, scale3y, scale3z);
-x.theMesh_a5.SetScale(scale5x, scale5y, scale5z);
 x.theMesh_a1.SetRotation(rot11, rot12, rot13, rot14);
-x.theMesh_a3.SetRotation(rot31, rot32, rot33, rot34);
-x.theMesh_a5.SetRotation(rot51, rot52, rot53, rot54);
-x.theMesh_a1.fade = 1.0;
-x.theMesh_a3.fade = 1.0;
-x.theMesh_a5.fade = 1.0;
+//x.theMesh_a1.fade = 1.0;
 x.theMesh_a1.SetTranslation(trans1x, trans1y, trans1z);
-x.theMesh_a3.SetTranslation(trans3x, trans3y, trans3z);
-x.theMesh_a5.SetTranslation(trans5x, trans5y, trans5z);
 x.theMesh_a1.fade = 0.75;
-x.theMesh_a3.fade = 0.75;
-x.theMesh_a5.fade = 0.75;
 x.theMesh_a1.SetAlpha(alpha1);
-x.theMesh_a3.SetAlpha(alpha3);
-x.theMesh_a5.SetAlpha(alpha5);
+
+    /*x.theMesh_a1.SetScale(0.3,0.3,0.3);
+	x.theMesh_a1.SetTranslation(-45,0,3);
+	x.theMesh_a1.SetRotation(0,0,1,0);
+	x.theMesh_a1.SetAlpha(1);
+	x.theMesh_a1.fade = 1;*/
 
 thePlayerPanelOut.Play();
  }
 
-function ShowBgMesh2( bgMesh2 )
+function ShowBgMesh2(bgMesh2)
 {
 
 var info2 = new Settings;
- info2.file = bgMesh2 + ".xbx";
-info2.section = "mesh1";
-     var scale1x = info2.GetValue("Scalex");
-     var scale1y = info2.GetValue("Scaley");
-     var scale1z = info2.GetValue("Scalez");
-     var trans1x = info2.GetValue("Transx");
-     var trans1y = info2.GetValue("Transy");
-     var trans1z = info2.GetValue("Transz");
-     var sMaterial1 = info2.GetValue("Material");
-     var sMaterial1S = info2.GetValue("MaterialS");
-     var alpha1 = info2.GetValue("Alpha");
-     var rot11 = info2.GetValue("Rot1");
-     var rot12 = info2.GetValue("Rot2");
-     var rot13 = info2.GetValue("Rot3");
-     var rot14 = info2.GetValue("Rot4");
+info2.file = bgMesh2 + ".xbx";
 info2.section = "mesh3";
      var scale3x = info2.GetValue("Scalex");
      var scale3y = info2.GetValue("Scaley");
@@ -4706,56 +4653,80 @@ info2.section = "mesh3";
      var rot32 = info2.GetValue("Rot2");
      var rot33 = info2.GetValue("Rot3");
      var rot34 = info2.GetValue("Rot4");
-
-info2.section = "mesh5";
-     var scale5x = info2.GetValue("Scalex");
-     var scale5y = info2.GetValue("Scaley");
-     var scale5z = info2.GetValue("Scalez");
-     var trans5x = info2.GetValue("Transx");
-     var trans5y = info2.GetValue("Transy");
-     var trans5z = info2.GetValue("Transz");
-     var sMaterial5 = info2.GetValue("Material");
-     var sMaterial5S = info2.GetValue("MaterialS");
-     var alpha5 = info2.GetValue("Alpha");
-     var rot51 = info2.GetValue("Rot1");
-     var rot52 = info2.GetValue("Rot2");
-     var rot53 = info2.GetValue("Rot3");
-     var rot54 = info2.GetValue("Rot4");
 	 
 var x = theMainMenu.children[0].children[0];
-x.theMesh_b1.children[0].children[1].children[0].appearance.material.name = sMaterial1S;
-x.theMesh_b1.children[0].children[0].children[0].appearance.material.name = sMaterial1;
-x.theMesh_b3.children[0].children[1].children[0].appearance.material.name = sMaterial3S;
-x.theMesh_b3.children[0].children[0].children[0].appearance.material.name = sMaterial3;
-x.theMesh_b5.children[0].children[1].children[0].appearance.material.name = sMaterial5S;
-x.theMesh_b5.children[0].children[0].children[0].appearance.material.name = sMaterial5; 
-x.theMesh_b1.children[0].children[1].children[0].geometry.url = bgMesh2 + "_sides.xm";
-x.theMesh_b1.children[0].children[0].children[0].geometry.url = bgMesh2 + ".xm";
-x.theMesh_b3.children[0].children[1].children[0].geometry.url = bgMesh2 + "_sides.xm";
-x.theMesh_b3.children[0].children[0].children[0].geometry.url = bgMesh2 + ".xm";
-x.theMesh_b5.children[0].children[1].children[0].geometry.url = bgMesh2 + "_sides.xm";
-x.theMesh_b5.children[0].children[0].children[0].geometry.url = bgMesh2 + ".xm";
-x.theMesh_b1.SetScale(scale1x, scale1y, scale1z);
-x.theMesh_b3.SetScale(scale3x, scale3y, scale3z);
-x.theMesh_b5.SetScale(scale5x, scale5y, scale5z);
-x.theMesh_b1.SetRotation(rot11, rot12, rot13, rot14);
-x.theMesh_b3.SetRotation(rot31, rot32, rot33, rot34);
-x.theMesh_b5.SetRotation(rot51, rot52, rot53, rot54);
-x.theMesh_b1.fade = 1.0;
-x.theMesh_b3.fade = 1.0;
-x.theMesh_b5.fade = 1.0;
-x.theMesh_b1.SetTranslation(trans1x, trans1y, trans1z);
-x.theMesh_b3.SetTranslation(trans3x, trans3y, trans3z);
-x.theMesh_b5.SetTranslation(trans5x, trans5y, trans5z);
-x.theMesh_b1.fade = 0.75;
-x.theMesh_b3.fade = 0.75;
-x.theMesh_b5.fade = 0.75;
-x.theMesh_b1.SetAlpha(alpha1);
-x.theMesh_b3.SetAlpha(alpha3);
-x.theMesh_b5.SetAlpha(alpha5);
+
+x.theMesh_a3.children[0].children[1].children[0].appearance.material.name = sMaterial3S;
+x.theMesh_a3.children[0].children[0].children[0].appearance.material.name = sMaterial3;
+ 
+x.theMesh_a3.children[0].children[1].children[0].geometry.url = bgMesh2 + "_sides.xm";
+x.theMesh_a3.children[0].children[0].children[0].geometry.url = bgMesh2 + ".xm";
+
+/*x.theMesh_a3.SetScale(scale3x, scale3y, scale3z);
+x.theMesh_a3.SetRotation(rot31, rot32, rot33, rot34);
+x.theMesh_a3.fade = 1.0;
+x.theMesh_a3.SetTranslation(trans3x, trans3y, trans3z);
+x.theMesh_a3.fade = 0.75;
+x.theMesh_a3.SetAlpha(alpha3);*/
+
+	x.theMesh_a3.SetScale(0.3,0.3,0.3);
+	x.theMesh_a3.SetTranslation(0,0,3);
+	x.theMesh_a3.SetRotation(0,0,1,0);
+	x.theMesh_a3.SetAlpha(1);
+	x.theMesh_a3.fade = 1;
 
 thePlayerPanelOut.Play();
 }
+
+function ShowBgMesh3(bgMesh3)
+{
+
+var info3 = new Settings;
+info3.file = bgMesh3 + ".xbx";
+
+info3.section = "mesh5";
+     var scale5x = info3.GetValue("Scalex");
+     var scale5y = info3.GetValue("Scaley");
+     var scale5z = info3.GetValue("Scalez");
+     var trans5x = info3.GetValue("Transx");
+     var trans5y = info3.GetValue("Transy");
+     var trans5z = info3.GetValue("Transz");
+     var sMaterial5 = info3.GetValue("Material");
+     var sMaterial5S = info3.GetValue("MaterialS");
+     var alpha5 = info3.GetValue("Alpha");
+     var rot51 = info3.GetValue("Rot1");
+     var rot52 = info3.GetValue("Rot2");
+     var rot53 = info3.GetValue("Rot3");
+     var rot54 = info3.GetValue("Rot4");
+	 
+var x = theMainMenu.children[0].children[0];
+
+x.theMesh_a5.children[0].children[1].children[0].appearance.material.name = sMaterial5S;
+x.theMesh_a5.children[0].children[0].children[0].appearance.material.name = sMaterial5;
+ 
+x.theMesh_a5.children[0].children[1].children[0].geometry.url = bgMesh3 + "_sides.xm";
+x.theMesh_a5.children[0].children[0].children[0].geometry.url = bgMesh3 + ".xm";
+
+/*x.theMesh_a5.SetScale(scale5x, scale5y, scale5z);
+x.theMesh_a5.SetRotation(rot51, rot52, rot53, rot54);
+x.theMesh_a5.fade = 1.0;
+x.theMesh_a5.SetTranslation(trans5x, trans5y, trans5z);
+x.theMesh_a5.fade = 0.75;
+x.theMesh_a5.SetAlpha(alpha5);*/
+
+	x.theMesh_a5.SetScale(0.3,0.3,0.3);
+	x.theMesh_a5.SetTranslation(45,0,3);
+	x.theMesh_a5.SetRotation(0,0,1,0);
+	x.theMesh_a5.SetAlpha(1);
+	x.theMesh_a5.fade = 1;
+
+thePlayerPanelOut.Play();
+}
+
+
+
+
+
 
 
 

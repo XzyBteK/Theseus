@@ -343,8 +343,10 @@ function LoadMenuItems()
 	arrMenuPaths[0] = "BGMeshs1";
 	arrMenuNames[1] = Translate("BGMeshs 2");
 	arrMenuPaths[1] = "BGMeshs2";
-	TotalSections = 2;
-	nCurOrbLauncherVisible0 = 2;
+	arrMenuNames[2] = Translate("BGMeshs 3");
+	arrMenuPaths[2] = "BGMeshs3";
+	TotalSections = 3;
+	nCurOrbLauncherVisible0 = 3;
 }
 
 function GetOrbMenuList()
@@ -419,9 +421,12 @@ function SaveBGMeshsForCurrentSlot(OrbName)
     {
         SetSavedValue("BackgroundMeshType", "BgMesh1", OrbName);
     }
-    else
+    else if(nCurOrbLauncherItem0 == 1)
     {
         SetSavedValue("BackgroundMeshType", "BgMesh2", OrbName);
+    }else
+    {
+        SetSavedValue("BackgroundMeshType", "BgMesh3", OrbName);
     }
 
     SetBackgroundMeshType();
