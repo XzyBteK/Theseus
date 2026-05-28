@@ -1680,7 +1680,7 @@ function SetButtonText()
 	c.MainMenuButton2_Text.text = Button2Text;
 	c.MainMenuButton3_Text.text = Button3Text;
 	c.MainMenuButton4_Text.text = Button4Text;
-	c.MainMenuButton5_Text.text = theTranslator.Translate("Fuck");
+	c.MainMenuButton5_Text.text = theTranslator.Translate("settings");
 }
 
 function GetOrbName()
@@ -4662,20 +4662,20 @@ x.theMesh_a3.children[0].children[0].children[0].appearance.material.name = sMat
 x.theMesh_a3.children[0].children[1].children[0].geometry.url = bgMesh2 + "_sides.xm";
 x.theMesh_a3.children[0].children[0].children[0].geometry.url = bgMesh2 + ".xm";
 
-/*x.theMesh_a3.SetScale(scale3x, scale3y, scale3z);
+x.theMesh_a3.SetScale(scale3x, scale3y, scale3z);
 x.theMesh_a3.SetRotation(rot31, rot32, rot33, rot34);
 x.theMesh_a3.fade = 1.0;
 x.theMesh_a3.SetTranslation(trans3x, trans3y, trans3z);
-x.theMesh_a3.fade = 0.75;
-x.theMesh_a3.SetAlpha(alpha3);*/
+//x.theMesh_a3.fade = 0.75;
+x.theMesh_a3.SetAlpha(alpha3);
 
-	x.theMesh_a3.SetScale(0.3,0.3,0.3);
+	/*x.theMesh_a3.SetScale(0.3,0.3,0.3);
 	x.theMesh_a3.SetTranslation(0,0,3);
 	x.theMesh_a3.SetRotation(0,0,1,0);
 	x.theMesh_a3.SetAlpha(1);
-	x.theMesh_a3.fade = 1;
+	x.theMesh_a3.fade = 1;*/
 
-thePlayerPanelOut.Play();
+//thePlayerPanelOut.Play();
 }
 
 function ShowBgMesh3(bgMesh3)
@@ -4707,28 +4707,18 @@ x.theMesh_a5.children[0].children[0].children[0].appearance.material.name = sMat
 x.theMesh_a5.children[0].children[1].children[0].geometry.url = bgMesh3 + "_sides.xm";
 x.theMesh_a5.children[0].children[0].children[0].geometry.url = bgMesh3 + ".xm";
 
-/*x.theMesh_a5.SetScale(scale5x, scale5y, scale5z);
+x.theMesh_a5.SetScale(scale5x, scale5y, scale5z);
 x.theMesh_a5.SetRotation(rot51, rot52, rot53, rot54);
 x.theMesh_a5.fade = 1.0;
 x.theMesh_a5.SetTranslation(trans5x, trans5y, trans5z);
-x.theMesh_a5.fade = 0.75;
-x.theMesh_a5.SetAlpha(alpha5);*/
+//x.theMesh_a5.fade = 0.75;
+x.theMesh_a5.SetAlpha(alpha5);
 
-	x.theMesh_a5.SetScale(0.3,0.3,0.3);
+	/*x.theMesh_a5.SetScale(0.3,0.3,0.3);
 	x.theMesh_a5.SetTranslation(45,0,3);
 	x.theMesh_a5.SetRotation(0,0,1,0);
 	x.theMesh_a5.SetAlpha(1);
-	x.theMesh_a5.fade = 1;
+	x.theMesh_a5.fade = 1;*/
 
-thePlayerPanelOut.Play();
+//thePlayerPanelOut.Play();
 }
-
-
-
-
-
-
-
-
-
-
