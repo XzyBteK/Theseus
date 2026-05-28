@@ -408,11 +408,32 @@ function PreviewOrbMesh(OrbName)
 	{
 		var c = theBGMeshs.children[0].children[0];
 		theConfig.FlushMeshCache();
-		c.theIcons.visible = true;
+		c.theIcons.visible = false;
+		
 		c.theIcons.children[0].children[0].appearance.material.name = "MainMenuOrb";
 		c.theIcons.children[0].children[0].appearance.texture.url = "";
 		c.theIcons.children[0].children[0].geometry.url = OrbMesh;
+		
+		ShowBgMesh1(OrbMesh);
 	}
+	
+}
+
+function ShowBgMesh1(bgMesh1)
+{
+var x = theBGMeshs.children[0].children[0];
+
+//x.theMesh_a1.children[0].children[1].children[0].appearance.material.name = "MenuCell";
+//x.theMesh_a1.children[0].children[0].children[0].appearance.material.name = "ReflectSurface";
+
+//x.theMesh_a1.children[0].children[1].children[0].geometry.url = bgMesh1 + "_sides.xm";
+x.theMesh_a1.children[0].children[0].children[0].geometry.url = bgMesh1;
+
+	x.theMesh_a1.SetScale(0.3,0.3,0.3);
+	x.theMesh_a1.SetTranslation(-45,0,3);
+	x.theMesh_a1.SetRotation(0,0,1,0);
+	x.theMesh_a1.SetAlpha(1);
+	x.theMesh_a1.fade = 1;
 }
 
 function SaveBGMeshsForCurrentSlot(OrbName)

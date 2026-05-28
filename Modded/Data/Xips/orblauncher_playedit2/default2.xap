@@ -1,3 +1,65 @@
+DEF theMesh_a1 Transform
+{
+
+children
+[
+Spinner
+            {
+              rpm 2
+              axis 0 1 0
+              children
+              [
+
+DEF Mesh_a1 Transform
+            {
+                children
+                [
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                              material MaxMaterial
+                                        {
+                                            name "ReflectSurface"
+                                        }
+                              texture ImageTexture { url "texture.xbx" }
+                        }
+                        geometry DEF Mesh_a1_Mesh Mesh { url "Backing_Mesh_a.xm" }
+                    }
+                ]
+
+translation 0 0 0
+            }
+
+DEF Mesh_aString1 Transform
+            {
+                children
+                [
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                              material MaxMaterial
+                                        {
+                                            name "ReflectSurface"
+                                        }
+                              texture ImageTexture { url "texture.xbx" }
+                        }
+                        geometry DEF Mesh_aString1_Mesh Mesh { url "Backing_Mesh_a_SIDES.xm" }
+                    }
+                ]
+translation 0 0 0
+
+            }
+]
+}
+]
+scale 11 11 11
+rotation 0 0 .5 0.1745330
+//translation -4400 0 -5100
+translation -5400 0 -5100
+}
+
 DEF theWholeThing Transform
 {
 	fade 1.0
