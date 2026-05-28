@@ -1,0 +1,42 @@
+DEF theIcons Level
+{
+	archive "Icons.xip"
+
+	children
+	[
+		DEF theIconsPath Inline
+		{
+			url "Icons/default.xap"
+		}
+	]
+	function OnArrival()
+	{
+		var c = ReadValue(1, "default", "Datas\\Config\\VideoIntro.xbc");
+		var PathIntro = "";
+		if (c == "oui" & theDiscDrive.discType != "Video")
+		{
+			var c = ReadValue(2, "default", "Datas\\Config\\VideoIntro.xbc");
+			if (c == "oui")
+			{
+				var FileExists = theConfig.NtFileExists( "P:\\Dash2Gam\\2GAM.data\\Skins\\" + Systeme[4] + "\\intro.wmv" );
+				if ( FileExists == true )
+					PathIntro = "P:\\Dash2Gam\\2GAM.data\\Skins\\" + Systeme[4] + "\\intro.wmv";
+				else
+					PathIntro = "P:\\Dash2Gam\\2GAM.data\\Datas\\intro.wmv";
+			}
+			else
+			{
+					PathIntro = "P:\\Dash2Gam\\2GAM.data\\Datas\\intro.wmv";
+			}
+			var FileExists = theConfig.NtFileExists( PathIntro );
+			if ( FileExists == true )
+			{
+				theConfig.wmvplay(PathIntro);
+				theConfig.PADINIT();
+			}
+		}
+		theMainMenu.GoTo();
+
+	}
+}
+

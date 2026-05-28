@@ -1,0 +1,1051 @@
+//
+/// copied from the bsx ms style hd menus... most code is not needed for skins
+// copied from skins, now being used for favs also :/
+
+var bMusicPlayerReady;
+var bMusicMenuVisible;
+var strMusicPlayerMode;
+var nCurPlayerMenuItem;
+var nPlayerMenuItemCount;
+var playlist;
+var copyflag;
+var nPlayCursor;
+var nPreviousPlayCursor;
+var bPlayerRandom;
+var bPlayerRepeat;
+var nPlayScroll;
+var nPlayVisible;
+var nCurMusicMenuItem;
+var g_nSoundtrackId;
+var g_bFullVis;
+//new vars
+var selectedItem;
+var selectedItemName;
+//var HDMenuList;
+var itemLaunchPath;
+var itemLaunchXBE;
+var folderPath;
+var itemPath;
+var itemPar;
+var itemPlaceHolder;
+var HDMenuHolder;
+var fromSubMenu;
+var HDMenuItems;
+var theFavsPath2;
+var inFavs;
+var InMainLevel;
+var InSkinsMenu;
+var MenuDown;
+var favsList;
+var sName;
+var curMenu;
+
+DEF theGlobal Transform
+{ 
+    visible false
+ 	children
+  	[
+  		Shape
+  		{
+  			appearance Appearance { material Material {  } }
+  			geometry DEF theCellWallMesh Mesh
+  		}
+  	]
+  	scale 0 0 0
+  	translation 500 0 0
+}
+
+function GetCellWallType()
+{
+    var IniFile = new Settings;
+	IniFile.SetIniSection( "Dashboard Settings" );
+	var a = IniFile.GetIniValue( "Current Skin" );
+	theCellWallMesh.url = "A:/skins/" + a + "/cellwall.xm"; 
+}
+
+function initialize()
+{
+    GetCellWallType();
+    MenuDown = false;
+    InMainLevel = false;
+    InSkinsMenu = false;
+
+    bMusicPlayerReady = false;
+    bMusicMenuVisible = true;
+    nCurPlayerMenuItem = 0;
+    nCurMusicMenuItem = 0;
+    playlist = new Array;
+    copyflag = new Array;
+    nPlayCursor = 0;
+    nPreviousPlayCursor = 0;
+    nPlayScroll = 0;
+    bPlayerRandom = false;
+    bPlayerRepeat = false;
+    nPlayVisible = 9;
+    g_bFullVis = false;
+//new vars
+    selectedItem = 0;
+itemPlaceHolder = 0;
+HDMenuHolder = 0;
+fromSubMenu = false;
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+
+function SetMusicPlayPos(nPos) //could use this as a scrolling bar for the menu
+{
+    var nNewPos = nPos;     // There is a bug with the engine which prevents passed in vars from being changed
+    if (nNewPos < 0)
+        nNewPos = 0;
+    else if (nNewPos > 1)
+        nNewPos = 1;
+
+    var x = -1.579 + ( 0.730 * nNewPos );   //   -1.528 /*-47.09*/ + 0.74 * nPos;
+    var y = -0.6701;                        //   54.410000;
+    var z =  0.1081;                        // -204.399994;
+    theFavsMenu.children[0].children[0].MU_L3_timeslider.SetTranslation(x, y, z);
+
+    var m = theMusicPlayer.getMinutes();
+    if (m < 10)
+        m = "0" + m;
+    var s = theMusicPlayer.getSeconds();
+    if (s < 10)
+        s = "0" + s;
+    theFavsMenu.children[0].children[0].MusicTimeText.text = m + ":" + s;
+}
+
+function UpdatePlayerMenu()
+{
+    var c = theFavsMenu.children[0].children[0];
+    c.MU_L3_button_gameinfo.children[0].appearance.material.name = "FlatSurfaces";
+    c.MU_L3_text_gameinfo.children[0].children[0].appearance.material.name = "NavType";
+    c.MU_L3_button_launch.children[0].appearance.material.name = "FlatSurfaces";
+    c.MU_L3_text_launch.children[0].children[0].appearance.material.name = "NavType";
+    c.MU_L3_button_delfav.children[0].appearance.material.name = "FlatSurfaces";
+    c.MU_L3_text_delfav.children[0].children[0].appearance.material.name = "NavType";
+    c.MU_L3_button_addfav.children[0].appearance.material.name = "FlatSurfaces";
+    c.MU_L3_text_addfav.children[0].children[0].appearance.material.name = "NavType";
+
+
+    if (nCurPlayerMenuItem == 0)
+    {
+        c.MU_L3_button_gameinfo.children[0].appearance.material.name = "GameHilite";
+        c.MU_L3_text_gameinfo.children[0].children[0].appearance.material.name = "Material #133";
+    }
+    else if (nCurPlayerMenuItem == 1)
+    {
+        c.MU_L3_button_launch.children[0].appearance.material.name = "GameHilite";
+        c.MU_L3_text_launch.children[0].children[0].appearance.material.name = "Material #133";
+    }
+    else if (nCurPlayerMenuItem == 2)
+    {
+        c.MU_L3_button_addfav.children[0].appearance.material.name = "GameHilite";
+        c.MU_L3_text_addfav.children[0].children[0].appearance.material.name = "Material #133";
+    }
+}
+
+
+DEF musicMenuViewpoint Viewpoint
+{
+    fieldOfView 1.287000
+    orientation 0.200900 0.979000 0.034330 -0.345700
+    position -47.889999 54.630001 -202.399994
+    jump false
+}
+
+DEF musicPlayerViewpoint Viewpoint
+{
+    fieldOfView 1.316000
+    orientation -0.017440 -0.999800 0.000769 -0.088190
+    position -45.230000 54.810001 -202.399994
+    jump false
+}
+
+DEF visualizerViewpoint Viewpoint
+{
+    fieldOfView 1.287000
+    orientation 0 1 0 0
+    position -46.832825 55.132828 -204.205643
+    jump false
+}
+
+function xSetVisualizerAlpha(Alpha)
+{
+    var c = theFavsMenu.children[0].children[0].theWholeThing;
+    var vis = theFavsMenu.children[0].children[0].MU_L3_text_tracklist01;
+    var cd = theFavsMenu.children[0].children[0].CD_STACK;
+
+    for (var i=0; i<c.children.length(); i=i+1)
+    {
+        if (c.children[i] == vis)
+        {
+        }
+        else if (c.children[i] == cd)
+        {
+        }
+        else
+        {
+            c.children[i].fade = 0.75;
+            c.children[i].SetAlpha(Alpha);
+        }
+    }
+}
+
+function NoVisualizer()
+{
+    if (visualizerViewpoint.isBound)
+    {
+        SetVisualizerAlpha(1);
+        musicPlayerViewpoint.isBound = true;
+        theMusicPlayJoystick.enableSecretKey = true;
+        theScreenSaver.enabled = true;
+        g_bFullVis = false;
+    }
+}
+
+function ShowMusicMenu()
+{
+    var c = theFavsMenu.children[0].children[0];
+    
+    //turn off the visualizer
+    //c.MU_L3_text_tracklist01.visible = false;
+    //c.CD_STACK.SetAlpha(1);
+
+    //c.theMenuArm.SetRotation(0, 1, 0, 0);
+
+    c.audio_panel.SetRotation(-1, 0, 0, -3.246000);
+    c.audio_panel.SetTranslation(-45.549999, 57.18, -203.800003);
+
+    // move A & B from music player
+    var c = theFavsMenu.children[0].children[0];
+    c.back1.SetTranslation(-48.990000, 52.450001, -205.000000);    
+    c.back1.SetRotation(0.000000, 1.000000, 0.000000, -0.130900);
+    c.select1.SetTranslation(-45.280000, 52.339999, -204.000000);    
+    c.select1.SetRotation(0.000000, 1.000000, 0.000000, -0.497400);
+if(fromSubMenu != true)
+{
+enterHDMenu();
+}
+    UpdateMusicMeta();
+
+    musicMenuViewpoint.isBound = true;
+    bMusicMenuVisible = true;
+
+    EnableAmbientAudio();
+    DoMusicStop();
+}
+
+function StartMusicPlayer()
+{
+    var c = theFavsMenu.children[0].children[0];
+
+    //turn on the visualizer
+    //c.MU_L3_text_tracklist01.visible = true;
+    c.CD_STACK.SetAlpha(0);
+
+    // move A & B to music player
+    var c = theFavsMenu.children[0].children[0];
+    c.back1.SetTranslation(-47.340000, 52.809999, -204.300003);    
+    c.back1.SetRotation(0.000000, -1.000000, 0.000000, -0.340300);
+    c.select1.SetTranslation(-43.539999, 52.740002, -204.800003);    
+    c.select1.SetRotation(-0.014820, 0.970100, -0.242300, -0.143900);
+
+    //c.theMenuArm.SetRotation(0, 1, 0, 2);
+    c.audio_panel.SetRotation(1, 0, 0, -0.02618);
+    c.audio_panel.SetTranslation(-45.549999, 55.07, -204.5);
+
+    nPlayerMenuItemCount = 3;
+    nCurPlayerMenuItem = 1;
+
+    bPlayerRandom = false;
+    bPlayerRepeat = false;
+    nPlayScroll = 0;
+
+    strMusicPlayerMode = "play";
+    c.play_buttons.visible = true;
+    c.buttons_copy.visible = false;
+    c.buttons_edit.visible = false;
+
+    nPlayCursor = 0;
+
+    musicPlayerViewpoint.isBound = true;
+   // bMusicMenuVisible = false;
+   //UpdatePlayerMenu();
+   c.the1stPlayerTab.text = "(un)lock";
+   c.the2ndPlayerTab.text = "launch";
+   c.the3rdPlayerTab.text = "del fav";
+}
+
+function EnterMusicPlay()
+{
+    var c = theFavsMenu.children[0].children[0];
+
+    bPlayerRandom = false;
+    bPlayerRepeat = false;
+    nPlayScroll = 0;
+    nCurMusicMenuItem = 0;
+
+    UpdatePlayerMenu();
+
+    ShowMusicMenu();
+}
+function UpdateMusicMeta()
+{
+    var c = theFavsMenu.children[0].children[0];
+/*
+        c.theMenuButtons.children[2].visible = true;
+        c.theMenuButtons.children[3].visible = true;
+        c.theMenuButtons.children[4].visible = true;
+*/
+
+        c._button_surround.visible = true;
+        c.New_Line11.visible = true;
+        c._button_surround_0.visible = false;
+
+        if (nCurMusicMenuItem == 0)
+            c.MenuMetaText.text = theTranslator.Translate(getSectionTitles(0));
+        else if (nCurMusicMenuItem == 1)
+            c.MenuMetaText.text = theTranslator.Translate(getSectionTitles(1));
+        else if (nCurMusicMenuItem == 2)
+            c.MenuMetaText.text = theTranslator.Translate(getSectionTitles(2));
+        else if (nCurMusicMenuItem == 3)
+            c.MenuMetaText.text = theTranslator.Translate(getSectionTitles(3));
+        else if (nCurMusicMenuItem == 4)
+            c.MenuMetaText.text = theTranslator.Translate(getSectionTitles(4));
+        else if (nCurMusicMenuItem == 5)
+            c.MenuMetaText.text = theTranslator.Translate(getSectionTitles(5));
+        else if (nCurMusicMenuItem == 6)
+            c.MenuMetaText.text = theTranslator.Translate(getSectionTitles(6));
+        else if (nCurMusicMenuItem == 7)
+            c.MenuMetaText.text = theTranslator.Translate(getSectionTitles(7));
+        else if (nCurMusicMenuItem == 8)
+            c.MenuMetaText.text = theTranslator.Translate(getSectionTitles(8));
+        else if (nCurMusicMenuItem == 9)
+            c.MenuMetaText.text = theTranslator.Translate(getSectionTitles(9));
+}
+
+
+function HandlePlayerMenu() //onadown
+{
+	var c = theFavsMenu.children[0].children[0];
+	var info = new Settings;
+	info.file = "A:\\system\\uix.ini";
+	info.section = "Dashboard Settings";
+
+	if (nCurPlayerMenuItem == 0)
+	{
+		TellUser("lock fav item","nada()");
+	}
+	else if (nCurPlayerMenuItem == 1)
+	{
+		launchFav();
+ 	}
+	else if (nCurPlayerMenuItem == 2)
+	{
+		TellUser("delete fav","nada()");
+	}
+}
+
+DEF theFavsMenu Level
+{
+    archive "music_play_edit.xip"
+
+    children
+    [
+        Inline
+        {
+            url "music_play_edit/favs.xap"
+
+            function onLoad()
+            {
+			sName = new Array();
+			sName[0] = currentMenu("games","GetMenuName","");
+			sName[1] = currentMenu("apps","GetMenuName","");
+			sName[2] = currentMenu("emu","GetMenuName","");
+			sName[3] = currentMenu("dash","GetMenuName","");
+			curMenu = "games";
+			clearMenuList();
+			StartMusicPlayer();
+			fillSkinsMenu(1);
+			UpdatePlayerMenu();
+           }
+
+	    function OnActivate()
+	    {
+		clearMenuList();
+		fillSkinsMenu(1);
+		UpdatePlayerMenu();
+	    }
+
+        }
+    ]
+
+    shell Transform
+    {
+        scale 4.3176 4.3176 4.3176
+        translation -47.220001 55 -204.300003
+        children
+        [
+            Waver
+            {
+                rpm 0.75
+                children
+                [
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                            material MaxMaterial
+                            {
+                                name "InnerWall_01"
+                            }
+                            texture ImageTexture
+                            {
+                                alpha true
+                                url "shell.xbx"
+                            }
+                        }
+                        geometry USE theCellWallMesh
+                    }
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                            material MaxMaterial
+                            {
+                                name "InnerWall_02"
+                            }
+                        }
+                        geometry Sphere
+                        {
+                            radius 1
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+
+    tunnel Transform
+    {
+        children
+        [
+            Shape
+            {
+                appearance Appearance { material MaxMaterial { name "Tubes" } }
+                geometry Mesh { url "Music/Tunnel_02-FACES.xm" }
+            }
+        ]
+    }
+
+    path USE musicMenuViewpoint
+
+    control DEF theMusicPlayJoystick Joystick
+    {
+        function OnADown()
+        {
+HandlePlayerMenu();
+
+        }
+
+        function OnWhiteDown()
+        {
+
+	}
+
+        function OnWhiteUp()
+        {
+
+        }
+
+        function OnBlackDown()
+        {
+		clearMenuList();
+		fillSkinsMenu(2);
+		UpdatePlayerMenu();
+        }
+
+        function OnBlackUp()
+        {
+
+        }
+
+        function OnLeftDown()
+        {
+		theFavsMenu.children[0].children[0].theLeftArrow.children[0].appearance.material.name = "RedType";
+        }
+
+        function OnLeftUp()
+        {
+		clearMenuList();
+
+		if(curMenu == "games")
+		{
+			curMenu = "dash";
+			fillSkinsMenu(4);
+		}
+		else if(curMenu == "dash")
+		{
+			curMenu = "emu";
+			fillSkinsMenu(3);
+		}
+		else if(curMenu == "emu")
+		{
+			curMenu = "apps";
+			fillSkinsMenu(2);
+		}
+		else if(curMenu == "apps")
+		{
+			curMenu = "games";
+			fillSkinsMenu(1);
+		}
+		theFavsMenu.children[0].children[0].theLeftArrow.children[0].appearance.material.name = "NavType";
+		UpdatePlayerMenu();
+        }
+
+        function OnRightDown()
+        {
+		theFavsMenu.children[0].children[0].theRightArrow.children[0].appearance.material.name = "RedType";
+        }
+
+        function OnRightUp()
+        {
+		clearMenuList();
+
+		if(curMenu == "games")
+		{
+			curMenu = "apps";
+			fillSkinsMenu(2);
+		}
+		else if(curMenu == "apps")
+		{
+			curMenu = "emu";
+			fillSkinsMenu(3);
+		}
+		else if(curMenu == "emu")
+		{
+			curMenu = "dash";
+			fillSkinsMenu(4);
+		}
+		else if(curMenu == "dash")
+		{
+			curMenu = "games";
+			fillSkinsMenu(1);
+		}
+		theFavsMenu.children[0].children[0].theRightArrow.children[0].appearance.material.name = "NavType";
+		UpdatePlayerMenu();
+        }
+
+        function OnBDown()
+        {
+theConfig.ChangeSkin( skinName );
+            PlaySoundB();
+		if(fromSettings != true)
+                 GoBackToMain();
+		else
+		 GoToSettings();
+                theMusicSubMenuOut.Play();
+
+        }
+
+        function OnDPadPressLeft()
+        {
+            if (nCurPlayerMenuItem > 0)
+            {
+                //if (theMusicPlayer.transportMode != 1) // playing
+                    //PlaySoundMenuChange();
+                nCurPlayerMenuItem = nCurPlayerMenuItem - 1;
+                UpdatePlayerMenu();
+            }
+        }
+
+        function OnDPadPressRight()
+        {
+            if (nCurPlayerMenuItem < nPlayerMenuItemCount - 1)
+            {
+                //if (theMusicPlayer.transportMode != 1) // playing
+                   // PlaySoundMenuChange();
+                nCurPlayerMenuItem = nCurPlayerMenuItem + 1;
+                UpdatePlayerMenu();
+            }
+        }
+
+        function OnLeftThumbMoveLeft()
+        {
+
+        }
+
+        function OnLeftThumbMoveRight()
+        {
+
+        }
+
+        function OnLeftThumbMoveUp()
+        {
+              FlipSkinsOnUp();
+	      //theConfig.ChangeSkin( selectedItemName );
+        }
+
+        function OnLeftThumbMoveDown()
+        {
+
+              FlipSkinsOnDown();
+	      //theConfig.ChangeSkin( selectedItemName );
+
+        }
+
+        function OnPlay()
+        {
+
+        }
+
+        function OnPause()
+        {
+
+        }
+
+        function OnStop()
+        {
+
+        }
+
+        function OnSkipForward()
+        {
+
+        }
+
+        function OnSkipBack()
+        {
+
+        }
+
+        function OnYDown()
+        {
+
+        }
+
+        function OnXDown()
+        {
+
+        }
+
+        function OnInfo()
+        {
+
+        }
+
+        function OnKeyVerified()
+        {
+
+        }
+    }
+
+function OnActivate()
+    {
+        StartMusicPlayer();
+    }
+
+    function OnDeactivate()
+    {
+
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+
+function clearMenuList()
+{
+ selectedItem = 0;
+ itemPlaceHolder = 0;
+ var c = theFavsMenu.children[0].children[0];
+ for(var i = 0; i < 9; i = i + 1)
+ {
+  c.TrackNames.children[i].children[0].geometry.text = "";
+  c.TrackNames.children[i].children[0].appearance.name = "Material #1335";
+ }
+ c.TrackNames.children[0].children[0].appearance.name = "CellEgg/Partsz";
+ c.TrackNames.children[0].children[0].geometry.text = "<empty>";
+c.MU_morearrow_down.visible = false;
+c.MU_morearrow_up.visible = false;
+}
+
+function fillSkinsMenu(x)
+{
+	//favsList
+	favsList = newFavs(x);
+	var pItem;
+	selectedItem = 0;
+	var c = theFavsMenu.children[0].children[0];
+	c.LowerPanelText.text = sName[x - 1];
+	if(favsList.length == 0)
+		return;
+	var rPath = favsList[selectedItem];
+	var iconPath = rPath.substr(rPath.length() - 8,rPath.length());
+	c.theIconCube.children[0].children[0].appearance.texture.url = "E:\\UDATA\\" + iconPath + "\\TitleImage.xbx";
+ 
+	var listLength = favsList.length;
+	selectedItemName = favsList[0];
+	if(favsList.length > 9)
+	 c.MU_morearrow_down.visible = true;
+
+	if(favsList.length > 8)
+	 listLength = 9;
+
+	for(var i = 0; i < listLength; i = i + 1)
+	{
+		pItem = favsList[i].substr(0,(favsList[i].length() - 9));
+		c.TrackNames.children[i].children[0].geometry.text = pItem;
+	}
+
+}
+
+function FlipSkinsOnDown()
+{
+ var c = theFavsMenu.children[0].children[0];
+ if((favsList[selectedItem + 1] != "") & (itemPlaceHolder < 8))
+ {
+  c.TrackNames.children[itemPlaceHolder].children[0].appearance.name = "Material #1335";
+  c.TrackNames.children[itemPlaceHolder + 1].children[0].appearance.name = "CellEgg/Partsz";
+  selectedItemName = favsList[selectedItem + 1];
+  selectedItem = selectedItem + 1;
+  itemPlaceHolder = itemPlaceHolder + 1;
+	var rPath = favsList[selectedItem];
+	var iconPath = rPath.substr(rPath.length() - 8,rPath.length());
+	c.theIconCube.children[0].children[0].appearance.texture.url = "E:\\UDATA\\" + iconPath + "\\TitleImage.xbx";
+ }
+ else
+ {
+  scrollSkinMenuDown();
+ }
+ theASound.volume = 0.82;
+ PlaySoundA();
+ theASound.volume = 0.92;
+}
+
+
+function FlipSkinsOnUp()
+{
+ var c = theFavsMenu.children[0].children[0];
+ if(itemPlaceHolder > 0)
+ {
+  c.TrackNames.children[itemPlaceHolder].children[0].appearance.name = "Material #1335";
+  c.TrackNames.children[itemPlaceHolder - 1].children[0].appearance.name = "CellEgg/Partsz";
+  selectedItemName = favsList[selectedItem - 1];
+  selectedItem = selectedItem - 1;
+  itemPlaceHolder = itemPlaceHolder - 1;
+	var rPath = favsList[selectedItem];
+	var iconPath = rPath.substr(rPath.length() - 8,rPath.length());
+	c.theIconCube.children[0].children[0].appearance.texture.url = "E:\\UDATA\\" + iconPath + "\\TitleImage.xbx";
+  }
+ else
+ {
+  scrollSkinMenuUp();
+ }
+ theASound.volume = 0.82;
+ PlaySoundA();
+ theASound.volume = 0.92;
+}
+
+function scrollSkinMenuDown()
+{
+ var c = theFavsMenu.children[0].children[0];
+ c.TrackNames.children[0].children[0].geometry.text = favsList[selectedItem - 7];
+ c.TrackNames.children[1].children[0].geometry.text = favsList[selectedItem - 6];
+ c.TrackNames.children[2].children[0].geometry.text = favsList[selectedItem - 5];
+ c.TrackNames.children[3].children[0].geometry.text = favsList[selectedItem - 4];
+ c.TrackNames.children[4].children[0].geometry.text = favsList[selectedItem - 3];
+ c.TrackNames.children[5].children[0].geometry.text = favsList[selectedItem - 2];
+ c.TrackNames.children[6].children[0].geometry.text = favsList[selectedItem - 1];
+ c.TrackNames.children[7].children[0].geometry.text = favsList[selectedItem];
+ c.TrackNames.children[8].children[0].geometry.text = favsList[selectedItem + 1];
+ selectedItemName =favsList[selectedItem + 1];
+ selectedItem = selectedItem + 1;
+
+	var rPath = favsList[selectedItem];
+	var iconPath = rPath.substr(rPath.length() - 8,rPath.length());
+	c.theIconCube.children[0].children[0].appearance.texture.url = "E:\\UDATA\\" + iconPath + "\\TitleImage.xbx";
+ 
+ c.MU_morearrow_up.visible = true;
+ if(selectedItem + 1 == favsList.length)
+  c.MU_morearrow_down.visible = false;
+}
+
+function scrollSkinMenuUp()
+{
+ var c = theFavsMenu.children[0].children[0];
+ c.TrackNames.children[0].children[0].geometry.text = favsList[selectedItem - 1];
+ c.TrackNames.children[1].children[0].geometry.text = favsList[selectedItem];
+ c.TrackNames.children[2].children[0].geometry.text = favsList[selectedItem + 1];
+ c.TrackNames.children[3].children[0].geometry.text = favsList[selectedItem + 2];
+ c.TrackNames.children[4].children[0].geometry.text = favsList[selectedItem + 3];
+ c.TrackNames.children[5].children[0].geometry.text = favsList[selectedItem + 4];
+ c.TrackNames.children[6].children[0].geometry.text = favsList[selectedItem + 5];
+ c.TrackNames.children[7].children[0].geometry.text = favsList[selectedItem + 6];
+ c.TrackNames.children[8].children[0].geometry.text = favsList[selectedItem + 7];
+ selectedItemName = favsList[selectedItem - 1];
+ selectedItem = selectedItem - 1;
+
+	var rPath = favsList[selectedItem];
+	var iconPath = rPath.substr(rPath.length() - 8,rPath.length());
+	c.theIconCube.children[0].children[0].appearance.texture.url = "E:\\UDATA\\" + iconPath + "\\TitleImage.xbx";
+ 
+ c.MU_morearrow_down.visible = true;
+ if(selectedItem > 8)
+  c.MU_morearrow_up.visible = true;
+ if(selectedItem == 0)
+  c.MU_morearrow_up.visible = false;
+}
+////////
+function SkinMenuFlipDown()
+{
+  var c = theFavsMenu.children[0].children[0];
+
+   if (MenuDown == false)
+      {
+        //MenuDown = true;
+        //InMainLevel = false;
+bMusicMenuVisible = false;
+        //StartMusicPlayer();
+        thePlayerPanelIn.Play();
+        //GrabSkins();
+        //UpdateSkinArray();
+        c.buttons_copy.visible = false;
+        c.buttons_edit.visible = false;
+        c.play_buttons.visible = false;
+        c.MU_L3_timeslider.visible = false;
+        c.MU_L3_timeslider_slot.visible = false;
+        c.TitleText.text = "Skins";
+        //c.TrackCountText.text = LV3ListLength + " Items";
+        c.MusicTimeText.text = "";
+        c.MU_L3_panel_timedisplay_01.visible = false;
+       // c.theSettingsEqualizer.children[0].appearance.texture = audioVisualizerOne;
+       // c.theSettingsEqualizer.visible = true;
+/////////////////////////////////////////////////////////
+       // HideTheInfoPanel();
+      }
+
+}
+
+function SkinMenuFlipUp()
+{
+  var c = theFavsMenu.children[0].children[0];
+
+  if (MenuDown == true)
+      {
+        MenuDown = false;
+        InMainLevel = true;
+        bMusicMenuVisible = true;
+       // HideTheInfoPanel();
+
+       // c.theSkinPreview.visible = false;
+       // c.theSettingsEqualizer.visible = false;
+        clearMenuList();
+      }
+}
+
+////////begin of favs functions... some of these could be combined with locks
+function getFavEntry(x,y)
+{
+ var info = new Settings;
+ info.file = "E:\\UDATA\\0ffeeff0\\config\\favs.dat";
+ info.section = x;
+ var b = info.GetValue(y);
+ return b;
+}
+
+function setFavEntry(x,y,z)
+{
+var info = new Settings;
+info.file = "E:\\UDATA\\0ffeeff0\\config\\favs.dat";
+info.section = x;
+info.SetValue(y,z);
+}
+
+function getFavListLength(x)
+{
+ var listlength2 = 0;
+ var section2 = x;
+
+ for(var i = 0; i < 100; i = i + 1)
+ {
+  if(getFavEntry(section2,i) != "")
+   listlength2 = listlength2 + 1;
+  else if(getFavEntry(section2,i) == "")
+   return listlength2;
+ }
+}
+/*
+///this function will be used if we want all the favs on one screen:
+function buildFavsID() //returns section paths followed by its _sorted_ items
+{
+	var favsArray = new Array();
+	var tempArray;
+	var aLength;
+	var sLength;
+	for(var fSections = 1; fSections < 5; fSections = fSections + 1)
+	{
+		aLength = favsArray.length;
+		sLength = getFavListLength(GetSectionPaths(fSections));
+
+		if(sLength != 0)
+		{
+			favsArray[aLength] = "   " + GetSectionTitles(fSections) + "_____________"; //for headers
+			aLength = aLength + 1;
+	
+			tempArray = new Array();
+			for(var t = 0; t < sLength; t = t + 1) //this array will be added to the main array once it is sorted (concat)
+			{
+				tempArray[t] = getFavEntry(GetSectionPaths(fSections),t);
+			}
+			tempArray = tempArray.sort();
+	
+			for(var i = aLength; i < (sLength + aLength); i = i + 1) //items
+			{
+				favsArray[i] = tempArray[i - aLength];
+			}
+		}
+	}
+	return favsArray;
+}
+*/
+function newFavs(x) //x = 1-4, sections
+{
+	var favsArray = new Array();
+	var sLength = getFavListLength(GetSectionPaths(x));
+	for(var t = 0; t < sLength; t = t + 1)
+	{
+		//var mess = getFavEntry(GetSectionPaths(x),t);
+		favsArray[t] = getFavEntry(GetSectionPaths(x),t);//mess.substr(9,mess.length());
+	}
+	favsArray = favsArray.sort();
+	return favsArray;
+}
+
+
+function debugFavs()
+{
+	var theArray = buildFavsID();
+	for(var i = 0; i < theArray.length; i = i + 1)
+	{
+		theConfig.DebugOutput( theArray[i] + "  " );
+	}
+}
+
+function delFavItem(fSection,titleID)
+{
+	
+
+}
+
+function fixFavsData(x,y) //x = path; y = number
+{
+ var favPath = x;
+ var deletedEntry = y;
+ var nextEntry;
+ for(var i = deletedEntry; i < getFavsListLength(favPath); i = i + 1)
+ {
+  nextEntry = getFavValue(favPath, i + 1);
+  setFavValue(favPath,i,nextEntry);
+ }
+}
+
+function launchFav()
+{
+	var title = favsList[selectedItem];
+	var titleID = title.substr(title.length() - 8, title.length());
+	var titleC = currentMenu(curMenu,"titleCount","");
+		for(var i = 0; i < titleC; i = i + 1)
+		{
+			if(currentMenu(curMenu,"GetTitleID",i) == titleID)
+			{
+				currentMenu(curMenu,"LaunchTitle",i);
+			}
+		}
+}
+////end of favs
+// 
+
+function currentMenu( cMenu, mFunc, mItem )
+{
+	var rValue = "";
+	if(mFunc == "SetPath")
+	{
+		if(cMenu == "games")
+			theGamesMenu.SetPath(mItem);
+		else if(cMenu == "apps")
+			theApplicationsMenu.SetPath(mItem);
+		else if(cMenu == "emu")
+			theDashboardsMenu.SetPath(mItem);
+		else if(cMenu == "dash")
+			theEmulatorsMenu.SetPath(mItem);
+	}
+	else if(mFunc == "GetTitleName")
+	{
+		if(cMenu == "games")
+			rValue = theGamesMenu.GetTitleName(mItem);
+		else if(cMenu == "apps")
+			rValue = theApplicationsMenu.GetTitleName(mItem);
+		else if(cMenu == "emu")
+			rValue = theDashboardsMenu.GetTitleName(mItem);
+		else if(cMenu == "dash")
+			rValue = theEmulatorsMenu.GetTitleName(mItem);
+	}
+	else if(mFunc == "SetMenuName")
+	{
+		if(cMenu == "games")
+			theGamesMenu.SetMenuName(mItem);
+		else if(cMenu == "apps")
+			theApplicationsMenu.SetMenuName(mItem);
+		else if(cMenu == "emu")
+			theDashboardsMenu.SetMenuName(mItem);
+		else if(cMenu == "dash")
+			theEmulatorsMenu.SetMenuName(mItem);
+	}
+	else if(mFunc == "GetMenuName")
+	{
+		if(cMenu == "games")
+			rValue = theGamesMenu.GetMenuName();
+		else if(cMenu == "apps")
+			rValue = theApplicationsMenu.GetMenuName();
+		else if(cMenu == "emu")
+			rValue = theDashboardsMenu.GetMenuName();
+		else if(cMenu == "dash")
+			rValue = theEmulatorsMenu.GetMenuName();
+	}
+	else if(mFunc == "GetTitleID")
+	{
+		if(cMenu == "games")
+			rValue = theGamesMenu.GetTitleID(mItem);
+		else if(cMenu == "apps")
+			rValue = theApplicationsMenu.GetTitleID(mItem);
+		else if(cMenu == "emu")
+			rValue = theDashboardsMenu.GetTitleID(mItem);
+		else if(cMenu == "dash")
+			rValue = theEmulatorsMenu.GetTitleID(mItem);
+	}
+	else if(mFunc == "LaunchTitle")
+	{
+		if(cMenu == "games")
+			theGamesMenu.LaunchTitle(mItem);
+		else if(cMenu == "apps")
+			theApplicationsMenu.LaunchTitle(mItem);
+		else if(cMenu == "emu")
+			theDashboardsMenu.LaunchTitle(mItem);
+		else if(cMenu == "dash")
+			theEmulatorsMenu.LaunchTitle(mItem);
+	}
+	else if(mFunc == "titleCount")
+	{
+		if(cMenu == "games")
+			rValue = theGamesMenu.titleCount;
+		else if(cMenu == "apps")
+			rValue = theApplicationsMenu.titleCount;
+		else if(cMenu == "emu")
+			rValue = theDashboardsMenu.titleCount;
+		else if(cMenu == "dash")
+			rValue = theEmulatorsMenu.titleCount;
+	}
+	return rValue;
+}

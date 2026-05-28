@@ -1,0 +1,5928 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+DEF affcell Transform
+    {
+        scale 150 150 150
+        translation 0 -20 80
+        children
+        [
+            DEF CellWav01 Waver
+            {
+     			rpm 4
+     			axis 1 0 0
+     			field 2
+			children
+			[
+            DEF CellWav02 Waver
+            {
+     			rpm 4
+     			axis 0 1 0
+     			field 2
+			children
+			[
+             DEF CellWav03 Waver
+            {
+     			rpm 4
+     			axis 0 0 1
+     			field 2
+			children
+			[
+				Shape
+				{
+					appearance Appearance
+					{
+						material MaxMaterial
+						{
+							name "InnerWall_01"
+						}
+						texture DEF CellTex ImageTexture
+						{
+							alpha true
+							url "cellwall.xbx"
+						}
+					}
+					geometry Mesh { url "Inner_cell-FACES.xm" }
+				}
+				Shape
+				{
+					appearance Appearance
+					{
+						material MaxMaterial
+						{
+							name "InnerWall_02"
+						}
+					}
+					geometry Sphere
+					{
+						radius 1
+					}
+				}
+			]
+		}
+			]
+		}
+			]
+		}
+	]
+}
+DEF theScreen Transform
+{
+ children
+ [
+
+DEF theScreenWaver Transform
+{
+ children
+ [
+   DEF WAV01 Waver
+   {
+     rpm 4
+     axis 1 0 0
+     field 0.132
+     children
+     [
+   DEF WAV02 Waver
+   {
+     rpm 6
+     axis 0 -1 0
+     field 0.162
+     children
+     [
+   DEF WAV03 Waver
+   {
+     rpm 5
+     axis 0 0 1
+     field 0.132
+     children
+     [
+
+DEF ring Transform
+{
+	children
+	[
+		DEF theMenuItems Transform
+		{
+			fade 0.25
+			children
+			[
+				DEF structure_1 Transform
+				{
+					fade 0.25
+					children 
+					[
+						DEF RotRing Spinner 
+						{ 
+							rpm 5.0 
+							axis 0 0 2 
+							children 
+							[
+								DEF podsupport_3 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material DEF Str01Mat MaxMaterial
+												{
+													name "FlatSrfc/PodParts"
+												}
+												texture DEF Str01Tex ImageTexture
+												{
+													url ""
+												}
+											}
+											geometry DEF podsupport_3-FACES Mesh { url "podsupport_3-FACES.xm" }
+										}
+									]
+									rotation 0.012260 0.999900 -0.003600 -1.432000
+									scale 19.000000 2.072000 8.992000
+									scaleOrientation -0.118800 0.987900 0.100100 -0.141000
+									translation 45.130001 0.692800 2.796000
+								}
+								DEF podsupport_1 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str01Mat
+												texture USE Str01Tex
+											}
+											geometry DEF podsupport_1-FACES Mesh { url "podsupport_1-FACES.xm" }
+										}
+									]
+									rotation -0.754600 0.002362 0.656200 -3.126000
+									scale 19.000000 2.072000 8.992000
+									scaleOrientation -0.118800 0.987900 0.100100 -0.141000
+									translation -45.130001 0.311100 2.796000
+								}
+								DEF podsupport_2 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str01Mat
+												texture USE Str01Tex
+											}
+											geometry DEF podsupport_2-FACES Mesh { url "podsupport_2-FACES.xm" }
+										}
+									]
+									rotation -0.600300 0.598900 0.530000 -4.089000
+									scale 19.000000 2.072000 8.992000
+									scaleOrientation -0.118800 0.987900 0.100100 -0.141000
+									translation -4.415000 41.959999 2.796000
+								}
+								DEF podsupport_4 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str01Mat
+												texture USE Str01Tex
+											}
+											geometry DEF podsupport_4-FACES Mesh { url "podsupport_4-FACES.xm" }
+										}
+									]
+									rotation 0.557400 0.539200 0.631300 -2.018000
+									scale 19.000000 2.072000 8.992000
+									scaleOrientation -0.118800 0.987900 0.100100 -0.141000
+									translation -4.415000 -41.959999 2.796000
+								}
+							] 
+						} 
+					] 
+					scale 0.925900 0.925900 0.925900 
+					translation 0.000000 0.000000 0.000000 
+				}
+				DEF structure_3 Transform
+				{
+					children
+					[
+						DEF RotPetitCroix Spinner
+						{
+							rpm -5.0
+							axis 0 0 2
+							children
+							[
+								DEF Main_memory_podarm_1 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material DEF Str02Mat MaxMaterial
+												{
+													name "MenuCell"
+												}
+												texture DEF Str02Tex ImageTexture
+												{
+													url ""
+												}
+											}
+											geometry DEF Main_memory_podarm_1-FACES Mesh { url "Main_memory_podarm_1-FACES.xm" }
+										}
+									]
+									rotation 0.391600 -0.920100 0.000854 -3.143000
+									scale 1.626000 1.626000 1.626000
+									scaleOrientation 0.529700 -0.741300 0.412200 -0.418700
+									translation 14.400000 31.129999 -19.719999
+								}
+								DEF Main_memory_podarm_2 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str02Mat
+												texture USE Str02Tex
+											}
+											geometry USE Main_memory_podarm_1-FACES
+										}
+									]
+									rotation -0.927500 0.373700 0.000000 -3.139000
+									scale 1.626000 1.626000 1.626000
+									scaleOrientation -0.187800 -0.573000 0.797700 -0.660100
+									translation -30.889999 15.310000 -19.639999
+								}
+								DEF Main_memory_podarm_3 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str02Mat
+												texture USE Str02Tex
+											}
+											geometry USE Main_memory_podarm_1-FACES
+										}
+									]
+									rotation -0.920100 -0.391600 0.000864 -3.140000
+									scale 1.626000 1.626000 1.626000
+									scaleOrientation -0.136000 -0.149300 0.979400 -0.476000
+									translation -15.060000 -29.969999 -19.549999
+								}
+								DEF Main_memory_podarm_4 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str02Mat
+												texture USE Str02Tex
+											}
+											geometry USE Main_memory_podarm_1-FACES
+										}
+									]
+									rotation -0.373700 -0.927500 0.001215 -3.142000
+									scale 1.626000 1.626000 1.626000
+									scaleOrientation -0.115500 -0.047620 -0.992200 -0.456300
+									translation 30.219999 -14.150000 -19.629999
+								}
+								DEF Main_memory_podsocket_outer02 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str02Mat
+												texture USE Str02Tex
+											}
+											geometry DEF Main_memory_podsocket_outer02-FACES Mesh { url "Main_memory_podsocket_outer02-FACES.xm" }
+										}
+									]
+									rotation 0.999900 0.009219 -0.010160 -1.573000
+									scale 1.626000 1.626000 1.626000
+									scaleOrientation 0.255900 0.000000 -0.966700 -0.008564
+									translation -0.335100 0.575300 -22.120001
+								}
+								DEF Main_memory_podsocket_inner02 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str02Mat
+												texture USE Str02Tex
+											}
+											geometry DEF Main_memory_podsocket_inner02-FACES Mesh { url "Main_memory_podsocket_inner02-FACES.xm" }
+										}
+									]
+									rotation 0.999900 0.009219 -0.010160 -1.573000
+									scale 1.626000 1.626000 1.626000
+									scaleOrientation 0.255900 0.000000 -0.966700 -0.008564
+									translation -0.335100 0.575300 -22.120001
+								}
+							]
+						}
+					]
+					translation 0 0 85
+				}
+				DEF structure_8 Transform
+				{
+					fade 0.25
+					children
+      				[
+						DEF podsupport_ring Transform
+						{
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material DEF Str04Mat MaxMaterial
+										{
+											name "FlatSrfc/PodParts"
+										}
+										texture DEF Str04Tex ImageTexture
+										{
+											url ""
+										}
+									}
+									geometry DEF podsupport_ring-FACES Mesh { url "podsupport_ring-FACES.xm" }
+								}
+							]
+							rotation -0.075560 0.704300 0.705900 -2.989000
+							scale 6.409000 6.409000 6.409000
+							scaleOrientation 0.620600 0.759100 -0.196700 -0.516000
+							translation 48.430000 94.709999 105.500000
+						}
+					]
+					translation 0 0 0
+					scale 0.925900 0.925900 0.925900
+				}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+DEF MainMenuPanneau Transform
+{
+	children
+	[
+				DEF MainMenu_1 Transform
+				{
+					children
+					[
+						DEF theItemMainMenu_1 Transform
+						{
+							fade 0.25
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material DEF Str06Mat MaxMaterial
+										{
+											name "FlatSrfc/PodParts"
+										}
+										texture DEF Str06Tex ImageTexture
+										{
+											url ""
+										}
+									}
+									geometry DEF theItem-FACES Mesh { url "Main_memory_ringpin_2-FACES.xm" }
+								}
+								DEF MainMenu_1_arm03 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str06Mat
+												texture USE Str06Tex
+											}
+											geometry DEF arm03-FACES Mesh { url "music_arm03-FACES.xm" }
+										}
+										DEF MainMenu_1_arm_04 Transform
+										{
+											children
+											[
+												Shape
+												{
+													appearance Appearance
+													{
+														material USE Str06Mat
+														texture USE Str06Tex
+													}
+													geometry DEF arm_04-FACES Mesh { url "memory_arm_04-FACES.xm" }
+												}
+												DEF MainMenu_1_panel Transform
+												{
+													children
+													[
+														DEF MainMenu_1_panel_support Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF Str08Mat MaxMaterial
+																		{
+																			name "FlatSurfaces"
+																		}
+																		texture DEF Str08Tex ImageTexture
+																		{
+																			url ""
+																		}
+																	}
+																	geometry DEF panel_support-FACES Mesh { url "games_panel_support-FACES.xm" }
+																}
+															]
+															rotation -0.585700 -0.570700 0.575600 -4.179000
+															scale 2.040000 2.040000 2.040000
+															scaleOrientation -0.959000 -0.131300 0.251000 -0.606000
+															translation -23.520000 -7.377000 2.082000
+														}
+														DEF MainMenu_1_nozzle02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF Str11Mat MaxMaterial
+																		{
+																			name "CellEgg/Parts"
+																		}
+																		texture DEF Str11Tex ImageTexture
+																		{
+																			url ""
+																		}
+																	}
+																	geometry DEF nozzle02-FACES Mesh { url "game_nozzle02-FACES.xm" }
+																}
+																DEF MainMenu_1_nozzledial02 Transform
+																{
+																	children
+																	[
+																		Shape
+																		{
+																			appearance Appearance
+																			{
+																				material USE Str11Mat
+																				texture USE Str11Tex
+																			}
+																			geometry DEF nozzledial02-FACES Mesh { url "game_nozzledial02-FACES.xm" }
+																		}
+																	]
+																	rotation 0.659600 -0.671200 -0.338300 -3.784000
+																	translation -0.657500 6.793000 -0.787900
+																}
+															]
+															rotation 0.339800 0.904400 -0.257900 -1.602000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.029620 0.063950 -0.997500 -0.696200
+															translation -29.040001 3.861000 -5.730000
+														}
+														DEF MainMenu_1_podshell_07 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF Str09Mat MaxMaterial
+																		{	
+																			name "MenuCell"
+																		}
+																		texture DEF Str09Tex ImageTexture
+																		{
+																			url ""
+																		}
+																	}
+																	geometry DEF podshell_07-FACES Mesh { url "game_podshell_07-FACES.xm" }
+																}
+															]
+															rotation -0.996900 -0.063700 0.046460 -1.470000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.866500 0.170100 -0.469300 -0.387200
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_1_podshell_08 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry DEF podshell_08-FACES Mesh { url "game_podshell_08-FACES.xm" }
+																}
+															]
+															rotation -0.205500 -0.736100 -0.645000 -2.839000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.443700 -0.891900 0.087440 -0.609800
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_1_podshell_09 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry DEF podshell_09-FACES Mesh { url "game_podshell_09-FACES.xm" }
+																}
+															]
+															rotation -0.214200 -0.735100 -0.643200 -2.820000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.463200 -0.592500 0.659100 -0.474500
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_1_MiniCroix Transform
+														{
+															children
+															[
+																DEF RotMiniCroix_MainMenu_1 Spinner 
+																{ 
+																	rpm 5.0 
+																	axis 0 0 1 
+																	children 
+																	[
+																		DEF MainMenu_1_podsupport_09 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material DEF Str05Mat MaxMaterial
+																						{
+																							name "FlatSrfc/PodParts"
+																						}
+																						texture DEF Str05Tex ImageTexture
+																						{
+																							url ""
+																						}
+																					}
+																					geometry DEF podsupport_09-FACES Mesh { url "game_podsupport_09-FACES.xm" }
+																				}
+																			]
+																			rotation -0.689600 0.314600 -0.652200 -2.669000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.911000 0.410100 -0.042760 -0.835900
+																			translation -3.080002 7.282000 2.861000
+																		}
+																		DEF MainMenu_1_podsupport_10 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.401400 0.864700 -0.302000 -1.753000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.652900 -0.226600 -0.722800 -0.897700
+																			translation 7.239998 4.402000 2.442000
+																		}
+																		DEF MainMenu_1_podsupport_11 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation 0.672500 0.244000 0.698700 -2.514000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation 0.634400 -0.743500 -0.211600 -0.534000
+																			translation -5.690003 -2.973000 1.715000
+																		}
+																		DEF MainMenu_1_podsupport_12 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry DEF podsupport_12-FACES Mesh { url "game_podsupport_12-FACES.xm" }
+																				}
+																			]
+																			rotation 0.315600 0.854700 0.412200 -1.672000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.983700 -0.175000 0.042150 -0.556100
+																			translation 4.639997 -5.295000 1.360000
+																		}
+																	]
+																}
+															]
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_1_pod02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "MenuCell"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 25.000000
+																	}
+																}
+															]
+															rotation -0.922500 -0.329200 -0.201700 -1.575000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.265400 0.380400 0.885900 -0.854300
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_1_podsocket_inner02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF Str10Mat MaxMaterial
+																		{
+																			name "MenuCell"
+																		}
+																		texture DEF Str10Tex ImageTexture
+																		{
+																			url ""
+																		}
+																	}
+																	geometry DEF podsocket_inner02-FACES Mesh { url "game_podsocket_inner02-FACES.xm" }
+																}
+															]
+															rotation 0.994900 -0.002650 -0.101000 -1.675000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.292900 -0.197900 0.935400 -0.727600
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_1_arm04 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str06Mat
+																		texture USE Str06Tex
+																	}
+																	geometry DEF arm04-FACES Mesh { url "game_arm04-FACES.xm" }
+																}
+															]
+															rotation 0.078240 0.069690 0.994500 -1.575000
+															scale 1.350000 1.350000 1.350000
+															scaleOrientation -0.627300 0.564200 0.536800 -1.036000
+															translation -34.169998 4.055000 -0.615300
+														}
+														DEF MainMenu_1_MetaPanel Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF MainMenu_1_Material MaxMaterial
+																		{
+																			name "GameHilite"
+																		}
+																		texture DEF MainMenu_1_Texture ImageTexture
+																		{
+																			url "GameHilite_01.bmp"
+																		}
+																	}
+																	geometry DEF MetaPanel-FACES Mesh { url "music_metapanel-FACES.xm" }
+																}
+															]
+															rotation 0.002542 -0.701000 0.713100 -3.149000
+															scale 1.591000 1.591000 1.591000
+															scaleOrientation -0.948600 -0.314500 0.033810 -0.479400
+															translation -12.030000 -17.930000 4.047000
+														}
+														DEF MainMenu_1_tube Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF Str07Mat MaxMaterial
+																		{
+																			name "Tubes"
+																		}
+																		texture DEF Str07Tex ImageTexture
+																		{
+																			url ""
+																		}
+																	}
+																	geometry DEF tube-FACES Mesh { url "music_tube-FACES.xm" }
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -14.780000 -25.049999 2.837000
+														}
+														DEF MainMenu_1_tube_0 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry DEF tube_0-FACES Mesh { url "music_tube_0-FACES.xm" }
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -16.160000 -26.090000 2.880000
+														}
+														DEF MainMenu_1_pod_backing Transform
+														{
+															children 
+                                       									[
+                                     										Shape
+                                    										{
+                                    											appearance Appearance
+                                         											{
+																		material DEF MainMenu_1Mat MaxMaterial
+																		{
+																			name "FlatSurfaces"
+																		}
+																		texture DEF MainMenu_1Tex ImageTexture
+																		{
+																			url ""
+																		}
+                                            										}
+                                                									geometry DEF pod_backing-FACES Mesh { url "gamepod_backing-FACES.xm" }
+                                                  								}
+                                              								]
+                                     									rotation -0.993800 -0.111400 0.002924 -1.478000
+                                										scale 0.329600 0.329600 0.329600
+                                  										scaleOrientation -0.630600 0.217500 0.745000 -0.359000
+                                    									translation -32.299999 -3.419000 -3.640000
+                                       								}
+														DEF MainMenu_1_SelectPod Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "EggGlowPulse"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 10.540000
+																	}
+																}
+															]
+															rotation -0.335200 0.920700 -0.199700 -0.424800
+															scale 0.598800 0.598800 0.598800
+															scaleOrientation 0.060470 -0.803600 0.592100 -0.211000
+															translation -31.959999 -3.733000 -3.075000
+														}
+														DEF MainMenu_1_Text Transform
+														{
+															children
+															[
+																Transform
+																{
+																	rotation -1 0 0 1.571
+																	children
+																	[
+																		DEF MainMenu_1_Font Shape
+																		{
+																			appearance Appearance
+																			{
+																				material DEF MainMenu_1TextMaterial MaxMaterial
+																				{
+																					name "NavType"
+																				}
+																			}
+																			geometry Text { width -10 justify "left" font "Heading" translate true text "" }
+																		}
+																	]		
+																}
+															]
+															rotation -1.000000 0.002966 0.003888 -1.551000
+															scale 7.000 0.0 7.000
+															//scaleOrientation 0.754300 0.161800 0.636300 -0.255100
+															translation -14.379000 -10.540000 3.903000
+														}
+													]
+													rotation -0.602100 -0.599600 -0.527300 -2.191000
+													scale 0.458100 0.458100 0.458100
+													scaleOrientation -0.676600 -0.684500 0.271400 -0.208200
+													translation 5.701000 15.400000 -1.711000
+												}
+												DEF MainMenu_1_arm_pin02 Transform
+												{
+													children
+													[
+														Shape
+														{
+															appearance Appearance
+															{
+																material USE Str06Mat
+																texture USE Str06Tex
+															}
+															geometry DEF arm_pin02-FACES Mesh { url "music_arm_pin02-FACES.xm" }
+														}
+													]
+													rotation -0.008533 -1.000000 -0.003925 -2.201000
+													scale 1.294000 2.019000 1.294000
+													scaleOrientation 0.062600 0.997600 0.030280 -0.266000
+													translation -1.495000 -1.031000 4.525000
+												}
+											]
+											rotation 0.001397 -0.015840 0.999900 -3.163000
+											scale 1.296000 1.296000 1.296000
+											scaleOrientation 0.454800 0.859100 0.234900 -0.826500
+											translation -6.689000 0.236800 -4.083000
+										}
+									]
+									rotation 0.127600 -0.011390 -0.991800 -1.591000
+									scale 0.225100 0.257500 0.257500
+									scaleOrientation -0.447400 0.891900 0.066360 -0.156600
+									translation -0.311500 -0.785100 0.478100
+								}
+							]	
+						}
+					]
+					rotation 0.997500 -0.047920 0.052590 -1.573000
+					scale 6.057000 6.927000 6.057000
+					scaleOrientation 0.008927 0.998300 -0.057520 -0.081130
+				}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				DEF MainMenu_2 Transform
+				{
+					children
+					[
+						DEF theItemMainMenu_2 Transform
+						{
+							fade 0.25
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material USE Str06Mat
+										texture USE Str06Tex
+									}
+									geometry USE theItem-FACES
+								}
+								DEF MainMenu_2_arm03 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str06Mat
+												texture USE Str06Tex
+											}
+											geometry USE arm03-FACES
+										}
+										DEF MainMenu_2_arm_04 Transform
+										{
+											children
+											[
+												Shape
+												{
+													appearance Appearance
+													{
+														material USE Str06Mat
+														texture USE Str06Tex
+													}
+													geometry USE arm_04-FACES
+												}
+												DEF MainMenu_2_panel Transform
+												{
+													children
+													[
+														DEF MainMenu_2_panel_support Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str08Mat
+																		texture USE Str08Tex
+																	}
+																	geometry USE panel_support-FACES
+																}
+															]
+															rotation -0.585700 -0.570700 0.575600 -4.179000
+															scale 2.040000 2.040000 2.040000
+															scaleOrientation -0.959000 -0.131300 0.251000 -0.606000
+															translation -23.520000 -7.377000 2.082000
+														}
+														DEF MainMenu_2_nozzle02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str11Mat
+																		texture USE Str11Tex
+																	}
+																	geometry USE nozzle02-FACES
+																}
+																DEF MainMenu_2_nozzledial02 Transform
+																{
+																	children
+																	[
+																		Shape
+																		{
+																			appearance Appearance
+																			{
+																				material USE Str11Mat
+																				texture USE Str11Tex
+																			}
+																			geometry USE nozzledial02-FACES
+																		}
+																	]
+																	rotation 0.659600 -0.671200 -0.338300 -3.784000
+																	translation -0.657500 6.793000 -0.787900
+																}
+															]
+															rotation 0.339800 0.904400 -0.257900 -1.602000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.029620 0.063950 -0.997500 -0.696200
+															translation -29.040001 3.861000 -5.730000
+														}
+														DEF MainMenu_2_podshell_07 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_07-FACES
+																}
+															]
+															rotation -0.996900 -0.063700 0.046460 -1.470000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.866500 0.170100 -0.469300 -0.387200
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_2_podshell_08 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_08-FACES
+																}
+															]
+															rotation -0.205500 -0.736100 -0.645000 -2.839000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.443700 -0.891900 0.087440 -0.609800
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_2_podshell_09 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_09-FACES
+																}
+															]
+															rotation -0.214200 -0.735100 -0.643200 -2.820000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.463200 -0.592500 0.659100 -0.474500
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_2_MiniCroix Transform
+														{
+															children
+															[
+																DEF RotMiniCroix_MainMenu_2 Spinner 
+																{ 
+																	rpm 5.0 
+																	axis 0 0 1 
+																	children 
+																	[
+																		DEF MainMenu_2_podsupport_09 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.689600 0.314600 -0.652200 -2.669000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.911000 0.410100 -0.042760 -0.835900
+																			translation -3.080002 7.282000 2.861000
+																		}
+																		DEF MainMenu_2_podsupport_10 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.401400 0.864700 -0.302000 -1.753000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.652900 -0.226600 -0.722800 -0.897700
+																			translation 7.239998 4.402000 2.442000
+																		}
+																		DEF MainMenu_2_podsupport_11 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation 0.672500 0.244000 0.698700 -2.514000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation 0.634400 -0.743500 -0.211600 -0.534000
+																			translation -5.690003 -2.973000 1.715000
+																		}
+																		DEF MainMenu_2_podsupport_12 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_12-FACES
+																				}
+																			]
+																			rotation 0.315600 0.854700 0.412200 -1.672000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.983700 -0.175000 0.042150 -0.556100
+																			translation 4.639997 -5.295000 1.360000
+																		}
+																	]
+																}
+															]
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_2_pod02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "MenuCell"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 25.000000
+																	}
+																}
+															]
+															rotation -0.922500 -0.329200 -0.201700 -1.575000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.265400 0.380400 0.885900 -0.854300
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_2_podsocket_inner02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str10Mat
+																		texture USE Str10Tex
+																	}
+																	geometry USE podsocket_inner02-FACES
+																}
+															]
+															rotation 0.994900 -0.002650 -0.101000 -1.675000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.292900 -0.197900 0.935400 -0.727600
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_2_arm04 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str06Mat
+																		texture USE Str06Tex
+																	}
+																	geometry USE arm04-FACES
+																}
+															]
+															rotation 0.078240 0.069690 0.994500 -1.575000
+															scale 1.350000 1.350000 1.350000
+															scaleOrientation -0.627300 0.564200 0.536800 -1.036000
+															translation -34.169998 4.055000 -0.615300
+														}
+														DEF MainMenu_2_MetaPanel Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF MainMenu_2_Material MaxMaterial
+																		{
+																			name "GameHilite"
+																		}
+																		texture DEF MainMenu_2_Texture ImageTexture
+																		{
+																			url "GameHilite_01.bmp"
+																		}
+																	}
+																	geometry USE MetaPanel-FACES
+																}
+															]
+															rotation 0.002542 -0.701000 0.713100 -3.149000
+															scale 1.591000 1.591000 1.591000
+															scaleOrientation -0.948600 -0.314500 0.033810 -0.479400
+															translation -12.030000 -17.930000 4.047000
+														}
+														DEF MainMenu_2_tube Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -14.780000 -25.049999 2.837000
+														}
+														DEF MainMenu_2_tube_0 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube_0-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -16.160000 -26.090000 2.880000
+														}
+														DEF MainMenu_2_pod_backing Transform
+														{
+															children 
+                                       									[
+                                     										Shape
+                                    										{
+                                    											appearance Appearance
+                                         											{
+																		material DEF MainMenu_2Mat MaxMaterial
+																		{
+																			name "FlatSurfaces"
+																		}
+																		texture DEF MainMenu_2Tex ImageTexture
+																		{
+																			url ""
+																		}
+                                            										}
+                                                									geometry USE pod_backing-FACES
+                                                  								}
+                                              								]
+                                     									rotation -0.993800 -0.111400 0.002924 -1.478000
+                                										scale 0.329600 0.329600 0.329600
+                                  										scaleOrientation -0.630600 0.217500 0.745000 -0.359000
+                                    									translation -32.299999 -3.419000 -3.640000
+                                       								}
+														DEF MainMenu_2_SelectPod Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "EggGlowPulse"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 10.540000
+																	}
+																}
+															]
+															rotation -0.335200 0.920700 -0.199700 -0.424800
+															scale 0.598800 0.598800 0.598800
+															scaleOrientation 0.060470 -0.803600 0.592100 -0.211000
+															translation -31.959999 -3.733000 -3.075000
+														}
+														DEF MainMenu_2_Text Transform
+														{
+															children
+															[
+																Transform
+																{
+																	rotation -1 0 0 1.571
+																	children
+																	[
+																		DEF MainMenu_2_Font Shape
+																		{
+																			appearance Appearance
+																			{
+																				material DEF MainMenu_2TextMaterial MaxMaterial
+																				{
+																					name "NavType"
+																				}
+																			}
+																			geometry Text { width -10 justify "left" font "Heading" translate true text "" }
+																		}
+																	]		
+																}
+															]
+															rotation -1.000000 0.002966 0.003888 -1.551000
+															scale 7.000 0.0 7.000
+															//scaleOrientation 0.754300 0.161800 0.636300 -0.255100
+															translation -14.379000 -10.540000 3.903000
+														}
+													]
+													rotation -0.602100 -0.599600 -0.527300 -2.191000
+													scale 0.458100 0.458100 0.458100
+													scaleOrientation -0.676600 -0.684500 0.271400 -0.208200
+													translation 5.701000 15.400000 -1.711000
+												}
+												DEF MainMenu_2_arm_pin02 Transform
+												{
+													children
+													[
+														Shape
+														{
+															appearance Appearance
+															{
+																material USE Str06Mat
+																texture USE Str06Tex
+															}
+															geometry USE arm_pin02-FACES
+														}
+													]
+													rotation -0.008533 -1.000000 -0.003925 -2.201000
+													scale 1.294000 2.019000 1.294000
+													scaleOrientation 0.062600 0.997600 0.030280 -0.266000
+													translation -1.495000 -1.031000 4.525000
+												}
+											]
+											rotation 0.001397 -0.015840 0.999900 -3.163000
+											scale 1.296000 1.296000 1.296000
+											scaleOrientation 0.454800 0.859100 0.234900 -0.826500
+											translation -6.689000 0.236800 -4.083000
+										}
+									]
+									rotation 0.127600 -0.011390 -0.991800 -1.591000
+									scale 0.225100 0.257500 0.257500
+									scaleOrientation -0.447400 0.891900 0.066360 -0.156600
+									translation -0.311500 -0.785100 0.478100
+								}
+							]	
+						}
+					]
+					rotation 0.997500 -0.047920 0.052590 -1.573000
+					scale 6.057000 6.927000 6.057000
+					scaleOrientation 0.008927 0.998300 -0.057520 -0.081130
+				}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				DEF MainMenu_3 Transform
+				{
+					children
+					[
+						DEF theItemMainMenu_3 Transform
+						{
+							fade 0.25
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material USE Str06Mat
+										texture USE Str06Tex
+									}
+									geometry USE theItem-FACES
+								}
+								DEF MainMenu_3_arm03 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str06Mat
+												texture USE Str06Tex
+											}
+											geometry USE arm03-FACES
+										}
+										DEF MainMenu_3_arm_04 Transform
+										{
+											children
+											[
+												Shape
+												{
+													appearance Appearance
+													{
+														material USE Str06Mat
+														texture USE Str06Tex
+													}
+													geometry USE arm_04-FACES
+												}
+												DEF MainMenu_3_panel Transform
+												{
+													children
+													[
+														DEF MainMenu_3_panel_support Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str08Mat
+																		texture USE Str08Tex
+																	}
+																	geometry USE panel_support-FACES
+																}
+															]
+															rotation -0.585700 -0.570700 0.575600 -4.179000
+															scale 2.040000 2.040000 2.040000
+															scaleOrientation -0.959000 -0.131300 0.251000 -0.606000
+															translation -23.520000 -7.377000 2.082000
+														}
+														DEF MainMenu_3_nozzle02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str11Mat
+																		texture USE Str11Tex
+																	}
+																	geometry USE nozzle02-FACES
+																}
+																DEF MainMenu_3_nozzledial02 Transform
+																{
+																	children
+																	[
+																		Shape
+																		{
+																			appearance Appearance
+																			{
+																				material USE Str11Mat
+																				texture USE Str11Tex
+																			}
+																			geometry USE nozzledial02-FACES
+																		}
+																	]
+																	rotation 0.659600 -0.671200 -0.338300 -3.784000
+																	translation -0.657500 6.793000 -0.787900
+																}
+															]
+															rotation 0.339800 0.904400 -0.257900 -1.602000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.029620 0.063950 -0.997500 -0.696200
+															translation -29.040001 3.861000 -5.730000
+														}
+														DEF MainMenu_3_podshell_07 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_07-FACES
+																}
+															]
+															rotation -0.996900 -0.063700 0.046460 -1.470000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.866500 0.170100 -0.469300 -0.387200
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_3_podshell_08 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_08-FACES
+																}
+															]
+															rotation -0.205500 -0.736100 -0.645000 -2.839000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.443700 -0.891900 0.087440 -0.609800
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_3_podshell_09 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_09-FACES
+																}
+															]
+															rotation -0.214200 -0.735100 -0.643200 -2.820000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.463200 -0.592500 0.659100 -0.474500
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_3_MiniCroix Transform
+														{
+															children
+															[
+																DEF RotMiniCroix_MainMenu_3 Spinner 
+																{ 
+																	rpm 5.0 
+																	axis 0 0 1 
+																	children 
+																	[
+																		DEF MainMenu_3_podsupport_09 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.689600 0.314600 -0.652200 -2.669000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.911000 0.410100 -0.042760 -0.835900
+																			translation -3.080002 7.282000 2.861000
+																		}
+																		DEF MainMenu_3_podsupport_10 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.401400 0.864700 -0.302000 -1.753000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.652900 -0.226600 -0.722800 -0.897700
+																			translation 7.239998 4.402000 2.442000
+																		}
+																		DEF MainMenu_3_podsupport_11 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation 0.672500 0.244000 0.698700 -2.514000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation 0.634400 -0.743500 -0.211600 -0.534000
+																			translation -5.690003 -2.973000 1.715000
+																		}
+																		DEF MainMenu_3_podsupport_12 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_12-FACES
+																				}
+																			]
+																			rotation 0.315600 0.854700 0.412200 -1.672000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.983700 -0.175000 0.042150 -0.556100
+																			translation 4.639997 -5.295000 1.360000
+																		}
+																	]
+																}
+															]
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_3_pod02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "MenuCell"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 25.000000
+																	}
+																}
+															]
+															rotation -0.922500 -0.329200 -0.201700 -1.575000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.265400 0.380400 0.885900 -0.854300
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_3_podsocket_inner02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str10Mat
+																		texture USE Str10Tex
+																	}
+																	geometry USE podsocket_inner02-FACES
+																}
+															]
+															rotation 0.994900 -0.002650 -0.101000 -1.675000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.292900 -0.197900 0.935400 -0.727600
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_3_arm04 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str06Mat
+																		texture USE Str06Tex
+																	}
+																	geometry USE arm04-FACES
+																}
+															]
+															rotation 0.078240 0.069690 0.994500 -1.575000
+															scale 1.350000 1.350000 1.350000
+															scaleOrientation -0.627300 0.564200 0.536800 -1.036000
+															translation -34.169998 4.055000 -0.615300
+														}
+														DEF MainMenu_3_MetaPanel Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF MainMenu_3_Material MaxMaterial
+																		{
+																			name "GameHilite"
+																		}
+																		texture DEF MainMenu_3_Texture ImageTexture
+																		{
+																			url "GameHilite_01.bmp"
+																		}
+																	}
+																	geometry USE MetaPanel-FACES
+																}
+															]
+															rotation 0.002542 -0.701000 0.713100 -3.149000
+															scale 1.591000 1.591000 1.591000
+															scaleOrientation -0.948600 -0.314500 0.033810 -0.479400
+															translation -12.030000 -17.930000 4.047000
+														}
+														DEF MainMenu_3_tube Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -14.780000 -25.049999 2.837000
+														}
+														DEF MainMenu_3_tube_0 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube_0-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -16.160000 -26.090000 2.880000
+														}
+														DEF MainMenu_3_pod_backing Transform
+														{
+															children 
+                                       									[
+                                     										Shape
+                                    										{
+                                    											appearance Appearance
+                                         											{
+																		material DEF MainMenu_3Mat MaxMaterial
+																		{
+																			name "FlatSurfaces"
+																		}
+																		texture DEF MainMenu_3Tex ImageTexture
+																		{
+																			url ""
+																		}
+                                            										}
+                                                									geometry USE pod_backing-FACES
+                                                  								}
+                                              								]
+                                     									rotation -0.993800 -0.111400 0.002924 -1.478000
+                                										scale 0.329600 0.329600 0.329600
+                                  										scaleOrientation -0.630600 0.217500 0.745000 -0.359000
+                                    									translation -32.299999 -3.419000 -3.640000
+                                       								}
+														DEF MainMenu_3_SelectPod Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "EggGlowPulse"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 10.540000
+																	}
+																}
+															]
+															rotation -0.335200 0.920700 -0.199700 -0.424800
+															scale 0.598800 0.598800 0.598800
+															scaleOrientation 0.060470 -0.803600 0.592100 -0.211000
+															translation -31.959999 -3.733000 -3.075000
+														}
+														DEF MainMenu_3_Text Transform
+														{
+															children
+															[
+																Transform
+																{
+																	rotation -1 0 0 1.571
+																	children
+																	[
+																		DEF MainMenu_3_Font Shape
+																		{
+																			appearance Appearance
+																			{
+																				material DEF MainMenu_3TextMaterial MaxMaterial
+																				{
+																					name "NavType"
+																				}
+																			}
+																			geometry Text { width -10 justify "left" font "Heading" translate true text "" }
+																		}
+																	]		
+																}
+															]
+															rotation -1.000000 0.002966 0.003888 -1.551000
+															scale 7.000 0.0 7.000
+															//scaleOrientation 0.754300 0.161800 0.636300 -0.255100
+															translation -14.379000 -10.540000 3.903000
+														}
+													]
+													rotation -0.602100 -0.599600 -0.527300 -2.191000
+													scale 0.458100 0.458100 0.458100
+													scaleOrientation -0.676600 -0.684500 0.271400 -0.208200
+													translation 5.701000 15.400000 -1.711000
+												}
+												DEF MainMenu_3_arm_pin02 Transform
+												{
+													children
+													[
+														Shape
+														{
+															appearance Appearance
+															{
+																material USE Str06Mat
+																texture USE Str06Tex
+															}
+															geometry USE arm_pin02-FACES
+														}
+													]
+													rotation -0.008533 -1.000000 -0.003925 -2.201000
+													scale 1.294000 2.019000 1.294000
+													scaleOrientation 0.062600 0.997600 0.030280 -0.266000
+													translation -1.495000 -1.031000 4.525000
+												}
+											]
+											rotation 0.001397 -0.015840 0.999900 -3.163000
+											scale 1.296000 1.296000 1.296000
+											scaleOrientation 0.454800 0.859100 0.234900 -0.826500
+											translation -6.689000 0.236800 -4.083000
+										}
+									]
+									rotation 0.127600 -0.011390 -0.991800 -1.591000
+									scale 0.225100 0.257500 0.257500
+									scaleOrientation -0.447400 0.891900 0.066360 -0.156600
+									translation -0.311500 -0.785100 0.478100
+								}
+							]	
+						}
+					]
+					rotation 0.997500 -0.047920 0.052590 -1.573000
+					scale 6.057000 6.927000 6.057000
+					scaleOrientation 0.008927 0.998300 -0.057520 -0.081130
+				}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				DEF MainMenu_4 Transform
+				{
+					children
+					[
+						DEF theItemMainMenu_4 Transform
+						{
+							fade 0.25
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material USE Str06Mat
+										texture USE Str06Tex
+									}
+									geometry USE theItem-FACES
+								}
+								DEF MainMenu_4_arm03 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str06Mat
+												texture USE Str06Tex
+											}
+											geometry USE arm03-FACES
+										}
+										DEF MainMenu_4_arm_04 Transform
+										{
+											children
+											[
+												Shape
+												{
+													appearance Appearance
+													{
+														material USE Str06Mat
+														texture USE Str06Tex
+													}
+													geometry USE arm_04-FACES
+												}
+												DEF MainMenu_4_panel Transform
+												{
+													children
+													[
+														DEF MainMenu_4_panel_support Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str08Mat
+																		texture USE Str08Tex
+																	}
+																	geometry USE panel_support-FACES
+																}
+															]
+															rotation -0.585700 -0.570700 0.575600 -4.179000
+															scale 2.040000 2.040000 2.040000
+															scaleOrientation -0.959000 -0.131300 0.251000 -0.606000
+															translation -23.520000 -7.377000 2.082000
+														}
+														DEF MainMenu_4_nozzle02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str11Mat
+																		texture USE Str11Tex
+																	}
+																	geometry USE nozzle02-FACES
+																}
+																DEF MainMenu_4_nozzledial02 Transform
+																{
+																	children
+																	[
+																		Shape
+																		{
+																			appearance Appearance
+																			{
+																				material USE Str11Mat
+																				texture USE Str11Tex
+																			}
+																			geometry USE nozzledial02-FACES
+																		}
+																	]
+																	rotation 0.659600 -0.671200 -0.338300 -3.784000
+																	translation -0.657500 6.793000 -0.787900
+																}
+															]
+															rotation 0.339800 0.904400 -0.257900 -1.602000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.029620 0.063950 -0.997500 -0.696200
+															translation -29.040001 3.861000 -5.730000
+														}
+														DEF MainMenu_4_podshell_07 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_07-FACES
+																}
+															]
+															rotation -0.996900 -0.063700 0.046460 -1.470000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.866500 0.170100 -0.469300 -0.387200
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_4_podshell_08 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_08-FACES
+																}
+															]
+															rotation -0.205500 -0.736100 -0.645000 -2.839000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.443700 -0.891900 0.087440 -0.609800
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_4_podshell_09 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_09-FACES
+																}
+															]
+															rotation -0.214200 -0.735100 -0.643200 -2.820000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.463200 -0.592500 0.659100 -0.474500
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_4_MiniCroix Transform
+														{
+															children
+															[
+																DEF RotMiniCroix_MainMenu_4 Spinner 
+																{ 
+																	rpm 5.0 
+																	axis 0 0 1 
+																	children 
+																	[
+																		DEF MainMenu_4_podsupport_09 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.689600 0.314600 -0.652200 -2.669000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.911000 0.410100 -0.042760 -0.835900
+																			translation -3.080002 7.282000 2.861000
+																		}
+																		DEF MainMenu_4_podsupport_10 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.401400 0.864700 -0.302000 -1.753000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.652900 -0.226600 -0.722800 -0.897700
+																			translation 7.239998 4.402000 2.442000
+																		}
+																		DEF MainMenu_4_podsupport_11 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation 0.672500 0.244000 0.698700 -2.514000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation 0.634400 -0.743500 -0.211600 -0.534000
+																			translation -5.690003 -2.973000 1.715000
+																		}
+																		DEF MainMenu_4_podsupport_12 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_12-FACES
+																				}
+																			]
+																			rotation 0.315600 0.854700 0.412200 -1.672000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.983700 -0.175000 0.042150 -0.556100
+																			translation 4.639997 -5.295000 1.360000
+																		}
+																	]
+																}
+															]
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_4_pod02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "MenuCell"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 25.000000
+																	}
+																}
+															]
+															rotation -0.922500 -0.329200 -0.201700 -1.575000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.265400 0.380400 0.885900 -0.854300
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_4_podsocket_inner02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str10Mat
+																		texture USE Str10Tex
+																	}
+																	geometry USE podsocket_inner02-FACES
+																}
+															]
+															rotation 0.994900 -0.002650 -0.101000 -1.675000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.292900 -0.197900 0.935400 -0.727600
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_4_arm04 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str06Mat
+																		texture USE Str06Tex
+																	}
+																	geometry USE arm04-FACES
+																}
+															]
+															rotation 0.078240 0.069690 0.994500 -1.575000
+															scale 1.350000 1.350000 1.350000
+															scaleOrientation -0.627300 0.564200 0.536800 -1.036000
+															translation -34.169998 4.055000 -0.615300
+														}
+														DEF MainMenu_4_MetaPanel Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF MainMenu_4_Material MaxMaterial
+																		{
+																			name "GameHilite"
+																		}
+																		texture DEF MainMenu_4_Texture ImageTexture
+																		{
+																			url "GameHilite_01.bmp"
+																		}
+																	}
+																	geometry USE MetaPanel-FACES
+																}
+															]
+															rotation 0.002542 -0.701000 0.713100 -3.149000
+															scale 1.591000 1.591000 1.591000
+															scaleOrientation -0.948600 -0.314500 0.033810 -0.479400
+															translation -12.030000 -17.930000 4.047000
+														}
+														DEF MainMenu_4_tube Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -14.780000 -25.049999 2.837000
+														}
+														DEF MainMenu_4_tube_0 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube_0-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -16.160000 -26.090000 2.880000
+														}
+														DEF MainMenu_4_pod_backing Transform
+														{
+															children 
+                                       									[
+                                     										Shape
+                                    										{
+                                    											appearance Appearance
+                                         											{
+																		material DEF MainMenu_4Mat MaxMaterial
+																		{
+																			name "FlatSurfaces"
+																		}
+																		texture DEF MainMenu_4Tex ImageTexture
+																		{
+																			url ""
+																		}
+                                            										}
+                                                									geometry USE pod_backing-FACES
+                                                  								}
+                                              								]
+                                     									rotation -0.993800 -0.111400 0.002924 -1.478000
+                                										scale 0.329600 0.329600 0.329600
+                                  										scaleOrientation -0.630600 0.217500 0.745000 -0.359000
+                                    									translation -32.299999 -3.419000 -3.640000
+                                       								}
+														DEF MainMenu_4_SelectPod Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "EggGlowPulse"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 10.540000
+																	}
+																}
+															]
+															rotation -0.335200 0.920700 -0.199700 -0.424800
+															scale 0.598800 0.598800 0.598800
+															scaleOrientation 0.060470 -0.803600 0.592100 -0.211000
+															translation -31.959999 -3.733000 -3.075000
+														}
+														DEF MainMenu_4_Text Transform
+														{
+															children
+															[
+																Transform
+																{
+																	rotation -1 0 0 1.571
+																	children
+																	[
+																		DEF MainMenu_4_Font Shape
+																		{
+																			appearance Appearance
+																			{
+																				material DEF MainMenu_4TextMaterial MaxMaterial
+																				{
+																					name "NavType"
+																				}
+																			}
+																			geometry Text { width -10 justify "left" font "Heading" translate true text "" }
+																		}
+																	]		
+																}
+															]
+															rotation -1.000000 0.002966 0.003888 -1.551000
+															scale 7.000 0.0 7.000
+															//scaleOrientation 0.754300 0.161800 0.636300 -0.255100
+															translation -14.379000 -10.540000 3.903000
+														}
+													]
+													rotation -0.602100 -0.599600 -0.527300 -2.191000
+													scale 0.458100 0.458100 0.458100
+													scaleOrientation -0.676600 -0.684500 0.271400 -0.208200
+													translation 5.701000 15.400000 -1.711000
+												}
+												DEF MainMenu_4_arm_pin02 Transform
+												{
+													children
+													[
+														Shape
+														{
+															appearance Appearance
+															{
+																material USE Str06Mat
+																texture USE Str06Tex
+															}
+															geometry USE arm_pin02-FACES
+														}
+													]
+													rotation -0.008533 -1.000000 -0.003925 -2.201000
+													scale 1.294000 2.019000 1.294000
+													scaleOrientation 0.062600 0.997600 0.030280 -0.266000
+													translation -1.495000 -1.031000 4.525000
+												}
+											]
+											rotation 0.001397 -0.015840 0.999900 -3.163000
+											scale 1.296000 1.296000 1.296000
+											scaleOrientation 0.454800 0.859100 0.234900 -0.826500
+											translation -6.689000 0.236800 -4.083000
+										}
+									]
+									rotation 0.127600 -0.011390 -0.991800 -1.591000
+									scale 0.225100 0.257500 0.257500
+									scaleOrientation -0.447400 0.891900 0.066360 -0.156600
+									translation -0.311500 -0.785100 0.478100
+								}
+							]	
+						}
+					]
+					rotation 0.997500 -0.047920 0.052590 -1.573000
+					scale 6.057000 6.927000 6.057000
+					scaleOrientation 0.008927 0.998300 -0.057520 -0.081130
+				}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				DEF MainMenu_5 Transform
+				{
+					children
+					[
+						DEF theItemMainMenu_5 Transform
+						{
+							fade 0.25
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material USE Str06Mat
+										texture USE Str06Tex
+									}
+									geometry USE theItem-FACES
+								}
+								DEF MainMenu_5_arm03 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str06Mat
+												texture USE Str06Tex
+											}
+											geometry USE arm03-FACES
+										}
+										DEF MainMenu_5_arm_04 Transform
+										{
+											children
+											[
+												Shape
+												{
+													appearance Appearance
+													{
+														material USE Str06Mat
+														texture USE Str06Tex
+													}
+													geometry USE arm_04-FACES
+												}
+												DEF MainMenu_5_panel Transform
+												{
+													children
+													[
+														DEF MainMenu_5_panel_support Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str08Mat
+																		texture USE Str08Tex
+																	}
+																	geometry USE panel_support-FACES
+																}
+															]
+															rotation -0.585700 -0.570700 0.575600 -4.179000
+															scale 2.040000 2.040000 2.040000
+															scaleOrientation -0.959000 -0.131300 0.251000 -0.606000
+															translation -23.520000 -7.377000 2.082000
+														}
+														DEF MainMenu_5_nozzle02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str11Mat
+																		texture USE Str11Tex
+																	}
+																	geometry USE nozzle02-FACES
+																}
+																DEF MainMenu_5_nozzledial02 Transform
+																{
+																	children
+																	[
+																		Shape
+																		{
+																			appearance Appearance
+																			{
+																				material USE Str11Mat
+																				texture USE Str11Tex
+																			}
+																			geometry USE nozzledial02-FACES
+																		}
+																	]
+																	rotation 0.659600 -0.671200 -0.338300 -3.784000
+																	translation -0.657500 6.793000 -0.787900
+																}
+															]
+															rotation 0.339800 0.904400 -0.257900 -1.602000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.029620 0.063950 -0.997500 -0.696200
+															translation -29.040001 3.861000 -5.730000
+														}
+														DEF MainMenu_5_podshell_07 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_07-FACES
+																}
+															]
+															rotation -0.996900 -0.063700 0.046460 -1.470000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.866500 0.170100 -0.469300 -0.387200
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_5_podshell_08 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_08-FACES
+																}
+															]
+															rotation -0.205500 -0.736100 -0.645000 -2.839000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.443700 -0.891900 0.087440 -0.609800
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_5_podshell_09 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_09-FACES
+																}
+															]
+															rotation -0.214200 -0.735100 -0.643200 -2.820000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.463200 -0.592500 0.659100 -0.474500
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_5_MiniCroix Transform
+														{
+															children
+															[
+																DEF RotMiniCroix_MainMenu_5 Spinner 
+																{ 
+																	rpm 5.0 
+																	axis 0 0 1 
+																	children 
+																	[
+																		DEF MainMenu_5_podsupport_09 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.689600 0.314600 -0.652200 -2.669000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.911000 0.410100 -0.042760 -0.835900
+																			translation -3.080002 7.282000 2.861000
+																		}
+																		DEF MainMenu_5_podsupport_10 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.401400 0.864700 -0.302000 -1.753000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.652900 -0.226600 -0.722800 -0.897700
+																			translation 7.239998 4.402000 2.442000
+																		}
+																		DEF MainMenu_5_podsupport_11 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation 0.672500 0.244000 0.698700 -2.514000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation 0.634400 -0.743500 -0.211600 -0.534000
+																			translation -5.690003 -2.973000 1.715000
+																		}
+																		DEF MainMenu_5_podsupport_12 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_12-FACES
+																				}
+																			]
+																			rotation 0.315600 0.854700 0.412200 -1.672000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.983700 -0.175000 0.042150 -0.556100
+																			translation 4.639997 -5.295000 1.360000
+																		}
+																	]
+																}
+															]
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_5_pod02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "MenuCell"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 25.000000
+																	}
+																}
+															]
+															rotation -0.922500 -0.329200 -0.201700 -1.575000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.265400 0.380400 0.885900 -0.854300
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_5_podsocket_inner02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str10Mat
+																		texture USE Str10Tex
+																	}
+																	geometry USE podsocket_inner02-FACES
+																}
+															]
+															rotation 0.994900 -0.002650 -0.101000 -1.675000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.292900 -0.197900 0.935400 -0.727600
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_5_arm04 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str06Mat
+																		texture USE Str06Tex
+																	}
+																	geometry USE arm04-FACES
+																}
+															]
+															rotation 0.078240 0.069690 0.994500 -1.575000
+															scale 1.350000 1.350000 1.350000
+															scaleOrientation -0.627300 0.564200 0.536800 -1.036000
+															translation -34.169998 4.055000 -0.615300
+														}
+														DEF MainMenu_5_MetaPanel Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF MainMenu_5_Material MaxMaterial
+																		{
+																			name "GameHilite"
+																		}
+																		texture DEF MainMenu_5_Texture ImageTexture
+																		{
+																			url "GameHilite_01.bmp"
+																		}
+																	}
+																	geometry USE MetaPanel-FACES
+																}
+															]
+															rotation 0.002542 -0.701000 0.713100 -3.149000
+															scale 1.591000 1.591000 1.591000
+															scaleOrientation -0.948600 -0.314500 0.033810 -0.479400
+															translation -12.030000 -17.930000 4.047000
+														}
+														DEF MainMenu_5_tube Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -14.780000 -25.049999 2.837000
+														}
+														DEF MainMenu_5_tube_0 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube_0-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -16.160000 -26.090000 2.880000
+														}
+														DEF MainMenu_5_pod_backing Transform
+														{
+															children 
+                                       									[
+                                     										Shape
+                                    										{
+                                    											appearance Appearance
+                                         											{
+																		material DEF MainMenu_5Mat MaxMaterial
+																		{
+																			name "FlatSurfaces"
+																		}
+																		texture DEF MainMenu_5Tex ImageTexture
+																		{
+																			url ""
+																		}
+                                            										}
+                                                									geometry USE pod_backing-FACES
+                                                  								}
+                                              								]
+                                     									rotation -0.993800 -0.111400 0.002924 -1.478000
+                                										scale 0.329600 0.329600 0.329600
+                                  										scaleOrientation -0.630600 0.217500 0.745000 -0.359000
+                                    									translation -32.299999 -3.419000 -3.640000
+                                       								}
+														DEF MainMenu_5_SelectPod Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "EggGlowPulse"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 10.540000
+																	}
+																}
+															]
+															rotation -0.335200 0.920700 -0.199700 -0.424800
+															scale 0.598800 0.598800 0.598800
+															scaleOrientation 0.060470 -0.803600 0.592100 -0.211000
+															translation -31.959999 -3.733000 -3.075000
+														}
+														DEF MainMenu_5_Text Transform
+														{
+															children
+															[
+																Transform
+																{
+																	rotation -1 0 0 1.571
+																	children
+																	[
+																		DEF MainMenu_5_Font Shape
+																		{
+																			appearance Appearance
+																			{
+																				material DEF MainMenu_5TextMaterial MaxMaterial
+																				{
+																					name "NavType"
+																				}
+																			}
+																			geometry Text { width -10 justify "left" font "Heading" translate true text "" }
+																		}
+																	]		
+																}
+															]
+															rotation -1.000000 0.002966 0.003888 -1.551000
+															scale 7.000 0.0 7.000
+															//scaleOrientation 0.754300 0.161800 0.636300 -0.255100
+															translation -14.379000 -10.540000 3.903000
+														}
+													]
+													rotation -0.602100 -0.599600 -0.527300 -2.191000
+													scale 0.458100 0.458100 0.458100
+													scaleOrientation -0.676600 -0.684500 0.271400 -0.208200
+													translation 5.701000 15.400000 -1.711000
+												}
+												DEF MainMenu_5_arm_pin02 Transform
+												{
+													children
+													[
+														Shape
+														{
+															appearance Appearance
+															{
+																material USE Str06Mat
+																texture USE Str06Tex
+															}
+															geometry USE arm_pin02-FACES
+														}
+													]
+													rotation -0.008533 -1.000000 -0.003925 -2.201000
+													scale 1.294000 2.019000 1.294000
+													scaleOrientation 0.062600 0.997600 0.030280 -0.266000
+													translation -1.495000 -1.031000 4.525000
+												}
+											]
+											rotation 0.001397 -0.015840 0.999900 -3.163000
+											scale 1.296000 1.296000 1.296000
+											scaleOrientation 0.454800 0.859100 0.234900 -0.826500
+											translation -6.689000 0.236800 -4.083000
+										}
+									]
+									rotation 0.127600 -0.011390 -0.991800 -1.591000
+									scale 0.225100 0.257500 0.257500
+									scaleOrientation -0.447400 0.891900 0.066360 -0.156600
+									translation -0.311500 -0.785100 0.478100
+								}
+							]	
+						}
+					]
+					rotation 0.997500 -0.047920 0.052590 -1.573000
+					scale 6.057000 6.927000 6.057000
+					scaleOrientation 0.008927 0.998300 -0.057520 -0.081130
+				}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				DEF MainMenu_6 Transform
+				{
+					children
+					[
+						DEF theItemMainMenu_6 Transform
+						{
+							fade 0.25
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material USE Str06Mat
+										texture USE Str06Tex
+									}
+									geometry USE theItem-FACES
+								}
+								DEF MainMenu_6_arm03 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str06Mat
+												texture USE Str06Tex
+											}
+											geometry USE arm03-FACES
+										}
+										DEF MainMenu_6_arm_04 Transform
+										{
+											children
+											[
+												Shape
+												{
+													appearance Appearance
+													{
+														material USE Str06Mat
+														texture USE Str06Tex
+													}
+													geometry USE arm_04-FACES
+												}
+												DEF MainMenu_6_panel Transform
+												{
+													children
+													[
+														DEF MainMenu_6_panel_support Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str08Mat
+																		texture USE Str08Tex
+																	}
+																	geometry USE panel_support-FACES
+																}
+															]
+															rotation -0.585700 -0.570700 0.575600 -4.179000
+															scale 2.040000 2.040000 2.040000
+															scaleOrientation -0.959000 -0.131300 0.251000 -0.606000
+															translation -23.520000 -7.377000 2.082000
+														}
+														DEF MainMenu_6_nozzle02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str11Mat
+																		texture USE Str11Tex
+																	}
+																	geometry USE nozzle02-FACES
+																}
+																DEF MainMenu_6_nozzledial02 Transform
+																{
+																	children
+																	[
+																		Shape
+																		{
+																			appearance Appearance
+																			{
+																				material USE Str11Mat
+																				texture USE Str11Tex
+																			}
+																			geometry USE nozzledial02-FACES
+																		}
+																	]
+																	rotation 0.659600 -0.671200 -0.338300 -3.784000
+																	translation -0.657500 6.793000 -0.787900
+																}
+															]
+															rotation 0.339800 0.904400 -0.257900 -1.602000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.029620 0.063950 -0.997500 -0.696200
+															translation -29.040001 3.861000 -5.730000
+														}
+														DEF MainMenu_6_podshell_07 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_07-FACES
+																}
+															]
+															rotation -0.996900 -0.063700 0.046460 -1.470000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.866500 0.170100 -0.469300 -0.387200
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_6_podshell_08 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_08-FACES
+																}
+															]
+															rotation -0.205500 -0.736100 -0.645000 -2.839000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.443700 -0.891900 0.087440 -0.609800
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_6_podshell_09 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_09-FACES
+																}
+															]
+															rotation -0.214200 -0.735100 -0.643200 -2.820000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.463200 -0.592500 0.659100 -0.474500
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_6_MiniCroix Transform
+														{
+															children
+															[
+																DEF RotMiniCroix_MainMenu_6 Spinner 
+																{ 
+																	rpm 5.0 
+																	axis 0 0 1 
+																	children 
+																	[
+																		DEF MainMenu_6_podsupport_09 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.689600 0.314600 -0.652200 -2.669000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.911000 0.410100 -0.042760 -0.835900
+																			translation -3.080002 7.282000 2.861000
+																		}
+																		DEF MainMenu_6_podsupport_10 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.401400 0.864700 -0.302000 -1.753000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.652900 -0.226600 -0.722800 -0.897700
+																			translation 7.239998 4.402000 2.442000
+																		}
+																		DEF MainMenu_6_podsupport_11 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation 0.672500 0.244000 0.698700 -2.514000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation 0.634400 -0.743500 -0.211600 -0.534000
+																			translation -5.690003 -2.973000 1.715000
+																		}
+																		DEF MainMenu_6_podsupport_12 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_12-FACES
+																				}
+																			]
+																			rotation 0.315600 0.854700 0.412200 -1.672000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.983700 -0.175000 0.042150 -0.556100
+																			translation 4.639997 -5.295000 1.360000
+																		}
+																	]
+																}
+															]
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_6_pod02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "MenuCell"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 25.000000
+																	}
+																}
+															]
+															rotation -0.922500 -0.329200 -0.201700 -1.575000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.265400 0.380400 0.885900 -0.854300
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_6_podsocket_inner02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str10Mat
+																		texture USE Str10Tex
+																	}
+																	geometry USE podsocket_inner02-FACES
+																}
+															]
+															rotation 0.994900 -0.002650 -0.101000 -1.675000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.292900 -0.197900 0.935400 -0.727600
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_6_arm04 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str06Mat
+																		texture USE Str06Tex
+																	}
+																	geometry USE arm04-FACES
+																}
+															]
+															rotation 0.078240 0.069690 0.994500 -1.575000
+															scale 1.350000 1.350000 1.350000
+															scaleOrientation -0.627300 0.564200 0.536800 -1.036000
+															translation -34.169998 4.055000 -0.615300
+														}
+														DEF MainMenu_6_MetaPanel Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF MainMenu_6_Material MaxMaterial
+																		{
+																			name "GameHilite"
+																		}
+																		texture DEF MainMenu_6_Texture ImageTexture
+																		{
+																			url "GameHilite_01.bmp"
+																		}
+																	}
+																	geometry USE MetaPanel-FACES
+																}
+															]
+															rotation 0.002542 -0.701000 0.713100 -3.149000
+															scale 1.591000 1.591000 1.591000
+															scaleOrientation -0.948600 -0.314500 0.033810 -0.479400
+															translation -12.030000 -17.930000 4.047000
+														}
+														DEF MainMenu_6_tube Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -14.780000 -25.049999 2.837000
+														}
+														DEF MainMenu_6_tube_0 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube_0-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -16.160000 -26.090000 2.880000
+														}
+														DEF MainMenu_6_pod_backing Transform
+														{
+															children 
+                                       									[
+                                     										Shape
+                                    										{
+                                    											appearance Appearance
+                                         											{
+																		material DEF MainMenu_6Mat MaxMaterial
+																		{
+																			name "FlatSurfaces"
+																		}
+																		texture DEF MainMenu_6Tex ImageTexture
+																		{
+																			url ""
+																		}
+                                            										}
+                                                									geometry USE pod_backing-FACES
+                                                  								}
+                                              								]
+                                     									rotation -0.993800 -0.111400 0.002924 -1.478000
+                                										scale 0.329600 0.329600 0.329600
+                                  										scaleOrientation -0.630600 0.217500 0.745000 -0.359000
+                                    									translation -32.299999 -3.419000 -3.640000
+                                       								}
+														DEF MainMenu_6_SelectPod Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "EggGlowPulse"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 10.540000
+																	}
+																}
+															]
+															rotation -0.335200 0.920700 -0.199700 -0.424800
+															scale 0.598800 0.598800 0.598800
+															scaleOrientation 0.060470 -0.803600 0.592100 -0.211000
+															translation -31.959999 -3.733000 -3.075000
+														}
+														DEF MainMenu_6_Text Transform
+														{
+															children
+															[
+																Transform
+																{
+																	rotation -1 0 0 1.571
+																	children
+																	[
+																		DEF MainMenu_6_Font Shape
+																		{
+																			appearance Appearance
+																			{
+																				material DEF MainMenu_6TextMaterial MaxMaterial
+																				{
+																					name "NavType"
+																				}
+																			}
+																			geometry Text { width -10 justify "left" font "Heading" translate true text "" }
+																		}
+																	]		
+																}
+															]
+															rotation -1.000000 0.002966 0.003888 -1.551000
+															scale 7.000 0.0 7.000
+															//scaleOrientation 0.754300 0.161800 0.636300 -0.255100
+															translation -14.379000 -10.540000 3.903000
+														}
+													]
+													rotation -0.602100 -0.599600 -0.527300 -2.191000
+													scale 0.458100 0.458100 0.458100
+													scaleOrientation -0.676600 -0.684500 0.271400 -0.208200
+													translation 5.701000 15.400000 -1.711000
+												}
+												DEF MainMenu_6_arm_pin02 Transform
+												{
+													children
+													[
+														Shape
+														{
+															appearance Appearance
+															{
+																material USE Str06Mat
+																texture USE Str06Tex
+															}
+															geometry USE arm_pin02-FACES
+														}
+													]
+													rotation -0.008533 -1.000000 -0.003925 -2.201000
+													scale 1.294000 2.019000 1.294000
+													scaleOrientation 0.062600 0.997600 0.030280 -0.266000
+													translation -1.495000 -1.031000 4.525000
+												}
+											]
+											rotation 0.001397 -0.015840 0.999900 -3.163000
+											scale 1.296000 1.296000 1.296000
+											scaleOrientation 0.454800 0.859100 0.234900 -0.826500
+											translation -6.689000 0.236800 -4.083000
+										}
+									]
+									rotation 0.127600 -0.011390 -0.991800 -1.591000
+									scale 0.225100 0.257500 0.257500
+									scaleOrientation -0.447400 0.891900 0.066360 -0.156600
+									translation -0.311500 -0.785100 0.478100
+								}
+							]	
+						}
+					]
+					rotation 0.997500 -0.047920 0.052590 -1.573000
+					scale 6.057000 6.927000 6.057000
+					scaleOrientation 0.008927 0.998300 -0.057520 -0.081130
+				}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				DEF MainMenu_7 Transform
+				{
+					children
+					[
+						DEF theItemMainMenu_7 Transform
+						{
+							fade 0.25
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material USE Str06Mat
+										texture USE Str06Tex
+									}
+									geometry USE theItem-FACES
+								}
+								DEF MainMenu_7_arm03 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str06Mat
+												texture USE Str06Tex
+											}
+											geometry USE arm03-FACES
+										}
+										DEF MainMenu_7_arm_04 Transform
+										{
+											children
+											[
+												Shape
+												{
+													appearance Appearance
+													{
+														material USE Str06Mat
+														texture USE Str06Tex
+													}
+													geometry USE arm_04-FACES
+												}
+												DEF MainMenu_7_panel Transform
+												{
+													children
+													[
+														DEF MainMenu_7_panel_support Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str08Mat
+																		texture USE Str08Tex
+																	}
+																	geometry USE panel_support-FACES
+																}
+															]
+															rotation -0.585700 -0.570700 0.575600 -4.179000
+															scale 2.040000 2.040000 2.040000
+															scaleOrientation -0.959000 -0.131300 0.251000 -0.606000
+															translation -23.520000 -7.377000 2.082000
+														}
+														DEF MainMenu_7_nozzle02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str11Mat
+																		texture USE Str11Tex
+																	}
+																	geometry USE nozzle02-FACES
+																}
+																DEF MainMenu_7_nozzledial02 Transform
+																{
+																	children
+																	[
+																		Shape
+																		{
+																			appearance Appearance
+																			{
+																				material USE Str11Mat
+																				texture USE Str11Tex
+																			}
+																			geometry USE nozzledial02-FACES
+																		}
+																	]
+																	rotation 0.659600 -0.671200 -0.338300 -3.784000
+																	translation -0.657500 6.793000 -0.787900
+																}
+															]
+															rotation 0.339800 0.904400 -0.257900 -1.602000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.029620 0.063950 -0.997500 -0.696200
+															translation -29.040001 3.861000 -5.730000
+														}
+														DEF MainMenu_7_podshell_07 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_07-FACES
+																}
+															]
+															rotation -0.996900 -0.063700 0.046460 -1.470000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.866500 0.170100 -0.469300 -0.387200
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_7_podshell_08 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_08-FACES
+																}
+															]
+															rotation -0.205500 -0.736100 -0.645000 -2.839000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.443700 -0.891900 0.087440 -0.609800
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_7_podshell_09 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_09-FACES
+																}
+															]
+															rotation -0.214200 -0.735100 -0.643200 -2.820000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.463200 -0.592500 0.659100 -0.474500
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_7_MiniCroix Transform
+														{
+															children
+															[
+																DEF RotMiniCroix_MainMenu_7 Spinner 
+																{ 
+																	rpm 5.0 
+																	axis 0 0 1 
+																	children 
+																	[
+																		DEF MainMenu_7_podsupport_09 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.689600 0.314600 -0.652200 -2.669000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.911000 0.410100 -0.042760 -0.835900
+																			translation -3.080002 7.282000 2.861000
+																		}
+																		DEF MainMenu_7_podsupport_10 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.401400 0.864700 -0.302000 -1.753000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.652900 -0.226600 -0.722800 -0.897700
+																			translation 7.239998 4.402000 2.442000
+																		}
+																		DEF MainMenu_7_podsupport_11 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation 0.672500 0.244000 0.698700 -2.514000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation 0.634400 -0.743500 -0.211600 -0.534000
+																			translation -5.690003 -2.973000 1.715000
+																		}
+																		DEF MainMenu_7_podsupport_12 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_12-FACES
+																				}
+																			]
+																			rotation 0.315600 0.854700 0.412200 -1.672000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.983700 -0.175000 0.042150 -0.556100
+																			translation 4.639997 -5.295000 1.360000
+																		}
+																	]
+																}
+															]
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_7_pod02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "MenuCell"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 25.000000
+																	}
+																}
+															]
+															rotation -0.922500 -0.329200 -0.201700 -1.575000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.265400 0.380400 0.885900 -0.854300
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_7_podsocket_inner02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str10Mat
+																		texture USE Str10Tex
+																	}
+																	geometry USE podsocket_inner02-FACES
+																}
+															]
+															rotation 0.994900 -0.002650 -0.101000 -1.675000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.292900 -0.197900 0.935400 -0.727600
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_7_arm04 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str06Mat
+																		texture USE Str06Tex
+																	}
+																	geometry USE arm04-FACES
+																}
+															]
+															rotation 0.078240 0.069690 0.994500 -1.575000
+															scale 1.350000 1.350000 1.350000
+															scaleOrientation -0.627300 0.564200 0.536800 -1.036000
+															translation -34.169998 4.055000 -0.615300
+														}
+														DEF MainMenu_7_MetaPanel Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF MainMenu_7_Material MaxMaterial
+																		{
+																			name "GameHilite"
+																		}
+																		texture DEF MainMenu_7_Texture ImageTexture
+																		{
+																			url "GameHilite_01.bmp"
+																		}
+																	}
+																	geometry USE MetaPanel-FACES
+																}
+															]
+															rotation 0.002542 -0.701000 0.713100 -3.149000
+															scale 1.591000 1.591000 1.591000
+															scaleOrientation -0.948600 -0.314500 0.033810 -0.479400
+															translation -12.030000 -17.930000 4.047000
+														}
+														DEF MainMenu_7_tube Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -14.780000 -25.049999 2.837000
+														}
+														DEF MainMenu_7_tube_0 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube_0-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -16.160000 -26.090000 2.880000
+														}
+														DEF MainMenu_7_pod_backing Transform
+														{
+															children 
+                                       									[
+                                     										Shape
+                                    										{
+                                    											appearance Appearance
+                                         											{
+																		material DEF MainMenu_7Mat MaxMaterial
+																		{
+																			name "FlatSurfaces"
+																		}
+																		texture DEF MainMenu_7Tex ImageTexture
+																		{
+																			url ""
+																		}
+                                            										}
+                                                									geometry USE pod_backing-FACES
+                                                  								}
+                                              								]
+                                     									rotation -0.993800 -0.111400 0.002924 -1.478000
+                                										scale 0.329600 0.329600 0.329600
+                                  										scaleOrientation -0.630600 0.217500 0.745000 -0.359000
+                                    									translation -32.299999 -3.419000 -3.640000
+                                       								}
+														DEF MainMenu_7_SelectPod Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "EggGlowPulse"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 10.540000
+																	}
+																}
+															]
+															rotation -0.335200 0.920700 -0.199700 -0.424800
+															scale 0.598800 0.598800 0.598800
+															scaleOrientation 0.060470 -0.803600 0.592100 -0.211000
+															translation -31.959999 -3.733000 -3.075000
+														}
+														DEF MainMenu_7_Text Transform
+														{
+															children
+															[
+																Transform
+																{
+																	rotation -1 0 0 1.571
+																	children
+																	[
+																		DEF MainMenu_7_Font Shape
+																		{
+																			appearance Appearance
+																			{
+																				material DEF MainMenu_7TextMaterial MaxMaterial
+																				{
+																					name "NavType"
+																				}
+																			}
+																			geometry Text { width -10 justify "left" font "Heading" translate true text "" }
+																		}
+																	]		
+																}
+															]
+															rotation -1.000000 0.002966 0.003888 -1.551000
+															scale 7.000 0.0 7.000
+															//scaleOrientation 0.754300 0.161800 0.636300 -0.255100
+															translation -14.379000 -10.540000 3.903000
+														}
+													]
+													rotation -0.602100 -0.599600 -0.527300 -2.191000
+													scale 0.458100 0.458100 0.458100
+													scaleOrientation -0.676600 -0.684500 0.271400 -0.208200
+													translation 5.701000 15.400000 -1.711000
+												}
+												DEF MainMenu_7_arm_pin02 Transform
+												{
+													children
+													[
+														Shape
+														{
+															appearance Appearance
+															{
+																material USE Str06Mat
+																texture USE Str06Tex
+															}
+															geometry USE arm_pin02-FACES
+														}
+													]
+													rotation -0.008533 -1.000000 -0.003925 -2.201000
+													scale 1.294000 2.019000 1.294000
+													scaleOrientation 0.062600 0.997600 0.030280 -0.266000
+													translation -1.495000 -1.031000 4.525000
+												}
+											]
+											rotation 0.001397 -0.015840 0.999900 -3.163000
+											scale 1.296000 1.296000 1.296000
+											scaleOrientation 0.454800 0.859100 0.234900 -0.826500
+											translation -6.689000 0.236800 -4.083000
+										}
+									]
+									rotation 0.127600 -0.011390 -0.991800 -1.591000
+									scale 0.225100 0.257500 0.257500
+									scaleOrientation -0.447400 0.891900 0.066360 -0.156600
+									translation -0.311500 -0.785100 0.478100
+								}
+							]	
+						}
+					]
+					rotation 0.997500 -0.047920 0.052590 -1.573000
+					scale 6.057000 6.927000 6.057000
+					scaleOrientation 0.008927 0.998300 -0.057520 -0.081130
+				}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				DEF MainMenu_8 Transform
+				{
+					children
+					[
+						DEF theItemMainMenu_8 Transform
+						{
+							fade 0.25
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material USE Str06Mat
+										texture USE Str06Tex
+									}
+									geometry USE theItem-FACES
+								}
+								DEF MainMenu_8_arm03 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str06Mat
+												texture USE Str06Tex
+											}
+											geometry USE arm03-FACES
+										}
+										DEF MainMenu_8_arm_04 Transform
+										{
+											children
+											[
+												Shape
+												{
+													appearance Appearance
+													{
+														material USE Str06Mat
+														texture USE Str06Tex
+													}
+													geometry USE arm_04-FACES
+												}
+												DEF MainMenu_8_panel Transform
+												{
+													children
+													[
+														DEF MainMenu_8_panel_support Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str08Mat
+																		texture USE Str08Tex
+																	}
+																	geometry USE panel_support-FACES
+																}
+															]
+															rotation -0.585700 -0.570700 0.575600 -4.179000
+															scale 2.040000 2.040000 2.040000
+															scaleOrientation -0.959000 -0.131300 0.251000 -0.606000
+															translation -23.520000 -7.377000 2.082000
+														}
+														DEF MainMenu_8_nozzle02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str11Mat
+																		texture USE Str11Tex
+																	}
+																	geometry USE nozzle02-FACES
+																}
+																DEF MainMenu_8_nozzledial02 Transform
+																{
+																	children
+																	[
+																		Shape
+																		{
+																			appearance Appearance
+																			{
+																				material USE Str11Mat
+																				texture USE Str11Tex
+																			}
+																			geometry USE nozzledial02-FACES
+																		}
+																	]
+																	rotation 0.659600 -0.671200 -0.338300 -3.784000
+																	translation -0.657500 6.793000 -0.787900
+																}
+															]
+															rotation 0.339800 0.904400 -0.257900 -1.602000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.029620 0.063950 -0.997500 -0.696200
+															translation -29.040001 3.861000 -5.730000
+														}
+														DEF MainMenu_8_podshell_07 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_07-FACES
+																}
+															]
+															rotation -0.996900 -0.063700 0.046460 -1.470000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.866500 0.170100 -0.469300 -0.387200
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_8_podshell_08 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_08-FACES
+																}
+															]
+															rotation -0.205500 -0.736100 -0.645000 -2.839000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.443700 -0.891900 0.087440 -0.609800
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_8_podshell_09 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_09-FACES
+																}
+															]
+															rotation -0.214200 -0.735100 -0.643200 -2.820000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.463200 -0.592500 0.659100 -0.474500
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_8_MiniCroix Transform
+														{
+															children
+															[
+																DEF RotMiniCroix_MainMenu_8 Spinner 
+																{ 
+																	rpm 5.0 
+																	axis 0 0 1 
+																	children 
+																	[
+																		DEF MainMenu_8_podsupport_09 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.689600 0.314600 -0.652200 -2.669000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.911000 0.410100 -0.042760 -0.835900
+																			translation -3.080002 7.282000 2.861000
+																		}
+																		DEF MainMenu_8_podsupport_10 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.401400 0.864700 -0.302000 -1.753000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.652900 -0.226600 -0.722800 -0.897700
+																			translation 7.239998 4.402000 2.442000
+																		}
+																		DEF MainMenu_8_podsupport_11 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation 0.672500 0.244000 0.698700 -2.514000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation 0.634400 -0.743500 -0.211600 -0.534000
+																			translation -5.690003 -2.973000 1.715000
+																		}
+																		DEF MainMenu_8_podsupport_12 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_12-FACES
+																				}
+																			]
+																			rotation 0.315600 0.854700 0.412200 -1.672000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.983700 -0.175000 0.042150 -0.556100
+																			translation 4.639997 -5.295000 1.360000
+																		}
+																	]
+																}
+															]
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_8_pod02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "MenuCell"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 25.000000
+																	}
+																}
+															]
+															rotation -0.922500 -0.329200 -0.201700 -1.575000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.265400 0.380400 0.885900 -0.854300
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_8_podsocket_inner02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str10Mat
+																		texture USE Str10Tex
+																	}
+																	geometry USE podsocket_inner02-FACES
+																}
+															]
+															rotation 0.994900 -0.002650 -0.101000 -1.675000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.292900 -0.197900 0.935400 -0.727600
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_8_arm04 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str06Mat
+																		texture USE Str06Tex
+																	}
+																	geometry USE arm04-FACES
+																}
+															]
+															rotation 0.078240 0.069690 0.994500 -1.575000
+															scale 1.350000 1.350000 1.350000
+															scaleOrientation -0.627300 0.564200 0.536800 -1.036000
+															translation -34.169998 4.055000 -0.615300
+														}
+														DEF MainMenu_8_MetaPanel Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF MainMenu_8_Material MaxMaterial
+																		{
+																			name "GameHilite"
+																		}
+																		texture DEF MainMenu_8_Texture ImageTexture
+																		{
+																			url "GameHilite_01.bmp"
+																		}
+																	}
+																	geometry USE MetaPanel-FACES
+																}
+															]
+															rotation 0.002542 -0.701000 0.713100 -3.149000
+															scale 1.591000 1.591000 1.591000
+															scaleOrientation -0.948600 -0.314500 0.033810 -0.479400
+															translation -12.030000 -17.930000 4.047000
+														}
+														DEF MainMenu_8_tube Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -14.780000 -25.049999 2.837000
+														}
+														DEF MainMenu_8_tube_0 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube_0-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -16.160000 -26.090000 2.880000
+														}
+														DEF MainMenu_8_pod_backing Transform
+														{
+															children 
+                                       									[
+                                     										Shape
+                                    										{
+                                    											appearance Appearance
+                                         											{
+																		material DEF MainMenu_8Mat MaxMaterial
+																		{
+																			name "FlatSurfaces"
+																		}
+																		texture DEF MainMenu_8Tex ImageTexture
+																		{
+																			url ""
+																		}
+                                            										}
+                                                									geometry USE pod_backing-FACES
+                                                  								}
+                                              								]
+                                     									rotation -0.993800 -0.111400 0.002924 -1.478000
+                                										scale 0.329600 0.329600 0.329600
+                                  										scaleOrientation -0.630600 0.217500 0.745000 -0.359000
+                                    									translation -32.299999 -3.419000 -3.640000
+                                       								}
+														DEF MainMenu_8_SelectPod Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "EggGlowPulse"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 10.540000
+																	}
+																}
+															]
+															rotation -0.335200 0.920700 -0.199700 -0.424800
+															scale 0.598800 0.598800 0.598800
+															scaleOrientation 0.060470 -0.803600 0.592100 -0.211000
+															translation -31.959999 -3.733000 -3.075000
+														}
+														DEF MainMenu_8_Text Transform
+														{
+															children
+															[
+																Transform
+																{
+																	rotation -1 0 0 1.571
+																	children
+																	[
+																		DEF MainMenu_8_Font Shape
+																		{
+																			appearance Appearance
+																			{
+																				material DEF MainMenu_8TextMaterial MaxMaterial
+																				{
+																					name "NavType"
+																				}
+																			}
+																			geometry Text { width -10 justify "left" font "Heading" translate true text "" }
+																		}
+																	]		
+																}
+															]
+															rotation -1.000000 0.002966 0.003888 -1.551000
+															scale 7.000 0.0 7.000
+															//scaleOrientation 0.754300 0.161800 0.636300 -0.255100
+															translation -14.379000 -10.540000 3.903000
+														}
+													]
+													rotation -0.602100 -0.599600 -0.527300 -2.191000
+													scale 0.458100 0.458100 0.458100
+													scaleOrientation -0.676600 -0.684500 0.271400 -0.208200
+													translation 5.701000 15.400000 -1.711000
+												}
+												DEF MainMenu_8_arm_pin02 Transform
+												{
+													children
+													[
+														Shape
+														{
+															appearance Appearance
+															{
+																material USE Str06Mat
+																texture USE Str06Tex
+															}
+															geometry USE arm_pin02-FACES
+														}
+													]
+													rotation -0.008533 -1.000000 -0.003925 -2.201000
+													scale 1.294000 2.019000 1.294000
+													scaleOrientation 0.062600 0.997600 0.030280 -0.266000
+													translation -1.495000 -1.031000 4.525000
+												}
+											]
+											rotation 0.001397 -0.015840 0.999900 -3.163000
+											scale 1.296000 1.296000 1.296000
+											scaleOrientation 0.454800 0.859100 0.234900 -0.826500
+											translation -6.689000 0.236800 -4.083000
+										}
+									]
+									rotation 0.127600 -0.011390 -0.991800 -1.591000
+									scale 0.225100 0.257500 0.257500
+									scaleOrientation -0.447400 0.891900 0.066360 -0.156600
+									translation -0.311500 -0.785100 0.478100
+								}
+							]	
+						}
+					]
+					rotation 0.997500 -0.047920 0.052590 -1.573000
+					scale 6.057000 6.927000 6.057000
+					scaleOrientation 0.008927 0.998300 -0.057520 -0.081130
+				}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				DEF MainMenu_9 Transform
+				{
+					children
+					[
+						DEF theItemMainMenu_9 Transform
+						{
+							fade 0.25
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material USE Str06Mat
+										texture USE Str06Tex
+									}
+									geometry USE theItem-FACES
+								}
+								DEF MainMenu_9_arm03 Transform
+								{
+									children
+									[
+										Shape
+										{
+											appearance Appearance
+											{
+												material USE Str06Mat
+												texture USE Str06Tex
+											}
+											geometry USE arm03-FACES
+										}
+										DEF MainMenu_9_arm_04 Transform
+										{
+											children
+											[
+												Shape
+												{
+													appearance Appearance
+													{
+														material USE Str06Mat
+														texture USE Str06Tex
+													}
+													geometry USE arm_04-FACES
+												}
+												DEF MainMenu_9_panel Transform
+												{
+													children
+													[
+														DEF MainMenu_9_panel_support Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str08Mat
+																		texture USE Str08Tex
+																	}
+																	geometry USE panel_support-FACES
+																}
+															]
+															rotation -0.585700 -0.570700 0.575600 -4.179000
+															scale 2.040000 2.040000 2.040000
+															scaleOrientation -0.959000 -0.131300 0.251000 -0.606000
+															translation -23.520000 -7.377000 2.082000
+														}
+														DEF MainMenu_9_nozzle02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str11Mat
+																		texture USE Str11Tex
+																	}
+																	geometry USE nozzle02-FACES
+																}
+																DEF MainMenu_9_nozzledial02 Transform
+																{
+																	children
+																	[
+																		Shape
+																		{
+																			appearance Appearance
+																			{
+																				material USE Str11Mat
+																				texture USE Str11Tex
+																			}
+																			geometry USE nozzledial02-FACES
+																		}
+																	]
+																	rotation 0.659600 -0.671200 -0.338300 -3.784000
+																	translation -0.657500 6.793000 -0.787900
+																}
+															]
+															rotation 0.339800 0.904400 -0.257900 -1.602000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.029620 0.063950 -0.997500 -0.696200
+															translation -29.040001 3.861000 -5.730000
+														}
+														DEF MainMenu_9_podshell_07 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_07-FACES
+																}
+															]
+															rotation -0.996900 -0.063700 0.046460 -1.470000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.866500 0.170100 -0.469300 -0.387200
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_9_podshell_08 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_08-FACES
+																}
+															]
+															rotation -0.205500 -0.736100 -0.645000 -2.839000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.443700 -0.891900 0.087440 -0.609800
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_9_podshell_09 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str09Mat
+																		texture USE Str09Tex
+																	}
+																	geometry USE podshell_09-FACES
+																}
+															]
+															rotation -0.214200 -0.735100 -0.643200 -2.820000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation 0.463200 -0.592500 0.659100 -0.474500
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_9_MiniCroix Transform
+														{
+															children
+															[
+																DEF RotMiniCroix_MainMenu_9 Spinner 
+																{ 
+																	rpm 5.0 
+																	axis 0 0 1 
+																	children 
+																	[
+																		DEF MainMenu_9_podsupport_09 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.689600 0.314600 -0.652200 -2.669000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.911000 0.410100 -0.042760 -0.835900
+																			translation -3.080002 7.282000 2.861000
+																		}
+																		DEF MainMenu_9_podsupport_10 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation -0.401400 0.864700 -0.302000 -1.753000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.652900 -0.226600 -0.722800 -0.897700
+																			translation 7.239998 4.402000 2.442000
+																		}
+																		DEF MainMenu_9_podsupport_11 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_09-FACES
+																				}
+																			]
+																			rotation 0.672500 0.244000 0.698700 -2.514000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation 0.634400 -0.743500 -0.211600 -0.534000
+																			translation -5.690003 -2.973000 1.715000
+																		}
+																		DEF MainMenu_9_podsupport_12 Transform
+																		{
+																			children
+																			[
+																				Shape
+																				{
+																					appearance Appearance
+																					{
+																						material USE Str05Mat
+																						texture USE Str05Tex
+																					}
+																					geometry USE podsupport_12-FACES
+																				}
+																			]
+																			rotation 0.315600 0.854700 0.412200 -1.672000
+																			scale 1.472000 1.472000 1.472000
+																			scaleOrientation -0.983700 -0.175000 0.042150 -0.556100
+																			translation 4.639997 -5.295000 1.360000
+																		}
+																	]
+																}
+															]
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_9_pod02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "MenuCell"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 25.000000
+																	}
+																}
+															]
+															rotation -0.922500 -0.329200 -0.201700 -1.575000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.265400 0.380400 0.885900 -0.854300
+															translation -32.299999 -3.419000 -3.640000
+														}
+														DEF MainMenu_9_podsocket_inner02 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str10Mat
+																		texture USE Str10Tex
+																	}
+																	geometry USE podsocket_inner02-FACES
+																}
+															]
+															rotation 0.994900 -0.002650 -0.101000 -1.675000
+															scale 0.329600 0.329600 0.329600
+															scaleOrientation -0.292900 -0.197900 0.935400 -0.727600
+															translation -33.009998 -4.135000 -10.430000
+														}
+														DEF MainMenu_9_arm04 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str06Mat
+																		texture USE Str06Tex
+																	}
+																	geometry USE arm04-FACES
+																}
+															]
+															rotation 0.078240 0.069690 0.994500 -1.575000
+															scale 1.350000 1.350000 1.350000
+															scaleOrientation -0.627300 0.564200 0.536800 -1.036000
+															translation -34.169998 4.055000 -0.615300
+														}
+														DEF MainMenu_9_MetaPanel Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material DEF MainMenu_9_Material MaxMaterial
+																		{
+																			name "GameHilite"
+																		}
+																		texture DEF MainMenu_9_Texture ImageTexture
+																		{
+																			url "GameHilite_01.bmp"
+																		}
+																	}
+																	geometry USE MetaPanel-FACES
+																}
+															]
+															rotation 0.002542 -0.701000 0.713100 -3.149000
+															scale 1.591000 1.591000 1.591000
+															scaleOrientation -0.948600 -0.314500 0.033810 -0.479400
+															translation -12.030000 -17.930000 4.047000
+														}
+														DEF MainMenu_9_tube Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -14.780000 -25.049999 2.837000
+														}
+														DEF MainMenu_9_tube_0 Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material USE Str07Mat
+																		texture USE Str07Tex
+																	}
+																	geometry USE tube_0-FACES
+																}
+															]
+															rotation -0.999900 -0.008726 0.008880 -1.553000
+															scale 5.523000 5.523000 5.523000
+															scaleOrientation -0.016420 -0.958200 -0.285700 -0.198800
+															translation -16.160000 -26.090000 2.880000
+														}
+														DEF MainMenu_9_pod_backing Transform
+														{
+															children 
+                                       									[
+                                     										Shape
+                                    										{
+                                    											appearance Appearance
+                                         											{
+																		material DEF MainMenu_9Mat MaxMaterial
+																		{
+																			name "FlatSurfaces"
+																		}
+																		texture DEF MainMenu_9Tex ImageTexture
+																		{
+																			url ""
+																		}
+                                            										}
+                                                									geometry USE pod_backing-FACES
+                                                  								}
+                                              								]
+                                     									rotation -0.993800 -0.111400 0.002924 -1.478000
+                                										scale 0.329600 0.329600 0.329600
+                                  										scaleOrientation -0.630600 0.217500 0.745000 -0.359000
+                                    									translation -32.299999 -3.419000 -3.640000
+                                       								}
+														DEF MainMenu_9_SelectPod Transform
+														{
+															children
+															[
+																Shape
+																{
+																	appearance Appearance
+																	{
+																		material MaxMaterial
+																		{
+																			name "EggGlowPulse"
+																		}
+																	}
+																	geometry Sphere
+																	{
+																		radius 10.540000
+																	}
+																}
+															]
+															rotation -0.335200 0.920700 -0.199700 -0.424800
+															scale 0.598800 0.598800 0.598800
+															scaleOrientation 0.060470 -0.803600 0.592100 -0.211000
+															translation -31.959999 -3.733000 -3.075000
+														}
+														DEF MainMenu_9_Text Transform
+														{
+															children
+															[
+																Transform
+																{
+																	rotation -1 0 0 1.571
+																	children
+																	[
+																		DEF MainMenu_9_Font Shape
+																		{
+																			appearance Appearance
+																			{
+																				material DEF MainMenu_9TextMaterial MaxMaterial
+																				{
+																					name "NavType"
+																				}
+																			}
+																			geometry Text { width -10 justify "left" font "Heading" translate true text "" }
+																		}
+																	]		
+																}
+															]
+															rotation -1.000000 0.002966 0.003888 -1.551000
+															scale 7.000 0.0 7.000
+															//scaleOrientation 0.754300 0.161800 0.636300 -0.255100
+															translation -14.379000 -10.540000 3.903000
+														}
+													]
+													rotation -0.602100 -0.599600 -0.527300 -2.191000
+													scale 0.458100 0.458100 0.458100
+													scaleOrientation -0.676600 -0.684500 0.271400 -0.208200
+													translation 5.701000 15.400000 -1.711000
+												}
+												DEF MainMenu_9_arm_pin02 Transform
+												{
+													children
+													[
+														Shape
+														{
+															appearance Appearance
+															{
+																material USE Str06Mat
+																texture USE Str06Tex
+															}
+															geometry USE arm_pin02-FACES
+														}
+													]
+													rotation -0.008533 -1.000000 -0.003925 -2.201000
+													scale 1.294000 2.019000 1.294000
+													scaleOrientation 0.062600 0.997600 0.030280 -0.266000
+													translation -1.495000 -1.031000 4.525000
+												}
+											]
+											rotation 0.001397 -0.015840 0.999900 -3.163000
+											scale 1.296000 1.296000 1.296000
+											scaleOrientation 0.454800 0.859100 0.234900 -0.826500
+											translation -6.689000 0.236800 -4.083000
+										}
+									]
+									rotation 0.127600 -0.011390 -0.991800 -1.591000
+									scale 0.225100 0.257500 0.257500
+									scaleOrientation -0.447400 0.891900 0.066360 -0.156600
+									translation -0.311500 -0.785100 0.478100
+								}
+							]	
+						}
+					]
+					rotation 0.997500 -0.047920 0.052590 -1.573000
+					scale 6.057000 6.927000 6.057000
+					scaleOrientation 0.008927 0.998300 -0.057520 -0.081130
+				}
+	]
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			]
+		}
+	]
+    scale 1.080000 1.080000 1.080000
+    translation -57.980000 -13.690000 -84.760002
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+DEF select Transform
+{
+    children
+    [
+		Transform
+		{
+		translation -12 10 0
+			children
+			[
+				DEF Main_select_text_select Transform
+				{
+					children
+					[
+						Transform
+						{
+							rotation 1 0 0 -1.571
+							scale 10 12 0
+							translation -12 0 0
+							children
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material MaxMaterial
+										{
+											name "XBoxGreen"
+										}
+									}
+									geometry Text { font "body" justify "left" translate true text "SELECT" }
+								}
+							]
+						}
+					]
+					rotation -0.993000 0.082680 -0.083790 -1.588000
+					translation -19.850000 60.049999 -4.620000
+				}
+				DEF Main_select_probe Transform
+				{
+					children
+					[
+						Shape
+						{
+							appearance Appearance
+							{
+								material USE Str08Mat
+								texture USE Str08Tex
+							}
+							geometry DEF Main_select_probe-FACES Mesh { url "Main_select_probe-FACES.xm" }
+						}
+					]
+					rotation -0.790800 0.512300 0.334900 -1.950000
+					translation -66.779999 115.099998 -8.603000
+				}
+				DEF Main_select_probearm Transform
+				{
+					children
+					[
+						Shape
+						{
+							appearance Appearance
+							{
+								material USE Str08Mat
+								texture USE Str08Tex
+							}
+							geometry DEF Main_select_probearm-FACES Mesh { url "Main_select_probearm-FACES.xm" }
+						}
+					]
+					rotation -0.790800 0.512300 0.334900 -1.950000
+					translation -68.660004 116.900002 -9.057000
+				}
+				DEF Main_select_tube Transform
+				{
+					children
+					[
+						Shape
+						{
+							appearance Appearance
+							{
+								material USE Str07Mat
+								texture USE Str07Tex
+							}
+							geometry DEF Main_select_tube-FACES Mesh { url "Main_select_tube-FACES.xm" }
+						}
+					]
+					rotation -0.984100 0.125300 -0.126000 -1.598000
+					translation 22.670000 25.090000 3.836000
+				}
+				DEF Main_select_pod_inner Transform
+				{
+					children
+					[
+						Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+									name "CellEgg/Parts"
+								}
+							}
+							geometry Sphere
+							{
+								radius 10.540000
+							}
+						}
+					]
+					rotation -0.164700 0.986000 -0.026080 -0.064310
+					translation -47.410000 60.540001 -14.600000
+				}
+				DEF Main_select_pod_outer Transform
+				{
+					children
+					[
+						Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+									name "CellEgg/Parts"
+								}
+							}
+							geometry Sphere
+							{
+								radius 11.550000
+							}
+						}
+					]
+					rotation -0.164700 0.986000 -0.026080 -0.064310
+					translation -47.410000 60.540001 -14.600000
+				}
+				DEF select_pod_HL Transform
+				{
+					children
+					[
+						Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+									name "EggGlow"
+								}
+							}
+							geometry Sphere
+							{
+								radius 11.530000
+							}
+						}
+					]
+					rotation -0.164700 0.986000 -0.026080 -0.064310
+					translation -47.410000 60.540001 -14.600000
+				}
+				DEF Main_select_text_a Transform
+				{
+					children
+					[
+						Transform
+						{
+							rotation 1 0 0 -1.571
+							scale 15 15 15
+							translation -1 0 0
+							children			
+							[
+								Shape
+								{
+									appearance Appearance
+									{
+										material MaxMaterial
+										{
+											name "NavType"
+										}
+									}
+									geometry Text { font "heading" justify "middle" translate false text "A" }
+								}
+							]
+						}
+					]
+					rotation -0.995000 0.069740 -0.070990 -1.586000
+					translation -47.220001 55.810001 -14.640000
+				}
+			]
+		}
+	]
+    translation 162.000000 -219.000000 -36.470001
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+DEF structure_5 Transform
+{
+    children
+    [
+            DEF RotBlindage Spinner
+            {
+			rpm 2.0
+			axis 0 0 2
+			children
+			[
+        DEF Main_memory_podshell_09 Transform
+        {
+            children
+            [
+                Shape
+                {
+                    appearance Appearance
+                    {
+				material DEF Str03Mat MaxMaterial
+				{
+					name "MenuCell"
+				}
+				texture DEF Str03Tex ImageTexture
+				{
+					url ""
+				}
+                    }
+                    geometry DEF Main_memory_podshell_09-FACES Mesh { url "Main_memory_podshell_09-FACES.xm" }
+                }
+            ]
+            rotation -0.998800 0.033520 0.034370 -1.570000
+            scale 1.626000 1.626000 1.626000
+            scaleOrientation -0.232800 0.000000 0.972500 -0.014030
+            translation -0.303900 0.651400 11.730000
+        }
+        DEF Main_memory_podshell_10 Transform
+        {
+            children
+            [
+                Shape
+                {
+                    appearance Appearance
+                    {
+				material USE Str03Mat
+				texture USE Str03Tex
+                    }
+                    geometry DEF Main_memory_podshell_10-FACES Mesh { url "Main_memory_podshell_10-FACES.xm" }
+                }
+            ]
+            rotation -0.210700 -0.692100 -0.690400 -2.727000
+            scale 1.626000 1.626000 1.626000
+            scaleOrientation -0.050250 -0.992200 0.114200 -0.266800
+            translation -0.303800 0.651400 11.730000
+        }
+        DEF Main_memory_podshell_11 Transform
+        {
+            children
+            [
+                Shape
+                {
+                    appearance Appearance
+                    {
+				material USE Str03Mat
+				texture USE Str03Tex
+                    }
+                    geometry DEF Main_memory_podshell_11-FACES Mesh { url "Main_memory_podshell_11-FACES.xm" }
+                }
+            ]
+            rotation -0.220100 -0.690600 -0.688900 -2.709000
+            scale 1.626000 1.626000 1.626000
+            scaleOrientation -0.356200 0.633300 -0.687100 -0.872500
+            translation -0.303900 0.651300 11.730000
+        }
+	    ]
+	}
+    ]
+    scale 1.130000 1.130000 1.130000
+    translation -61.689999 -13.400000 0.337400
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+DEF Main_IntOrb_01 Transform
+{
+    children
+    [
+        Shape
+        {
+            appearance Appearance
+            {
+                material MaxMaterial
+                {
+                    name "MainMenuOrb"
+
+                }
+                texture ImageTexture
+                {
+                    url "xbox4.xbx"
+                }
+            }
+            geometry Mesh { url "Main_pod_backing01-FACES.xm" }
+        }
+    ]
+    rotation -0.993700 -0.088440 0.068970 -1.576000
+    scale 1.440000 1.440000 1.440000
+    scaleOrientation 0.036530 0.975200 0.218400 -0.396500
+    translation -58.220001 -12.680000 29.980000
+}
+DEF Main_IntOrb_02 Transform
+{
+    scale 40 40 40
+    translation -58.220001 -12.680000 29.980000
+	children
+	[
+		Spinner
+		{
+			rpm 2
+			axis 1 1 -1
+			children
+			[
+				Shape
+				{
+					appearance Appearance
+					{
+						material Material
+						{
+						}
+						texture ImageTexture
+						{
+							url "Icon.xbx"
+						}
+					}
+					geometry Box
+					{
+					}
+				}
+			]
+		}
+	]
+}
+DEF Main_IntOrb_03 Transform
+{
+	children
+	[
+		Spinner
+		{
+			rpm -3
+			axis 2 2 0
+			children
+			[
+        			Shape
+				{
+					appearance Appearance
+					{
+						material DEF IntOrbMat MaxMaterial
+						{
+							name "Metal_Chrome"
+						}
+						texture DEF IntOrbTex ImageTexture
+						{
+							url ""
+						}
+					}
+					geometry Mesh { url "newspikes.xm" }
+				}
+			]
+		}
+	]
+	rotation -0.993700 -0.088440 0.068970 -1.576000
+	scale 35.700000 35.700000 35.700000 
+	translation -58.22 -13.68 20
+}
+DEF Main_IntOrb_04 Transform
+{
+	children
+	[
+		Spinner
+		{
+     			rpm 3
+     			axis 0 2 0
+			children
+			[
+        			Shape
+				{
+					appearance Appearance
+					{
+						material USE IntOrbMat
+						texture USE IntOrbTex
+					}
+					geometry Mesh { url "dopeleaf.xm" }
+				}
+			]
+		}
+	]
+//	rotation -0.993700 -0.088440 0.068970 -1.576000
+	scale 45.700000 45.700000 45.700000 
+	translation -58.22 -13.68 20
+}
+DEF Main_Orb_01 Transform
+{
+	children
+	[
+		Spinner
+		{
+			rpm 3
+			axis 0 2 2
+			children
+			[
+        			Shape
+				{
+					appearance Appearance
+					{
+						material DEF OrbMat MaxMaterial
+						{
+							name "NavType"
+						}
+						texture DEF OrbTex ImageTexture
+						{
+							url ""
+						}
+					}
+					geometry Mesh { url "gasorb.xm" }
+				}
+			]
+		}
+	]
+	rotation -0.993700 -0.088440 0.068970 -1.576000
+	scale 47.700000 47.700000 47.700000 
+	translation -58.22 -13.68 20
+}
+DEF Main_Orb_02 Transform
+{
+	children
+	[
+		Spinner
+		{
+			rpm 3
+			axis 0 2 2
+			children
+			[
+        			Shape
+				{
+					appearance Appearance
+					{
+						material USE OrbMat
+						texture USE OrbTex
+					}
+					geometry Mesh { url "globe.xm" }
+				}
+			]
+		}
+	]
+	rotation -0.993700 -0.088440 0.068970 -1.576000
+	scale 47.700000 47.700000 47.700000 
+	translation -58.22 -13.68 20
+}
+DEF Main_Orb_03 Transform
+{
+	children
+	[
+		Spinner
+		{
+			rpm 3
+			axis 0 2 2
+			children
+			[
+        			Shape
+				{
+					appearance Appearance
+					{
+						material USE OrbMat
+						texture USE OrbTex
+					}
+					geometry Mesh { url "jewels.xm" }
+				}
+			]
+		}
+	]
+	rotation -0.993700 -0.088440 0.068970 -1.576000
+	scale 47.700000 47.700000 47.700000 
+	translation -58.22 -13.68 20
+}
+DEF Main_Orb_04 Transform
+{
+	children
+	[
+		Spinner
+		{
+			rpm 3
+			axis 0 2 2
+			children
+			[
+        			Shape
+				{
+					appearance Appearance
+					{
+						material USE OrbMat
+						texture USE OrbTex
+					}
+					geometry Mesh { url "rings.xm" }
+				}
+			]
+		}
+	]
+	rotation -0.993700 -0.088440 0.068970 -1.576000
+	scale 47.700000 47.700000 47.700000 
+	translation -58.22 -13.68 20
+}
+DEF Main_Orb_05 Transform
+{
+	children
+	[
+		Spinner
+		{
+			rpm 3
+			axis 0 2 2
+			children
+			[
+        			Shape
+				{
+					appearance Appearance
+					{
+						material USE OrbMat
+						texture USE OrbTex
+					}
+					geometry Mesh { url "twirly.xm" }
+				}
+			]
+		}
+	]
+	rotation -0.993700 -0.088440 0.068970 -1.576000
+	scale 47.700000 47.700000 47.700000 
+	translation -58.22 -13.68 20
+}
+DEF Main_Orb_06 Transform
+{
+	children
+	[
+		Spinner
+		{
+			rpm 3
+			axis 0 2 2
+			children
+			[
+        			Shape
+				{
+					appearance Appearance
+					{
+						material USE OrbMat
+						texture USE OrbTex
+					}
+					geometry Mesh { url "wireframe.xm" }
+				}
+			]
+		}
+	]
+	rotation -0.993700 -0.088440 0.068970 -1.576000
+	scale 47.700000 47.700000 47.700000 
+	translation -58.22 -13.68 20
+}
+DEF Main_Orb_07 Transform
+{
+        children
+        [
+            Spinner
+            {
+                rpm -2.3
+		axis 0 0 2
+                children
+                [
+      DEF Main_memory_pod03 Transform
+        {
+            children
+            [
+                Shape
+                {
+                    appearance Appearance
+                    {
+                        material DEF Str12Mat MaxMaterial
+                        {
+                           name "CellEgg/Parts"
+                        }
+				texture DEF Str12Tex ImageTexture
+				{
+					url ""
+				}
+                    }
+                    geometry Sphere
+                    {
+                        radius 25.000000
+                    }
+                }
+            ]
+            rotation -0.950100 -0.221200 -0.219900 -1.620000
+            scale 1.626000 1.626000 1.626000
+            scaleOrientation -0.273300 -0.881900 0.384000 -0.604900
+            translation -0.303900 0.651400 11.730000
+        }
+    ]
+	    }
+	]
+    scale 1.130000 1.130000 1.130000
+    translation -61.689999 -13.400000 0.337400
+}
+
+DEF Main_Orb_08 Transform
+{
+        children
+        [
+            Spinner
+            {
+                rpm 7.75
+		axis 0 2 2
+                children
+                [
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                            material MaxMaterial
+                            {
+                                name "InnerWall_01"
+                            }
+                            texture ImageTexture
+                            {
+                                alpha true
+                                url "orbcellwall.xbx"
+                            }
+                        }
+                        geometry Mesh { url "OrbCell-FACES.xm" }
+                    }
+                ]
+            }
+            Spinner
+            {
+                rpm 7.75
+		axis 2 2 0
+                children
+                [
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                            material MaxMaterial
+                            {
+                                name "InnerWall_01"
+                            }
+                            texture ImageTexture
+                            {
+                                alpha true
+                                url "orbcellwall.xbx"
+                            }
+                        }
+                        geometry Mesh { url "OrbCell-FACES.xm" }
+                    }
+                ]
+            }
+            Spinner
+            {
+                rpm 7.75
+		axis 2 0 2
+                children
+                [
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                            material MaxMaterial
+                            {
+                                name "InnerWall_01"
+                            }
+                            texture ImageTexture
+                            {
+                                alpha true
+                                url "orbcellwall.xbx"
+                            }
+                        }
+                        geometry Mesh { url "OrbCell-FACES.xm" }
+                    }
+                ]
+            }
+        ]
+    rotation -0.993700 -0.088440 0.068970 -1.576000
+    scale 47.000000 47.000000 47.000000 
+    scaleOrientation 0.036530 0.975200 0.218400 -0.396500
+    translation -54.880000 -15.100000 29.980000
+}
+DEF Main_Orb_09 Transform
+{
+	children
+	[
+		Spinner
+		{
+			rpm 3
+			axis 0 2 2
+			children
+			[
+        			Shape
+				{
+					appearance Appearance
+					{
+						material USE OrbMat
+						texture USE OrbTex
+					}
+					geometry Mesh { url "bubbles.xm" }
+				}
+			]
+		}
+	]
+	rotation -0.993700 -0.088440 0.068970 -1.576000
+	scale 47.700000 47.700000 47.700000 
+	translation -58.22 -13.68 20
+}
+DEF Main_Orb_10 Transform
+{
+	children
+	[
+		DEF DaGoN_Terre Transform
+		{
+			children
+			[
+				Spinner
+				{
+					rpm 3
+					axis 0 0 1
+					children
+					[
+		        			Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+									name "GameIcon_01"
+								}
+								texture ImageTexture
+								{
+									url "Terre.xbx"
+								}
+							}
+							geometry Mesh { url "DaGoN-Planete.xm"}
+						}
+					]
+				}
+			]
+			scale 53 53 53
+			rotation -1 0 0 -1.7
+			translation -58.22 -13.68 20
+		}
+	]
+}
+DEF Main_Orb_11 Transform
+{
+	children
+	[
+		DEF DaGoN_Ciel Transform
+		{
+			children
+			[
+				Spinner
+				{
+					rpm 2
+					axis 0 0 1
+					children
+					[
+		        			Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+									name "GameIcon_01"
+								}
+								texture ImageTexture
+								{
+									url "Ciel.xbx"
+								}
+							}
+							geometry Mesh { url "DaGoN-Planete.xm"}
+						}
+					]
+				}
+			]
+			scale 54 54 54
+			rotation -1 0 0 -1.7
+			translation -58.22 -13.68 20
+		}
+	]
+}
+DEF Main_Orb_12 Transform
+{
+	children
+	[
+		Spinner
+		{
+			rpm 5
+			axis 0 0 1
+			children
+			[
+		DEF DaGoN_Noyau1 Transform
+		{
+			children
+			[
+				Spinner
+				{
+					children
+					[
+		        			Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+					                                name "Metal_Chrome"
+								}
+							}
+							geometry Mesh { url "DaGoN-Proton.xm"}
+								}
+					]
+				}
+				Spinner
+				{
+					children
+					[
+		        			Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+					                                name "Metal_Chrome"
+								}
+							}
+							geometry Mesh { url "DaGoN-Neutron.xm"}
+						}
+					]
+				}
+			]
+			scale 99 99 99 
+			rotation -1 0 0 -1.5
+		}
+		DEF DaGoN_Noyau2 Transform
+		{
+			children
+			[
+				Spinner
+				{
+					children
+					[
+		        			Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+					                                name "IconParts"
+								}
+							}
+							geometry Mesh { url "DaGoN-Proton.xm"}
+								}
+					]
+				}
+				Spinner
+				{
+					children
+					[
+		        			Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+					                                name "IconParts1"
+								}
+							}
+							geometry Mesh { url "DaGoN-Neutron.xm"}
+						}
+					]
+				}
+			]
+			scale 100 100 100 
+			rotation -1 0 0 -1.5
+		}
+			]
+		}
+	]
+	translation -58.22 -13.68 20
+}
+DEF Main_Orb_13 Transform
+{
+	children
+	[
+		Spinner
+		{
+			rpm 5
+			axis 0 0 1
+			children
+			[
+		DEF DaGoN_Electron1 Transform
+		{
+			children
+			[
+				Spinner
+				{
+					rpm 50
+					axis 0 0 1
+					children
+					[
+		        			Shape
+						{
+						appearance Appearance
+							{
+								material MaxMaterial
+								{
+					                                name "Metal_Chrome"
+								}
+							}
+							geometry Mesh { url "DaGoN-Electron1.xm"}
+						}
+					]
+				}
+				Spinner
+				{
+					rpm 51
+					axis 1 0 0
+					children
+					[
+		       			Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+					                                name "Metal_Chrome"
+								}
+							}
+							geometry Mesh { url "DaGoN-Electron1.xm"}
+							}
+						]
+				}
+			]
+			scale 55 55 55 
+			rotation -1 0 0 -1.5
+		}
+		DEF DaGoN_Electron2 Transform
+		{
+			children
+			[
+				Spinner
+				{
+					rpm 50
+					axis 0 0 -1
+					children
+					[
+		        			Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+					                                name "Metal_Chrome"
+								}
+							}
+							geometry Mesh { url "DaGoN-Electron2.xm"}
+						}
+							]
+				}
+				Spinner
+				{
+					rpm 51
+					axis -1 0 0
+					children
+					[
+		        			Shape
+						{
+							appearance Appearance
+							{
+								material MaxMaterial
+								{
+					                                name "Metal_Chrome"
+								}
+							}
+							geometry Mesh { url "DaGoN-Electron2.xm"}
+						}
+					]
+				}
+			]
+			scale 55 55 55 
+			rotation -1 0 1 -1.5
+		}
+			]
+		}
+	]
+	translation -58.22 -13.68 20
+}
+
+DEF Main_pod_backing03 Transform
+{
+	children
+	[
+		Shape
+		{
+			appearance Appearance
+			{
+				material MaxMaterial
+				{
+					name "equalizer"
+				}
+			}
+			geometry DEF Main_pod_backing01-FACES Mesh { url "MU_L3_text_tracklist01-FACES.xm" }
+		}
+	]
+	rotation -0.993700 -0.088440 0.068970 -1.576000
+	scale 8.440000 8.440000 8.440000
+	scaleOrientation 0.036530 0.975200 0.218400 -0.396500
+	translation -58.22 -12.680000 29.980000
+}
+]}]}]}]}
+	]
+	rotation -500.0 0.0 0.0 1
+	translation 0 0 200
+}

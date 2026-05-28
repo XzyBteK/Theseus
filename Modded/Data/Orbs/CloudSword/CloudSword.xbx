@@ -1,0 +1,26 @@
+# Xbox Dash Orb Data
+#
+# Dash - Dash
+#
+# 
+#
+
+[OrbInfo]
+Author=xxxxx
+DateCreated=16-Fev-05
+Version=1.0
+MadeUsing=
+Credits=xxxxx
+
+
+[Orb]
+Material=ReflectSurface
+Scalex=63
+Scaley=63
+Scalez=63
+
+[HD Orbs]
+Material=ReflectSurface
+Scalex=5
+Scaley=5
+Scalez=5

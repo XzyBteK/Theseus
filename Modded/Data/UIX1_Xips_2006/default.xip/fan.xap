@@ -1,0 +1,306 @@
+var nCurPlayerMenuItem;
+var fanCount;
+var FanMenuList;
+var fanscroll;
+var FanButton;
+var fanselect;
+var currentFan;
+
+DEF theGlobal Transform
+{ 
+    visible false
+     children
+      [
+          Shape
+          {
+              appearance Appearance { material Material {  } }
+              geometry DEF theCellWallMesh Mesh
+          }
+      ]
+      scale 0 0 0
+      translation 500 0 0
+}
+
+function GetCellWallType()
+{
+    var IniFile = new Settings;
+    IniFile.SetIniSection( "Dashboard Settings" );
+    var a = IniFile.GetIniValue( "Current Skin" );
+    theCellWallMesh.url = "A:/skins/" + a + "/cellwall.xm"; 
+}  
+
+function initialize() { GetCellWallType(); }
+
+function UpdateFanMenu()
+{
+    var c = theFanMenu.children[0].children[0];
+    if (nCurPlayerMenuItem == 1)
+    {
+                c.MU_L3_button_yes2.children[0].appearance.material.name = "GameHilite";
+                c.S_Home_text_yes3.children[0].appearance.material.name = "Material #133";
+                c.MU_L3_button_no2.children[0].appearance.material.name = "FlatSurfaces";
+                c.S_Home_text_no3.children[0].appearance.material.name = "NavType";
+                nCurPlayerMenuItem = 0;
+    }
+    if (nCurPlayerMenuItem == 2)
+    {
+                c.MU_L3_button_no2.children[0].appearance.material.name = "GameHilite";
+                c.S_Home_text_no3.children[0].appearance.material.name = "Material #133";
+                c.MU_L3_button_yes2.children[0].appearance.material.name = "FlatSurfaces";
+                c.S_Home_text_yes3.children[0].appearance.material.name = "NavType";
+                nCurPlayerMenuItem = 0;
+    }
+     c.SkinNames.children[0].children[0].geometry.text = theConfig.GetFanSpeed()*2 + "%";
+}
+function StartFanMenu()
+{
+    nCurPlayerMenuItem = 0;
+    var c = theFanMenu.children[0].children[0];
+    c.SkinNames.children[0].children[0].geometry.text = theConfig.GetFanSpeed()*2 + "%";
+}
+function DoReset()
+{
+    theRestartLevel.GoTo();
+}
+
+function DoAction()
+{
+    var c = theFanMenu.children[0].children[0];
+    var FanSpeed = theConfig.GetFanSpeed() * 2;
+    if (nCurPlayerMenuItem == 1)
+    {
+       if(FanSpeed == 20)
+       {
+           theConfig.SetFanSpeed(20);
+       }
+       else if(FanSpeed > 90 & FanSpeed <= 100)
+       {
+           theConfig.SetFanSpeed(90);
+       }
+       else if(FanSpeed > 80 & FanSpeed <= 90)
+       {
+           theConfig.SetFanSpeed(80);
+       }
+       else if(FanSpeed > 70 & FanSpeed <= 80)
+       {
+           theConfig.SetFanSpeed(70);
+       }
+       else if(FanSpeed > 60 & FanSpeed <= 70)
+       {
+           theConfig.SetFanSpeed(60);
+       }
+       else if(FanSpeed > 50 & FanSpeed <= 60)
+       {
+           theConfig.SetFanSpeed(50);
+       }
+       else if(FanSpeed > 40 & FanSpeed <= 50)
+       {
+           theConfig.SetFanSpeed(40);
+       }
+       else if(FanSpeed > 30 & FanSpeed <= 40)
+       {
+           theConfig.SetFanSpeed(30);
+       }
+       else if(FanSpeed <= 30)
+       {
+           theConfig.SetFanSpeed(20);
+       }
+       else
+       {
+           theConfig.SetFanSpeed(100);
+       }
+    }
+    else if (nCurPlayerMenuItem == 2)
+    {
+       if(FanSpeed == 100)
+       {
+           theConfig.SetFanSpeed(100);
+       }
+       else if(FanSpeed < 30 & FanSpeed >= 20)
+       {
+           theConfig.SetFanSpeed(30);
+       }
+       else if(FanSpeed < 40 & FanSpeed >= 30)
+       {
+           theConfig.SetFanSpeed(40);
+       }
+       else if(FanSpeed < 50 & FanSpeed >= 40)
+       {
+           theConfig.SetFanSpeed(50);
+       }
+       else if(FanSpeed < 60 & FanSpeed >= 50)
+       {
+           theConfig.SetFanSpeed(60);
+       }
+       else if(FanSpeed < 70 & FanSpeed >= 60)
+       {
+           theConfig.SetFanSpeed(70);
+       }
+       else if(FanSpeed < 80 & FanSpeed >= 70)
+       {
+       theConfig.SetFanSpeed(80);
+       }
+       else if(FanSpeed < 90 & FanSpeed >= 80)
+       {
+           theConfig.SetFanSpeed(90);
+       }
+       else if(FanSpeed < 100 & FanSpeed >= 90)
+       {
+           theConfig.SetFanSpeed(100);
+       }
+       else
+       {
+           theConfig.SetFanSpeed(100);
+       }
+    }
+    nCurPlayerMenuItem = 0;
+}
+
+var restarting;
+DEF theRestartLevel Level
+{
+    function OnArrival()
+    {
+        DisableAmbientAudio();
+        ClosePopup();
+        restarting = true;
+        if(theConfig.GetVideoMode() == 2) { theXboxLogo16x9Background.isBound = true; }
+        else { theXboxLogo4x3Background.isBound = true; }
+    }
+
+    behavior
+    {
+        sleep 1.1;
+        if(restarting) { theConfig.ReStartDash(); }
+    }
+
+    function OnActivate()
+    {
+        DisableAmbientAudio();
+        ClosePopup();
+        if(theConfig.GetVideoMode() == 2) { theXboxLogo16x9Background.isBound = true; }
+        else { theXboxLogo4x3Background.isBound = true; }
+    }
+}
+
+DEF theFanMenu Level
+{
+    archive "Settings_Panel.xip"
+
+    children
+    [
+        Inline
+        {
+            url "Settings_Panel/default7.xap"
+            function onLoad()
+            {
+                StartFanMenu();
+                UpdateFanMenu();
+            }
+        }
+    ]
+
+    path Viewpoint
+    {
+        fieldOfView 1.287000
+        orientation 0.103700 0.994600 0.006310 -0.122200
+        position 96.940002 4.728000 -248.600006
+        jump false
+    }
+
+    shell Transform
+    {
+        scale 6.15 6.15 6.15
+        translation 97.67 4.819000 -251.870003
+        children
+        [
+            DEF theSettingsMenuShellSpinner Spinner
+            {
+                rpm 0
+                axis 0 0 0
+                children
+                [
+                    DEF theSettingsMenuShellWaver Waver
+                    {
+                        rpm 2.25//rpm 0.75
+                        children
+                        [
+                            Shape
+                            {
+                                appearance Appearance
+                                {
+                                    material MaxMaterial { name "InnerWall_01" }
+                                    texture ImageTexture { alpha true url "shell.xbx" }
+                                }
+                                geometry USE theCellWallMesh
+                            }
+                            Shape
+                            {
+                                appearance MaxMaterial { name "InnerWall_02" }
+                                geometry Sphere
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+    control DEF theFanAdjustJoyStick Joystick
+    {
+        function OnADown()
+        {
+        var CurFanSpeed = theConfig.GetFanSpeed()*2;
+        var info = new Settings;
+        info.file = "A:\\system\\uix.tempfan";
+        info.section = "FanSpeed";
+        info.SetValue("FanSpeed", CurFanSpeed);
+        PlaySoundA();
+        GoToConfigAfterFan();
+        theMusicSubMenuOut.Play();
+        }
+        function OnBDown()
+        {
+            PlaySoundB();
+            GoToConfig();
+            theMusicSubMenuOut.Play();
+        }
+        function OnLeftThumbMoveLeft()
+        {
+            nCurPlayerMenuItem = 1;
+            DoAction();
+            UpdateFanMenu();
+        }
+        function OnLeftThumbMoveRight()
+        {
+            nCurPlayerMenuItem = 2;
+            DoAction();
+            UpdateFanMenu();
+        }
+        function OnMoveLeft()
+        {
+            nCurPlayerMenuItem = 1;
+            DoAction();
+            UpdateFanMenu();
+        }
+        function OnMoveRight()
+        {
+            nCurPlayerMenuItem = 2;
+            DoAction();
+            UpdateFanMenu();
+        }
+
+    }
+
+    function OnActivate()
+    {
+        EnableAudio();
+    }
+}
+
+
+
+
+
+
+

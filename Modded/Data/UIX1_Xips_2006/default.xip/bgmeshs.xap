@@ -1,0 +1,341 @@
+var nCurPlayerMenuItem;
+var bgmeshCount;
+var BgmeshMenuList;
+var bgmeshScroll;
+var bgmeshButton;
+var bgmeshSelect;
+var currentBgmesh;
+
+DEF theGlobal Transform
+{ 
+    visible false
+     children
+      [
+          Shape
+          {
+              appearance Appearance { material Material {  } }
+              geometry DEF theCellWallMesh Mesh
+          }
+      ]
+      scale 0 0 0
+      translation 500 0 0
+}
+
+function GetCellWallType()
+{
+    var IniFile = new Settings;
+    IniFile.SetIniSection( "Dashboard Settings" );
+    var a = IniFile.GetIniValue( "Current Skin" );
+    theCellWallMesh.url = "A:/skins/" + a + "/cellwall.xm";
+}
+
+function initialize()
+{
+    GetCellWallType();
+    bgmeshSelect = 0;
+    bgmeshScroll = 0;
+    bgmeshButton = 0;
+    nCurPlayerMenuItem = 2;
+}
+
+function GetBgmeshs()
+{
+    var b = new Folder;
+    b.path = "A:\\bgmeshs";
+    bgmeshCount = b.subFolders.length();
+    var bgmeshsArray = new Array();
+    var a;
+
+    var IniFile = new Settings;
+    IniFile.SetIniSection( "BackgroundMeshType" );
+    currentBgmesh = IniFile.GetIniValue( "BgMesh1" );
+
+    for(var i = 0; i < bgmeshCount; i = i + 1)
+    {
+        a = b.subFolders[i].name;
+        bgmeshsArray[i] = a.charAt(0).toUpperCase() + a.substr(1,a.length());
+    }
+    BgmeshMenuList = bgmeshsArray.sort();
+}
+
+function UpdateBgmeshMenu()
+{
+        var c = theBgmeshsMenu.children[0].children[0];
+        
+    for(var i = 0; i < 9; i = i + 1)
+    {
+             var n = bgmeshScroll + i;
+            
+        if(n >= bgmeshCount)
+        {
+                c.BgmeshNames.children[i].visible = false;
+        }
+        else
+        {
+                var str;
+                str = BgmeshMenuList[n];
+                        c.BgmeshNames.children[i].visible = true;
+                        c.BgmeshNames.children[i].visible = true;
+                        c.BgmeshNames.children[i].children[0].appearance.material.name = "CellEgg/Partsz";
+                        c.BgmeshNames.children[i].children[0].geometry.text = str;
+                     
+                        if(i == bgmeshButton)
+                        {
+                                c.BgmeshNames.children[i].children[0].appearance.material.name = "NavType";
+                        }
+                }
+        }
+        c.MU_L3_button_no.children[0].appearance.material.name = "FlatSurfaces";
+        c.MU_L3_button_yes.children[0].appearance.material.name = "FlatSurfaces";
+        c.MU_L3_button_able.children[0].appearance.material.name = "FlatSurfaces";
+
+        c.S_Home_text_no.children[0].appearance.material.name = "NavType";
+        c.S_Home_text_yes.children[0].appearance.material.name = "NavType";
+        c.S_Home_text_able.children[0].appearance.material.name = "NavType";
+
+    if (nCurPlayerMenuItem == 2)
+    {
+                c.MU_L3_button_yes.children[0].appearance.material.name = "GameHilite";
+                c.S_Home_text_yes.children[0].appearance.material.name = "Material #133";
+    }
+    if (nCurPlayerMenuItem == 1)
+    {
+                c.MU_L3_button_no.children[0].appearance.material.name = "GameHilite";
+                c.S_Home_text_no.children[0].appearance.material.name = "Material #133";
+    }
+    if (nCurPlayerMenuItem == 0)
+    {
+                c.MU_L3_button_able.children[0].appearance.material.name = "GameHilite";
+                c.S_Home_text_able.children[0].appearance.material.name = "Material #133";
+  }
+}
+
+function StartBgmeshMenu()
+{
+    var c = theBgmeshsMenu.children[0].children[0];
+    nCurPlayerMenuItem = 2;
+}
+
+function ShowBgmeshInfo()
+{
+    var info = new Settings;
+    info.file = "A:\\bgmeshs\\" + BgmeshMenuList[bgmeshSelect] + "\\" + BgmeshMenuList[bgmeshSelect] + ".xbx";
+    info.section = "BgmeshInfo";
+    var author = info.GetValue("Author");
+    var date = info.GetValue("DateCreated");
+    var version = info.GetValue("Version");
+    var madeusing = info.GetValue("MadeUsing");
+    var credits = info.GetValue("Credits");
+    TellUser(theTranslator.Translate("Author: " + author + "\nDate: " + date + "\nVersion: " + version + "\nMade with: " + madeusing + "\nCredits: " + credits),"nada()");
+}
+
+function DoReset()
+{
+    theRestartLevel.GoTo();
+}
+
+function DoAction()
+{
+    var c = theBgmeshsMenu.children[0].children[0];
+    var info = new Settings;
+    info.file = "A:\\system\\uix.ini";
+    info.section = "BackgroundMeshType";
+    if (nCurPlayerMenuItem == 2) { ShowBgmeshInfo(); }
+    else if (nCurPlayerMenuItem == 0)
+    {
+        TellUser("Background Mesh 1 changed to " + BgmeshMenuList[bgmeshSelect],"");
+        var IniFile = new Settings;
+        IniFile.SetIniSection( "BackgroundMeshType" );
+        IniFile.SetIniValue( "BgMesh1", BgmeshMenuList[bgmeshSelect] );
+    }
+    else if (nCurPlayerMenuItem == 1)
+    {
+        TellUser("Background Mesh 2 changed to " + BgmeshMenuList[bgmeshSelect],"");
+        var IniFile = new Settings;
+        IniFile.SetIniSection( "BackgroundMeshType" );
+        IniFile.SetIniValue( "BgMesh2", BgmeshMenuList[bgmeshSelect] );
+    }
+}
+var restarting;
+DEF theRestartLevel Level
+{
+    function OnArrival()
+    {
+        DisableAmbientAudio();
+        ClosePopup();
+        restarting = true;
+        if(theConfig.GetVideoMode() == 2) { theXboxLogo16x9Background.isBound = true; }
+        else { theXboxLogo4x3Background.isBound = true; }
+    }
+
+    behavior
+    {
+        sleep 1.1;
+        if(restarting) { theConfig.ReStartDash(); }
+    }
+
+    function OnActivate()
+    {
+        DisableAmbientAudio();
+        ClosePopup();
+        if(theConfig.GetVideoMode() == 2) { theXboxLogo16x9Background.isBound = true; }
+        else { theXboxLogo4x3Background.isBound = true; }
+    }
+}
+
+DEF theBgmeshsMenu Level
+{
+    archive "Settings_Panel.xip"
+
+    children
+    [
+        Inline
+        {
+            url "Settings_Panel/default6.xap"
+
+            function onLoad()
+            {
+                StartBgmeshMenu();
+                GetBgmeshs();
+                UpdateBgmeshMenu();
+            }
+        }
+    ]
+
+    path Viewpoint
+    {
+        fieldOfView 1.287000
+        orientation 0.103700 0.994600 0.006310 -0.122200
+        position 96.940002 4.728000 -248.600006
+        jump false
+    }
+
+    shell Transform
+    {
+        scale 6.15 6.15 6.15
+        translation 97.67 4.819000 -251.870003
+        children
+        [
+            DEF theSettingsMenuShellSpinner Spinner
+            {
+                rpm 0
+                axis 0 0 0
+                children
+                [
+                    DEF theSettingsMenuShellWaver Waver
+                    {
+                        rpm 2.25//rpm 0.75
+                        children
+                        [
+                            Shape
+                            {
+                                appearance Appearance
+                                {
+                                    material MaxMaterial { name "InnerWall_01" }
+                                    texture ImageTexture { alpha true url "shell.xbx" }
+                                }
+                                geometry USE theCellWallMesh
+                            }
+                            Shape
+                            {
+                                appearance MaxMaterial { name "InnerWall_02" }
+                                geometry Sphere
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+    control DEF theMusicPlayJoystick Joystick
+    {
+        function OnADown()
+        {
+                        DoAction();
+        }
+
+        function OnBDown()
+        {
+            PlaySoundB();
+                        GoToSettings();
+                        theMusicSubMenuOut.Play();
+        }
+
+     function OnLeftThumbMoveLeft()
+      {
+          if (nCurPlayerMenuItem == 0) { return; }
+          else { nCurPlayerMenuItem = nCurPlayerMenuItem - 1; }
+          UpdateBgmeshMenu();
+      }
+
+      function OnLeftThumbMoveRight()
+      {
+          if (nCurPlayerMenuItem == 2) { return; }
+          else { nCurPlayerMenuItem = nCurPlayerMenuItem + 1; }
+          UpdateBgmeshMenu();
+      }
+
+        function OnLeftThumbMoveUp()
+        {
+                        if (bgmeshSelect <= 0) { return; }
+                        PlaySoundMenuChange();
+                        bgmeshSelect = bgmeshSelect - 1;
+                        if (bgmeshButton == 0) { bgmeshScroll = bgmeshScroll - 1; }
+                        else { bgmeshButton = bgmeshButton - 1; }
+                        //theConfig.ChangeBgmesh( BgmeshMenuList[bgmeshSelect] );
+                        UpdateBgmeshMenu();
+        }
+
+        function OnLeftThumbMoveDown()
+        {
+                if (bgmeshSelect >= bgmeshCount - 1) {  return; }
+                        PlaySoundMenuChange();
+                        bgmeshSelect = bgmeshSelect + 1;
+                        if (bgmeshButton == 8) { bgmeshScroll = bgmeshScroll + 1; }
+                        else { bgmeshButton = bgmeshButton + 1; }
+                        //theConfig.ChangeBgmesh( BgmeshMenuList[bgmeshSelect] );
+                        UpdateBgmeshMenu();                        
+        }
+         function OnMoveLeft()
+        {
+          if (nCurPlayerMenuItem == 0) { return; }
+          else { nCurPlayerMenuItem = nCurPlayerMenuItem - 1; }
+          UpdateBgmeshMenu();
+        }
+
+        function OnMoveRight()
+        {
+          if (nCurPlayerMenuItem == 2) { return; }
+          else { nCurPlayerMenuItem = nCurPlayerMenuItem + 1; }
+          UpdateBgmeshMenu();
+        }
+
+        function OnMoveUp()
+        {
+                        if (bgmeshSelect <= 0) { return; }
+                        PlaySoundMenuChange();
+                        bgmeshSelect = bgmeshSelect - 1;
+                        if (bgmeshButton == 0) { bgmeshScroll = bgmeshScroll - 1; }
+                        else { bgmeshButton = bgmeshButton - 1; }
+                        //theConfig.ChangeBgmesh( BgmeshMenuList[bgmeshSelect] );
+                        UpdateBgmeshMenu();
+        }
+
+        function OnMoveDown()
+        {
+                if (bgmeshSelect >= bgmeshCount - 1) {  return; }
+                        PlaySoundMenuChange();
+                        bgmeshSelect = bgmeshSelect + 1;
+                        if (bgmeshButton == 8) { bgmeshScroll = bgmeshScroll + 1; }
+                        else { bgmeshButton = bgmeshButton + 1; }
+                        //theConfig.ChangeBgmesh( BgmeshMenuList[bgmeshSelect] );
+                        UpdateBgmeshMenu();                        
+        }
+    }
+
+    function OnActivate()
+    {
+        EnableAudio();
+    }
+}

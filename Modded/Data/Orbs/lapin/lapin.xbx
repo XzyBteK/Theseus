@@ -1,0 +1,22 @@
+[OrbInfo]
+Author=NeoNitiPheus
+DateCreated=
+Version=
+MadeUsing=
+Credits=Ind-Bios & NeoNitiPheus
+
+[Orb]
+Scalex=42
+Scaley=42
+Scalez=42
+
+[HD Orbs]
+Scalex=3
+Scaley=3
+Scalez=3
+
+[MainHD Orb]
+Material=MenuCell
+Scalex=5
+Scaley=5
+Scalez=5

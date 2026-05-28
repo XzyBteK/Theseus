@@ -1,0 +1,31 @@
+function initialize()
+{
+	var a = GetSkin();
+	var b = "";
+	b = "2GAM.data/Skins" + "/" + a + "/Skin/" + "default.xap";
+	theSkin.archive = "2GAM.data/Skins" + "/" + a + "/Skin.xip";
+	theSkinPath.url = b;
+}
+
+function GetSkin()
+{
+	var info = new Settings;
+	info.file = "X:\\2GAM.data\\config_pro.ini";
+	info.section = "Systeme";
+	var c = info.GetValue(4);
+	return c;
+}
+DEF theSkin Level
+{
+    unloadable false
+    children
+    [
+        DEF theSkinPath Inline
+        {
+            function onLoad()
+            {
+        		GoToIcons();
+		}
+        }
+    ]
+}

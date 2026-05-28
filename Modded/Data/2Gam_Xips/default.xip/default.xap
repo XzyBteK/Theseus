@@ -1,0 +1,6731 @@
+var Systeme;
+var ConfigSysteme;
+var ScreenSaver;
+var ConfigMusic;
+var ApparencePanelMusic;
+var ApparenceMainMenu;
+var ApparenceMusicMenu;
+var ApparenceMusicPlayMenu;
+var ApparenceMusicPlayMenu2;
+var ApparenceMusicCopyMenu;
+var ApparenceMemoryMenu;
+var ApparenceMemoryMenu2;
+var ApparenceMemoryMenu3;
+var MenuConfig;
+var ApparenceMenuConfig;
+var ApparenceClockMenu;
+var ApparenceVentilMenu;
+var ApparenceAudioMenu;
+var ApparenceVideoMenu;
+var ApparenceControlMenu;
+var ApparenceInfoMenu;
+var ApparenceFTPMenu;
+var Applications;
+var ApplicationsPassword;
+var ActionsPassword;
+var ConfigBoutonsMainMenu;
+var ConfigMenusMainMenu;
+var ApparenceMenusDD;
+var ApparenceMenusDD02;
+var ApparenceSkinsMenu;
+var lang;
+var MenusDD;
+var MenuSubDD;
+var Nbapplipassword;
+var Nbaction;
+var Nbmenuconfig;
+var Nbappli;
+var Nbmenudd;
+var NumAction;
+var NumAppli;
+var Numapplipass;
+var NbBackground;
+var magicnumber;
+var Launcher;
+var backlauncher;
+var action;
+var Pass;
+var shift;
+var Password;
+var path;
+var exec;
+var pathdash;
+var taille;
+var MenuDeb;
+var ScanneDD;
+var InfoDisques;
+var netdossier;
+var num;
+var BackgroundUpdate;
+var OptionUpdate;
+var nClockHour;
+var nClockMinute;
+var nClockSeconds;
+var nClockAMPM;
+var nClockMonth;
+var nClockDay;
+var nClockYear;
+var b24hour;
+var Heure_Text;
+var Date_Text;
+var CorrectPassword;
+var TempString;
+var CurrentPassword;
+var PasswordFunction;
+var PasswordHeading;
+var PasswordQuestion;
+var CorrectPasswordEntered;
+var BGMon;
+var LeftTrigger;
+var RightTrigger;
+var RightThumb;
+var LeftThumb;
+var bPlayerRandom;
+var bPlayerRepeat;
+var bgPlayerRandom;
+var bgPlayerRepeat;
+var CurrentPanelBack1;
+var CurrentPanelBack2;
+var CurrentPanelBack3;
+var PanelBack1;
+var PanelBack2;
+var PanelBack3;
+var CurrentMusicBack;
+var CurrentDisqueBack;
+var DisqueBack;
+var PanelOK;
+var nCurMainMenuItem;
+var nCurMainMenuValue;
+var nCurMainMenuScroll;
+var nCurMainMenuPos;
+var nCurMainMenuMouvUp;
+var MenuBoutons;
+var SSaverPanelView;
+var SSaver;
+var tmpSaver;
+var SSaverVisu;
+var DDSpace;
+var DDSpaceF;
+var DDSpaceG;
+var DDType;
+var DD;
+var freespace;
+var totalspace;
+var bBackToDVDPlayer;
+var bGoToCDPlayer;
+var bBackToLauncher;
+var bShowErrorPanel;
+var bShowInvalidDisc;
+var bForceSetLanguage;
+var bForceSetTimeZone;
+var bForceSetClock;
+var g_bKeyboardDisplayed;
+var g_bPanelDisplayed;
+var g_bAboutToReboot;
+var g_bAboutToRebootToOnline;
+var bShowDVDStopBackground;
+var bCleanupSpecifiedDrive;
+var nSettingArea;
+var g_nRec;
+var g_bXOnDashExists;
+var g_theMainMenuLoaded;
+var bClockVisable;
+var onleft;
+var onright;
+var background;
+var curentbackground;
+var curentstyle;
+var sty;
+var BGMtimetodisplay;
+var BGMalwayson;
+var musicsaver;
+var affsound;
+var ControlPanelOK;
+var SSaverPanelOK;
+var BGMTracks;
+var BGMst;
+var BGMtr;
+var bgmpause;
+var nCurPlayerMenuItem;
+var vCurAlbum;
+var vCurAlbumTmp;
+var vCurSong;
+var vCurSongTmp;
+var bPlayingCd;
+var BGMDisplay;
+var CurrentViewpoint;
+var CurrentAltViewpoint;
+var ControlPanelOut;
+var theInLine;
+var currentControlType;
+var previousControlType;
+var bMusicPlayerReady;
+var currentMusicPlayerMode;
+var LaunchDVD;
+var DvdType;
+var DisqueType;
+var ExePath;
+var bMessageLayer;
+var DvdInside;
+var CdPlayer;
+var AjDvd;
+var ControlPanelBGM;
+var MatTmp;
+var TexTmp;
+var MenuOnMat;
+var MenuOffMat;
+var MenuOnTex;
+var MenuOffTex;
+var MenuOnAlpha;
+var MenuOffAlpha;
+var MenuOnTextMat;
+var MenuOffTextMat;
+var PodMenuMat;
+var PodMenuTex;
+var TitreMenu;
+var bInGameBoardView;
+var CurrentGameBoardAltViewpoint;
+var MatGen;
+var TexGen;
+var BOnMatGen;
+var BOnTexGen;
+var BOffMatGen;
+var BOffTexGen;
+var TailleDD;
+var VideoMode;
+var SVideoMode;
+var NSkins;
+var NbSkins;
+var CurentSkin;
+var CurSkinsPanelSelected;
+var SkinsPanelItemScroll;
+var SkinInfo;
+var SkinCreat;
+var AdresseIP;
+var MasqueReseau;
+var Passerelle;
+var Utilisateur;
+var GameBoardPreviousControl;
+var GameBoardCurrentControl;
+var DVDLaunch;
+var AmbientAudio;
+var InfosXbox;
+var StatutT;
+var lng;
+var ind;
+var nom;
+var dos;
+var CurrentFont;
+var NextFont;
+var Temp;
+var IPStatus;
+var AffSelect;
+var NbMainMenu;
+var RotMainMenu;
+var PosMainMenu;
+var BackRot;
+var UseOption;
+var GetDD;
+var SetDD;
+var DDStart;
+var SetSkins;
+var RingScale;
+var UMMenu;
+var Version;
+var ConfigNP;
+var TextMenuScroll;
+var TextMenu;
+var NumTextMenu;
+var rndskin;
+var SaveLed;
+
+DEF DaGoNspheremap Transform
+    {
+        scale 1500 1500 1500 
+        translation 0 0 0
+        children
+        [
+            DEF spheremapWav01 Waver
+            {
+     			rpm 1
+     			axis 0 1 0
+     			field 4
+			children
+			[
+				Shape
+				{
+					appearance Appearance
+					{
+						material MaxMaterial
+						{
+							name "GameIcon_01"
+						}
+						texture DEF EnvMap ImageTexture
+						{
+							url ""
+						}
+					}
+					geometry Mesh { url "DaGoN-spheremap.xm" }
+				}
+			]
+		}
+	]
+}
+DEF myBackgroundList Transform
+{
+	children
+	[
+		DEF background0 Background{ skyColor 0 0 0 }
+		DEF background1 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxbg1.xbx" }}
+		DEF background2 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxbg2.xbx" }}
+		DEF background3 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxbg3.xbx" }}
+		DEF background4 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxbg4.xbx" }}
+		DEF background5 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxbg5.xbx" }}
+		DEF background6 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxbg6.xbx" }}
+		DEF background7 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxbg7.xbx" }}
+		DEF background8 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxbg8.xbx" }}
+		DEF background9 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxbg9.xbx" }}
+		DEF background10 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxbg10.xbx" }}
+		DEF background11 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxlogo.xbx" }}
+		DEF background12 Background{ skyColor 0 0 0 backdrop ImageTexture { url "xboxlogow.xbx" }}
+	]
+}
+DEF AudiovizuBack Transform
+{
+	children
+	[
+		Shape
+		{
+			appearance Appearance
+			{
+				material MaxMaterial
+				{
+					name "equalizer"
+				}
+			}
+			geometry Mesh { url "DaGoN-spheremap.xm" }
+		}
+	]
+	scale 1500 1500 1500
+	translation 500 -500 0
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+
+DEF theScreen Screen
+{
+    width 640
+    height 480
+}
+
+
+DEF theAmbientSounds Group
+{
+    // 0 = main menu
+    // 1 = memory area
+    // 2 = music area
+    // 3 = settings area
+
+    children
+    [
+        DEF theAmbientSound0 AudioClip { url "Audio/AmbientAudio/AMB_12_HYDROTHUNDER_LR.wav" loop true volume 0 fade 2 pause_on_moving true }
+        DEF theAmbientSound1 AudioClip { url "Audio/AmbientAudio/AMB_06_COMMUNICATION_LR.wav" loop true volume 0 fade 2 pause_on_moving true }
+        DEF theAmbientSound2 AudioClip { url "Audio/AmbientAudio/AMB_05_ENGINEROOM_LR.wav" loop true volume 0 fade 2 pause_on_moving true }
+    ]
+}
+
+DEF thePeriodicSounds Group
+{
+    children
+    [
+        PeriodicAudioGroup
+        {
+            period 60 // how many seconds between sounds (minimum)
+            periodNoise 20 // maximum random seconds to add to period
+            children
+            [
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Steam1.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Steam2.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Steam3.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Steam4.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Steam5.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Steam6.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Steam7.wav" volume 0.80 }
+            ]
+        }
+
+        PeriodicAudioGroup
+        {
+            period 120 // how many seconds between sounds (minimum)
+            periodNoise 30 // maximum random seconds to add to period
+            children
+            [
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices1.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices2.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices3.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices4.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices5.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices6.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices7.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices8.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices9.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices10.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices11.wav" volume 0.80 }
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Voices12.wav" volume 0.80 }
+            ]
+        }
+
+        PeriodicAudioGroup
+        {
+            period 45 // how many seconds between sounds (minimum)
+            periodNoise 15 // maximum random seconds to add to period
+            children
+            [
+                AudioClip { url "Audio/AmbientAudio/comm voice 1.wav"  fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm voice 2.wav"  fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm static 1.wav" fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm voice 3.wav"  fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm voice 4.wav"  fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm static 2.wav" fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm voice 5.wav"  fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm voice 6.wav"  fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm static 3.wav" fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm voice 7.wav"  fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm voice 8.wav"  fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm static 4.wav" fade 2 volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/comm voice 9.wav"  fade 2 volume 0.85 }
+            ]
+        }
+
+        PeriodicAudioGroup
+        {
+            period 300
+            periodNoise 60
+            children
+            [
+                AudioClip { url "Audio/AmbientAudio/AMB_EC_Pinger1.wav" volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/Control Room Loop.wav" volume 0.85 }
+                AudioClip { url "Audio/AmbientAudio/Control Room Loop ver2.wav" volume 0.85 }
+            ]
+        }
+    ]
+}
+
+function EnableAmbientAudio()
+{
+    var n = Math.round(Math.random() * (theAmbientSounds.children.length() - 1));
+
+    for (var i = 0; i < theAmbientSounds.children.length(); i = i + 1)
+        theAmbientSounds.children[i].isActive = false;
+
+    theAmbientSounds.children[n].volume = 0.95;
+    theAmbientSounds.children[n].isActive = true;
+
+    for (i = 0; i < thePeriodicSounds.children.length(); i = i + 1)
+        thePeriodicSounds.children[i].isActive = true;
+}
+
+function DisableAmbientAudio()
+{
+    for (var i = 0; i < theAmbientSounds.children.length(); i = i + 1)
+        theAmbientSounds.children[i].isActive = false;
+
+    for (i = 0; i < thePeriodicSounds.children.length(); i = i + 1)
+        thePeriodicSounds.children[i].isActive = false;
+}
+
+// Transition sounds
+DEF theGamesMenuIn AudioClip { url "Audio/TransitionAudio/Games Main Menu In_LR.wav" volume 0.92 }
+DEF theGamesMenuOut AudioClip { url "Audio/TransitionAudio/Games Main Menu Out_LR.wav" volume 0.92 }
+DEF theGamesSubMenuIn AudioClip {url "Audio/TransitionAudio/Games Sub Menu In_LR.wav" volume 0.92 }
+DEF theGamesSubMenuOut AudioClip {url "Audio/TransitionAudio/Games Sub Menu Out_LR.wav" volume 0.92 }
+
+DEF theMusicMenuIn AudioClip { url "Audio/TransitionAudio/Music Main Menu In_LR.wav" volume 0.92 }
+DEF theMusicMenuOut AudioClip { url "Audio/TransitionAudio/Music Main Menu Out_LR.wav" volume 0.92 }
+DEF theMusicSubMenuIn AudioClip { url "Audio/TransitionAudio/Music Select Track In_LR.wav" volume 0.92 }
+DEF theMusicSubMenuOut AudioClip { url "Audio/TransitionAudio/Music Select Track Out_LR.wav" volume 0.92 }
+
+DEF theSettingsMenuIn AudioClip { url "Audio/TransitionAudio/Settings Main Menu In_LR.wav" volume 0.92 }
+DEF theSettingsMenuOut AudioClip { url "Audio/TransitionAudio/Settings Main Menu Out_LR.wav" volume 0.92 }
+DEF theSettingsSubMenuIn AudioClip { url "Audio/TransitionAudio/Settings Sub Menu In_LR.wav" volume 0.92 }
+DEF theSettingsSubMenuOut AudioClip { url "Audio/TransitionAudio/Settings Sub Menu Out_LR.wav" volume 0.92 }
+
+// Music Area sounds
+DEF theCDExpand AudioClip { url "Audio/MusicAudio/Music CD Select.wav" volume 0.85 }
+DEF thePlayerPanelIn AudioClip { url "Audio/MusicAudio/Games Info Screen In MSurr.wav" volume 0.92 }
+DEF thePlayerPanelOut AudioClip { url "Audio/MusicAudio/Games Info Screen Out MSurr.wav" volume 0.92 }
+
+// Main Menu Area sounds
+DEF theMainMenuForward AudioClip { url "Audio/MainAudio/Global Main MenuFwd3ver2.wav" volume 0.90 }
+DEF theMainMenuBackward AudioClip { url "Audio/MainAudio/Global Main MenuBack3ver2.wav" volume 0.90 }
+DEF theASound AudioClip { url "Audio/MainAudio/Global A Button Select.wav" pan 75 volume 0.92 }
+DEF theBSound AudioClip { url "Audio/MainAudio/Global B Button Back.wav" pan -75 volume 0.92 }
+DEF theMenuChangeSound AudioClip { url "Audio/MainAudio/Global Scroll Beep.wav" volume 0.85 }
+DEF theErrorSound AudioClip { url "Audio/MainAudio/Global Error Message B.wav" volume 0.85 }
+DEF theDeleteSound AudioClip { url "Audio/MainAudio/Global Delete_Destroy.wav" volume 0.85 }
+DEF theProgressSound AudioClip { url "Audio/MainAudio/Global Progress Bar.wav" loop true volume 0.85 }
+DEF theCompleteSound AudioClip { url "Audio/MainAudio/Global Completion Beep.wav" volume 0.85 }
+
+// Memory Menu Area sounds
+DEF theMemoryControllerSelectSound AudioClip { url "Audio/MemoryAudio/Memory Controller Select.wav" volume 0.90 }
+DEF theMemoryTitleSelectSound AudioClip { url "Audio/MemoryAudio/Memory Games Select.wav" volume 0.90 }
+DEF theMemorySaveSelectSound AudioClip { url "Audio/MemoryAudio/Memory Memory Slot Select.wav" volume 0.90 }
+
+// Settings Menu Area sounds
+DEF theSettingsLangSound AudioClip { url "Audio/SettingsAudio/Settings Lang SubMenu Sel.wav" volume 0.90 }
+DEF theSettingsParentSound AudioClip { url "Audio/SettingsAudio/Settings Parent SubMenu Sel.wav" volume 0.90 }
+
+function PlaySoundError()
+{
+    theErrorSound.Play();
+}
+
+function PlaySoundDelete()
+{
+    theDeleteSound.Play();
+}
+
+function PlaySoundA()
+{
+    theASound.Play();
+}
+
+function PlaySoundB()
+{
+    theBSound.Play();
+}
+
+function PlaySoundMenuChange()
+{
+    theMenuChangeSound.Play();
+}
+
+DEF theScreenSaver ScreenSaver
+{
+	function OnStart()
+	{
+		theScreen.brightness = 0.1;
+	}
+
+	function OnEnd()
+	{
+		theScreen.brightness = 1;
+	}
+}
+
+NavigationInfo
+{
+    type "sample"
+    headlight false
+}
+
+DEF theConfig Config
+    behavior
+    {
+	sleep 0.1;
+	if ( theConfig.GetVideoMode() == 0 | theConfig.GetVideoMode() == 1)
+		VideoMode = 0;
+
+	if ( theConfig.GetVideoMode() == 2)
+		VideoMode = 50;
+
+	if (LaunchDVD == false & g_theMainMenuLoaded == true & (ControlPanelOK == true | ControlPanelBGM == true) & (PanelOK == true | bMessageLayer == true) & SSaverPanelOK == true )
+	{
+		if ( SVideoMode != theConfig.GetVideoMode())
+		{
+			SVideoMode = theConfig.GetVideoMode();
+			if (bClockVisable == true & DVDLaunch == false)
+				ShowClock();
+
+			AffTitreMusique();
+			if (InfosXbox == true)
+				AfficheInfosXbox();
+		}
+		if (ConfigSysteme[18] == "oui" & ConfigSysteme[21] == "F")
+		{
+			thePanel.children[0].children[0].Temp_text.text = "CPU: "+CelsiusToF(theConfig.CPUTemp())+" °F   System: "+CelsiusToF(theConfig.SYSTemp())+" °F";
+		}
+		else if (ConfigSysteme[18] == "oui" & ConfigSysteme[21] == "C")
+		{
+			thePanel.children[0].children[0].Temp_text.text = "CPU: "+theConfig.CPUTemp()+"   System: "+theConfig.SYSTemp();
+		}
+		else
+		{
+			thePanel.children[0].children[0].Temp_text.text = "";
+		}
+
+		if (BGMon == true & AmbientAudio == true)
+			DisableAmbientAudio();
+		else if (BGMon == false & AmbientAudio == false)
+			EnableAmbientAudio();
+
+		if (DvdType != "" & DisqueType == "" & SetDD == true)
+		{
+			DisqueInside();
+		}
+		if(DVDLaunch == false)
+		{
+			if((SSaverPanelView == false) & (musicsaver == false) & (tmpSaver > 0) & (g_bKeyboardDisplayed == false))
+			{
+				SSaver = SSaver + 0.1;
+				if( SSaver >= tmpSaver)
+				{
+					StartSSaverPanel();
+				}
+			}
+		}
+
+		if (bClockVisable == true)
+		{
+			UpdateDate();
+		}
+		if (theControlPanelControlsInline.children[0].theBGMusicPlayer.transportMode == 1 & ControlPanelBGM == true & bMessageLayer == true)
+			theControlPanelControlsInline.children[0].incrementBGMtext();
+
+		if (ControlPanelOut == true)
+			theControlPanelControlsInline.children[0].UpdateTrackTime();
+
+		if (ControlPanelOK == true )
+		{
+			if( BGMon == true & theControlPanelControlsInline.children[0].theBGMusicCollection.GetSoundtrackCount() > 0)
+			{
+//				DisableAmbientAudio();
+				theControlPanelControlsInline.children[0].MusicPlayerStart();
+			}
+			else if( BGMon == false | theControlPanelControlsInline.children[0].theBGMusicCollection.GetSoundtrackCount() == 0)
+			{
+				theControlPanelControlsInline.children[0].setBGMdisplay();
+				BGMon = false;
+//				EnableAmbientAudio();
+			}
+			if (ConfigSysteme[20] == "oui")
+				AudiovizuBack.visible = true;
+			else
+				AudiovizuBack.visible = false;
+
+			ControlPanelOK = false;
+			ControlPanelBGM = true;
+		}
+		if ( PanelOK == true)
+		{
+			OptionsLayer();
+			PanelOK = false;
+			bMessageLayer = true;
+			BlockUser("");
+			ClosePopup();
+		}
+		if (theConfig.GetNETWORKSTATUS() == "Network Cable Not Connected :(" & IPStatus != "  //" & ConfigSysteme[16]=="oui")
+		{
+			IPStatus = "  //";
+			InfoXboxHard();
+		}
+		else if (theConfig.GetNETWORKSTATUS() != "Network Cable Not Connected :(" & IPStatus == "  //" & ConfigSysteme[16]=="oui")
+		{
+			IPStatus = AdresseIP;
+			InfoXboxHard();
+		}
+		if (AffSelect == true)
+			AnimSelect();
+
+		if (SetDD == false)
+		{
+			GetScannDD2();
+			DDStart = DDStart + 0.1;
+		}
+	}
+}
+function GetLanguage()
+{
+    return theConfig.GetLanguage();
+}
+
+function SetLanguage(nLanguage)
+{
+    return theConfig.SetLanguage(nLanguage);
+}
+
+function ClosePopup()
+{
+    if (g_bKeyboardDisplayed)
+    {
+        CloseKeyboard();
+    }
+
+    if (g_bPanelDisplayed)
+    {
+        CloseMessage();
+    }
+}
+DEF theDVDPlayerInline Inline
+{
+    visible false
+    url "dvd.xap"
+
+    function onLoad()
+    {
+        theDVDPlayerInline.children[0].theDVDLevel.GoTo();
+    }
+}
+
+
+DEF theDiscDrive DiscDrive
+{
+    function OnDiscRemoved()
+    {
+	DisqueType = "";
+	DvdInside = false;
+	if (AjDvd == true)
+	{
+		RetireDvd();
+	}
+        if (theDVDPlayerInline.visible)
+        {
+            bShowDVDStopBackground = false;
+            theDVDPlayerInline.children[0].theDVDPlayer.stop();
+            theDVDPlayerInline.children[0].ClearOnScreenInfo();
+
+            if (g_bPanelDisplayed)
+            {
+                CloseMessage();
+            }
+		launch(Systeme[1]+".xbe",ExePath);
+        }
+        else if (theMusicInline.visible)
+        {
+            var c = theMusicInline.children[0];
+
+            ClosePopup();
+
+            if (c.musicSelect != 0) // Not Audio CD
+            {
+                return;
+            }
+
+            if (c.theMusicPlayMenu.visible)
+            {
+                // Update track in the player
+                c.DoMusicStop();
+                c.InitPlaylist();
+                c.UpdateTrackList();
+            }
+            else if (c.theMusicCopyMenu.visible)
+            {
+                c.theMusicCollection.error = 3; // Disc ejected
+                c.OnMusicCopyComplete();
+            }
+            else if (c.theMusicMenu.visible)
+            {
+                // Update numbers of tracks and total time
+                c.UpdateMusicMetaData();
+            }
+        }
+        else
+        {
+            CloseMessage();
+        }
+    }
+
+    function OnDiscInserted()
+    {
+	DvdType = discType;
+    }
+}
+function DisqueInside()
+{
+	DisqueType = DvdType;
+	DvdType = "";
+	if (DisqueType == "Title" | DisqueType == "unknown" | DisqueType == "DIVX")
+	{
+		if (DvdInside == false)
+		{
+			AjoutDvd();
+		}
+		DvdInside = true;
+	}
+	if ((DisqueType == "Audio" & ConfigSysteme[10] == "non") | (DisqueType == "Title" & ConfigSysteme[13] == "non") | (DisqueType == "unknown" & ConfigSysteme[14] == "non"))
+	{
+		LaunchDvd = false;
+	}
+	else if ((DisqueType == "Audio" & ConfigSysteme[10] == "oui") | DisqueType == "Video" | (DisqueType == "Title" & ConfigSysteme[13] == "oui") | (DisqueType == "unknown" & ConfigSysteme[14] == "oui"))
+	{
+		IntExt();
+	}
+	else if ((DisqueType == "Audio" & ConfigSysteme[10] == "demande") | (DisqueType == "Title" & ConfigSysteme[13] == "demande") | (DisqueType == "unknown" & ConfigSysteme[14] == "demande"))
+	{
+		QuestLance();
+	}
+}
+
+function QuestLance()
+{
+	var nbl;
+	if (SSaverPanelView == true)
+	{
+		theSSaverPanelLayer.visible = false;
+		theSSaverPanelLayer.transparency = 1;
+		SSaverPanelView = false;
+		SSaver = 0;
+	}
+	if (DisqueType == "Audio")
+	{
+		nbl = 13;
+	}
+	if (DisqueType == "Title")
+	{
+		nbl = 14;
+	}
+	if (DisqueType == "unknown")
+	{
+		nbl = 15;
+	}
+	if(bMessageLayer == true)
+	{
+		SSaver = 0;
+		var txt = ReadValue(nbl, "default", "Datas\\Langues\\"+lang+".ini");
+		AskQuestion(txt, "IntExt()", "", 0);
+	}
+	else
+	{
+		DvdType = DisqueType;
+		DisqueType = "";
+		LaunchDvd = false;
+	}
+}
+function IntExt()
+{
+	if (DisqueType == "Audio" & ConfigSysteme[11] == "interne")
+	{
+            if (theMusicInline.visible == false)
+            {
+                ClosePopup();
+                StartCDPlayer();
+                return;
+            }
+
+            var c = theMusicInline.children[0];
+
+            if (c.theMusicPlayMenu.visible) // We are in the music play menu
+            {
+                if (c.musicSelect == 0) // Already in audio CD player
+                {
+                    if (c.bMusicMenuVisible)
+                    {
+                        c.theMusicPlayMenu.GoTo();
+                        c.StartMusicPlayer();
+                        c.DoMusicPlayPause();
+                    }
+                    else
+                    {
+                        c.DoMusicStop();
+                        c.InitPlaylist();
+                        c.UpdateTrackList();
+                        if (c.visualizerViewpoint.isBound)
+                            c.DoMusicPlayPause();
+                    }
+                }
+                else if (c.theMusicPlayer.transportMode != 1) // Let's play the disc if no soundtrack is playing
+                {
+                    bGoToCDPlayer = true;
+                    EnableInput(false);
+                    c.theMusicMenu.GoBackTo();
+                }
+            }
+            else if (c.theMusicMenu.visible == true)
+            {
+                ClosePopup();
+                bGoToCDPlayer = true;
+                EnableInput(false);
+                c.StartMusicLevel();
+            }
+            else
+            {
+                ClosePopup();
+                bGoToCDPlayer = true;
+                EnableInput(false);
+                c.theMusicMenu.GoTo();
+            }
+	}
+	else if (DisqueType == "Video" & ConfigSysteme[12] == "interne")
+	{
+		if (DVDLaunch == true)
+			StartDVDPlayer();
+		else
+		{
+			g_nRec = 1;
+			theLauncherLevel.GoTo();
+		}
+	}
+	else if (DisqueType == "Video" & ConfigSysteme[12] != "interne")
+	{
+		g_nRec = 2;
+		theLauncherLevel.GoTo();
+	}
+	else if (DisqueType == "Title")
+	{
+		g_nRec = 3;
+		theLauncherLevel.GoTo();
+	}
+	else if (DisqueType == "Audio" & ConfigSysteme[11] != "interne")
+	{
+		Action(ConfigSysteme[11],"Menu");
+	}
+	else if (DisqueType == "unknown")
+	{
+		Action(ConfigSysteme[15],"Menu");
+	}
+	LaunchDvd = false;
+}
+
+function StartDVDPlayer()
+{
+	EnableInput(true);
+	LaunchDVD = true;
+	log("Starting the DVD player!");
+	theDVDPlayerInline.visible = true;
+}
+
+function StartCDPlayer()
+{
+	Launcher = "MainMenu";
+	log("Should start the CD player now!");
+	bGoToCDPlayer = true;
+	EnableInput(false); // music.xap will re-enable it again if bGoToCDPlay is true
+	GoToMusic();
+	LaunchDvd = false;
+}
+
+DEF theTranslator Translator
+
+////////////////////////////////////////////////////////////////////////////
+DEF theIconsInline Inline
+{
+	visible false
+	url "Icons.xap"
+
+	function onLoad()
+	{
+		theIconsInline.children[0].theIcons.GoTo();
+	}
+}
+function GoToIcons()
+{
+	if (theIconsInline.visible)
+		theIconsInline.children[0].theIcons.GoTo();
+	else
+		theIconsInline.visible = true;
+}
+DEF theSkinInline Inline
+{
+    visible false
+    url "Skin.xap"
+
+    function onLoad()
+    {
+      theSkinInline.children[0].theSkin.GoTo();
+    }
+}
+
+function GoToSkin()
+{
+    if (theSkinInline.visible)
+      theSkinInline.children[0].theSkin.GoTo();
+    else
+      theSkinInline.visible = true;
+}
+DEF theMusicInline Inline
+{
+    visible false
+    url "Music2.xap"
+
+    function onLoad()
+    {
+        theMusicInline.children[0].theMusicMenu.GoTo();
+    }
+}
+
+function GoToMusic()
+{
+	theMusicMenuIn.Play();
+    if (theMusicInline.visible)
+        theMusicInline.children[0].theMusicMenu.GoTo();
+    else
+    {
+        BlockMemoryUnitInsert();
+        theMusicInline.visible = true;
+    }
+}
+////////////////////////////////////////////////////////////////////////////
+
+DEF theMemoryInline Inline
+{
+    visible false
+    url "Memory3.xap"
+
+    function onLoad()
+    {
+        theMemoryInline.children[0].theMemoryMenu.GoTo();
+    }
+}
+
+function GoToMemory()
+{
+	theGamesMenuIn.Play();
+    if (theMemoryInline.visible)
+        theMemoryInline.children[0].theMemoryMenu.GoTo();
+    else
+        theMemoryInline.visible = true;
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+DEF theSettingsInline Inline
+{
+    visible false
+    url "Settings3.xap"
+
+    function onLoad()
+    {
+        theSettingsInline.children[0].theSettingsMenu.GoTo();
+    }
+}
+
+function GoToSettings()
+{
+	theSettingsMenuIn.Play();
+//    bBackToDVDPlayer = false;
+
+    if (theSettingsInline.visible)
+        theSettingsInline.children[0].theSettingsMenu.GoTo();
+    else
+        theSettingsInline.visible = true;
+}
+
+DEF theSkinsPanelInline Inline
+{
+    visible false
+    url "SkinsPanel.xap"
+
+    function onLoad()
+    {
+        theSkinsPanelInline.children[0].theSkinsPanelMenu.GoTo();
+    }
+}
+
+function GoToSkinsPanel()
+{
+	theSettingsMenuIn.Play();
+
+    if (theSkinsPanelInline.visible)
+        theSkinsPanelInline.children[0].theSkinsPanelMenu.GoTo();
+    else
+        theSkinsPanelInline.visible = true;
+}
+
+DEF theMenuDD01Inline Inline
+{
+    visible false
+    url "menudd01.xap"
+
+    function onLoad()
+    {
+        theMenuDD01Inline.children[0].theSubMenu.GoTo();
+    }
+}
+DEF theMenuDD02Inline Inline
+{
+    visible false
+    url "menudd02.xap"
+
+    function onLoad()
+    {
+        theMenuDD02Inline.children[0].theSubMenu1.GoTo();
+    }
+}
+function GoToMenuDD()
+{
+	bBackToDVDPlayer = false;
+	if(ApparenceMenusDD[1] == "1")
+	{
+		if (theMenuDD01Inline.visible)
+			theMenuDD01Inline.children[0].theSubMenu.GoTo();
+		else
+			theMenuDD01Inline.visible = true;
+	}
+	else if(ApparenceMenusDD[1] == "2")
+	{
+		if (theMenuDD02Inline.visible)
+			theMenuDD02Inline.children[0].theSubMenu1.GoTo();
+		else
+			theMenuDD02Inline.visible = true;
+	} 
+}
+DEF theMenuDDInline Inline
+{
+    visible false
+    url "menudd0102.xap"
+
+    function onLoad()
+    {
+        theMenuDDInline.children[0].theSubMenu2.GoTo();
+    }
+}
+
+function GoToMenuDD02()
+{
+    bBackToDVDPlayer = false;
+
+    if (theMenuDDInline.visible)
+        theMenuDDInline.children[0].theSubMenu2.GoTo();
+    else
+        theMenuDDInline.visible = true;
+}
+
+function MenuLancementDD()
+{
+	magicnumber = ReturnInteger(action.substring(action.length()-(action.length()-16),action.length()));
+
+	if (magicnumber == 0)
+	{
+		ExecDvd();
+	}
+	else
+	{
+		if( sty == 5)
+		{
+			MenuSubDD = true;
+			if(Launcher == "MainMenu" | Launcher == "MenuConfig")
+				GoToMenuDD();
+			else
+				return;
+		}
+		else if( sty == 2)
+		{
+			GoToMenuDD02();
+		}
+	}
+}
+////////////////////////////////////////////////////////////////////////////
+function UpdateMainMenu()
+{
+	if (NbMainMenu == 0 | NbMainMenu == 1)
+		return;
+
+	var c = theMainMenu.children[0].children[0];
+	if (UMMenu == true)
+	{
+		if (nCurMainMenuMouvUp == false)
+		{
+			RotMainMenu = RotMainMenu + 15;
+			nCurMainMenuItem = nCurMainMenuItem + 1;
+		}
+		if (nCurMainMenuMouvUp == true)
+		{
+			RotMainMenu = RotMainMenu - 15;
+			nCurMainMenuItem = nCurMainMenuItem - 1;
+		}
+		c.theMenuItems.SetRotation(0, 0, 1, (PosMainMenu + RotMainMenu) * 6.283 / 360);
+		if (nCurMainMenuItem + 4 > 8 & nCurMainMenuMouvUp == false)
+			nCurMainMenuPos = nCurMainMenuPos + 1;
+
+		if (nCurMainMenuItem + 4 > 8 & nCurMainMenuItem + 4 < NbMainMenu & nCurMainMenuMouvUp == false)
+		{
+			var cc = -60 - (nCurMainMenuPos * 15);
+			c.MainMenuPanneau.children[nCurMainMenuScroll].SetTranslation(CoordX(cc,RingScale), CoordY(cc,RingScale), 102);
+			c.MainMenuPanneau.children[nCurMainMenuScroll].children[0].SetAlpha(0.01);
+			nCurMainMenuValue[nCurMainMenuScroll] = nCurMainMenuItem + 4;
+		}
+		if (nCurMainMenuItem + 4 > 8 & nCurMainMenuMouvUp == false)
+		{
+			nCurMainMenuScroll = nCurMainMenuScroll + 1;
+			if ( nCurMainMenuScroll > 8)
+				nCurMainMenuScroll = 0;
+
+		}
+		if (nCurMainMenuItem - 4 > -1 & nCurMainMenuMouvUp == true)
+		{
+			nCurMainMenuPos = nCurMainMenuPos - 1;
+			nCurMainMenuScroll = nCurMainMenuScroll - 1;
+			if ( nCurMainMenuScroll < 0)
+				nCurMainMenuScroll = 8;
+
+			var cc = 60 - (nCurMainMenuPos * 15);
+			c.MainMenuPanneau.children[nCurMainMenuScroll].SetTranslation(CoordX(cc,RingScale), CoordY(cc,RingScale), 102);
+			c.MainMenuPanneau.children[nCurMainMenuScroll].children[0].SetAlpha(1);
+			nCurMainMenuValue[nCurMainMenuScroll] = nCurMainMenuItem - 4;
+		}
+	}
+	for(var i = 0; i < 9; i = i + 1)
+	{
+		var cc = nCurMainMenuValue[i];
+		c.MainMenuPanneau.children[i].children[0].SetRotation(0, 1, 0, (PosMainMenu + RotMainMenu) * 6.283 / 360);
+		c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[12].children[0].appearance.material.name = PodMenuMat[cc];
+		c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[12].children[0].appearance.texture.url = "";
+		c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[14].children[0].children[0].geometry.text = TitreMenu[cc];
+
+		if ( cc < nCurMainMenuItem - 4  | cc > nCurMainMenuItem + 4 )
+			c.MainMenuPanneau.children[i].children[0].SetAlpha(0);
+		else if ( cc == nCurMainMenuItem - 4  | cc == nCurMainMenuItem + 4 )
+			c.MainMenuPanneau.children[i].children[0].SetAlpha(0.01);
+		else if ( cc == nCurMainMenuItem - 3 | cc == nCurMainMenuItem + 3 )
+			c.MainMenuPanneau.children[i].children[0].SetAlpha(0.2);
+		else if ( cc > nCurMainMenuItem - 3 | cc < nCurMainMenuItem + 3 )
+		{
+			c.MainMenuPanneau.children[i].children[0].SetAlpha(1);
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[12].children[0].appearance.material.name = PodMenuMat[cc];
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[12].children[0].appearance.texture.url = PodMenuTex[cc];
+		}
+
+		if ( cc == nCurMainMenuItem )
+		{
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[9].SetAlpha(MenuOnAlpha[cc]);
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[9].children[0].appearance.material.name = MenuOnMat[cc];
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[9].children[0].appearance.texture.url = MenuOnTex[cc];
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[13].visible = true;
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[14].children[0].children[0].appearance.material.name = MenuOnTextMat[cc];
+			NumTextMenu = c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[14].children[0].children[0];
+			TextMenuScroll = true;
+		}
+		else
+		{
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[9].SetAlpha(MenuOffAlpha[cc]);
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[9].children[0].appearance.material.name = MenuOffMat[cc];
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[9].children[0].appearance.texture.url = MenuOffTex[cc];
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[13].visible = false;
+			c.MainMenuPanneau.children[i].children[0].children[1].children[1].children[1].children[14].children[0].children[0].appearance.material.name = MenuOffTextMat[cc];
+		}
+	}
+}
+DEF SoundtrackView Viewpoint
+{
+  fieldOfView 1.3
+  orientation 0 1 0 0
+  position -58.230001 -12.700000 55.380000
+  jump false
+}
+
+DEF theMainMenuAlternateViewpoint Viewpoint
+{
+        fieldOfView 1.300000
+        orientation -0.177400 -1.983500 -0.036250 -0.045440
+        position 11.180000 -112.299999 174.300003
+        jump false
+}
+
+DEF theMainMenu Level
+{
+	archive "MainMenu5.xip"
+	unloadable false
+
+	children
+	[
+		Inline
+		{
+			url "MainMenu5/default.xap"
+			function onLoad()
+			{
+				if ( DVDLaunch == true)
+					theMainMenu.visible = false;
+
+				AffMainMenu();
+				g_theMainMenuLoaded = true;
+			}
+		}
+	]
+	path DEF theMainMenuViewpoint Viewpoint
+	{
+		fieldOfView 1.300000
+		orientation -0.177400 -0.983500 -0.036250 -0.045440
+		position 11.180000 -32.299999 174.300003
+		jump false
+	}
+    control DEF theMainMenuJoy Joystick
+    {
+	function OnADown()
+	{
+		SSaver = 0;
+		var xx = (nCurMainMenuItem * 2) + 4;
+		if(shift == "")
+		{
+ 			if( musicsaver == true)
+			{
+				return;
+			}
+      	     	theMainMenu.children[0].children[0].select_pod_HL.children[0].appearance.material.param = 1;
+            	PlaySoundA();
+			if ( ConfigMenusMainMenu[xx] != "0")
+				Action(ConfigMenusMainMenu[xx],"Menu");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[8] != "0")
+			Action(ConfigBoutonsMainMenu[8],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[16] != "0")
+			Action(ConfigBoutonsMainMenu[16],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[24] != "0")
+			Action(ConfigBoutonsMainMenu[24],"Bouton");
+		}
+	}
+
+	function OnBDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[1] != "0")
+			Action(ConfigBoutonsMainMenu[1],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[9] != "0")
+			Action(ConfigBoutonsMainMenu[9],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[17] != "0")
+			Action(ConfigBoutonsMainMenu[17],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[25] != "0")
+			Action(ConfigBoutonsMainMenu[25],"Bouton");
+		}
+	}
+
+	function OnXDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[2] != "0")
+			Action(ConfigBoutonsMainMenu[2],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[10] != "0")
+			Action(ConfigBoutonsMainMenu[10],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[18] != "0")
+			Action(ConfigBoutonsMainMenu[18],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[26] != "0")
+			Action(ConfigBoutonsMainMenu[26],"Bouton");
+		}
+	}
+
+	function OnYDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[3] != "0")
+			Action(ConfigBoutonsMainMenu[3],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[11] != "0")
+			Action(ConfigBoutonsMainMenu[11],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[19] != "0")
+			Action(ConfigBoutonsMainMenu[19],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[27] != "0")
+			Action(ConfigBoutonsMainMenu[27],"Bouton");
+		}
+	}
+	function OnBlackDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[4] != "0")
+			Action(ConfigBoutonsMainMenu[4],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[12] != "0")
+			Action(ConfigBoutonsMainMenu[12],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[20] != "0")
+			Action(ConfigBoutonsMainMenu[20],"Bouton");
+		}
+	}
+	function OnWhiteDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[5] != "0")
+			Action(ConfigBoutonsMainMenu[5],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[13] != "0")
+			Action(ConfigBoutonsMainMenu[13],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[21] != "0")
+			Action(ConfigBoutonsMainMenu[21],"Bouton");
+		}
+	}
+	function OnRightThumbDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[6] != "0")
+			Action(ConfigBoutonsMainMenu[6],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[14] != "0")
+			Action(ConfigBoutonsMainMenu[14],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[22] != "0")
+			Action(ConfigBoutonsMainMenu[22],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[28] != "0")
+			Action(ConfigBoutonsMainMenu[28],"Bouton");
+		}
+	}
+	function OnLeftThumbDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[7] != "0")
+			Action(ConfigBoutonsMainMenu[7],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[15] != "0")
+			Action(ConfigBoutonsMainMenu[15],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[23] != "0")
+			Action(ConfigBoutonsMainMenu[23],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[29] != "0")
+			Action(ConfigBoutonsMainMenu[29],"Bouton");
+		}
+	}
+	function OnLeftDown()
+	{
+		SSaver = 0;
+		onleft = true;
+		AfficheShift();
+	}
+
+	function OnLeftUp()
+	{
+		SSaver = 0;
+		onleft = false;
+		AfficheShift();
+	}
+	function OnRightDown()
+	{
+		SSaver = 0;
+		onright = true;
+		AfficheShift();
+	}
+
+	function OnRightUp()
+	{
+		SSaver = 0;
+		onright = false;
+		AfficheShift();
+	}
+
+        function OnMoveUp()
+        {
+		SSaver = 0;
+		if( musicsaver == true)
+		{
+			return;
+		}
+		if ( 	nCurMainMenuItem > 0)
+		{
+			theMainMenuBackward.Play();
+			nCurMainMenuMouvUp = true;
+			UpdateMainMenu();
+		}
+        }
+
+        function OnMoveDown()
+        {
+		SSaver = 0;
+		if( musicsaver == true)
+		{
+			return;
+		}
+		if ( 	nCurMainMenuItem < NbMainMenu - 1)
+		{
+			theMainMenuForward.Play();
+			nCurMainMenuMouvUp = false;
+			UpdateMainMenu();
+		}
+	}
+	function OnPower()
+	{
+			Action("ShutDown_2GAM","Bouton");
+	}
+	function OnPlay()
+	{
+		if(BGMon == false | bgmpause == true)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerPlay();
+		}
+	}
+	function OnStop()
+	{
+		if(BGMon == true)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerStop();
+		}
+	}
+	function OnPause()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerPause();
+			bgmpause = true;
+		}
+	}
+	function OnSkipBack()
+	{
+		SSaver = 0;
+		if(currentMusicPlayerMode == "Continuous")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRewind();
+		}
+		else if(currentMusicPlayerMode == "Playlist")
+		{
+			theControlPanelControlsInline.children[0].PlaylistREW();
+		}
+		else if(currentMusicPlayerMode == "Random")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRandom();
+		}
+	}
+	function OnSkipForward()
+	{
+		SSaver = 0;
+		if(currentMusicPlayerMode == "Continuous")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerFastForward();
+		}
+		else if(currentMusicPlayerMode == "Playlist")
+		{
+			theControlPanelControlsInline.children[0].PlaylistFFW();
+		}
+		else if(currentMusicPlayerMode == "Random")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRandom();
+		}
+	}
+	function OnMenu()
+	{
+		SSaver = 0;
+		StartControlPanel();
+	}
+	function OnReverse()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerVolumeDown();
+			var a = Math.round(theControlPanelControlsInline.children[0].theBGMusicPlayer.volume * 100);
+			var txt = ReadValue(18, "default", "Datas\\Langues\\"+lang+".ini");
+			var aa = txt + " : " + a;
+			SetStatusText(aa);
+		}
+	}
+	function OnForward()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerVolumeUp();
+			var a = Math.round(theControlPanelControlsInline.children[0].theBGMusicPlayer.volume * 100);
+			var txt = ReadValue(18, "default", "Datas\\Langues\\"+lang+".ini");
+			var aa = txt + " : " + a;
+			SetStatusText(aa);
+		}
+	}
+	function On1()
+	{
+		SSaver = 0;
+		Action("MemoryX_2GAM","Bouton");
+	}
+	function On2()
+	{
+		SSaver = 0;
+		Action("ShowHideClock_2GAM","Bouton");
+	}
+	function On3()
+	{
+		SSaver = 0;
+		Action("AffTitre_2GAM","Bouton");
+	}
+	function On4()
+	{
+		SSaver = 0;
+		Action("NextBackground_2GAM","Bouton");
+	}
+	function On5()
+	{
+		SSaver = tmpSaver + 1;
+	}
+	function On6()
+	{
+		SSaver = 0;
+		Action("ChangeSkins_2GAM","Bouton");
+	}
+    }
+
+    function OnActivate()
+    {
+      CurrentViewpoint = theMainMenuViewpoint;
+      CurrentAltViewpoint = theMainMenuAlternateViewpoint;
+	previousControlType = theMainMenuJoy;
+	MenuBoutons = false;
+	theMainMenuViewpoint.isBound = true;
+    }
+    behavior
+    {
+	sleep 0.1;
+	if (children[0].children.length() > 0)
+	{
+		if (theMainMenu.visible | DVDLaunch == true)
+            {
+			if (theDiscDrive.discType == "Video")
+			{
+				DvdType = "Video";
+			}
+
+			Launcher = "MainMenu";
+            }
+	}
+	if (TextMenuScroll == true & ConfigMenusMainMenu[2] == "oui")
+	{
+		ScrollText();
+	}
+    }
+}
+function ScrollText()
+{
+	TextMenu = NumTextMenu.geometry.text;
+	var lgt = TextMenu.length();
+	NumTextMenu.geometry.text = TextMenu.substring(1,lgt)+TextMenu.substring(0,1);
+}
+////////////////////////////////////////////////////////////////////////////
+function initialize()
+{
+    bBackToDVDPlayer = false;
+    bGoToCDPlayer = false;
+    bBackToLauncher = false;
+    bShowErrorPanel = false;
+    bShowInvalidDisc = false;
+    nCurMainMenuItem = 0;
+    nCurMainMenuValue = new Array;
+    nCurMainMenuScroll = 0;
+    nCurMainMenuPos = 0;
+    g_bKeyboardDisplayed = false;
+    g_bPanelDisplayed = false;
+    g_bAboutToReboot = false;
+    g_bAboutToRebootToOnline = false;
+    bShowDVDStopBackground = true;
+    bCleanupSpecifiedDrive = false;
+    nSettingArea = 0;
+    g_nRec = 0;
+    strMessageYesFunction = "";
+    strMessageNoFunction = "";
+    strKeyboardDoneFunction = "";
+    strKeyboardCancelFunction = "";
+    g_bXOnDashExists = false;
+    g_theMainMenuLoaded = false;
+    ConfigSysteme = new Array;
+    Systeme = new Array;
+    ScreenSaver = new Array;
+    ConfigMusic = new Array;
+    ApparencePanelMusic = new Array;
+    ApparenceMainMenu = new Array;
+    ApparenceMusicMenu = new Array;
+    ApparenceMusicPlayMenu = new Array;
+    ApparenceMusicPlayMenu2 = new Array;
+    ApparenceMusicCopyMenu = new Array;
+    ApparenceMemoryMenu = new Array;
+    ApparenceMemoryMenu2 = new Array;
+    ApparenceMemoryMenu3 = new Array;
+    MenuConfig = new Array;
+    ApparenceMenuConfig = new Array;
+    ApparenceClockMenu = new Array;
+    ApparenceVentilMenu = new Array;
+    ApparenceAudioMenu = new Array;
+    ApparenceVideoMenu = new Array;
+    ApparenceControlMenu = new Array;
+    ApparenceInfoMenu = new Array;
+    ApparenceFTPMenu = new Array;
+    Applications = new Array;
+    ApplicationsPassword = new Array;
+    ActionsPassword = new Array;
+    ConfigBoutonsMainMenu = new Array;
+    ConfigMenusMainMenu = new Array;
+    ApparenceMenusDD = new Array;
+    ApparenceMenusDD02 = new Array;
+    ApparenceSkinsMenu = new Array;
+    lang = 4;
+    MenusDD = new Array;
+    theAmbientSound0.Play();
+    theAmbientSound1.Play();
+    theAmbientSound2.Play();
+    bClockVisable = false;
+    onleft = false;
+    onright = false;
+    background = 0;
+    NbBackground = 0;
+    curentbackground = 0;
+    curentstyle = 0;
+    OptionUpdate = "oui";
+    shift = "";
+    sty = 0;
+    BGMtimetodisplay = 10;
+    BGMalwayson = false;
+    musicsaver = false;
+    affsound = 0;
+    nClockHour = 0;
+    nClockMinute = 0;
+    nClockSeconds = 0;
+    nClockAMPM = "AM";
+    nClockMonth = 0;
+    nClockDay = 0;
+    nClockYear = 0;
+    b24hour = true;
+    Heure_Text = "";
+    Date_Text = "";
+    magicnumber = 0;
+    action = "";
+    Launcher = "MainMenu";
+    backlauncher = "";
+    ScanneDD = new Array;
+    InfoDisques = new Array;
+    num = 0;
+    MenuSubDD = false;
+    BGMon = false;
+    ControlPanelOut = false;
+    bMusicPlayerReady = false;
+    bPlayingCd = false;
+    BGMst = 0;
+    BGMtr = 0;
+    bgmpause = false;
+    vCurAlbum = "";
+    vCurAlbumTmp = -1;
+    vCurSong = "";
+    vCurSongTmp = -1;
+    RightThumb = false;
+    LeftThumb = false;
+    LeftTrigger = false;
+    RightTrigger = false;
+    ControlPanelOK = false;
+    SSaverPanelOK = false;
+    bPlayerRandom = false;
+    bPlayerRepeat = false;
+    bgPlayerRandom = false;
+    bgPlayerRepeat = false;
+    currentMusicPlayerMode = "";
+    CurrentPanelBack1 = 0;
+    CurrentPanelBack2 = 0;
+    CurrentPanelBack3 = 0;
+    PanelBack1 = "";
+    PanelBack2 = "";
+    PanelBack3 = "";
+    CurrentMusicBack = 0;
+    CurrentDisqueBack = 0;
+    DisqueBack = "";
+    PanelOK = false;
+    MenuBoutons = false;
+    SSaverPanelView = false;
+    SSaver = 0;
+    tmpSaver = 0;
+    SSaverVisu = false;
+    DDSpace = new Array(8);
+    DDSpaceF = new Array(9);
+    DDSpaceG = new Array(10);
+    DDType = "";
+    LaunchDVD = false;
+    DvdType = "";
+    DisqueType = "";
+    ExePath = "";
+    bMessageLayer = false;
+    DvdInside = false;
+    CdPlayer = false;
+    AjDvd = false;
+    ControlPanelBGM = false;
+    MatTmp = "";
+    TexTmp = "";
+    MenuOnMat = new Array;
+    MenuOffMat = new Array;
+    MenuOnTex = new Array;
+    MenuOffTex = new Array;
+    MenuOnAlpha = new Array;
+    MenuOffAlpha = new Array;
+    MenuOnTextMat = new Array;
+    MenuOffTextMat = new Array;
+    PodMenuMat = new Array;
+    PodMenuTex = new Array;
+    TitreMenu = new Array;
+    MatGen = "";
+    TexGen = "";
+    BOnMatGen = "";
+    BOnTexGen = "";
+    BOffMatGen = "";
+    BOffTexGen = "";
+    TailleDD = new Array;
+    MenuDeb = 0;
+    VideoMode = 0;
+    SVideoMode = theConfig.GetVideoMode();
+    NSkins = new Array;
+    NbSkins = 0;
+    CurentSkin = 0;
+    SkinInfo = new Array;
+    SkinCreat = new Array;
+    DVDLaunch = false;
+    AmbientAudio = false;
+    var nLanguage = theConfig.GetLanguage();
+    lang = nLanguage;
+    InfosXbox = false;
+    StatutT = false;
+    SkinsPanelItemScroll = 0;
+    CurrentFont = 0;
+    NextFont = 0;
+    IPStatus = "";
+    AffSelect = false;
+    NbMainMenu = 0;
+    RotMainMenu = 0;
+    PosMainMenu = 0;
+    BackRot = 0;
+    UseOption = "oui";
+    GetDD = false;
+    SetDD = false;
+    DDStart = 0;
+    SetSkins = false;
+    RingScale = 65;
+    UMMenu = true;
+    Version = "3.0B";
+    ConfigNP = "";
+    TextMenuScroll = false;
+    TextMenu = "";
+    rndskin = "";
+    SaveLed = "";
+
+    AudiovizuBack.visible = false;
+
+    if (nLanguage != 0) nLanguage = nLanguage - 1;
+    theTranslator.SetLanguage(nLanguage);
+
+    bForceSetLanguage = theConfig.ForceSetLanguage();
+    bForceSetTimeZone = theConfig.ForceSetTimeZone();
+    bForceSetClock = theConfig.ForceSetClock();
+
+	var c = ReadValue(17, "default", "Datas\\Config\\ConfigSysteme.xbc");
+	var d = ReturnInteger(c);
+	if ( d == 0)
+		d = 30;
+
+	theConfig.FanSpeed(d);
+	if (theDiscDrive.discType == "Video")
+		DVDLaunch = true;
+
+    if ((bForceSetLanguage + bForceSetTimeZone + bForceSetClock) != false)
+    {
+        bForceSetLanguage = false;//turn all force sets to false
+        bForceSetTimeZone = false;
+        bForceSetClock = false;
+        var d = new Date(2000, 1, 1, 0, 0);// create a new date, year ****, mo 0-11, day 0-30, hour 24hr, min 0-59 
+        d.SetSystemClock(); // set this time as the system time
+    }
+	theScreenSaver.enabled = false;
+	GetDashSettings();
+}
+DEF theLauncherLevel Level
+{
+    function OnArrival()
+    {
+        DisableAmbientAudio();
+        BlockMemoryUnitEnumeration();
+        ClosePopup();
+		g_bAboutToReboot = true;
+	if( theConfig.GetVideoMode() == 2 )
+		myBackgroundList.children[12].isBound = true;
+	else
+		myBackgroundList.children[11].isBound = true;
+    }
+
+    behavior
+    {
+        sleep 1.1;
+
+        if (g_bAboutToReboot)
+        {
+            if (g_nRec == 1)
+                launch(Systeme[1]+".xbe",ExePath);
+            else if (g_nRec == 2)
+                Action(ConfigSysteme[12],"Menu");
+            else if (g_nRec == 3)
+			launch("default.xbe","\\Device\\CdRom0");
+            else if (g_nRec == 4)
+			Action(ConfigSysteme[15],"Menu");
+        }
+    }
+
+    function OnActivate()
+    {
+        DisableAmbientAudio();
+        BlockMemoryUnitEnumeration();
+        ClosePopup();
+        EnableInput(false);
+        
+	if( theConfig.GetVideoMode() == 2 )
+		myBackgroundList.children[12].isBound = true;
+	else
+		myBackgroundList.children[11].isBound = true;
+    }
+}
+function BlockMemoryUnitInsert()
+{
+    if (theMemoryInline.Visible)
+    {
+        theMemoryInline.children[0].theMemoryMonitor.blockInsertion = true;
+    }
+}
+
+function UnblockMemoryUnitInsert()
+{
+    if (theMemoryInline.Visible)
+    {
+        theMemoryInline.children[0].theMemoryMonitor.blockInsertion = false;
+    }
+}
+
+function BlockMemoryUnitEnumeration()
+{
+    if (theMemoryInline.Visible)
+    {
+        theMemoryInline.children[0].theMemoryMonitor.enumerationOn = false;
+    }
+}
+
+function UnblockMemoryUnitEnumeration()
+{
+    if (theMemoryInline.Visible)
+    {
+        theMemoryInline.children[0].theMemoryMonitor.enumerationOn = false;
+    }
+}
+
+DEF thePanelLayer Layer
+{
+    visible true
+    transparency 0.99
+    fade 1
+
+    viewpoint Viewpoint
+    {
+	fieldOfView 1.300000
+	orientation 0 0 0 0
+	position 0 0 175
+    }
+
+    children
+    [
+        DEF thePanel Transform
+        {
+            fade 1
+            children
+            [
+                DEF thePanelInline Inline
+                {
+                    preload true
+                    url "panel/default.xap"
+				function onLoad()
+				{
+					if ( DVDLaunch == true)
+						thePanelLayer.visible = false;
+
+					PanelOK = true;
+				}
+                }
+            ]
+        }
+    ]
+}
+DEF theGameBoardLayer Layer
+{
+    visible false
+    transparency 1
+    fade 1
+
+    viewpoint Viewpoint
+    {
+        fieldOfView 1.2
+        position 0 0 150
+    }
+
+    children
+    [
+        DEF theGameBoard Transform
+        {
+
+            fade 0.25
+            scale 1 1 1
+            children
+            [
+                DEF theGameBoardInline Inline
+                {
+                    preload true
+                    url "MemoryX/default.xap"
+
+     			  function onLoad()
+      		  {
+				theGameBoardControlsInline.visible = true;
+      			theGameBoardControlsInline.children[0].InitializeGame();
+      		  }
+                }
+            ]
+        }
+    ]
+}
+
+DEF theGameBoardControlsInline Inline
+{
+    visible false
+    url "memoryx.xap"
+}
+
+function StartGameBoardView()
+{
+	bInGameBoardView = true;
+	if (CurrentViewpoint == theMainMenuViewpoint)
+		ShowMusicSaver();
+}
+function StopGameBoardView()
+{
+	if (CurrentViewpoint == theMainMenuViewpoint)
+		HideMusicSaver();
+}
+function StopGameBoard()
+{
+	bInGameBoardView = false;
+	theGameBoardLayer.transparency = 1;
+      theGameBoardInline.children[0].theGameBoardDisplay.fade = 1;
+      theGameBoardInline.children[0].theGameBoardDisplay.SetAlpha(0);
+      theGameBoardInline.children[0].theGameBoardDisplay.SetTranslation(0,-550,-60);
+      theGameBoardInline.children[0].theGameBoardDisplay.SetRotation(1,0,0,3.17);
+	StopGameBoardView();
+}
+function MemoryX()
+{
+      theGameBoardLayer.visible = true;
+	theGameBoardLayer.transparency = 0.30;
+      theGameBoardInline.children[0].theGameBoardDisplay.fade = 1;
+      theGameBoardInline.children[0].theGameBoardDisplay.SetAlpha(1);
+      theGameBoardInline.children[0].theGameBoardDisplay.SetTranslation(-47.5,47.5,-20);
+      theGameBoardInline.children[0].theGameBoardDisplay.SetRotation(-0.0001,0,0,0.54);
+      theGameBoardControlsInline.children[0].InitializeGame();
+  	thePlayerPanelIn.Play();
+  	StartGameBoardView();
+}
+//////////////////////End Game Board View///////////////////////////
+DEF theControlPanelControlsInline Inline
+{
+    visible true
+    url "controlpanel.xap"
+}
+DEF theControlPanelLayer Layer
+{
+    visible false
+    transparency 1
+    fade 1
+    viewpoint Viewpoint
+    {
+        fieldOfView 1.3
+        position 10 6 150
+    }
+
+    children
+    [
+        DEF theControlPanel Transform
+        {
+            fade 1
+            scale 1 1 1
+            children
+            [
+                DEF theControlPanelInline Inline
+                {
+                    preload true
+                    url "controlpanel/default.xap"
+				function onLoad()
+				{
+					ControlPanelOK = true;
+				}
+                }
+            ]
+        }
+    ]
+}
+
+DEF thePasswordLayer Layer
+{
+    fade 1
+    transparency 1
+
+    viewpoint Viewpoint
+    {
+    fieldOfView 0.602400
+    orientation 0.000000 -1.000000 0.000000 -0.003534
+    position 0.424700 0.000000 6.052000
+    }
+
+    children
+    [
+        Transform
+        {
+            children
+            [
+                DEF thePasswordInline Inline
+                {
+                    preload true
+                    url "settings_panel/default2.xap"
+
+                }
+            ]
+        }
+    ]
+}
+
+function GoPassword()
+{
+	var c = thePasswordInline.children[0];
+	c.thePassword.children[0].fade = 1;
+	c.thePassword.children[0].SetTranslation(1.00, 0.3570, 0.000000);
+	c.thePassword.children[0].SetAlpha(1);
+	thePasswordLayer.transparency = 0.25;
+	PasswordHeading = ReadValue(1, "default", "Datas\\Langues\\"+lang+".ini");
+	PasswordQuestion = ReadValue(9, "default", "Datas\\Langues\\"+lang+".ini");
+	MenuInit();
+}
+
+function MenuInit()
+{
+	var c = thePasswordInline.children[0];
+	c.PanelHeading.text = PasswordHeading;
+	c.QuestionText.text = PasswordQuestion;
+	c.ButtonGroup.visible = false;
+	c.asterisks.visible = true;
+	c.LockIcon.visible = true;
+	TempString = "";
+	CurrentPassword = "";
+	CorrectPasswordEntered = "false";
+	thePasswordJoystick.isBound = true;
+	currentControlType = thePasswordJoystick;
+	c.PasswordText.text = "******";
+	GeneraleMT("Password");
+}
+
+function PassChar(TempString)
+{
+	var c = thePasswordInline.children[0];
+	CurrentPassword = CurrentPassword + TempString;
+	var passlen = CurrentPassword.length();
+	var correctpasslen = CorrectPassword.length();
+	var Nike1 = "**** ***  **   *    ";
+	var passlen2 = passlen;
+
+	passlen2 = passlen + passlen;
+	passlen2 = passlen2 + passlen;
+	passlen2 = passlen2 + passlen;
+	c.PasswordText.text = Nike1.substr(passlen2, 4);
+
+    if (passlen == correctpasslen)
+    {
+            if (CurrentPassword == CorrectPassword)
+		{
+			DoPasswordFunction();
+		}
+            else
+		{
+			c.thePassword.children[0].fade = 0.25;
+			c.thePassword.children[0].SetTranslation(1.00, 0.3570, -100.000000);
+			c.thePassword.children[0].SetAlpha(0);
+			thePasswordLayer.transparency = 1;
+			thePasswordJoystick.isBound = false;
+			previousControlType.isBound = true;
+		}
+    }
+}
+
+function DoPasswordFunction()
+{
+	var c = thePasswordInline.children[0];
+	c.thePassword.children[0].fade = 0.25;
+	c.thePassword.children[0].SetTranslation(1.00, 0.3570, -100.000000);
+	c.thePassword.children[0].SetAlpha(0);
+	thePasswordLayer.transparency = 1;
+	thePasswordJoystick.isBound = false;
+	previousControlType.isBound = true;
+	NikePassword();
+}
+DEF thePasswordJoystick Joystick
+	{
+		function OnADown()
+		{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+        	        PlaySoundA();
+			  PassChar("a");
+			}
+		}
+		function OnBDown()
+		{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+        	        PlaySoundA();
+			  PassChar("b");
+			}
+		}
+
+        	function OnMoveUp()
+        	{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+        	        PlaySoundA();
+         	        PassChar("u");
+			}
+		}
+        	function OnMoveDown()
+        	{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+                	PlaySoundA();
+                	PassChar("d");
+			}
+		}
+		function OnMoveLeft()
+		{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+                	PlaySoundA();
+                	PassChar("l");
+			}
+		}
+		function OnMoveRight()
+		{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+                	PlaySoundA();
+                	PassChar("r");
+			}
+		}
+        	function OnXDown()
+        	{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+                	PlaySoundA();
+                	PassChar("x");
+			}
+        	}
+        	function OnYDown()
+        	{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+                	PlaySoundA();
+                	PassChar("y");
+			}
+        	}
+        	function OnLeftDown()
+        	{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+                	PlaySoundA();
+                	PassChar("L");
+			}
+        	}
+        	function OnRightDown()
+        	{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+                	PlaySoundA();
+                	PassChar("R");
+			}
+        	}
+        	function OnBlackDown()
+        	{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+                	PlaySoundA();
+                	PassChar("B");
+			}
+        	}
+        	function OnWhiteDown()
+        	{
+			SSaver = 0;
+			if (CorrectPasswordEntered == "false")
+			{
+                	PlaySoundA();
+                	PassChar("W");
+			}
+		}
+		function OnPower()
+		{
+			Action("ShutDown_2GAM","Bouton");
+		}
+		function OnPlay()
+		{
+			if(BGMon == false | bgmpause == true)
+			{
+				theControlPanelControlsInline.children[0].MusicPlayerPlay();
+			}
+		}
+		function OnStop()
+		{
+			if(BGMon == true)
+			{
+				theControlPanelControlsInline.children[0].MusicPlayerStop();
+			}
+		}
+		function OnPause()
+		{
+			SSaver = 0;
+			if (BGMon == true & bgmpause == false)
+			{
+				theControlPanelControlsInline.children[0].MusicPlayerPause();
+				bgmpause = true;
+			}
+		}
+		function OnSkipBack()
+		{
+			SSaver = 0;
+			if(currentMusicPlayerMode == "Continuous")
+			{
+				theControlPanelControlsInline.children[0].MusicPlayerRewind();
+			}
+			else if(currentMusicPlayerMode == "Playlist")
+			{
+				theControlPanelControlsInline.children[0].PlaylistREW();
+			}
+			else if(currentMusicPlayerMode == "Random")
+			{
+				theControlPanelControlsInline.children[0].MusicPlayerRandom();
+			}
+		}
+		function OnSkipForward()
+		{
+			SSaver = 0;
+			if(currentMusicPlayerMode == "Continuous")
+			{
+				theControlPanelControlsInline.children[0].MusicPlayerFastForward();
+			}
+			else if(currentMusicPlayerMode == "Playlist")
+			{
+				theControlPanelControlsInline.children[0].PlaylistFFW();
+			}
+			else if(currentMusicPlayerMode == "Random")
+			{
+				theControlPanelControlsInline.children[0].MusicPlayerRandom();
+			}
+		}
+		function OnReverse()
+		{
+			SSaver = 0;
+			if (BGMon == true & bgmpause == false)
+			{
+				theControlPanelControlsInline.children[0].MusicPlayerVolumeDown();
+				var a = Math.round(theControlPanelControlsInline.children[0].theBGMusicPlayer.volume * 100);
+				var txt = ReadValue(18, "default", "Datas\\Langues\\"+lang+".ini");
+				var aa = txt + " : " + a;
+				SetStatusText(aa);
+			}
+		}
+		function OnForward()
+		{
+			SSaver = 0;
+			if (BGMon == true & bgmpause == false)
+			{
+				theControlPanelControlsInline.children[0].MusicPlayerVolumeUp();
+				var a = Math.round(theControlPanelControlsInline.children[0].theBGMusicPlayer.volume * 100);
+				var txt = ReadValue(18, "default", "Datas\\Langues\\"+lang+".ini");
+				var aa = txt + " : " + a;
+				SetStatusText(aa);
+			}
+		}
+		function On2()
+		{
+			SSaver = 0;
+			Action("ShowHideClock_2GAM","Bouton");
+		}
+		function On3()
+		{
+			SSaver = 0;
+			Action("AffTitre_2GAM","Bouton");
+		}
+		function On4()
+		{
+			SSaver = 0;
+			Action("NextBackground_2GAM","Bouton");
+		}
+		function On5()
+		{
+			SSaver = tmpSaver + 1;
+		}
+     	}
+
+function EnableCurrentAlternateViewpoint()
+{
+    CurrentAltViewpoint.isBound = true;
+}
+
+function DisableCurrentAlternateViewpoint()
+{
+    CurrentViewpoint.isBound = true;
+}
+
+function StartControlPanel()
+{
+	ControlPanelOut = true;
+	theControlPanelControlsInline.children[0].InitializeControlPanel();
+	EnableCurrentAlternateViewpoint();
+}
+function StartSSaverPanel()
+{
+    theScreenSaverControlInline.children[0].InitializeSSaverPanel();
+}
+DEF theMusicCollection MusicCollection
+{
+    function OnCopyComplete()
+    {
+        theMusicInline.children[0].OnMusicCopyComplete();
+    }
+
+    function OnCopyProgressChanged()
+    {
+        UpdateProgressText(theMusicCollection.GetUpdateString());
+        SetProgress(copyProgress);
+    }
+
+    function OnAddSoundtrackNewSongFailed(ErrorCode)
+    {
+        g_nRec = ErrorCode;
+        if (ErrorCode == 1)
+        {
+            theLauncherLevel.GoTo();
+        }
+    }
+}
+// Japanese Keyboard////////////////////////////////////////////////////////
+
+DEF theJapaneseKeyboardLayer Layer
+{
+    visible false
+    transparency 1
+    fade 0.25
+
+    viewpoint Viewpoint
+    {
+        fieldOfView 1.2
+        position 10 9 145
+    }
+
+    children
+    [
+        DEF theJapaneseKeyboardTransform Transform
+        {
+            fade 0.25
+//          fade 1
+            scale 0 0 0
+            children
+            [
+                Inline
+                {
+                    preload true
+                    url "JKeyboard/default.xap"
+                }
+            ]
+        }
+    ]
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+var strKeyboardTitle, strKeyboardEdit;
+var strKeyboardDoneFunction, strKeyboardCancelFunction;
+
+DEF theKeyboardLayer Layer
+{
+    visible false
+    transparency 1
+    fade 0.25
+
+    viewpoint Viewpoint
+    {
+        fieldOfView 1.2
+        position 10 6 150
+    }
+
+    children
+    [
+        DEF theKeyboardTransform Transform
+        {
+            fade 0.25
+//          fade 1
+            scale 0 0 0
+            children
+            [
+                Inline
+                {
+                    preload true
+                    url "Keyboard/default.xap"
+                }
+            ]
+        }
+    ]
+}
+
+function KeyboardDone()
+{
+    var strDoneFunction = strKeyboardDoneFunction;
+    CloseKeyboard();
+
+    if (strDoneFunction != "")
+        eval(strDoneFunction);
+}
+
+function KeyboardCancel()
+{
+    var strCancelFunction = strKeyboardCancelFunction;
+    CloseKeyboard();
+
+    if (strCancelFunction != "")
+        eval(strCancelFunction);
+}
+
+function CloseKeyboard()
+{
+    if (g_bKeyboardDisplayed == false)
+    {
+        return;
+    }
+
+        var nKeyboardLanguage = theConfig.GetLanguage();
+        if (nKeyboardLanguage == 2)  // Japanese Language
+        {
+                var c = theJapaneseKeyboardTransform.children[0].children[0];
+                strKeyboardEdit = c.theJKeyboard.string;
+                c.theJKeyboardJoystick.isBound = false;
+    		    previousControlType.isBound = true;
+                theJapaneseKeyboardTransform.SetScale(0, 0, 0);
+                theJapaneseKeyboardTransform.SetAlpha(0);
+                theJapaneseKeyboardLayer.transparency = 1;
+        }
+        else
+        {
+                var c = theKeyboardTransform.children[0].children[0];
+                strKeyboardEdit = c.theKeyboard.string;
+                c.theKeyboardJoystick.isBound = false;
+    		    previousControlType.isBound = true;
+                theKeyboardTransform.SetScale(0, 0, 0);
+                theKeyboardTransform.SetAlpha(0);
+                theKeyboardLayer.transparency = 1;
+        }
+    strKeyboardTitle = "";
+    strKeyboardDoneFunction = "";
+    strKeyboardCancelFunction = "";
+
+    if (theDiscDrive.locked)
+    {
+        theDiscDrive.locked = false;
+    }
+    UnblockMemoryUnitInsert();
+
+    g_bKeyboardDisplayed = false;
+}
+
+function ShowKeyboard(strTitle, strEdit, strDoneFunction, strCancelFunction)
+{
+    theDiscDrive.locked = true;
+    BlockMemoryUnitInsert();
+    strKeyboardTitle = strTitle;
+    strKeyboardEdit = strEdit;
+    strKeyboardDoneFunction = strDoneFunction;
+    strKeyboardCancelFunction = strCancelFunction;
+
+        var nKeyboardLanguage = theConfig.GetLanguage();
+        if (nKeyboardLanguage == 2)  // Japanese Language
+        {
+                var c = theJapaneseKeyboardTransform.children[0].children[0];
+                c.theJKeyboard.selectKey( 8, 10 );        // Default the key selection to the DONE key
+                c.theJKeyboard.string = "";
+                c.theJKeyboard.string = strKeyboardEdit;
+                c.theJKeyboard.shift = 0;
+                c.theJKeyboard.caps = 0;
+                c.theJKeyboard.jmode = 0;
+                c.theKeyboardTitle.text = strKeyboardTitle;
+                if (g_bKeyboardDisplayed == false)
+                {
+                        c.theJKeyboardJoystick.isBound = true;
+				currentControlType = theJapaneseKeyboardTransform.children[0].children[0].theJKeyboardJoystick;
+                }
+
+                theJapaneseKeyboardLayer.visible = true;
+                theJapaneseKeyboardLayer.transparency = 0.25;
+                theJapaneseKeyboardTransform.SetScale(1, 1, 1);
+                theJapaneseKeyboardTransform.SetAlpha(1);
+        }
+        else
+        {
+                var c = theKeyboardTransform.children[0].children[0];
+                c.theKeyboard.selectKey( 0, 0 );        // Default the key selection to the DONE key
+                c.theKeyboard.string = "";
+                c.theKeyboard.string = strKeyboardEdit;
+                c.theKeyboard.shift = 0;
+                c.theKeyboard.caps = 0;
+                c.theKeyboard.mode = 0;
+                c.theKeyboardTitle.text = strKeyboardTitle;
+                if (g_bKeyboardDisplayed == false)
+                {
+                        c.theKeyboardJoystick.isBound = true;
+				currentControlType = theKeyboardTransform.children[0].children[0].theKeyboardJoystick;
+                }
+
+                theKeyboardLayer.visible = true;
+                theKeyboardLayer.transparency = 0.25;
+                theKeyboardTransform.SetScale(1, 1, 1);
+                theKeyboardTransform.SetAlpha(1);
+        }
+
+    g_bKeyboardDisplayed = true;
+}
+////////////////////////////////////////////////////////////////////////////
+DEF theMessageLayer Layer
+{
+    fade 0.25
+    transparency 1
+
+    viewpoint Viewpoint
+    {
+        fieldOfView 0.602400
+        orientation 0.000000 -1.000000 0.000000 -0.003534
+        position 0.424700 0.000000 6.052000
+    }
+
+    children
+    [
+        Transform
+        {
+            children
+            [
+                DEF theMessageInline Inline
+                {
+                    preload true
+                    url "Message/default.xap"
+
+                    function onLoad()
+                    {
+                        var c = children[0];
+                        c.button_yes.visible = false;
+                        c.button_no.visible = false;
+                        c.button_center.visible = false;
+                        c.slider_slot.visible = false;
+                        c.slider.visible = false;
+
+                    }
+			behavior
+			{
+				sleep 0.1;
+				if (g_bPanelDisplayed == true)
+					SSaver = 0;
+			}
+                }
+            ]
+        }
+    ]
+}
+
+var strMessageText;
+var strMessageYesFunction;
+var strMessageNoFunction;
+var nCurMessageButton;
+var nMessageButtonCount;
+
+function UpdateMessageButtonHighlight()
+{
+    var c = theMessageInline.children[0];
+
+    if (nCurMessageButton == 0)
+    {
+        c.button_yes.children[0].appearance.material.name = BOnMatGen;
+	  c.button_yes.children[0].appearance.texture.url = BOnTexGen+".xbx";
+        c.text_yes.children[0].appearance.material.name = "Material #133";
+        c.text_no.children[0].appearance.material.name = "NavType";
+        c.button_no.children[0].appearance.material.name = BOffMatGen;
+	  c.button_no.children[0].appearance.texture.url = BOffTexGen+".xbx";
+    }
+    else
+    {
+        c.button_no.children[0].appearance.material.name = BOnMatGen;
+	  c.button_no.children[0].appearance.texture.url = BOnTexGen+".xbx";
+        c.text_no.children[0].appearance.material.name = "Material #133";
+        c.text_yes.children[0].appearance.material.name = "NavType";
+        c.button_yes.children[0].appearance.material.name = BOffMatGen;
+	  c.button_yes.children[0].appearance.texture.url = BOffTexGen+".xbx";
+    }
+}
+
+DEF theMessageJoystick Joystick
+{
+    function OnADown()
+    {
+	SSaver = 0;
+      UpdateMessageButtonHighlight();
+	if(onleft == false  & onright == false)
+	{
+     		if (nCurMessageButton != -1)
+     		{
+      	    	PlaySoundA();
+      	     	if (nCurMessageButton == 0)
+				OnQuestionYes();
+      	     	else
+      	     	OnQuestionNo();
+     		}
+	}
+	if(onleft == true  & onright == false)
+	{
+		if ( ConfigBoutonsMainMenu[8] == "Photo_2GAM")
+		Action(ConfigBoutonsMainMenu[8],"Bouton");
+	}
+	if(onleft == false & onright == true)
+	{
+		if ( ConfigBoutonsMainMenu[16] == "Photo_2GAM")
+		Action(ConfigBoutonsMainMenu[16],"Bouton");
+	}
+	if(onleft == true & onright == true)
+	{
+		if ( ConfigBoutonsMainMenu[24] == "Photo_2GAM")
+		Action(ConfigBoutonsMainMenu[24],"Bouton");
+	}
+    }
+
+    function OnBDown()
+    {
+	SSaver = 0;
+      UpdateMessageButtonHighlight();
+	if(onleft == false  & onright == false)
+	{
+	     	if (nMessageButtonCount == 1)
+     		{
+     	      	// Just an OK button; B is the same as A
+     	      	OnADown();
+     	      	return;
+     		}
+     		if (nCurMessageButton != -1)
+     		{
+     	      	PlaySoundB();
+     	      	nCurMessageButton = 1;
+     	      	UpdateMessageButtonHighlight();
+     	      	OnQuestionNo();
+     		}
+	}
+	if(onleft == true  & onright == false)
+	{
+		if ( ConfigBoutonsMainMenu[9] == "Photo_2GAM")
+		Action(ConfigBoutonsMainMenu[9],"Bouton");
+	}
+	if(onleft == false & onright == true)
+	{
+		if ( ConfigBoutonsMainMenu[17] == "Photo_2GAM")
+		Action(ConfigBoutonsMainMenu[17],"Bouton");
+	}
+	if(onleft == true & onright == true)
+	{
+		if ( ConfigBoutonsMainMenu[25] == "Photo_2GAM")
+		Action(ConfigBoutonsMainMenu[25],"Bouton");
+	}
+    }
+	function OnXDown()
+	{
+		SSaver = 0;
+		if(onleft == false  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[2] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[2],"Bouton");
+		}
+		if(onleft == true  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[10] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[10],"Bouton");
+		}
+		if(onleft == false & onright == true)
+		{
+			if ( ConfigBoutonsMainMenu[18] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[18],"Bouton");
+		}
+		if(onleft == true & onright == true)
+		{
+			if ( ConfigBoutonsMainMenu[26] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[26],"Bouton");
+		}
+	}
+
+	function OnYDown()
+	{
+		SSaver = 0;
+		if(onleft == false  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[3] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[3],"Bouton");
+		}
+		if(onleft == true  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[11] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[11],"Bouton");
+		}
+		if(onleft == false & onright == true)
+		{
+			if ( ConfigBoutonsMainMenu[19] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[19],"Bouton");
+		}
+		if(onleft == true & onright == true)
+		{
+			if ( ConfigBoutonsMainMenu[27] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[27],"Bouton");
+		}
+	}
+	function OnBlackDown()
+	{
+		SSaver = 0;
+		if(onleft == false  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[4] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[4],"Bouton");
+		}
+		if(onleft == true  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[12] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[12],"Bouton");
+		}
+		if(onleft == false & onright == true)
+		{
+			if ( ConfigBoutonsMainMenu[20] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[20],"Bouton");
+		}
+	}
+	function OnWhiteDown()
+	{
+		SSaver = 0;
+		if(onleft == false  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[5] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[5],"Bouton");
+		}
+		if(onleft == true  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[13] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[13],"Bouton");
+		}
+		if(onleft == false & onright == true)
+		{
+			if ( ConfigBoutonsMainMenu[21] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[21],"Bouton");
+		}
+	}
+	function OnRightThumbDown()
+	{
+		SSaver = 0;
+		if(onleft == false  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[6] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[6],"Bouton");
+		}
+		if(onleft == true  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[14] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[14],"Bouton");
+		}
+		if(onleft == false & onright == true)
+		{
+			if ( ConfigBoutonsMainMenu[22] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[22],"Bouton");
+		}
+		if(onleft == true & onright == true)
+		{
+			if ( ConfigBoutonsMainMenu[28] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[28],"Bouton");
+		}
+	}
+	function OnLeftThumbDown()
+	{
+		SSaver = 0;
+		if(onleft == false  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[7] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[7],"Bouton");
+		}
+		if(onleft == true  & onright == false)
+		{
+			if ( ConfigBoutonsMainMenu[15] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[15],"Bouton");
+		}
+		if(onleft == false & onright == true)
+		{
+			if ( ConfigBoutonsMainMenu[23] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[23],"Bouton");
+		}
+		if(onleft == true & onright == true)
+		{
+			if ( ConfigBoutonsMainMenu[29] == "Photo_2GAM")
+			Action(ConfigBoutonsMainMenu[29],"Bouton");
+		}
+	}
+	function OnLeftDown()
+	{
+		SSaver = 0;
+		onleft = true;
+	}
+
+	function OnLeftUp()
+	{
+		SSaver = 0;
+		onleft = false;
+	}
+	function OnRightDown()
+	{
+		SSaver = 0;
+		onright = true;
+	}
+
+	function OnRightUp()
+	{
+		SSaver = 0;
+		onright = false;
+	}
+
+    function OnMoveLeft()
+    {
+	SSaver = 0;
+        if (nMessageButtonCount < 2)
+            return;
+
+        if (nCurMessageButton == 1)
+        {
+            PlaySoundMenuChange();
+            nCurMessageButton = 0;
+            UpdateMessageButtonHighlight();
+        }
+    }
+
+    function OnMoveRight()
+    {
+	SSaver = 0;
+        if (nMessageButtonCount < 2)
+            return;
+
+        if (nCurMessageButton == 0)
+        {
+            PlaySoundMenuChange();
+            nCurMessageButton = 1;
+            UpdateMessageButtonHighlight();
+        }
+    }
+	function OnPower()
+	{
+		SSaver = 0;
+		Action("ShutDown_2GAM","Bouton");
+	}
+	function OnPlay()
+	{
+		SSaver = 0;
+		if(BGMon == false | bgmpause == true)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerPlay();
+		}
+	}
+	function OnStop()
+	{
+		SSaver = 0;
+		if(BGMon == true)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerStop();
+		}
+	}
+	function OnPause()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerPause();
+			bgmpause = true;
+		}
+	}
+	function OnSkipBack()
+	{
+		SSaver = 0;
+		if(currentMusicPlayerMode == "Continuous")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRewind();
+		}
+		else if(currentMusicPlayerMode == "Playlist")
+		{
+			theControlPanelControlsInline.children[0].PlaylistREW();
+		}
+		else if(currentMusicPlayerMode == "Random")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRandom();
+		}
+	}
+	function OnSkipForward()
+	{
+		SSaver = 0;
+		if(currentMusicPlayerMode == "Continuous")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerFastForward();
+		}
+		else if(currentMusicPlayerMode == "Playlist")
+		{
+			theControlPanelControlsInline.children[0].PlaylistFFW();
+		}
+		else if(currentMusicPlayerMode == "Random")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRandom();
+		}
+	}
+	function OnReverse()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerVolumeDown();
+			var a = Math.round(theControlPanelControlsInline.children[0].theBGMusicPlayer.volume * 100);
+			var txt = ReadValue(18, "default", "Datas\\Langues\\"+lang+".ini");
+			var aa = txt + " : " + a;
+			SetStatusText(aa);
+		}
+	}
+	function OnForward()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerVolumeUp();
+			var a = Math.round(theControlPanelControlsInline.children[0].theBGMusicPlayer.volume * 100);
+			var txt = ReadValue(18, "default", "Datas\\Langues\\"+lang+".ini");
+			var aa = txt + " : " + a;
+			SetStatusText(aa);
+		}
+	}
+	function On2()
+	{
+		SSaver = 0;
+		Action("ShowHideClock_2GAM","Bouton");
+	}
+	function On3()
+	{
+		SSaver = 0;
+		Action("AffTitre_2GAM","Bouton");
+	}
+	function On4()
+	{
+		SSaver = 0;
+		Action("NextBackground_2GAM","Bouton");
+	}
+	function On5()
+	{
+		SSaver = tmpSaver + 1;
+	}
+}
+
+function AskQuestion(strQuestion, strYesFunction, strNoFunction, nDefaultButton)
+{
+    // Defer disc insertion/removal notification
+	GeneraleMT("message");
+	onleft = false;
+	onright = false;
+	AfficheShift();
+    theDiscDrive.locked = true;
+    BlockMemoryUnitInsert();
+
+    var c = theMessageInline.children[0];
+    c.MessagePanel.SetRotation(0, 0, 1, 0);
+    c.MessagePanel.SetAlpha(1);
+
+    strMessageText = strQuestion;
+    strMessageYesFunction = strYesFunction;
+    strMessageNoFunction = strNoFunction;
+
+    c.button_yes.visible = true;
+    c.button_no.visible = true;
+    c.button_center.visible = false;
+    c.slider_slot.visible = false;
+    c.slider.visible = false;
+
+    c.MessageText.text = strQuestion;
+
+    nCurMessageButton = nDefaultButton;
+    nMessageButtonCount = 2;
+    UpdateMessageButtonHighlight();
+
+    if (g_bPanelDisplayed == false)
+    {
+        theMessageJoystick.isBound = true;
+	  currentControlType = theMessageJoystick;
+    }
+
+    theMessageLayer.transparency = 0.25;
+
+    g_bPanelDisplayed = true;
+}
+
+function TellUser(strMessage, strDoneFunction)
+{
+    // Defer disc insertion/removal notification
+	GeneraleMT("message");
+    theDiscDrive.locked = true;
+    BlockMemoryUnitInsert();
+
+    var c = theMessageInline.children[0];
+
+    c.MessagePanel.SetRotation(0, 0, 1, 0);
+    c.MessagePanel.SetAlpha(1);
+    strMessageText = strMessage;
+    c.MessageText.text = strMessage;
+    strMessageYesFunction = strDoneFunction;
+    strMessageNoFunction = strDoneFunction;
+
+    c.button_yes.visible = false;
+    c.button_no.visible = false;
+    c.button_center.visible = true;
+    c.slider_slot.visible = false;
+    c.slider.visible = false;
+
+    nCurMessageButton = 0;
+    nMessageButtonCount = 1;
+    UpdateMessageButtonHighlight();
+
+    if (g_bPanelDisplayed == false)
+    {
+        theMessageJoystick.isBound = true;
+	  currentControlType = theMessageJoystick;
+    }
+
+    theMessageLayer.transparency = 0.25;
+
+    g_bPanelDisplayed = true;
+}
+
+// This function will display message panel without OK button
+function BlockUser(strMessage)
+{
+    //
+    // NOTE: We don't defer disc insertion/removal notification here.
+    // For example, if user is trying to play DVD without dongle. We
+    // will display message panel without okay button and wait for
+    // user to remove the disc
+    //
+	GeneraleMT("message");
+    BlockMemoryUnitInsert();
+
+    var c = theMessageInline.children[0];
+
+    c.MessagePanel.SetRotation(0, 0, 1, 0);
+    c.MessagePanel.SetAlpha(1);
+
+    strMessageText = strMessage;
+    strMessageYesFunction = "";
+    strMessageNoFunction = "";
+
+    c.button_yes.visible = false;
+    c.button_no.visible = false;
+    c.button_center.visible = false;
+    c.slider_slot.visible = false;
+    c.slider.visible = false;
+
+    c.MessageText.text = strMessage;
+
+    nCurMessageButton = -1;
+    nMessageButtonCount = 0;
+    UpdateMessageButtonHighlight();
+
+    if (g_bPanelDisplayed == false)
+    {
+        theMessageJoystick.isBound = true;
+	  currentControlType = theMessageJoystick;
+    }
+
+    theMessageLayer.transparency = 0.25;
+
+    g_bPanelDisplayed = true;
+}
+
+function ShowProgress(strMessage)
+{
+    // Defer disc insertion/removal notification
+	GeneraleMT("message");
+    theDiscDrive.locked = true;
+    BlockMemoryUnitInsert();
+
+    var c = theMessageInline.children[0];
+
+    c.MessagePanel.SetRotation(0, 0, 1, 0);
+    c.MessagePanel.SetAlpha(1);
+
+    c.button_yes.visible = false;
+    c.button_no.visible = false;
+    c.button_center.visible = false;
+    c.slider_slot.visible = true;
+    c.slider.visible = true;
+    c.MessageText.text = strMessage;
+
+    SetProgress(0);
+    nCurMessageButton = -1;
+    nMessageButtonCount = 0;
+
+    theMessageJoystick.isBound = true;
+    currentControlType = theMessageJoystick;
+    theMessageLayer.transparency = 0.25;
+
+    // REVIEW: the progress "noise" is now disabled
+    // theProgressSound.Play();
+
+    g_bPanelDisplayed = true;
+}
+
+function UpdateProgressText(strMessage)
+{
+    var c = theMessageInline.children[0];
+    c.MessageText.text = strMessage;
+}
+
+function SetProgress(nProgress)
+{
+	SSaver = 0;
+	var nTempProgress = (nProgress * 1.665) - 0.165;
+	var c = theMessageInline.children[0];
+	c.slider.children[0].appearance.material.param = nTempProgress;
+}
+
+function CloseMessage()
+{
+    if (g_bPanelDisplayed == false)
+    {
+        return;
+    }
+
+    var c = theMessageInline.children[0];
+
+    c.MessagePanel.SetRotation(0, 0, 1, 1.5);
+    c.MessagePanel.SetAlpha(0.0);
+
+    theMessageJoystick.isBound = false;
+    previousControlType.isBound = true;
+    theMessageLayer.transparency = 1;
+
+    strMessageText = "";
+    strMessageYesFunction = "";
+    strMessageNoFunction = "";
+
+    if (theProgressSound.transportMode != 0)
+        theProgressSound.Stop();
+    theCompleteSound.Play();
+
+    theDiscDrive.locked = false;
+    UnblockMemoryUnitInsert();
+    g_bPanelDisplayed = false;
+    onleft = false;
+    onright = false;
+}
+
+function OnQuestionYes()
+{
+    var strYesFunction = strMessageYesFunction;
+
+    CloseMessage();
+    if (strYesFunction != "")
+        eval(strYesFunction);
+}
+
+function OnQuestionNo()
+{
+    var strNoFunction = strMessageNoFunction;
+
+    CloseMessage();
+
+    if (strNoFunction != "")
+        eval(strNoFunction);
+}
+DEF theScreenSaverControlInline Inline
+{
+    visible true
+    url "ssaver.xap"
+}
+DEF theSSaverPanelLayer Layer
+{
+    visible false
+    transparency 1
+    fade 1
+
+    viewpoint Viewpoint
+    {
+        fieldOfView 1.3
+        position 0 0 150
+    }
+
+    children
+    [
+        DEF theSSaverPanel Transform
+        {
+            fade 1
+            scale 1 1 1
+            children
+            [
+                DEF theSSaverPanelInline Inline
+                {
+                    preload true
+                    url "SSaver/default.xap"
+				function onLoad()
+				{
+					SSaverPanelOK = true;
+				}
+                }
+            ]
+        }
+    ]
+}
+function ReadValue(x, sectionconf2, chemin)
+{
+	var a = x;
+	var info = new Settings;
+	info.file = "X:\\2GAM.data\\" + chemin;
+	info.section = sectionconf2;
+	var c = info.GetValue(a);
+	return c;
+}
+
+function SaveSetting(x,y,sectionsave2, chemin)
+{
+	var a = x;
+	var b = y;
+	var info = new Settings;
+	info.file = pathdash + chemin;
+	info.section = sectionsave2;
+	var c = info.SetValue(a, b);
+}
+
+function SaveDashSettings()
+{
+	for(var g = 1; g < 160; g = g + 1)
+	{
+		SaveSetting(g, ScanneDD[g], "default", "disque.ini");
+	}
+}
+
+function ReturnInteger(x)
+{
+	var a = x;
+	var b = Math.abs(a);
+	if(a.charCodeAt(0) == 45)
+	{
+		var c = b * 2;
+		b = b - c;
+	}
+	return b;
+}
+
+function GetDashSettings()
+{
+	pathdash = "P:\\Dash2Gam\\2GAM.data\\";
+	BackgroundUpdate = 1;
+	Nbappli = 0;
+	Nbapplipassword = 0;
+	Nbaction = 0;
+	Nbmenuconfig = 0;
+	Nbmenudd = 0;
+	ConfigNP = "pro";
+	var g;
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "Systeme", "config_pro.ini");
+		if (Temp != "")
+			Systeme[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ConfigSysteme.xbc");
+		if (Temp != "")
+			ConfigSysteme[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ScreenSaver.xbc");
+		if (Temp != "")
+			ScreenSaver[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ConfigMusic.xbc");
+		if (Temp != "")
+			ConfigMusic[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMainMenu.xbc");
+		if (Temp != "")
+			ApparenceMainMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\MenuConfig.xbc");
+		if (Temp != "")
+		{
+			MenuConfig[g] = Temp;
+			Nbmenuconfig = Nbmenuconfig + 1;
+		}
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\Applications.xbc");
+		if (Temp != "")
+		{
+			Applications[g] = Temp;
+			Nbappli = Nbappli + 1;
+		}
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApplicationsPassword.xbc");
+		if (Temp != "")
+		{
+			ApplicationsPassword[g] = Temp;
+			Nbapplipassword = Nbapplipassword + 1;
+		}
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ActionsPassword.xbc");
+		if (Temp != "")
+		{
+			ActionsPassword[g] = Temp;
+			Nbaction = Nbaction + 1;
+		}
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ConfigBoutonsMainMenu.xbc");
+		if (Temp != "")
+			ConfigBoutonsMainMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ConfigMenusMainMenu.xbc");
+		if (Temp != "")
+			ConfigMenusMainMenu[g] = Temp;
+		else
+			g = 120;
+
+		if ( Temp != "" & g > 2)
+			NbMainMenu = NbMainMenu + 1;
+
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMenusDD.xbc");
+		if (Temp != "")
+			ApparenceMenusDD[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMenusDD02.xbc");
+		if (Temp != "")
+			ApparenceMenusDD02[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMusicMenu.xbc");
+		if (Temp != "")
+			ApparenceMusicMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMusicPlayMenu.xbc");
+		if (Temp != "")
+			ApparenceMusicPlayMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMusicPlayMenu2.xbc");
+		if (Temp != "")
+			ApparenceMusicPlayMenu2[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMusicCopyMenu.xbc");
+		if (Temp != "")
+			ApparenceMusicCopyMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMemoryMenu.xbc");
+		if (Temp != "")
+			ApparenceMemoryMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMemoryMenu2.xbc");
+		if (Temp != "")
+			ApparenceMemoryMenu2[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMemoryMenu3.xbc");
+		if (Temp != "")
+			ApparenceMemoryMenu3[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceSkinsMenu.xbc");
+		if (Temp != "")
+			ApparenceSkinsMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceMenuConfig.xbc");
+		if (Temp != "")
+			ApparenceMenuConfig[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceClockMenu.xbc");
+		if (Temp != "")
+			ApparenceClockMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceAudioMenu.xbc");
+		if (Temp != "")
+			ApparenceAudioMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceVideoMenu.xbc");
+		if (Temp != "")
+			ApparenceVideoMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceControlMenu.xbc");
+		if (Temp != "")
+			ApparenceControlMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceFTPMenu.xbc");
+		if (Temp != "")
+			ApparenceFTPMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceInfoMenu.xbc");
+		if (Temp != "")
+			ApparenceInfoMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for( g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparenceVentilMenu.xbc");
+		if (Temp != "")
+			ApparenceVentilMenu[g] = Temp;
+		else
+			g = 120;
+	}
+	for(g = 1; g < 120; g = g + 1)
+	{
+		Temp = ReadValue(g, "default", "Datas\\Config\\ApparencePanelMusic.xbc");
+		if (Temp != "")
+			ApparencePanelMusic[g] = Temp;
+		else
+			g = 120;
+	}
+	if (ReadValue("Configue", "default", "config.ini")=="novice")
+	{
+		ScreenSaver[1]=ReadValue("Duree ScreenSaver", "default", "config.ini");
+		Systeme[1]=ReadValue("Nom de l'Application", "default", "config.ini");
+		Systeme[2]=ReadValue("Disque de l'Application", "default", "config.ini");
+		Systeme[3]=ReadValue("Chemin de l'Application", "default", "config.ini");
+		ConfigSysteme[4]=ReadValue("Affiche Heure", "default", "config.ini");
+		ConfigMusic[1]=ReadValue("Musique de Fond", "default", "config.ini");
+		ConfigMusic[2]=ReadValue("Affiche Titre", "default", "config.ini");
+		ApparenceMainMenu[13]=ReadValue("Affiche Orb Audio", "default", "config.ini");
+		ConfigSysteme[19]=ReadValue("Style General", "default", "config.ini");
+		ApparenceMenusDD[1]=ReadValue("Style Menu DD", "default", "config.ini");
+		ConfigMenusMainMenu[3]=ReadValue("Nom du Menu 1", "default", "config.ini");
+		ConfigMenusMainMenu[5]=ReadValue("Nom du Menu 2", "default", "config.ini");
+		ConfigMenusMainMenu[7]=ReadValue("Nom du Menu 3", "default", "config.ini");
+		ConfigMenusMainMenu[9]=ReadValue("Nom du Menu 4", "default", "config.ini");
+		Applications[1] = "Xbmc";
+		Applications[2] = ReadValue("Disque", "default", "config.ini");
+		Applications[3] = ReadValue("Dossier", "default", "config.ini");
+		Applications[4] = "default.xbe";
+		Nbappli = 4;
+		NbMainMenu = 8;
+		ConfigNP = "novice";
+	}
+	SaveLed = ReadValue("Led","default", "Datas\\data.xbc");
+	if (SaveLed == "")
+	{
+		SaveLed = ReadValue("LedSequence", "LED", "config_pro.ini");
+		SaveSetting("Led",SaveLed,"default", "Datas\\data.xbc");
+		SaveSetting("Skin","fixe","default", "Datas\\data.xbc");
+		SaveSetting("Change","false","default", "Datas\\data.xbc");
+	}
+	if ( Systeme[2] == "C:" )
+	{
+		ExePath = "\\Device\\Harddisk0\\Partition2";
+	}
+	else if ( Systeme[2] == "E:" )
+	{
+		ExePath = "\\Device\\Harddisk0\\Partition1";
+	}
+	else if ( Systeme[2] == "F:" )
+	{
+		ExePath = "\\Device\\Harddisk0\\Partition6";
+	}
+	else if ( Systeme[2] == "G:" )
+	{
+		ExePath = "\\Device\\Harddisk0\\Partition7";
+	}
+	if ( Systeme[3] == "root" )
+	{
+		ExePath = ExePath + "";
+	}
+	else
+	{
+		ExePath = ExePath + "\\" + Systeme[3] + "";
+	}
+	if (theDiscDrive.discType != "Video")
+	{
+		ScannSkins();
+		ReadModeSkin();
+	}
+	if ( ConfigSysteme[22] == "12")
+		b24hour = false;
+
+	var gx = 0;
+	var gxx = 0;
+	Temp = ReadValue("Version", "default", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	Version = Temp;
+	if( Version == "2.4B" | Version == "2.41B" | Version == "3.0B") 
+	{
+		gx = 1;
+	}
+	else
+	{
+		gx = 2;
+	}
+
+	Temp = ReadValue("AppGen", "Generale", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (Temp != "")
+		ConfigSysteme[19] = Temp;
+
+	Temp = ReadValue("UseOptions", "default", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (Temp == "")
+		Temp = ReadValue("UseDeplacement", "default", "Skins\\"+Systeme[4]+"\\Skin.ini");
+
+	if (Temp != "")
+		UseOption = Temp;
+
+	if (UseOption == "oui")
+	{
+		Temp = ReadValue("AppGen", "Generale", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if (Temp != "")
+			ConfigSysteme[19] = Temp;
+		else if (Temp == "" & gx == 2)
+			ConfigSysteme[19] = "Verre";
+
+		Temp = ReadValue("TypeHeure", "Panel", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if( Temp != "")
+			ConfigSysteme[5] = Temp;
+
+		for(var g1 = gx; g1 < gx + 31; g1 = g1 + 1)
+		{
+			Temp = ReadValue(g1, "ApparenceMainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			gxx = gxx + 1;
+			if( Temp != "")
+				ApparenceMainMenu[gxx] = Temp;
+
+		}
+		for(var g2 = 3; g2 < 13; g2 = g2 + 1)
+		{
+			Temp = ReadValue(g2, "ApparenceMenusDD", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMenusDD[g2] = Temp;
+
+		}
+		for(var g5 = 1; g5 < 10; g5 = g5 + 1)
+		{
+			Temp = ReadValue(g5, "ApparenceMusicMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMusicMenu[g5] = Temp;
+		}
+		for(var g6 = 1; g6 < 10; g6 = g6 + 1)
+		{
+			Temp = ReadValue(g6, "ApparenceMusicPlayMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMusicPlayMenu[g6] = Temp;
+		}
+		for(var g7 = 1; g7 < 13; g7 = g7 + 1)
+		{
+			Temp = ReadValue(g7, "ApparenceMusicPlayMenu2", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMusicPlayMenu2[g7] = Temp;
+		}
+		for(var g8 = 1; g8 < 10; g8 = g8 + 1)
+		{
+			Temp = ReadValue(g8, "ApparenceMusicCopyMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMusicCopyMenu[g8] = Temp;
+		}
+		for(var g9 = 1; g9 < 8; g9 = g9 + 1)
+		{
+			Temp = ReadValue(g9, "ApparenceMemoryMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMemoryMenu[g9] = Temp;
+		}
+		for(var g10 = 1; g10 < 4; g10 = g10 + 1)
+		{
+			Temp = ReadValue(g10, "ApparenceMemoryMenu2", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMemoryMenu2[g10] = Temp;
+		}
+		for(var g11 = 1; g11 < 8; g11 = g11 + 1)
+		{
+			Temp = ReadValue(g11, "ApparenceMemoryMenu3", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMemoryMenu3[g11] = Temp;
+		}
+		for(var g3 = 1; g3 < 4; g3 = g3 + 1)
+		{
+			Temp = ReadValue(g3, "ApparenceMenusDD02", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMenusDD02[g3] = Temp;
+		}
+		ApparenceMenusDD02[4] = "oui";
+		for(var g4 = 4; g4 < 14; g4 = g4 + 1)
+		{
+			Temp = ReadValue(g4, "ApparenceMenusDD02", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMenusDD02[g4 + gx - 1] = Temp;
+		}
+		for(var g18 = 1; g18 < 4; g18 = g18 + 1)
+		{
+			Temp = ReadValue(g18, "ApparenceSkinsMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceSkinsMenu[g18] = Temp;
+		}
+		ApparenceSkinsMenu[4] = "oui";
+		for(var g19 = 4; g19 < 12; g19 = g19 + 1)
+		{
+			Temp = ReadValue(g19, "ApparenceSkinsMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceSkinsMenu[g19 + gx - 1] = Temp;
+		}
+		for(var g1 = 1; g1 < 11; g1 = g1 + 1)
+		{
+			Temp = ReadValue(g1, "ApparenceMenuConfig", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceMenuConfig[g1] = Temp;
+		}
+		for(var g3 = 1; g3 < 4; g3 = g3 + 1)
+		{
+			Temp = ReadValue(g3, "ApparenceClockMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceClockMenu[g3] = Temp;
+		}
+		for(var g5 = 1; g5 < 4; g5 = g5 + 1)
+		{
+			Temp = ReadValue(g5, "ApparenceAudioMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceAudioMenu[g5] = Temp;
+		}
+		for(var g7 = 1; g7 < 4; g7 = g7 + 1)
+		{
+			Temp = ReadValue(g7, "ApparenceVideoMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceVideoMenu[g7] = Temp;
+		}
+		for(g = 1; g < 4; g = g + 1)
+		{
+			Temp = ReadValue(g, "ApparenceControlMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceControlMenu[g] = Temp;
+		}
+		for(g = 1; g < 4; g = g + 1)
+		{
+			Temp = ReadValue(g, "ApparenceFTPMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceFTPMenu[g] = Temp;
+		}
+		for(g = 1; g < 4; g = g + 1)
+		{
+			Temp = ReadValue(g, "ApparenceInfoMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceInfoMenu[g] = Temp;
+		}
+		for(g = 1; g < 4; g = g + 1)
+		{
+			Temp = ReadValue(g, "ApparenceVentilMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparenceVentilMenu[g] = Temp;
+		}
+		for(g = 1; g < 7; g = g + 1)
+		{
+			Temp = ReadValue(g, "ApparencePanelMusic", "Skins\\"+Systeme[4]+"\\Skin.ini");
+			if( Temp != "")
+				ApparencePanelMusic[g] = Temp;
+		}
+		Temp = ReadValue("BackVisualizer", "Generale", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if( Temp != "")
+			ConfigSysteme[20] = Temp;
+
+	}
+	MatGen = ReadValue("GenMat", "Generale", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexGen = ReadValue("GenTex", "Generale", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	BOnMatGen = ReadValue("GenBoutonsMatOn", "Generale", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	BOnTexGen = ReadValue("GenBoutonsTexOn", "Generale", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	BOffMatGen = ReadValue("GenBoutonsMatOff", "Generale", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	BOffTexGen = ReadValue("GenBoutonsTexOff", "Generale", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if( BOnMatGen == "")
+		BOnMatGen = "GameHilite";
+	if( BOnTexGen == "")
+		BOnTexGen = "GameHilite_01";
+	if( BOffMatGen == "")
+		BOffMatGen = "FlatSurfaces";
+	if( BOffTexGen == "")
+		BOffTexGen = "GameHilite_01";
+
+	Nbappli = Nbappli / 4;
+	Nbapplipassword = Nbapplipassword / 3;
+	Nbaction = Nbaction / 3;
+	Nbmenuconfig = Nbmenuconfig / 4;
+	NbMainMenu = NbMainMenu / 2;
+	var nbback = "0";
+	if (theDiscDrive.discType != "Video")
+	{
+		nbback = ReadValue("NbBackground", "default", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if ( nbback == "")
+			nbback = "0";
+
+		var e = ReadValue(4, "Systeme", "config_pro.ini");
+		var FileExists = theConfig.NtFileExists( "X:\\2GAM.data\\Skins\\" + e + "\\Skin.xip" );
+		if ( FileExists == true )
+			GoToSkin();
+		else if ( FileExists == false )
+			GoToIcons();
+
+		CompteMenuDD();
+		EnableAmbientAudio();
+	}
+	else
+	{
+		theMainMenu.GoTo();
+	}
+	NbBackground = ReturnInteger(nbback);
+	CalculSpace();
+	tmpSaver = ReturnInteger(ScreenSaver[1]);
+	BGMtimetodisplay = ReturnInteger(ConfigMusic[3]);
+	EnableInput(true);
+	SetSkins = false;
+	if (theDiscDrive.discType == "Audio")
+		DvdType = "Audio";
+	if (theDiscDrive.discType == "Title")
+		DvdType = "Title";
+	if (theDiscDrive.discType == "unknown")
+		DvdType = "unknown";
+
+	AdresseIP=ReadValue("LocalIP", "FTP", "config_pro.ini");
+	MasqueReseau=ReadValue("SubMaskIP", "FTP", "config_pro.ini");
+	Passerelle=ReadValue("GateWayIP", "FTP", "config_pro.ini");
+	Utilisateur=ReadValue("Login", "FTP", "config_pro.ini");
+
+}
+function GetScannDD2()
+{
+	if (theDiscDrive.discType != "Video")
+	{
+		var FileExists = theConfig.NtFileExists( "X:\\2GAM.data\\Datas\\ScannDD.xbx" );
+		if ( FileExists == true )
+		{
+			var info = new Settings;
+			info.file = "X:\\2GAM.data\\Datas\\ScannDD.xbx";
+			info.section = "default";
+			Temp = info.GetValue("Config");
+			if (ConfigNP != Temp)
+				FileExists = false;
+
+		}
+		if (g_bPanelDisplayed == false & (Launcher != "MainMenu" | FileExists == false))
+		{
+			Temp = ReadValue(84, "default", "Datas\\Langues\\"+lang+".ini");
+			BlockUser(Temp);
+		}
+		if (DDStart > 1)
+		{
+
+			if ( FileExists == false | GetDD == true)
+			{
+				ScannDD();
+			}
+			else
+			{
+				var info = new Settings;
+				info.file = "X:\\2GAM.data\\Datas\\ScannDD.xbx";
+				info.section = "default";
+				Nbmenudd = ReturnInteger(info.GetValue("Nbmenudd"));
+				info.section = "MenuDD";
+				for(var g = 1; g < Nbmenudd + 1; g = g + 1)
+				{
+					MenusDD[g] = info.GetValue(g);
+				}
+				info.section = "TailleDD";
+				for(var g2 = 1; g2 < Nbmenudd + 1; g2 = g2 + 1)
+				{
+					TailleDD[g2] = ReturnInteger(info.GetValue(g2));
+				}
+				for(var g3 = 1; g3 < Nbmenudd + 1; g3 = g3 + 1)
+				{
+					num = num + TailleDD[g3];
+				}
+				info.section = "ScanneDD";
+				for(var g4 = 0; g4 < num ; g4 = g4 + 1)
+				{
+					ScanneDD[g4] = info.GetValue(g4);
+				}
+			}
+			ClosePopup();
+			SetDD = true;
+		}
+		AffSpheremap();
+	}
+	else
+	{
+		SetDD = true;
+	}
+}
+function EjectLoad()
+{
+	if( StatutT == false)
+	{
+		theConfig.Eject();
+		StatutT = true;
+	}
+	else
+	{
+		theConfig.Load();
+		StatutT = false;
+	}
+}
+function CompteMenuDD()
+{
+	var cmdd = 1;
+	var tmdd = " ";
+	var nbsdd = " ";
+	if (ConfigNP == "novice")
+	{
+		var tmp = ReadValue("Nombre de Section DD", "default", "config.ini");
+		Nbmenudd = ReturnInteger(tmp);
+		for(var gn = 1; gn < Nbmenudd + 1; gn = gn + 1)
+		{
+			tmdd = ReadValue("Nom", "Section" + gn, "config.ini");
+			MenusDD[gn] = tmdd;
+		}
+		for(var x = 1; x < Nbmenudd + 1; x = x + 1)
+		{
+			var nb = 0;
+			for(var xx = 1; xx < 120; xx = xx + 1)
+			{
+				nbsdd = ReadValue("Patch" + xx, "Section" + x, "config.ini");
+				if( nbsdd != "")
+				{
+					nb = nb + 1;
+				}
+				else
+				{
+					xx = 120;
+				}
+			}
+			MenusDD[Nbmenudd + x] = nb;
+		}
+	}
+	else
+	{
+		for(var g = 1; g < cmdd + 1; g = g + 1)
+		{
+			tmdd = ReadValue(1, "MenuLancementDD_" + g + "_2GAM", "Datas\\Config\\MenuLancementDD.xbc");
+			if (tmdd != "")
+			{
+				MenusDD[g] = tmdd;
+				cmdd = cmdd + 1;
+				Nbmenudd = Nbmenudd + 1;
+			}
+		}
+		for(var x = 1; x < Nbmenudd + 1; x = x + 1)
+		{
+			var nb = 0;
+			for(var xx = 2; xx < 120; xx = xx + 1)
+			{
+				nbsdd = ReadValue(xx, "MenuLancementDD_" + x + "_2GAM", "Datas\\Config\\MenuLancementDD.xbc");
+				if( nbsdd != "")
+				{
+					nb = nb + 1;
+				}
+				else
+				{
+					xx = 120;
+				}
+			}
+			MenusDD[Nbmenudd + x] = nb/2;
+		}
+	}
+}
+function AjoutDvd()
+{
+	var temp = new Array;
+	temp[1] = ReadValue(16, "default", "Datas\\Langues\\"+lang+".ini");
+	for (var g = 1; g < Nbmenudd + 1; g = g + 1)
+	{
+		temp[g + 1] = MenusDD[g];
+	}
+	for (var h = 1; h < Nbmenudd + 1; h = h + 1)
+	{
+		temp[h + Nbmenudd + 1] = MenusDD[h + Nbmenudd];
+	}
+	Nbmenudd = Nbmenudd + 1;
+	for (var i = 1; i < (Nbmenudd * 2); i = i + 1)
+	{
+		MenusDD[i] = temp[i];
+	}
+	AjDvd = true;
+}
+function RetireDvd()
+{
+	var temp = new Array;
+	for (var g = 1; g < Nbmenudd; g = g + 1)
+	{
+		temp[g] = MenusDD[g + 1];
+	}
+	for (var h = Nbmenudd; h < (Nbmenudd * 2) - 1; h = h + 1)
+	{
+		temp[h] = MenusDD[h + 1];
+	}
+	Nbmenudd = Nbmenudd - 1;
+	for (var i = 1; i < (Nbmenudd * 2) + 1; i = i + 1)
+	{
+		MenusDD[i] = temp[i];
+	}
+	AjDvd = false;
+}
+
+DEF theHDDMonitor MemoryMonitor
+
+function ShowFreeSpaceOn(drive)
+{
+	var a = drive;
+	var b = theHDDMonitor.GetTotalFreeBlocks(a);
+	var c = b * 16;
+	return c;
+}
+
+function ShowTotalSpaceOn(drive)
+{
+	var a = drive;
+	var b = theHDDMonitor.GetFreeTotalRatio(a);
+	var c = theHDDMonitor.GetTotalFreeBlocks(a);
+	var d = c * 16;
+	var e = 0;
+	if( b > 0)
+	{
+		e = d / b;
+	}
+	return e;
+}
+
+function CalculSpace()
+{
+	var nbconf2;
+	var nbconf3;
+	var nbconf4;
+	var nomb;
+	var lgt;
+	DD = 8;
+	for (var ii = 1; ii < 4; ii = ii + 1)
+	{
+		freespace = ShowFreeSpaceOn(DD);
+
+		DDType = ReadValue(90, "default", "Datas\\Langues\\"+lang+".ini");
+		DDSpace[ii] = freespace + ".00" + DDType;
+		if (freespace > 1024)
+		{
+			if (freespace >= 1024*1024)
+			{
+				nomb = (freespace / 1024)/1024;
+				DDType = ReadValue(88, "default", "Datas\\Langues\\"+lang+".ini");
+			}
+			else if (freespace < 1024*1024 & freespace > 1024)
+			{
+				nomb = freespace / 1024;
+				DDType = ReadValue(89, "default", "Datas\\Langues\\"+lang+".ini");
+			}
+
+			nbconf2 = Math.round(nomb);
+			if (nbconf2 > nomb)
+				nbconf2 = nbconf2 - 1;
+
+			nbconf3 = Math.round((((nomb / nbconf2)-1)*nbconf2)*100);
+			nbconf4 = (((nomb / nbconf2)-1)*nbconf2)*100;
+			if (nbconf3 > nbconf4)
+				nbconf3 = nbconf3 - 1;
+
+			DDSpace[ii] = nbconf2+"."+nbconf3+DDType;
+		}
+		totalspace = ShowTotalSpaceOn(DD);
+
+		DDType = ReadValue(90, "default", "Datas\\Langues\\"+lang+".ini");
+		DDSpace[ii+3] = totalspace + ".00" + DDType;
+		if (totalspace > 1024)
+		{
+			if (totalspace >= 1024*1024)
+			{
+				nomb = (totalspace / 1024)/1024;
+				DDType = ReadValue(88, "default", "Datas\\Langues\\"+lang+".ini");
+			}
+			else if (totalspace < 1048576 & totalspace > 1024)
+			{
+				nomb = totalspace / 1024;
+				DDType = ReadValue(89, "default", "Datas\\Langues\\"+lang+".ini");
+			}
+
+			nbconf2 = Math.round(nomb);
+			if (nbconf2 > nomb)
+				nbconf2 = nbconf2 - 1;
+
+			nbconf3 = Math.round((((nomb / nbconf2)-1)*nbconf2)*100);
+			DDSpace[ii+3] = nbconf2+"."+nbconf3+DDType;
+		}
+		DD = DD + 1;
+	}
+}
+
+function HideClock()
+{
+	AffSelect = true;
+	bClockVisable = false;
+	var ww = thePanel.children[0].children[0];
+	if(ConfigSysteme[5] == "tHc")
+	{
+		ww.theMainMenuClock.fade = 1.0;
+		ww.theMainMenuClock.SetAlpha(0);
+		if (ConfigSysteme[9] == "bd")
+		{
+			ww.theMainMenuClock.SetRotation(2, 0, 0, 3);
+			ww.theMainMenuClock.SetTranslation(285.900002, -89.261000, -40.399994);
+		}
+		if (ConfigSysteme[9] == "bg")
+		{
+			ww.theMainMenuClock.SetRotation(2, 0, 0, 3);
+			ww.theMainMenuClock.SetTranslation(-300.900002, -100.261000, -40.399994);
+		}
+		if (ConfigSysteme[9] == "hd")
+		{
+			ww.theMainMenuClock.SetRotation(2, 0, 0, -3);
+			ww.theMainMenuClock.SetTranslation(285.900002, 59.261000, -40.399994);
+		}
+		if (ConfigSysteme[9] == "hg")
+		{
+			ww.theMainMenuClock.SetRotation(2, 0, 0, -3);
+			ww.theMainMenuClock.SetTranslation(-300.900002, 59.261000, -40.399994);
+		}
+	}
+	if(ConfigSysteme[5] == "text")
+	{
+		ww.heure.fade = 1.0;
+		ww.heure.SetAlpha(0);
+		ww.date.fade = 1.0;
+		ww.date.SetAlpha(0);
+		if (ConfigSysteme[9] == "bd")
+		{
+			ww.heure.SetTranslation(130, -200.0, 4.0);
+			ww.date.SetTranslation(130, -210.0, 4.0);
+		}
+		if (ConfigSysteme[9] == "bg")
+		{
+			ww.heure.SetTranslation(-145, -200.0, 4.0);
+			ww.date.SetTranslation(-145, -210.0, 4.0);
+		}
+		if (ConfigSysteme[9] == "hd")
+		{
+			ww.heure.SetTranslation(130, 170.0, 4.0);
+			ww.date.SetTranslation(130, 160.0, 4.0);
+		}
+		if (ConfigSysteme[9] == "hg")
+		{
+			ww.heure.SetTranslation(-145, 170.0, 4.0);
+			ww.date.SetTranslation(-145, 160.0, 4.0);
+		}
+	}
+	thePlayerPanelIn.Play();
+}
+
+function ShowClock()
+{
+	bClockVisable = true;
+	AffSelect = true;
+	var tth = ReturnInteger(ConfigSysteme[6]);
+	var ww = thePanel.children[0].children[0];
+	if(ConfigSysteme[5] == "tHc")
+	{
+		ww.theMainMenuClock.fade = 1.0;
+		ww.theMainMenuClock.SetAlpha(1);
+		if (ConfigSysteme[9] == "bd")
+		{
+			var posx = 80.0 + VideoMode;
+			ww.theMainMenuClock.SetRotation(0, 0, 0, 0);
+			ww.theMainMenuClock.SetTranslation(posx, -75.0, 10.399994);
+		}
+		if (ConfigSysteme[9] == "bg")
+		{
+			var posx = -120.0 - VideoMode;
+			ww.theMainMenuClock.SetRotation(0, 0, 0, 0);
+			ww.theMainMenuClock.SetTranslation(posx, -75.0, 10.399994);
+		}
+		if (ConfigSysteme[9] == "hd")
+		{
+			var posx = 80.0 + VideoMode;
+			ww.theMainMenuClock.SetRotation(0, 0, 0, 0);
+			ww.theMainMenuClock.SetTranslation(posx, 90.0, 10.399994);
+		}
+		if (ConfigSysteme[9] == "hg")
+		{
+			var posx = -120.0 - VideoMode;
+			ww.theMainMenuClock.SetRotation(0, 0, 0, 0);
+			ww.theMainMenuClock.SetTranslation(posx, 90.0, 10.399994);
+		}
+	}
+	if(ConfigSysteme[5] == "text")
+	{
+		ww.heure.fade = 1.0;
+		ww.heure.SetAlpha(1);
+		ww.date.fade = 1.0;
+		ww.date.SetAlpha(1);
+		ww.heure.SetScale(tth, tth, 10);
+		ww.date.SetScale(tth, tth, 10);
+		if (ConfigSysteme[9] == "bd")
+		{
+			var posx = 130.0 + VideoMode;
+			ww.heure.SetTranslation(posx, -110.000000 + tth, 4.000000);
+			ww.date.SetTranslation(posx, -110.000000, 4.000000);
+		}
+		if (ConfigSysteme[9] == "bg")
+		{
+			var posx = -145.0 - VideoMode;
+			ww.heure.SetTranslation(posx, -110.000000 + tth, 4.000000);
+			ww.date.SetTranslation(posx, -110.000000, 4.000000);
+		}
+		if (ConfigSysteme[9] == "hd")
+		{
+			var posx = 130.0 + VideoMode;
+			ww.heure.SetTranslation(posx, 105.0, 4.0);
+			ww.date.SetTranslation(posx, 105.0 - tth, 4.0);
+		}
+		if (ConfigSysteme[9] == "hg")
+		{
+			var posx = -145.0 - VideoMode;
+			ww.heure.SetTranslation(posx, 105.0, 4.0);
+			ww.date.SetTranslation(posx, 105.0 - tth, 4.0);
+		}
+	}
+	thePlayerPanelOut.Play();
+}
+function UpdateDate()
+{
+	var d = new Date;
+	nClockHour = d.getHours();
+	nClockMinute = d.getMinutes();
+	nClockSeconds = d.getSeconds();
+	if (b24hour == false)
+	{
+		nClockAMPM = "AM";
+		if (nClockHour >= 12)
+		{
+			nClockHour = nClockHour - 12;
+			nClockAMPM = "PM";
+		}
+		if (nClockHour == 0)
+			nClockHour = 12;
+	}
+
+	nClockDay = d.getDate();
+	nClockMonth = d.getMonth() + 1;
+	nClockYear = d.getFullYear();
+
+	if (nClockHour < 10)
+		nClockHour = "0" + nClockHour;
+	if (nClockMinute < 10)
+		nClockMinute = "0" + nClockMinute;
+	if (nClockSeconds < 10)
+		nClockSeconds = "0" + nClockSeconds;
+	if (nClockDay < 10)
+		nClockDay = "0" + nClockDay;
+	if (nClockMonth < 10)
+		nClockMonth = "0" + nClockMonth;
+
+	if(ConfigSysteme[7] == "date")
+	{
+		Heure_Text = "";
+		Date_Text = nClockDay+"/"+nClockMonth+"/"+nClockYear;
+	}
+	else if(ConfigSysteme[7] == "heure")
+	{
+		if (b24hour == false)
+			Heure_Text = nClockHour+":"+nClockMinute+":"+nClockSeconds+" "+nClockAMPM;
+		else
+			Heure_Text = nClockHour+":"+nClockMinute+":"+nClockSeconds;
+
+		Date_Text = "";
+	}
+	else if(ConfigSysteme[7] == "total")
+	{
+		if (b24hour == false)
+			Heure_Text = nClockHour+":"+nClockMinute+":"+nClockSeconds+" "+nClockAMPM;
+		else
+			Heure_Text = nClockHour+":"+nClockMinute+":"+nClockSeconds;
+
+		Date_Text = nClockDay+"/"+nClockMonth+"/"+nClockYear;
+	}
+	var w = thePanel.children[0].children[0];
+	w.heure_text.text = Heure_Text;
+	w.heuretHc.text = Date_Text+" "+Heure_Text;
+	w.date_text.text = Date_Text;
+}
+
+function loadBackground() 
+{
+	if (NbBackground == 0)
+	{
+		myBackgroundList.children[0].isBound = true;
+		return;
+	}
+	if (NbBackground == 1)
+	{
+		myBackgroundList.children[1].isBound = true;
+		curentbackground = 1;
+		return;
+	}
+	if (NbBackground == 2)
+	{
+		background = Math.round(Math.random() * 1) + 1;
+	}
+	if (NbBackground == 3)
+	{
+		background = Math.round(Math.random() * 2) + 1;
+	}
+	if (NbBackground == 4)
+	{
+		background = Math.round(Math.random() * 3) + 1;
+	}
+	if (NbBackground == 5)
+	{
+		background = Math.round(Math.random() * 4) + 1;
+	}
+	if (NbBackground == 6)
+	{
+		background = Math.round(Math.random() * 5) + 1;
+	}
+	if (NbBackground == 7)
+	{
+		background = Math.round(Math.random() * 6) + 1;
+	}
+	if (NbBackground == 8)
+	{
+		background = Math.round(Math.random() * 7) + 1;
+	}
+	if (NbBackground == 9)
+	{
+		background = Math.round(Math.random() * 8) + 1;
+	}
+	if (NbBackground == 10)
+	{
+		background = Math.round(Math.random() * 9) + 1;
+	}
+	testbackground();
+}
+
+function testbackground()
+{
+	
+	if( background == curentbackground | background == 0)
+	{
+		loadBackground();
+	}
+	else
+	{
+		if ( DVDLaunch != true)
+			myBackgroundList.children[background].isBound = true;
+
+		curentbackground = background;
+		BackgroundUpdate = 0;
+	} 
+}
+
+function Action(ac,style)
+{
+	theCDExpand.Play();
+	var lgt = ac.length();
+	if( ac.substring(lgt-5,lgt) == "_2GAM")
+	{
+		action = ac.substring(0,lgt-5);
+		if( shift != "" & action != "NextBackground" & action != "ShowHideClock" & action != "AffTitre" & action != "MusicSaver" & action != "EjectLoad")
+		{
+			onleft = false;
+			onright = false;
+			AfficheShift();
+		}
+
+		if( style == "Menu" & ApparenceMenusDD[1] == "1")
+		{sty = 2;}
+		if( style == "Menu" & ApparenceMenusDD[1] == "2")
+		{sty = 5;}
+		if( style == "Menu2" & ApparenceMenusDD[1] == "1")
+		{sty = 2;}
+		if( style == "Menu2" & ApparenceMenusDD[1] == "2")
+		{sty = 5;}
+
+		if( (action == "ShutDown" | action == "Reboot" | action == "ChangeSkins") & style == "Menu" )
+		{sty = 2;}
+		if( (action == "ShutDown" | action == "Reboot" | action == "ChangeSkins") & style == "Bouton")
+		{sty = 6;}
+		if( MenuBoutons == true)
+		{
+			if( action == "MusicSaver" | action == "GoToMusic" | action == "GoToMemory" | action == "GoToSettings" | action == "GoToMenuDD" | action.substring(0,15) == "MenuLancementDD")
+			{
+				return;
+			}
+		}
+		NumAction = 1;
+		for(var i = 1; i < Nbaction + 1; i = i + 1)
+		{
+			if( ac == ActionsPassword[NumAction])
+			{
+				TestPassword().Goto;
+			}
+			NumAction = NumAction + 3;
+		}
+		if (action.substring(0,15) == "MenuLancementDD")
+		{
+			MenuLancementDD().Goto;
+		}
+		LanceAction();
+		return;
+	}
+	if( style == "Bouton")
+	{
+		sty = 1;
+		NumAppli = 1;
+		Numapplipass = 1;
+		for(var i = 1; i < Nbappli + 1; i = i + 1)
+		{
+			if( ac == Applications[NumAppli])
+			{
+				for(var ii=1; ii < Nbapplipassword + 1; ii = ii + 1)
+				{
+					lng=ac.length();
+					ind=ac.indexOf("¤");
+					nom=ac.substring(0,ind);
+					dos=ac.substring(ind+1,lng);
+					if( dos == ApplicationsPassword[Numapplipass] | nom == ApplicationsPassword[Numapplipass])
+					{
+						TestPassword().Goto;
+					}
+					Numapplipass = Numapplipass + 3;
+				}
+				LanceAppli(Applications[NumAppli + 1], Applications[NumAppli + 2], Applications[NumAppli + 3]).Goto;
+			}
+			NumAppli = NumAppli + 4;
+		}
+	}
+	if( style == "Menu")
+	{
+		sty = 3;
+		NumAppli = 1;
+		Numapplipass = 1;
+		for(var i = 1; i < Nbappli + 1; i = i + 1)
+		{
+			if( ac == Applications[NumAppli])
+			{
+				for(var ii=1; ii < Nbapplipassword + 1; ii = ii + 1)
+				{
+					lng=ac.length();
+					ind=ac.indexOf("¤");
+					nom=ac.substring(0,ind);
+					dos=ac.substring(ind+1,lng);
+					if( dos == ApplicationsPassword[Numapplipass] | nom == ApplicationsPassword[Numapplipass])
+					{
+						TestPassword().Goto;
+					}
+					Numapplipass = Numapplipass + 3;
+				}
+				LanceAppli(Applications[NumAppli + 1], Applications[NumAppli + 2], Applications[NumAppli + 3]).Goto;
+			}
+			NumAppli = NumAppli + 4;
+		}
+	}
+	if( style == "Disque")
+	{
+		sty = 4;
+		Numapplipass = 1;
+		for(var i = MenuDeb; i < MenuDeb+taille; i = i + 1)
+		{
+			if( ac == ScanneDD[i*4])
+			{
+				for(var ii=1; ii < Nbapplipassword + 1; ii = ii + 1)
+				{
+					lng=ac.length();
+					ind=ac.indexOf("¤");
+					nom=ac.substring(0,ind);
+					dos=ac.substring(ind+1,lng);
+					if( dos == ApplicationsPassword[Numapplipass] | nom == ApplicationsPassword[Numapplipass])
+					{
+						NumAppli = i * 4;
+						TestPassword().Goto;
+					}
+					Numapplipass = Numapplipass + 3;
+				}
+				LanceAppli(ScanneDD[i*4 + 1], ScanneDD[i*4 + 2], ScanneDD[i*4 + 3]).Goto;
+			}
+			NumAppli = i * 4;
+		}
+	}
+	return;
+}
+function TestPassword()
+{
+	var pas;
+	onleft = false;
+	onright = false;
+	AfficheShift();
+
+	if (ConfigSysteme[3]=="keyb")
+	{
+		pas = 1;
+	}
+	else if (ConfigSysteme[3]=="nike")
+	{
+		pas = 2;
+	}
+
+	if ( sty == 1)
+	{
+		Password = ApplicationsPassword[Numapplipass + pas];
+	}
+	if (sty == 2 | sty == 6)
+	{
+		Password = ActionsPassword[NumAction + pas];
+	}
+	if ( sty == 3)
+	{
+		Password = ApplicationsPassword[Numapplipass + pas];
+	}
+	if ( sty == 4)
+	{
+		Password = ApplicationsPassword[Numapplipass + pas];
+	}
+	if ( sty == 5)
+	{
+		Password = ActionsPassword[NumAction + pas];
+	}
+
+	if (ConfigSysteme[3]=="keyb")
+	{
+		Pass = " ";
+		var txt = ReadValue(1, "default", "Datas\\Langues\\"+lang+".ini");
+		ShowKeyboard(txt,Pass,"ConfPassword()","");
+	}
+	else if (ConfigSysteme[3]=="nike")
+	{
+		CorrectPassword = Password;
+		GoPassword();
+	}
+}
+function NikePassword()
+{
+	strKeyboardEdit = CorrectPassword;
+	ConfPassword();
+}
+function ConfPassword()
+{
+	Pass = strKeyboardEdit;
+	if( Password != Pass)
+	{
+		var txt = ReadValue(2, "default", "Datas\\Langues\\"+lang+".ini");
+		TellUser(txt,"");
+	}
+	if( Password == Pass & sty == 1)
+	{
+		LanceAppli(Applications[NumAppli + 1], Applications[NumAppli + 2], Applications[NumAppli + 3]).Goto;
+	}
+	if( Password == Pass & (sty == 2 | sty == 6 | sty == 5))
+	{
+		if (action.substring(0,15) == "MenuLancementDD")
+		{
+			MenuLancementDD().Goto;
+		}
+		LanceAction();
+	}
+	if( Password == Pass & sty == 3)
+	{
+		LanceAppli(Applications[NumAppli + 1], Applications[NumAppli + 2], Applications[NumAppli + 3]).Goto;
+	}
+	if( Password == Pass & sty == 4)
+	{
+		LanceAppli(ScanneDD[NumAppli+1], ScanneDD[NumAppli+2], ScanneDD[NumAppli+3]).Goto;
+	}
+}
+function LanceAction()
+{
+	if( sty == 6 & action == "ShutDown" & ConfigSysteme[2] == "oui" )
+	{
+		ConfShutDown();
+		return;
+	}
+	if( sty == 6 & action == "Reboot" & ConfigSysteme[2] == "oui" )
+	{
+		ConfReboot();
+		return;
+	}
+	if( sty == 6 & action == "ChangeSkins" & ConfigSysteme[2] == "oui" )
+	{
+		ConfSwitchSkins();
+		return;
+	}
+
+	if( action == "ChangeSkins" & sty == 6)
+		{action = "SwitchSkins";}
+
+	if( action == "ChangeSkins" & sty == 2)
+		{action = "GoToSkinsPanel";}
+
+
+	if( musicsaver == false | (musicsaver == true & (action == "ShowHideClock" | action == "AffTitre" | action == "MusicSaver")))
+	eval(action + "()");
+}
+function ConfSwitchSkins()
+{
+	var txt = ReadValue(34, "default", "Datas\\Langues\\"+lang+".ini");
+	AskQuestion(txt, "SwitchSkins()", "", 0);
+}
+function ConfShutDown()
+{
+	var txt = ReadValue(7, "default", "Datas\\Langues\\"+lang+".ini");
+	AskQuestion(txt, "ShutDown()", "", 0);
+}
+function ShutDown()
+{
+    theConfig.XBOXPOWER();
+}
+function ConfReboot()
+{
+	var txt = ReadValue(8, "default", "Datas\\Langues\\"+lang+".ini");
+	AskQuestion(txt, "Reboot()", "", 0);
+}
+
+function Reboot()
+{
+	theConfig.XBOXResetHard();
+}
+function Restart()
+{
+	launch(Systeme[1]+".xbe",ExePath);
+}
+function LanceAppli(disque, chemin, exe)
+{
+	exec = exe;
+	var path2 = disque;
+	if ( disque == "C:" )
+	{
+		path = "\\Device\\Harddisk0\\Partition2";
+	}
+	else if ( disque == "E:" )
+	{
+		path = "\\Device\\Harddisk0\\Partition1";
+	}
+	else if ( disque == "F:" )
+	{
+		path = "\\Device\\Harddisk0\\Partition6";
+	}
+	else if ( disque == "G:" )
+	{
+		path = "\\Device\\Harddisk0\\Partition7";
+	}
+	if ( chemin == "root" )
+	{
+		path = path + "";
+	}
+	else
+	{
+		path = path + "\\" + chemin + "";
+		path2 = path2 + "\\" + chemin;
+	}
+	var FileExists = theConfig.NtFileExists( path2 + "\\" + exec );
+	if ( FileExists == true )
+	{
+		if ( ConfigSysteme[2] == "oui" & sty == 1)
+		{
+			var txt = ReadValue(3, "default", "Datas\\Langues\\"+lang+".ini")+Applications[NumAppli]+"' ?";
+			AskQuestion(txt, "Lance()", "", 0);
+		}
+		else
+		{
+			launch(exec,path);
+		}
+	}
+	else if ( FileExists == false )
+	{
+		var c = thePanel.children[0].children[0];
+		c.shift_text.text = "";
+		shift = "";
+		onleft = false;
+		onright = false;
+		var txt = ReadValue(4, "default", "Datas\\Langues\\"+lang+".ini");
+		TellUser(txt,"");
+	}
+}
+function Lance()
+{
+	launch(exec,path);
+}
+function AfficheShift()
+{
+	var c = thePanel.children[0].children[0];
+	if( onleft == true & onright == false )
+	{
+		shift = "¤-";
+	}
+	if( onleft == false & onright == true )
+	{
+		shift = "-¤";
+	}
+	if( onleft == true & onright == true )
+	{
+		shift = "¤¤";
+	}
+	if( onleft == false & onright == false )
+	{
+		shift = "";
+	}
+	if( ConfigSysteme[8] == "oui")
+	{
+		c.shift_text.text = shift;
+	}
+	var w = thePanel.children[0].children[0];
+}
+
+function AffTitre()
+{
+	AffSelect = true;
+	if( affsound == 1)
+	{
+		affsound = 0;
+		BGMalwayson = false;
+	}
+	else if (affsound == 0 & (BGMon == true | SSaverVisu == true))
+	{
+		affsound = 1;
+		BGMalwayson = true;
+	}
+	theControlPanelControlsInline.children[0].setBGMdisplay();
+}
+function AffInfos()
+{
+	var a = "";
+	var b = 0;
+	var langue = "";
+	var videomode = "";
+	var audiomode = "";
+	CalculSpace();
+	b = theConfig.GetLanguage();
+	if( b == 1)
+		langue = "English";
+	if( b == 2)
+		langue = "Português";
+	if( b == 3)
+		langue = "Deutsch";
+	if( b == 4)
+		langue = "Francais";
+	if( b == 5)
+		langue = "Español";
+	if( b == 6)
+		langue = "Italiano";
+
+	b = theConfig.GetVideoMode();
+	if( b == 0)
+		videomode = theTranslator.Translate("NORMAL");
+	if( b == 1)
+		videomode = theTranslator.Translate("LETTERBOX");
+	if( b == 2)
+		videomode = theTranslator.Translate("WIDESCREEN");
+
+	b = theConfig.GetAudioMode();
+	if( b == 0)
+		audiomode = theTranslator.Translate("MONO");
+	if( b == 1)
+		audiomode = theTranslator.Translate("STEREO");
+	if( b == 2)
+		audiomode = theTranslator.Translate("DOLBY SURROUND");
+
+	var txt = "";
+	txt = ReadValue(35, "default", "Datas\\Langues\\"+lang+".ini");
+	a = "\n" + txt;
+	txt = ReadValue(36, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + langue;
+	txt = ReadValue(52, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + theConfig.GetXBOXVersion();  
+	txt = ReadValue(53, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + theConfig.GetENCODER();
+	txt = ReadValue(37, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + theConfig.GetROMVersion();
+	a = a +"\rCPU :" + theConfig.GetCPUFrequence();
+	txt = ReadValue(38, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + theConfig.GetMODVersion();
+	txt = ReadValue(39, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + theConfig.GetGameRegion();
+	txt = ReadValue(60, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + theConfig.GetFanSpeed();
+	txt = ReadValue(40, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + NSkins[CurentSkin];
+	txt = ReadValue(41, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\n" + txt;
+	txt = ReadValue(42, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + AdresseIP;
+	txt = ReadValue(43, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + MasqueReseau;
+	txt = ReadValue(44, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + Passerelle;
+	txt = ReadValue(45, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + Utilisateur;
+	txt = ReadValue(59, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + theConfig.GetNETWORKSTATUS();
+	txt = ReadValue(46, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\n" + txt;
+	txt = ReadValue(47, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + theConfig.GetAVPackType();
+	txt = ReadValue(48, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + theConfig.GetAVRegion();
+	txt = ReadValue(49, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + videomode;
+	txt = ReadValue(50, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\n" + txt;
+	txt = ReadValue(51, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\r" + txt + " :" + audiomode;
+	txt = ReadValue(58, "default", "Datas\\Langues\\"+lang+".ini");
+	a = a +"\n" + txt;
+
+	a = a +"\rE: " + DDSpace[1] + " / " + DDSpace[4];
+	if (DDSpace[5] != "0.00Ko")
+	{			
+		a = a +"\rF: " + DDSpace[2] + " / " + DDSpace[5];
+	}
+	if (DDSpace[6] != "0.00Ko")
+	{
+		a = a +"\rG: " + DDSpace[3] + " / " + DDSpace[6];
+	}
+	TellUser(a,"");
+}
+function ExecDvd()
+{
+	IntExt();
+}
+function NextBackground()
+{
+	curentbackground = curentbackground + 1;
+	if( curentbackground > NbBackground)
+	{
+		curentbackground = 0;
+	}
+	myBackgroundList.children[curentbackground].isBound = true;
+	var w = thePanel.children[0].children[0];
+	if (curentbackground == 0)
+	{
+		var txt = ReadValue(29, "default", "Datas\\Langues\\"+lang+".ini");
+		SetStatusText(txt);
+	}
+	else
+		SetStatusText("xboxbg"+curentbackground);
+}
+function ShowHideClock()
+{
+	if(bClockVisable == false)
+	{
+		ShowClock();
+	}
+	else
+	{
+		HideClock();
+	}
+}
+function MusicSaver()
+{
+	if(musicsaver == false)
+	{
+		ShowMusicSaver();
+		musicsaver = true;
+	}
+	else
+	{
+		HideMusicSaver();
+		musicsaver = false;
+	}
+}
+function ShowMusicSaver()
+{
+	var cc = theMainMenu.children[0].children[0];
+	cc.Main_IntOrb_01.fade = 1.00;
+	cc.Main_IntOrb_02.fade = 1.00;
+	cc.Main_IntOrb_03.fade = 1.00;
+	cc.Main_IntOrb_04.fade = 1.00;
+	cc.Main_Orb_01.fade = 1.00;
+	cc.Main_Orb_02.fade = 1.00;
+	cc.Main_Orb_03.fade = 1.00;
+	cc.Main_Orb_04.fade = 1.00;
+	cc.Main_Orb_05.fade = 1.00;
+	cc.Main_Orb_06.fade = 1.00;
+	cc.Main_Orb_07.fade = 1.00;
+	cc.Main_Orb_08.fade = 1.00;
+	cc.Main_Orb_09.fade = 1.00;
+	cc.Main_Orb_10.fade = 1.00;
+	cc.Main_Orb_11.fade = 1.00;
+	cc.Main_Orb_12.fade = 1.00;
+	cc.Main_Orb_13.fade = 1.00;
+	cc.Main_pod_backing03.visible = true;
+	cc.structure_1.fade = 1.00;
+	cc.structure_3.fade = 1.00;
+	cc.structure_5.fade = 1.00;
+	cc.structure_8.fade = 1.00;
+	cc.affcell.fade = 1.00;
+	DaGoNspheremap.fade = 1.00;
+	myBackgroundList.children[0].isBound = true;
+	DaGoNspheremap.SetAlpha(0);
+	AudiovizuBack.visible = false;
+	SoundtrackView.isbound = true;
+	cc.Main_IntOrb_01.SetAlpha(0);
+	cc.Main_IntOrb_02.SetAlpha(0);
+	cc.Main_IntOrb_03.SetAlpha(0);
+	cc.Main_IntOrb_04.SetAlpha(0);
+	cc.Main_Orb_01.SetAlpha(0);
+	cc.Main_Orb_02.SetAlpha(0);
+	cc.Main_Orb_03.SetAlpha(0);
+	cc.Main_Orb_04.SetAlpha(0);
+	cc.Main_Orb_05.SetAlpha(0);
+	cc.Main_Orb_06.SetAlpha(0);
+	cc.Main_Orb_07.SetAlpha(0);
+	cc.Main_Orb_08.SetAlpha(0);
+	cc.Main_Orb_09.SetAlpha(0);
+	cc.Main_Orb_10.SetAlpha(0);
+	cc.Main_Orb_11.SetAlpha(0);
+	cc.Main_Orb_12.SetAlpha(0);
+	cc.Main_Orb_13.SetAlpha(0);
+	cc.Main_pod_backing03.SetAlpha(1);
+	cc.structure_1.SetAlpha(0);
+	cc.structure_3.SetAlpha(1);
+	cc.structure_5.SetAlpha(0);
+	cc.structure_8.SetAlpha(0);
+	cc.affcell.SetAlpha(0);
+	thePlayerPanelOut.Play();
+	cc.WAV01.rpm = 0;
+	cc.WAV01.field = 0;
+	cc.WAV02.rpm = 0;
+	cc.WAV02.field = 0;
+	cc.WAV03.rpm = 0;
+	cc.WAV03.field = 0;
+	if (ApparenceMainMenu[4] == "0")
+		cc.RotPetitCroix.rpm = 5;
+
+}
+function HideMusicSaver()
+{
+	var c = theMainMenu.children[0].children[0];
+	c.Main_IntOrb_01.fade = 1.00;
+	c.Main_IntOrb_02.fade = 1.00;
+	c.Main_IntOrb_03.fade = 1.00;
+	c.Main_IntOrb_04.fade = 1.00;
+	c.Main_Orb_01.fade = 1.00;
+	c.Main_Orb_02.fade = 1.00;
+	c.Main_Orb_03.fade = 1.00;
+	c.Main_Orb_04.fade = 1.00;
+	c.Main_Orb_05.fade = 1.00;
+	c.Main_Orb_06.fade = 1.00;
+	c.Main_Orb_07.fade = 1.00;
+	c.Main_Orb_08.fade = 1.00;
+	c.Main_Orb_09.fade = 1.00;
+	c.Main_Orb_10.fade = 1.00;
+	c.Main_Orb_11.fade = 1.00;
+	c.Main_Orb_12.fade = 1.00;
+	c.Main_Orb_13.fade = 1.00;
+	c.structure_1.fade = 1.00;
+	c.structure_3.fade = 1.00;
+	c.structure_5.fade = 1.00;
+	c.structure_8.fade = 1.00;
+	c.affcell.fade = 1.00;
+	DaGoNspheremap.fade = 1.00;
+	myBackgroundList.children[curentbackground].isBound = true;
+	theMainMenuViewpoint.isbound = true;
+	c.Main_IntOrb_01.SetAlpha(1);
+	c.Main_IntOrb_02.SetAlpha(1);
+	c.Main_IntOrb_03.SetAlpha(1);
+	c.Main_IntOrb_04.SetAlpha(1);
+	c.Main_Orb_01.SetAlpha(1);
+	c.Main_Orb_02.SetAlpha(1);
+	c.Main_Orb_03.SetAlpha(1);
+	c.Main_Orb_04.SetAlpha(1);
+	c.Main_Orb_05.SetAlpha(1);
+	c.Main_Orb_06.SetAlpha(1);
+	c.Main_Orb_07.SetAlpha(1);
+	c.Main_Orb_08.SetAlpha(1);
+	c.Main_Orb_09.SetAlpha(1);
+	c.Main_Orb_10.SetAlpha(1);
+	c.Main_Orb_11.SetAlpha(1);
+	c.Main_Orb_12.SetAlpha(1);
+	c.Main_Orb_13.SetAlpha(1);
+	c.structure_1.SetAlpha(1);
+	c.structure_3.SetAlpha(1);
+	c.structure_5.SetAlpha(1);
+	c.structure_8.SetAlpha(1);
+	c.affcell.SetAlpha(1);
+	AffOrbite();
+	thePlayerPanelIn.Play();
+	SSaver = 0;
+	c.WAV01.rpm = ApparenceMainMenu[24];
+	c.WAV01.field = ApparenceMainMenu[25];
+	c.WAV02.rpm = ApparenceMainMenu[26];
+	c.WAV02.field = ApparenceMainMenu[27];
+	c.WAV03.rpm = ApparenceMainMenu[28];
+	c.WAV03.field = ApparenceMainMenu[29];
+	c.RotPetitCroix.rpm = ApparenceMainMenu[4];
+	AffSpheremap();
+	if ( ApparenceMainMenu[13] == "non")
+		c.Main_pod_backing03.visible = false;
+
+	if (ConfigSysteme[20] == "oui")
+		AudiovizuBack.visible = true;
+
+}
+
+function AffOrbite()
+{
+	var c = theMainMenu.children[0].children[0];
+	c.Main_pod_backing03.visible = true;
+	c.Main_Orb_01.SetAlpha(0);
+	c.Main_Orb_02.SetAlpha(0);
+	c.Main_Orb_03.SetAlpha(0);
+	c.Main_Orb_04.SetAlpha(0);
+	c.Main_Orb_05.SetAlpha(0);
+	c.Main_Orb_06.SetAlpha(0);
+	c.Main_Orb_07.SetAlpha(0);
+	c.Main_Orb_08.SetAlpha(0);
+	c.Main_Orb_09.SetAlpha(0);
+	c.Main_Orb_10.SetAlpha(0);
+	c.Main_Orb_11.SetAlpha(0);
+	c.Main_Orb_12.SetAlpha(0);
+	c.Main_Orb_13.SetAlpha(0);
+	c.Main_IntOrb_01.SetAlpha(0);
+	c.Main_IntOrb_02.SetAlpha(0);
+	c.Main_IntOrb_03.SetAlpha(0);
+	c.Main_IntOrb_04.SetAlpha(0);
+	if(ApparenceMainMenu[1] == "oui")
+	{
+		c.RotRing.rpm = ApparenceMainMenu[2];
+	}
+	else
+	{
+		c.structure_1.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[3] == "oui")
+	{
+		c.RotPetitCroix.rpm = ApparenceMainMenu[4];
+	}
+	else
+	{
+		c.structure_3.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[5] == "oui")
+	{
+		c.RotBlindage.rpm = ApparenceMainMenu[6];
+	}
+	else
+	{
+		c.structure_5.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "gasorb")
+	{
+		c.Main_Orb_01.SetAlpha(1);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "globe")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(1);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "jewels")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(1);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "rings")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(1);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "twirly")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(1);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "wireframe")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(1);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "original")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(1);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "jbone" | ApparenceMainMenu[12] == "jbone" | ApparenceMainMenu[12] == "xbox4+jbone" | ApparenceMainMenu[12] == "icon+jbone")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(1);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "bubbles")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(1);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "terre")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(1);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "ciel")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(1);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "terre+ciel")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(1);
+		c.Main_Orb_11.SetAlpha(1);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "noyau")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(1);
+		c.Main_Orb_13.SetAlpha(0);
+	}
+	if(ApparenceMainMenu[7] == "electron")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(0);
+		c.Main_Orb_13.SetAlpha(1);
+	}
+	if(ApparenceMainMenu[7] == "noyau+electron")
+	{
+		c.Main_Orb_01.SetAlpha(0);
+		c.Main_Orb_02.SetAlpha(0);
+		c.Main_Orb_03.SetAlpha(0);
+		c.Main_Orb_04.SetAlpha(0);
+		c.Main_Orb_05.SetAlpha(0);
+		c.Main_Orb_06.SetAlpha(0);
+		c.Main_Orb_07.SetAlpha(0);
+		c.Main_Orb_08.SetAlpha(0);
+		c.Main_Orb_09.SetAlpha(0);
+		c.Main_Orb_10.SetAlpha(0);
+		c.Main_Orb_11.SetAlpha(0);
+		c.Main_Orb_12.SetAlpha(1);
+		c.Main_Orb_13.SetAlpha(1);
+	}
+	if(ApparenceMainMenu[7] == "oui")
+	{
+		c.Main_Orb_07.SetAlpha(1);
+	}
+	if(ApparenceMainMenu[8] == "non")
+	{
+		c.structure_8.SetAlpha(0);
+	}
+	if (ApparenceMainMenu[12] == "xbox4" | ApparenceMainMenu[12] == "xbox4+jbone")
+	{
+		c.Main_IntOrb_01.SetAlpha(1);
+		c.Main_IntOrb_02.SetAlpha(0);
+		c.Main_IntOrb_03.SetAlpha(0);
+		c.Main_IntOrb_04.SetAlpha(0);
+	}
+	if (ApparenceMainMenu[12] == "icon" | ApparenceMainMenu[12] == "icon+jbone")
+	{
+		c.Main_IntOrb_01.SetAlpha(0);
+		c.Main_IntOrb_02.SetAlpha(1);
+		c.Main_IntOrb_03.SetAlpha(0);
+		c.Main_IntOrb_04.SetAlpha(0);
+	}
+	if (ApparenceMainMenu[12] == "newspikes")
+	{
+		c.Main_IntOrb_01.SetAlpha(0);
+		c.Main_IntOrb_02.SetAlpha(0);
+		c.Main_IntOrb_03.SetAlpha(1);
+		c.Main_IntOrb_04.SetAlpha(0);
+	}
+	if (ApparenceMainMenu[12] == "dopeleaf")
+	{
+		c.Main_IntOrb_01.SetAlpha(0);
+		c.Main_IntOrb_02.SetAlpha(0);
+		c.Main_IntOrb_03.SetAlpha(0);
+		c.Main_IntOrb_04.SetAlpha(1);
+	}
+	if (ApparenceMainMenu[13] == "non")
+	{
+		c.Main_pod_backing03.visible = false;
+	}
+	if (ApparenceMainMenu[14] == "oui")
+	{
+		c.affcell.SetAlpha(1);
+	}
+	if (ApparenceMainMenu[14] == "non")
+	{
+		c.affcell.SetAlpha(0);
+	}
+}
+function updatetitre()
+{
+	var i = 0;
+	var xx = 0;
+	var zx = 0;
+	if( NbMainMenu < 9)
+		xx = 9;
+	else
+		xx = NbMainMenu;
+
+	for ( i = 0; i < xx; i = i + 1)
+	{
+		TitreMenu[i] = " ";
+		if( nCurMainMenuItem < 5)
+		{
+			nCurMainMenuValue[i] = i;
+		}
+		else if( nCurMainMenuItem > 4 & (nCurMainMenuItem + 4) < NbMainMenu)
+		{
+			zx = i + (nCurMainMenuItem - 4);
+			nCurMainMenuValue[i] = zx;
+		}
+		else if(nCurMainMenuItem + 5 > NbMainMenu)
+		{
+			if (NbMainMenu < 9)
+			{
+				RotMainMenu = (nCurMainMenuItem - (NbMainMenu - 3))* 15;
+				nCurMainMenuScroll = nCurMainMenuItem - (NbMainMenu - 3);
+				nCurMainMenuPos = nCurMainMenuScroll;
+				zx = i;
+			}
+			if (NbMainMenu > 8)
+			{
+				RotMainMenu = (nCurMainMenuItem - (NbMainMenu - 5))* 15;
+				nCurMainMenuScroll = nCurMainMenuItem - (NbMainMenu - 5);
+				nCurMainMenuPos = nCurMainMenuScroll;
+				zx = i + (NbMainMenu - 9);
+			}
+			nCurMainMenuValue[i] = zx;
+		}
+	}
+	UpdateTitreMenu();
+}
+function UpdateTitreMenu()
+{
+	var lgt = 0;
+	var lgtt = 0;
+	var i = 0;
+	var ii = 3;
+	for ( i = 0; i < NbMainMenu; i = i + 1)
+	{
+		if( ConfigMenusMainMenu[ii] == "... Menu Musiques ...")
+			TitreMenu[i] = ReadValue(61, "default", "Datas\\Langues\\"+lang+".ini");
+		else if( ConfigMenusMainMenu[ii] == "... Menu Memoire ...")
+			TitreMenu[i] = ReadValue(62, "default", "Datas\\Langues\\"+lang+".ini");
+		else if( ConfigMenusMainMenu[ii] == "... Menu Disque Dur ...")
+			TitreMenu[i] = ReadValue(63, "default", "Datas\\Langues\\"+lang+".ini");
+		else if( ConfigMenusMainMenu[ii] == "... Menu Configuration ...")
+			TitreMenu[i] = ReadValue(64, "default", "Datas\\Langues\\"+lang+".ini");
+		else
+			TitreMenu[i] = ConfigMenusMainMenu[ii];
+
+		ii = ii + 2;
+		TitreMenu[i] = TitreMenu[i] + " ";
+	}
+	UpdateMainMenu();
+}
+function ScannSkins()
+{
+	NbSkins = 0;
+	NSkins[0]="Neant";
+	for(Temp = 0; Temp < 9; Temp = Temp + 1)
+	{
+		SkinInfo[Temp] = " ";
+		SkinCreat[Temp] = " ";
+		NSkins[Temp]=" ";
+	}
+	var c = new Folder;
+	c.path = "P:\\Dash2Gam\\2GAM.data\\Skins";
+	var cL = c.subFolders.length();
+	if(cL > 0)
+	{
+		for(var cLo = 0; cLo < cL; cLo = cLo + 1)
+		{
+			var dossier = c.subFolders[cLo].name;
+			var testpath = "P:\\Dash2Gam\\2GAM.data\\Skins\\" + dossier;
+			var FileExists = theConfig.NtFileExists( testpath + "\\Skin.ini" );
+			if ( FileExists == true )
+			{
+				NbSkins = NbSkins + 1; 
+				SkinInfo[NbSkins] = "";
+				SkinCreat[NbSkins] = "";
+				NSkins[NbSkins] = dossier;
+				Temp = ReadValue("Auteur", "default", "Skins\\"+NSkins[NbSkins]+"\\Skin.ini");
+				if (Temp != "")
+					SkinInfo[NbSkins] = Temp;
+
+				Temp = ReadValue("DateCreat", "default", "Skins\\"+NSkins[NbSkins]+"\\Skin.ini");
+				if (Temp != "")
+					SkinCreat[NbSkins] = Temp;
+
+			}
+ 		}
+	}
+	SetSkins = true;
+}
+function ReadModeSkin()
+{
+	Temp = ReadValue("Skin", "default", "Datas\\data.xbc");
+	if (Temp == "rnd")
+	{
+		Temp = ReadValue("Change", "default", "Datas\\data.xbc");
+		if (Temp != "true")
+			RndSkins();
+		else
+			SaveSetting("Change","false","default", "Datas\\data.xbc");
+	}
+	for (var a = 1; a < NbSkins + 1; a = a + 1)
+	{
+		if ( NSkins[a] == Systeme[4] )
+			CurentSkin = a;
+	}
+	if (Temp == "cont")
+	{
+		Temp = ReadValue("Change", "default", "Datas\\data.xbc");
+		if (Temp != "true")
+			SwitchSkins();
+		else
+			SaveSetting("Change","false","default", "Datas\\data.xbc");
+	}
+}
+function RndSkins() 
+{
+	Temp = Math.round(Math.random() * NbSkins) + 1;
+	for (var a = 1; a < Temp  + 1; a = a + 1)
+	{
+		rndskin = Math.round(Math.random() * NbSkins) + 1;
+	}
+	TestSkin();
+}
+
+function TestSkin()
+{
+	if(NSkins[rndskin] == Systeme[4] & NbSkins > 1)
+	{
+		RndSkins();
+	}
+	else
+	{
+		SaveSetting("Change","true","default", "Datas\\data.xbc");
+		CurSkinsPanelSelected = rndskin - 1;
+		SkinsPanelItemScroll = 0;
+		ChangeSkins();
+	}
+}
+function SwitchSkins()
+{
+	SaveSetting("Change","true","default", "Datas\\data.xbc");
+	CurentSkin = CurentSkin + 1;
+	if ( CurentSkin > NbSkins )
+		CurentSkin = 1;
+
+	if ( NbSkins == 1 )
+		return;
+
+	CurSkinsPanelSelected =	CurentSkin - 1;
+	SkinsPanelItemScroll = 0;
+	ChangeSkins();
+}
+function ModeUnique()
+{
+	SaveSetting("Skin","fixe","default", "Datas\\data.xbc");
+	ChangeSkins();
+}
+
+function ChangeSkins()
+{
+	var ledseq = "";
+	Temp = NSkins[CurSkinsPanelSelected+1+SkinsPanelItemScroll];
+	ledseq = ReadValue("Led", "default", "Skins\\"+Temp+"\\Skin.ini");
+	if (ledseq == "")
+		ledseq = SaveLed;
+
+	SaveSetting("LedSequence",ledseq,"LED", "config_pro.ini");
+	Temp = NSkins[CurSkinsPanelSelected+1+SkinsPanelItemScroll];
+	SaveSetting(4,Temp,"Systeme", "config_pro.ini");
+	Restart();
+}
+function ScannDD()
+{
+	var tt;
+	var ttt;
+	TailleDD[0] = 0;
+	num = 0;
+	for(var cn = 1; cn < Nbmenudd + 1; cn = cn + 1)
+	{
+		TailleDD[cn] = 0;
+		taille = 0;
+		tt = "";
+		ttt = "";
+		if (ConfigNP == "novice")
+		{
+			for(var i = 1; i < MenusDD[Nbmenudd + cn] + 1; i = i + 1)
+			{
+				tt = ReadValue("Patch" + i, "Section"+ cn, "config.ini");
+				ttt = "default.xbe";
+				ScannDDReadValues(tt,ttt);
+			}
+		}
+		else
+		{
+			for(var i = 1; i < MenusDD[Nbmenudd + cn] + 1; i = i + 1)
+			{
+				var b = i * 2;
+				tt = ReadValue(b, "MenuLancementDD_"+ cn + "_2GAM", "Datas\\Config\\MenuLancementDD.xbc");
+				ttt = ReadValue(b + 1, "MenuLancementDD_"+ cn + "_2GAM", "Datas\\Config\\MenuLancementDD.xbc");
+				if( ttt != "Applications" )
+				{
+					ScannDDReadValues(tt,ttt);
+				}
+				else if( ttt == "Applications" )
+				{
+					NumAppli = 1;
+					for(var ii = 1; ii < Nbappli + 1; ii = ii + 1)
+					{
+						if( tt == Applications[NumAppli])
+						{
+							ScanneDD[num] = Applications[NumAppli];
+							ScanneDD[num+1] = Applications[NumAppli + 1];
+							ScanneDD[num+2] = Applications[NumAppli + 2];
+							ScanneDD[num+3] = Applications[NumAppli + 3];
+							num = num + 4;
+							taille = taille + 1;
+						}
+						NumAppli = NumAppli + 4;
+					}
+				}
+			}
+		}
+		TailleDD[cn] = taille*4;
+	}
+	var info = new Settings;
+	info.file = "X:\\2GAM.data\\Datas\\ScannDD.xbx";
+	info.section = "default";
+	if (ConfigNP == "novice")
+		var c = info.SetValue("Config", "novice");
+	else
+		var c = info.SetValue("Config", "pro");
+
+	var c = info.SetValue("Nbmenudd", Nbmenudd);
+	info.section = "MenuDD";
+	for(var g = 1; g < Nbmenudd + 1; g = g + 1)
+	{
+		var c = info.SetValue(g, MenusDD[g]);
+	}
+	info.section = "TailleDD";
+	for(var g2 = 1; g2 < Nbmenudd + 1; g2 = g2 + 1)
+	{
+		var c = info.SetValue(g2, TailleDD[g2]);
+	}
+	info.section = "ScanneDD";
+	for(var g3 = 0; g3 < num ; g3 = g3 + 1)
+	{
+		var c = info.SetValue(g3, ScanneDD[g3]);
+	}
+}
+DEF outils Filestools
+
+function ScannDDReadValues(ww,xx)
+{
+	var tailleC;
+	var tailleE;
+	var tailleF;
+	var tailleG; 
+	tailleC = 0;
+	tailleE = 0;
+	tailleF = 0;
+	tailleG = 0;
+	var tt;
+	tt = "";
+	var fD = ww;
+	var exec = xx;
+	var c = new Folder;
+	c.path = "C:\\" + fD;
+	var cL = c.subFolders.length();
+	    if(cL > 0)
+	    {
+	 	for(var cLo = 0; cLo < cL; cLo = cLo + 1)
+	 	{
+			var dossier = c.subFolders[cLo].name;
+			var testpath = "C:\\" + fD + "\\" + dossier;
+			var FileExists = theConfig.NtFileExists( testpath + "\\" + exec );
+			if ( FileExists == true )
+			{
+				tt = outils.GetXBETitle("C:\\" + fD + "\\" + dossier +"\\" + exec);
+                        NetDossier(tt);
+				ScanneDD[num] = netdossier+"¤"+dossier;
+				ScanneDD[num+1] = "C:";
+				ScanneDD[num+2] = fD + "\\" + c.subFolders[cLo].name;
+	 			ScanneDD[num+3] = exec;
+				num = num + 4;
+				tailleC=tailleC+1; 
+			}
+	 	}
+	    }
+	var e = new Folder;
+	e.path = "E:\\" + fD;
+	var eL = e.subFolders.length();
+	    if(eL > 0)
+	    {
+	 	for(var eLo = 0; eLo < eL; eLo = eLo + 1)
+	 	{
+			var dossier = e.subFolders[eLo].name;
+			var testpath = "E:\\" + fD + "\\" + dossier;
+			var FileExists = theConfig.NtFileExists( testpath + "\\" + exec );
+			if ( FileExists == true )
+			{	                                
+			      tt = outils.GetXBETitle("E:\\" + fD + "\\" + dossier +"\\" + exec);
+                        NetDossier(tt);                       	                                
+                        ScanneDD[num] = netdossier+"¤"+dossier;
+				ScanneDD[num+1] = "E:";
+				ScanneDD[num+2] = fD + "\\" + e.subFolders[eLo].name;
+	 			ScanneDD[num+3] = exec;
+			      num = num + 4;
+				tailleE=tailleE+1; 
+                       }
+	 	}
+	    }
+	var f = new Folder;
+	f.path = "F:\\" + fD;
+	var fL = f.subFolders.length();
+	    if(fL > 0)
+	    {
+	 	for(var fLo = 0; fLo < fL; fLo = fLo + 1)
+	 	{
+			var dossier = f.subFolders[fLo].name;
+			var testpath = "F:\\" + fD + "\\" + dossier;
+			var FileExists = theConfig.NtFileExists( testpath + "\\" + exec );
+			if ( FileExists == true )
+			{
+				tt = outils.GetXBETitle("F:\\" + fD + "\\" + dossier +"\\" + exec);
+                        NetDossier(tt);
+				ScanneDD[num] = netdossier+"¤"+dossier;
+				ScanneDD[num+1] = "F:";
+				ScanneDD[num+2] = fD + "\\" + f.subFolders[fLo].name;
+	 			ScanneDD[num+3] = exec;
+				num = num + 4;
+				tailleF=tailleF+1;
+			}
+	 	}
+	    }
+	var g = new Folder;
+	g.path = "G:\\" + fD;
+	var gL = g.subFolders.length();
+	    if(gL > 0)
+	    {
+	 	for(var gLo = 0; gLo < gL; gLo = gLo + 1)
+	 	{
+			var dossier = g.subFolders[gLo].name;
+			var testpath = "G:\\" + fD + "\\" + dossier;
+			var FileExists = theConfig.NtFileExists( testpath + "\\" + exec );
+			if ( FileExists == true )
+			{
+				tt = outils.GetXBETitle("G:\\" + fD + "\\" + dossier +"\\" + exec);
+                        NetDossier(tt);
+				ScanneDD[num] = netdossier+"¤"+dossier;
+				ScanneDD[num+1] = "G:";
+				ScanneDD[num+2] = fD + "\\" + g.subFolders[gLo].name;
+	 			ScanneDD[num+3] = exec;
+				num = num + 4;
+				tailleG=tailleG+1;
+			}
+	 	}
+	    }
+	taille = taille + tailleC + tailleE + tailleF + tailleG; 
+	return taille;
+}
+
+function NetDossier(nom)
+{
+	var dossier = nom;
+	netdossier = "";
+	var lgt = dossier.length();
+	for(var nd = 0; nd < lgt; nd = nd +1)
+	{
+		if ( dossier.substring(nd ,nd + 1) != "_")
+		{
+			netdossier = netdossier + dossier.substring(nd ,nd + 1);
+		}
+		else
+		{
+			netdossier = netdossier + " ";
+		}
+	}
+	return netdossier;
+}
+
+function AffSpheremap()
+{
+	TexTmp = ReadValue("EnvMap", "Generale", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (TexTmp != "")
+		EnvMap.url = TexTmp+".xbx";
+	else
+		EnvMap.url = "Smap.xbx";
+
+	if (ApparenceMainMenu[21] == "spheremap")
+	{
+		DaGoNspheremap.SetAlpha(1);
+	}
+	else
+	{
+		DaGoNspheremap.SetAlpha(0);
+	}
+}
+
+function OptionMenu()
+{
+	var c = theMainMenu.children[0].children[0];
+	c.theScreen.fade = 1.5;
+	c.theScreen.SetRotation(0,0,0,0);
+	c.theScreen.SetTranslation(0,0,0);
+	if( OptionUpdate == "oui")
+	{
+		var c = theMainMenu.children[0].children[0];
+		c.select.SetTranslation(162.000000, -219.000000, -36.470001);
+		c.affcell.SetAlpha(1);
+		c.structure_1.SetAlpha(1);
+		c.structure_3.SetAlpha(1);
+		c.structure_5.SetAlpha(1);
+		c.Main_Orb_01.SetAlpha(1);
+		c.Main_Orb_02.SetAlpha(1);
+		c.Main_Orb_03.SetAlpha(1);
+		c.Main_Orb_04.SetAlpha(1);
+		c.Main_Orb_05.SetAlpha(1);
+		c.Main_Orb_06.SetAlpha(1);
+		c.Main_Orb_07.SetAlpha(1);
+		c.Main_Orb_08.SetAlpha(1);
+		c.Main_Orb_09.SetAlpha(1);
+		c.Main_Orb_10.SetAlpha(1);
+		c.Main_Orb_11.SetAlpha(1);
+		c.Main_Orb_12.SetAlpha(1);
+		c.Main_Orb_13.SetAlpha(1);
+		c.structure_8.SetAlpha(1);
+		c.MainMenu_1_MiniCroix.SetAlpha(1);
+		c.MainMenu_2_MiniCroix.SetAlpha(1);
+		c.MainMenu_3_MiniCroix.SetAlpha(1);
+		c.MainMenu_4_MiniCroix.SetAlpha(1);
+		c.MainMenu_5_MiniCroix.SetAlpha(1);
+		c.MainMenu_6_MiniCroix.SetAlpha(1);
+		c.MainMenu_7_MiniCroix.SetAlpha(1);
+		c.MainMenu_8_MiniCroix.SetAlpha(1);
+		c.MainMenu_9_MiniCroix.SetAlpha(1);
+		c.select.SetAlpha(1);
+		c.Main_IntOrb_01.SetAlpha(0);
+		c.Main_IntOrb_02.SetAlpha(0);
+		c.Main_IntOrb_03.SetAlpha(0);
+		c.Main_IntOrb_04.SetAlpha(0);
+		c.Main_pod_backing03.SetAlpha(0);
+//		theMainMenu.children[0].children[0].Icon.SetAlpha(0);
+		OptionUpdate = "non";
+		AffOrbite();
+
+ 		if(ApparenceMainMenu[9] == "oui")
+		{
+			c.RotMiniCroix_MainMenu_1.rpm = ApparenceMainMenu[10];
+			c.RotMiniCroix_MainMenu_2.rpm = ApparenceMainMenu[10];
+			c.RotMiniCroix_MainMenu_3.rpm = ApparenceMainMenu[10];
+			c.RotMiniCroix_MainMenu_4.rpm = ApparenceMainMenu[10];
+			c.RotMiniCroix_MainMenu_5.rpm = ApparenceMainMenu[10];
+			c.RotMiniCroix_MainMenu_6.rpm = ApparenceMainMenu[10];
+			c.RotMiniCroix_MainMenu_7.rpm = ApparenceMainMenu[10];
+			c.RotMiniCroix_MainMenu_8.rpm = ApparenceMainMenu[10];
+			c.RotMiniCroix_MainMenu_9.rpm = ApparenceMainMenu[10];
+		}
+		else
+		{
+			c.MainMenu_1_MiniCroix.SetAlpha(0);
+			c.MainMenu_2_MiniCroix.SetAlpha(0);
+			c.MainMenu_3_MiniCroix.SetAlpha(0);
+			c.MainMenu_4_MiniCroix.SetAlpha(0);
+			c.MainMenu_5_MiniCroix.SetAlpha(0);
+			c.MainMenu_6_MiniCroix.SetAlpha(0);
+			c.MainMenu_7_MiniCroix.SetAlpha(0);
+			c.MainMenu_8_MiniCroix.SetAlpha(0);
+			c.MainMenu_9_MiniCroix.SetAlpha(0);
+		}
+ 		if(ApparenceMainMenu[11] == "non")
+		{
+			c.select.SetAlpha(0);
+		}
+		if(ApparenceMainMenu[21] == "oui")
+		{
+			if (BackgroundUpdate == 1)
+			{
+				if (ApparenceMainMenu[22] == "rnd")
+				{
+					loadBackground();
+				}
+				else
+				{
+					if (ApparenceMainMenu[22] == "xboxbg1" & NbBackground > 0)
+					{
+						myBackgroundList.children[1].isBound = true;
+						curentbackground = 1;
+					}
+					if (ApparenceMainMenu[22] == "xboxbg2" & NbBackground > 1)
+					{
+						myBackgroundList.children[2].isBound = true;
+						curentbackground = 2;
+					}
+					if (ApparenceMainMenu[22] == "xboxbg3" & NbBackground > 2)
+					{
+						myBackgroundList.children[3].isBound = true;
+						curentbackground = 3;
+					}
+					if (ApparenceMainMenu[22] == "xboxbg4" & NbBackground > 3)
+					{
+						myBackgroundList.children[4].isBound = true;
+						curentbackground = 4;
+					}
+					if (ApparenceMainMenu[22] == "xboxbg5" & NbBackground > 4)
+					{
+						myBackgroundList.children[5].isBound = true;
+						curentbackground = 5;
+					}
+					if (ApparenceMainMenu[22] == "xboxbg6" & NbBackground > 5)
+					{
+						myBackgroundList.children[6].isBound = true;
+						curentbackground = 6;
+					}
+					if (ApparenceMainMenu[22] == "xboxbg7" & NbBackground > 6)
+					{
+						myBackgroundList.children[7].isBound = true;
+						curentbackground = 7;
+					}
+					if (ApparenceMainMenu[22] == "xboxbg8" & NbBackground > 7)
+					{
+						myBackgroundList.children[8].isBound = true;
+						curentbackground = 8;
+					}
+					if (ApparenceMainMenu[22] == "xboxbg9" & NbBackground > 8)
+					{
+						myBackgroundList.children[9].isBound = true;
+						curentbackground = 9;
+					}
+					if (ApparenceMainMenu[22] == "xboxbg10" & NbBackground > 9)
+					{
+						myBackgroundList.children[10].isBound = true;
+						curentbackground = 10;
+					}
+				}
+			}
+		}
+		else
+		{
+			myBackgroundList.children[0].isBound = true;
+		}
+		if( ConfigMusic[1] == "oui")
+		{
+			if( ConfigMusic[3] == "0")
+				BGMalwayson = true;
+			else
+				BGMalwayson = false;
+
+			BGMon = true;
+		}
+		Materiaux();
+	}
+	lang = theConfig.GetLanguage();
+}
+function AffTitreMusique()
+{
+	var ttm = ReturnInteger(ConfigMusic[8]);
+	var c = thePanel.children[0].children[0];
+	c.theNowPlaying.fade = 1.0;
+	c.theNowPlaying.SetAlpha(1);
+	c.theNowPlaying2.fade = 1.0;
+	c.theNowPlaying2.SetAlpha(1);
+	c.theNowPlaying3.fade = 1.0;
+	c.theNowPlaying3.SetAlpha(1);
+	c.theNowPlaying.SetScale(ttm, ttm, 10.0);
+	c.theNowPlaying2.SetScale(ttm, ttm, 10.0);
+	c.theNowPlaying3.SetScale(ttm, ttm, 10.0);
+	if (ConfigMusic[7] == "bd")
+	{
+		var w = theMainMenu.children[0].children[0];
+		var posx = 150.0 + VideoMode;
+		var posxx = 35.0 + VideoMode;
+		w.select.fade = 1.0;
+		w.select.SetTranslation(posxx, -222.000000, -36.470001);
+		c.theNowPlaying.SetTranslation(posx, -110.0 + ttm * 2, 4.0);
+		c.theNowPlaying2.SetTranslation(posx, -110.0 + ttm, 4.0);
+		c.theNowPlaying3.SetTranslation(posx, -110.0, 4.0);
+		c.theNowPlaying_text.justify = "end";
+		c.theNowPlaying_text2.justify = "end";
+		c.theNowPlaying_text3.justify = "end";
+	}
+	if (ConfigMusic[7] == "bg")
+	{
+		var posx = -165.0 - VideoMode;
+		c.theNowPlaying.SetTranslation(posx, -110.0 + ttm * 2, 4.0);
+		c.theNowPlaying2.SetTranslation(posx, -110.0 + ttm, 4.0);
+		c.theNowPlaying3.SetTranslation(posx, -110.0, 4.0);
+		c.theNowPlaying_text.justify = "left";
+		c.theNowPlaying_text2.justify = "left";
+		c.theNowPlaying_text3.justify = "left";
+	}
+	if (ConfigMusic[7] == "hg")
+	{
+		var posx = -165.0 - VideoMode;
+		c.theNowPlaying.SetTranslation(posx, 105.0, 4.0);
+		c.theNowPlaying2.SetTranslation(posx, 105.0 - ttm, 4.0);
+		c.theNowPlaying3.SetTranslation(posx, 105.0 - ttm * 2, 4.0);
+		c.theNowPlaying_text.justify = "left";
+		c.theNowPlaying_text2.justify = "left";
+		c.theNowPlaying_text3.justify = "left";
+	}
+	if (ConfigMusic[7] == "hd")
+	{
+		var posx = 150.0 + VideoMode;
+		c.theNowPlaying.SetTranslation(posx, 105.0, 4.0);
+		c.theNowPlaying2.SetTranslation(posx, 105.0 - ttm, 4.0);
+		c.theNowPlaying3.SetTranslation(posx, 105.0 - ttm * 2, 4.0);
+		c.theNowPlaying_text.justify = "end";
+		c.theNowPlaying_text2.justify = "end";
+		c.theNowPlaying_text3.justify = "end";
+	}
+}
+function SetStatusText(str)
+{
+    thePanel.children[0].children[0].Volume_text.text = str;
+    if (str != "")
+    {
+        thePanel.children[0].children[0].Volume.SetAlpha(1);
+        thePanel.children[0].children[0].Volume.DisappearAfter(2);
+    }
+}
+function Photo()
+{
+	theConfig.screenshot();
+}
+function AfficheInfosXbox()
+{
+	var c = thePanel.children[0].children[0];
+	c.ReseauTxt.fade = 1.0;
+
+	if (ConfigSysteme[9] != "hg" & ConfigMusic[7] != "hg")
+	{
+		var posx = -130.0 - VideoMode;
+		c.ReseauTxt.SetTranslation(posx, 105.0, 4.0);
+	}
+	else if (ConfigSysteme[9] != "hd" & ConfigMusic[7] != "hd")
+	{
+		var posx = 130 + VideoMode;
+		c.ReseauTxt.SetTranslation(posx, 105.0, 4.0);
+	}
+	else if (ConfigSysteme[9] != "bg" & ConfigMusic[7] != "bg")
+	{
+		var posx = -130 - VideoMode;
+		c.ReseauTxt.SetTranslation(posx, -105.0, 4.0);
+	}
+}
+function CelsiusToF(tempC)
+{
+	var a = tempC;
+	var b = a.indexOf("°");
+	var c = ReturnInteger(a.substring(0,b));
+	var d = Math.round((c / (5 / 9)) + 32);
+	return d;
+}
+function InfoXboxHard()
+{
+	thePanel.children[0].children[0].Reseau_text.text = "IP:"+IPStatus+"\r"+theConfig.GetXBOXVersion()+"\rEncoder:"+theConfig.GetENCODER();
+}
+function AnimSelect()
+{
+	if ( g_theMainMenuLoaded == true)
+	{
+		var w = theMainMenu.children[0].children[0];
+		w.select.fade = 1;
+		if ( ConfigSysteme[9] == "bd" & bClockVisable == false)
+			w.select.SetTranslation(162 + VideoMode, -219, -36.47);
+		else if ( ConfigMusic[7] == "bd" & affsound == 0)
+			w.select.SetTranslation(162 + VideoMode, -219, -36.47);
+		else if ( ConfigSysteme[9] == "bd" & bClockVisable == true & ConfigSysteme[5] == "tHc")
+			w.select.SetTranslation(45 + VideoMode, -219, -36.47);
+		else if ( ConfigSysteme[9] == "bd" & bClockVisable == true & ConfigSysteme[5] == "text")
+			w.select.SetTranslation(65 + VideoMode, -219, -36.47);
+		else if ( ConfigMusic[7] == "bd" & affsound == 1)
+			w.select.SetTranslation(45 + VideoMode, -219, -36.47);
+
+		AffSelect = false;
+	}
+}
+function CoordX(angle,rayon)
+{
+	var a = angle;
+	var b = rayon;
+	var x = b;
+	if (a != 0)
+		x = Math.cos(a*3.14159265/180)*b;
+
+	return x;
+}
+function CoordY(angle,rayon)
+{
+	var a = angle;
+	var b = rayon;
+	var y = 0;
+	if (a != 0)
+		y = Math.sin(a*3.14159265/180)*b;
+
+	return y;
+}
+function OptionsLayer()
+{
+	var c = thePanel.children[0].children[0];
+	c.theMainMenuClock.SetAlpha(0);
+	c.heure.SetAlpha(0);
+	c.date.SetAlpha(0);
+	if(ConfigSysteme[19] == "Original")
+		c.FondClock.url = "PtHc.xbx";
+	else if(ConfigSysteme[19] == "Verre")
+		c.FondClock.url = "Fond.xbx";
+
+	if (ConfigSysteme[9] == "bd")
+	{
+		var posx = 130 + VideoMode;
+		c.heure.SetTranslation(posx, -200.0, 4.0);
+		c.date.SetTranslation(posx, -210.0, 4.0);
+		c.theMainMenuClock.SetRotation(2, 0, 0, -3);
+		c.theMainMenuClock.SetTranslation(285.900002, -100.261000, -40.399994);
+	}
+	if (ConfigSysteme[9] == "bg")
+	{
+		var posx = -145 - VideoMode;
+		c.heure.SetTranslation(posx, -200.0, 4.0);
+		c.date.SetTranslation(posx, -210.0, 4.0);
+		c.theMainMenuClock.SetRotation(2, 0, 0, 3);
+		c.theMainMenuClock.SetTranslation(285.900002, -100.261000, -40.399994);
+	}
+	if (ConfigSysteme[9] == "hd")
+	{
+		var posx = 130 + VideoMode;
+		c.heure.SetTranslation(posx, 170.0, 4.0);
+		c.date.SetTranslation(posx, 160.0, 4.0);
+		c.theMainMenuClock.SetRotation(2, 0, 0, 3);
+		c.theMainMenuClock.SetTranslation(285.900002, 59.261000, -40.399994);
+	}
+	if (ConfigSysteme[9] == "hg")
+	{
+		var posx = -145 - VideoMode;
+		c.heure.SetTranslation(posx, 170.0, 4.0);
+		c.date.SetTranslation(posx, 160.0, 4.0);
+		c.theMainMenuClock.SetRotation(2, 0, 0, 3);
+		c.theMainMenuClock.SetTranslation(285.900002, 59.261000, -40.399994);
+	}
+
+	if (ConfigSysteme[4] == "oui")
+	{
+		ShowClock();
+	}
+	else
+	{
+		HideClock();
+	}
+	AffTitreMusique();
+	PanelMateriaux();
+	if(ConfigSysteme[16]=="oui")
+	{
+		if (theConfig.GetNETWORKSTATUS() == "Network Cable Not Connected :(")
+			IPStatus = "  //";
+		else
+			IPStatus = AdresseIP;
+
+		InfoXboxHard();
+		InfosXbox = true;
+	}
+	else
+	{
+		thePanel.children[0].children[0].Reseau_text.text = "";
+		InfosXbox = false;
+	}
+		AfficheInfosXbox();
+}
+function Materiaux()
+{
+	var c = theMainMenu.children[0].children[0]; 
+	c.CellWav01.rpm = ApparenceMainMenu[15];
+	c.CellWav01.field = ApparenceMainMenu[16];
+	c.CellWav02.rpm = ApparenceMainMenu[17];
+	c.CellWav02.field = ApparenceMainMenu[18];
+	c.CellWav03.rpm = ApparenceMainMenu[19];
+	c.CellWav03.field = ApparenceMainMenu[20];
+	c.WAV01.rpm = ApparenceMainMenu[24];
+	c.WAV01.field = ApparenceMainMenu[25];
+	c.WAV02.rpm = ApparenceMainMenu[26];
+	c.WAV02.field = ApparenceMainMenu[27];
+	c.WAV03.rpm = ApparenceMainMenu[28];
+	c.WAV03.field = ApparenceMainMenu[29];
+	var xx = 0;
+	var g = 0;
+	if(NbMainMenu < 9)
+		xx = 9;
+	else
+		xx = NbMainMenu;
+
+	for ( g = 0; g < xx; g = g + 1)
+	{
+		MenuOnMat[g] = "GameHilite";
+		MenuOffMat[g] = "FlatSurfaces2sided";
+		MenuOnTex[g] = "GameHilite_01.bmp";
+		MenuOffTex[g] = "GameHilite_01.bmp";
+		MenuOnAlpha[g] = "1";
+		MenuOffAlpha[g] = "1";
+		MenuOnTextMat[g] = "HilightedType";
+		MenuOffTextMat[g] = "NavType";
+		PodMenuMat[g] = "FlatSurfaces";
+		PodMenuTex[g] = "";
+	}
+	xx = 1;
+	for ( g = 0; g < NbMainMenu; g = g + 1)
+	{
+		MatTmp = ReadValue("Menu"+xx+"OnMat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if (MatTmp != "")
+		{
+			MenuOnMat[g] = MatTmp;
+		}
+		else if ( xx > 1)
+		{
+			xx = 1;
+			MenuOnMat[g] = MenuOnMat[0];
+		}
+		xx = xx + 1;
+	}
+	xx = 1;
+	for ( g = 0; g < NbMainMenu; g = g + 1)
+	{
+		MatTmp = ReadValue("Menu"+xx+"OffMat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if (MatTmp != "")
+		{
+			MenuOffMat[g] = MatTmp;
+		}
+		else if ( xx > 1)
+		{
+			xx = 1;
+			MenuOffMat[g] = MenuOffMat[0];
+		}
+		xx = xx + 1;
+	}
+	xx = 1;
+	for ( g = 0; g < NbMainMenu; g = g + 1)
+	{
+		MatTmp = ReadValue("Menu"+xx+"OnTex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if (MatTmp != "")
+		{
+			MenuOnTex[g] = MatTmp+".xbx";
+		}
+		else if ( xx > 1)
+		{
+			xx = 1;
+			MenuOnTex[g] = MenuOnTex[0];
+		}
+		xx = xx + 1;
+	}
+	xx = 1;
+	for ( g = 0; g < NbMainMenu; g = g + 1)
+	{
+		MatTmp = ReadValue("Menu"+xx+"OffTex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if (MatTmp != "")
+		{
+			MenuOffTex[g] = MatTmp+".xbx";
+		}
+		else if ( xx > 1)
+		{
+			xx = 1;
+			MenuOffTex[g] = MenuOffTex[0];
+		}
+		xx = xx + 1;
+	}
+	xx = 1;
+	for ( g = 0; g < NbMainMenu; g = g + 1)
+	{
+		MatTmp = ReadValue("Menu"+xx+"OnAlpha", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if (MatTmp != "")
+		{
+			MenuOnAlpha[g] = MatTmp;
+		}
+		else if ( xx > 1)
+		{
+			xx = 1;
+			MenuOnAlpha[g] = MenuOnAlpha[0];
+		}
+		xx = xx + 1;
+	}
+	xx = 1;
+	for ( g = 0; g < NbMainMenu; g = g + 1)
+	{
+		MatTmp = ReadValue("Menu"+xx+"OffAlpha", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if (MatTmp != "")
+		{
+			MenuOffAlpha[g] = MatTmp;
+		}
+		else if ( xx > 1)
+		{
+			xx = 1;
+			MenuOffAlpha[g] = MenuOffAlpha[0];
+		}
+		xx = xx + 1;
+	}
+	xx = 1;
+	for ( g = 0; g < NbMainMenu; g = g + 1)
+	{
+		MatTmp = ReadValue("Menu"+xx+"OnTextMat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if (MatTmp != "")
+		{
+			MenuOnTextMat[g] = MatTmp;
+		}
+		else if ( xx > 1)
+		{
+			xx = 1;
+			MenuOnTextMat[g] = MenuOnTextMat[0];
+		}
+		xx = xx + 1;
+	}
+	xx = 1;
+	for ( g = 0; g < NbMainMenu; g = g + 1)
+	{
+		MatTmp = ReadValue("Menu"+xx+"OffTextMat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if (MatTmp != "")
+		{
+			MenuOffTextMat[g] = MatTmp;
+		}
+		else if ( xx > 1)
+		{
+			xx = 1;
+			MenuOffTextMat[g] = MenuOffTextMat[0];
+		}
+		xx = xx + 1;
+	}
+	xx = 1;
+	for ( g = 0; g < NbMainMenu; g = g + 1)
+	{
+		if ( xx < 10)
+			MatTmp = ReadValue("PodMenu0"+xx+"Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		else
+			MatTmp = ReadValue("PodMenu"+xx+"Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+
+		if (MatTmp != "")
+		{
+			PodMenuMat[g] = MatTmp+".xbx";
+		}
+		else if ( xx > 1)
+		{
+			xx = 1;
+			PodMenuMat[g] = PodMenuMat[0];
+		}
+		xx = xx + 1;
+	}
+	xx = 1;
+	for ( g = 0; g < NbMainMenu; g = g + 1)
+	{
+		if ( xx < 10)
+			MatTmp = ReadValue("PodMenu0"+xx+"Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		else
+			MatTmp = ReadValue("PodMenu"+xx+"Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+
+		if (MatTmp != "")
+		{
+			PodMenuTex[g] = MatTmp+".xbx";
+		}
+		else if ( xx > 1)
+		{
+			xx = 1;
+			PodMenuTex[g] = PodMenuTex[0];
+		}
+		xx = xx + 1;
+	}
+	MatTmp = ReadValue("Str01Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str01Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str01Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str01Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str02Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str02Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str02Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str02Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str03Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str03Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str03Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str03Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str04Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str04Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str04Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str04Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str05Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str05Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str05Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str05Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str06Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str06Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str06Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str06Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str07Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str07Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str07Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str07Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str08Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str08Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str08Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str08Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str09Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str09Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str09Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str09Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str10Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str10Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str10Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str10Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str11Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str11Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str11Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str11Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("Str12Mat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("Str12Tex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.Str12Mat.name = MatTmp;
+	if (TexTmp != "")
+		c.Str12Tex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("OrbExtMat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("OrbExtTex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.OrbMat.name = MatTmp;
+	if (TexTmp != "")
+		c.OrbTex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("OrbIntMat", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("OrbIntTex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.IntOrbMat.name = MatTmp;
+	if (TexTmp != "")
+		c.IntOrbTex.url = TexTmp+".xbx";
+
+	TexTmp = ReadValue("CellTex", "MainMenu", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (TexTmp != "")
+		c.CellTex.url = TexTmp+".xbx";
+
+	updatetitre();
+}
+function PanelMateriaux()
+{
+	var c = thePanel.children[0].children[0];
+
+	MatTmp = ReadValue("ClockMat", "Panel", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	TexTmp = ReadValue("ClockTex", "Panel", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.ClockMat.name = MatTmp;
+	if (TexTmp != "")
+		c.ClockTex.url = TexTmp+".xbx";
+
+	MatTmp = ReadValue("ClockTextMat", "Panel", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.ClockTextMat.name = MatTmp;
+
+	MatTmp = ReadValue("ClockText02Mat", "Panel", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.ClockText02Mat.name = MatTmp;
+
+	MatTmp = ReadValue("HeureMat", "Panel", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.HeureMat.name = MatTmp;
+
+	MatTmp = ReadValue("ShiftMat", "Panel", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.ShiftMat.name = MatTmp;
+
+	MatTmp = ReadValue("PlayMat", "Panel", "Skins\\"+Systeme[4]+"\\Skin.ini");
+	if (MatTmp != "")
+		c.PlayMat.name = MatTmp;
+}
+function GeneraleMT(ecran)
+{
+	if( ecran == "controlpanel")
+	{
+		var c = theControlPanelInline.children[0];
+		if (MatGen != "")
+		{
+			c.GenMat01.name = MatGen;
+			c.GenMat02.name = MatGen;
+			c.GenMat03.name = MatGen;
+			c.GenMat04.name = MatGen;
+		}
+		if (TexGen != "")
+		{
+			c.GenTex01.url = TexGen+".xbx";
+			c.GenTex02.url = TexGen+".xbx";
+			c.GenTex03.url = TexGen+".xbx";
+			c.GenTex04.url = TexGen+".xbx";
+		}
+	}
+	else if( ecran == "message")
+	{
+		var c = theMessageInline.children[0];
+		if(ConfigSysteme[19] == "Original")
+			c.BackgroundPanel.url = "Pmess.xbx";
+		else if(ConfigSysteme[19] == "Verre")
+			c.BackgroundPanel.url = "Fond.xbx";
+
+		if (MatGen != "")
+		{
+			c.GenMat01.name = MatGen;
+			c.GenMat02.name = MatGen;
+			c.GenMat05.name = MatGen;
+			c.GenMat06.name = MatGen;
+		}
+		if (TexGen != "")
+		{
+			c.GenTex01.url = TexGen+".xbx";
+			c.GenTex02.url = TexGen+".xbx";
+			c.GenTex05.url = TexGen+".xbx";
+			c.GenTex06.url = TexGen+".xbx";
+		}
+	}
+	else if( ecran == "keyboard")
+	{
+		var c = theKeyboardTransform.children[0].children[0];
+		if(ConfigSysteme[19] == "Original")
+			c.BackgroundPanel.url = "Pkeyb.xbx";
+		else if(ConfigSysteme[19] == "Verre")
+			c.BackgroundPanel.url = "Fond.xbx";
+
+		if (MatGen != "")
+		{
+			c.GenMat01.name = MatGen;
+			c.GenMat02.name = MatGen;
+		}
+		if (TexGen != "")
+		{
+			c.GenTex01.url = TexGen+".xbx";
+			c.GenTex02.url = TexGen+".xbx";
+		}
+		MatTmp = ReadValue("KeyMat", "Keyboard", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		TexTmp = ReadValue("KeyTex", "Keyboard", "Skins\\"+Systeme[4]+"\\Skin.ini");
+		if (MatTmp != "")
+			c.KeyMat.name = MatTmp;
+		if (TexTmp != "")
+			c.KeyTex.url = TexTmp+".xbx";
+	}
+	else if( ecran == "Jkeyboard")
+	{
+		if(ConfigSysteme[19] == "Original")
+			c.BackgroundPanel.url = "Pkeyb.xbx";
+		else if(ConfigSysteme[19] == "Verre")
+			c.BackgroundPanel.url = "Fond.xbx";
+
+		var c = theJapaneseKeyboardTransform.children[0].children[0];
+		if (MatGen != "")
+		{
+			c.GenMat01.name = MatGen;
+			c.GenMat02.name = MatGen;
+		}
+		if (TexGen != "")
+		{
+			c.GenTex01.url = TexGen+".xbx";
+			c.GenTex02.url = TexGen+".xbx";
+		}
+	}
+	else if( ecran == "memoryx")
+	{
+		var c = theGameBoardInline.children[0];
+		if (MatGen != "")
+		{
+			c.GenMat01.name = MatGen;
+			c.GenMat02.name = MatGen;
+		}
+		if (TexGen != "")
+		{
+			c.GenTex01.url = TexGen+".xbx";
+			c.GenTex02.url = TexGen+".xbx";
+		}
+	}
+	else if( ecran == "Password")
+	{
+		var c = thePasswordInline.children[0];
+		if(ConfigSysteme[19] == "Original")
+			c.BackgroundPanel.url = "Pmess.xbx";
+		else if(ConfigSysteme[19] == "Verre")
+			c.BackgroundPanel.url = "Fond.xbx";
+
+		if (MatGen != "")
+		{
+			c.GenMat01.name = MatGen;
+			c.GenMat02.name = MatGen;
+			c.GenMat03.name = MatGen;
+			c.GenMat04.name = MatGen;
+			c.GenMat05.name = MatGen;
+		}
+		if (TexGen != "")
+		{
+			c.GenTex01.url = TexGen+".xbx";
+			c.GenTex02.url = TexGen+".xbx";
+			c.GenTex03.url = TexGen+".xbx";
+			c.GenTex04.url = TexGen+".xbx";
+			c.GenTex05.url = TexGen+".xbx";
+		}
+	}
+}
+function AffMainMenu()
+{
+	var c = theMainMenu.children[0].children[0];
+	var x = 60;
+	var i = 0;
+
+	for( i = 0; i < 9; i = i + 1)
+	{
+		c.MainMenuPanneau.children[i].SetTranslation(CoordX(x,RingScale), CoordY(x,RingScale), 102);
+		x = x - 15;
+	}
+	for( i = NbMainMenu; i < 9; i = i + 1)
+	{
+		c.MainMenuPanneau.children[i].visible = false;
+	}
+	nCurMainMenuItem = ReturnInteger(ReadValue(1, "ConfigMenusMainMenu", "Datas\\Config\\ConfigMenusMainMenu.xbc")) - 1;
+	if (nCurMainMenuItem > NbMainMenu - 1 | nCurMainMenuItem == -1)
+	{
+		if (NbMainMenu == 0)
+			nCurMainMenuItem = 0;
+		else if (NbMainMenu == 1)
+			nCurMainMenuItem = 1;
+		else if (NbMainMenu == 2)
+			nCurMainMenuItem = 1;
+		else if (NbMainMenu == 3)
+			nCurMainMenuItem = 2;
+		else if (NbMainMenu == 4)
+			nCurMainMenuItem = 2;
+		else if (NbMainMenu > 4)
+			nCurMainMenuItem = 3;
+
+	}
+	nCurMainMenuScroll = 0;
+	if (nCurMainMenuItem < 5)
+		PosMainMenu = -60 + (nCurMainMenuItem * 15);
+	else if (nCurMainMenuItem > 4)
+		PosMainMenu = 0;
+
+	c.theMenuItems.SetRotation(0, 0, 1, PosMainMenu * 6.283 / 360);
+	OptionMenu();
+}

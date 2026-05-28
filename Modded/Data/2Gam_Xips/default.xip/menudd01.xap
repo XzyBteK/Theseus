@@ -1,0 +1,756 @@
+// Settings Sub Menu by Gcue ///////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+
+var nCurXMenuItem;
+var nNumXMenuItems;
+var nCurXMenuButton;
+var nXScroll;
+var nXItemCount;
+var sXElements;
+var rtsm;
+var MajMenu;
+var bmenudd01;
+var sXMenu;
+
+function initialize()
+{
+	bmenudd01 = false;
+	nCurXMenuItem = 0;
+	nXScroll = 0;
+	nCurXMenuButton = 0;
+}
+function UpdateSubMenu()
+{
+	var x = theSubMenu.children[0].children[0];
+
+	x.movearrow_up.visible = false;
+	x.movearrow_dn.visible = false;
+
+	x.movearrow_up.children[0].appearance.material.name = "NavType";
+	x.movearrow_dn.children[0].appearance.material.name = "NavType";
+
+	// test arrow visibility
+	if (nXScroll > 0)
+		x.movearrow_up.visible = true;
+	if (nXScroll + nNumXMenuItems < nXItemCount)
+		x.movearrow_dn.visible = true;
+
+	for (var i = 0; i < nNumXMenuItems; i = i + 1)
+	{
+		if(i == nCurXMenuButton)
+		{
+			x.MenuButtons.children[i].children[0].appearance.material.name = BOnMatGen;
+			x.MenuButtons.children[i].children[0].appearance.texture.url = BOnTexGen+".xbx";
+			x.MenuText.children[i].children[0].appearance.material.name = "Material #133";
+			
+			// hilite scroll arrows as well
+			if(i == 0)
+				x.movearrow_up.children[0].appearance.material.name = "Material #133";
+			else if(i == 5)
+				x.movearrow_dn.children[0].appearance.material.name = "Material #133";
+
+		}
+		else
+		{
+			x.MenuButtons.children[i].children[0].appearance.material.name = BOffMatGen;
+			x.MenuButtons.children[i].children[0].appearance.texture.url = BOffTexGen+".xbx";
+			x.MenuText.children[i].children[0].appearance.material.name = "NavType";
+		}
+
+		if(nXItemCount > i)
+			x.MenuText.children[i].children[0].geometry.text = sXElements[nXScroll + i];
+	}
+	UpdateRootMeta();
+}
+function StartSubMenu()
+{
+	bmenudd01 = true;
+	MajMenu = DisqueType;
+	var x = theSubMenu.children[0].children[0];
+	if (AjDvd == true)
+		MenusDD[1] = ReadValue(16, "default", "Datas\\Langues\\"+lang+".ini");
+
+	if( ApparenceMenusDD[2] == "Disque Dur")
+		x.SubMenuHead.geometry.text = ReadValue(63, "default", "Datas\\Langues\\"+lang+".ini");
+	else
+		x.SubMenuHead.geometry.text = ApparenceMenusDD[2];
+
+	nCurXMenuItem = 0;
+	if (Nbmenudd < 6)
+	{
+		nNumXMenuItems = Nbmenudd;
+	}
+	else
+	{
+		nNumXMenuItems = 6;
+	}
+	nCurXMenuButton = 0;
+	nXScroll = 0;
+	sXMenu = new Array;
+	// Build the Settings Menu array
+	for (var g = 1; g < Nbmenudd + 1; g = g +1)
+	{
+		if( MenusDD[g] == "Jeux")
+			sXMenu[g-1] = ReadValue(78, "default", "Datas\\Langues\\"+lang+".ini");
+		else if( MenusDD[g] == "Applications")
+			sXMenu[g-1] = ReadValue(79, "default", "Datas\\Langues\\"+lang+".ini");
+		else if( MenusDD[g] == "Emulateurs")
+			sXMenu[g-1] = ReadValue(80, "default", "Datas\\Langues\\"+lang+".ini");
+		else if( MenusDD[g] == "Dashboards")
+			sXMenu[g-1] = ReadValue(81, "default", "Datas\\Langues\\"+lang+".ini");
+		else
+			sXMenu[g-1] = MenusDD[g];
+
+	}
+	nXItemCount = Nbmenudd;
+	sXElements = sXMenu;
+	x.S_Home_menubutton_04.visible = true;
+	x.S_Home_text_01.visible = true;
+	x.S_Home_menubutton_02.visible = true;
+	x.S_Home_text_02.visible = true;
+	x.S_Home_menubutton_03.visible = true;
+	x.S_Home_text_03.visible = true;
+	x.S_Home_menubutton_01.visible = true;
+	x.S_Home_text_04.visible = true;
+	x.S_Home_menubutton_07.visible = true;
+	x.S_Home_text_05.visible = true;
+	x.S_Home_menubutton_06.visible = true;
+	x.S_Home_text_06.visible = true;
+
+	// show/hide buttons as appropriate
+	if(nXItemCount == 1)
+	{
+		x.S_Home_menubutton_02.visible = false;
+		x.S_Home_text_02.visible = false;
+		x.S_Home_menubutton_03.visible = false;
+		x.S_Home_text_03.visible = false;
+		x.S_Home_menubutton_01.visible = false;
+		x.S_Home_text_04.visible = false;
+		x.S_Home_menubutton_07.visible = false;
+		x.S_Home_text_05.visible = false;
+		x.S_Home_menubutton_06.visible = false;
+		x.S_Home_text_06.visible = false;
+	}
+	else if(nXItemCount == 2)
+	{
+		x.S_Home_menubutton_03.visible = false;
+		x.S_Home_text_03.visible = false;
+		x.S_Home_menubutton_01.visible = false;
+		x.S_Home_text_04.visible = false;
+		x.S_Home_menubutton_07.visible = false;
+		x.S_Home_text_05.visible = false;
+		x.S_Home_menubutton_06.visible = false;
+		x.S_Home_text_06.visible = false;
+	}
+	else if(nXItemCount == 3)
+	{
+		x.S_Home_menubutton_01.visible = false;
+		x.S_Home_text_04.visible = false;
+		x.S_Home_menubutton_07.visible = false;
+		x.S_Home_text_05.visible = false;
+		x.S_Home_menubutton_06.visible = false;
+		x.S_Home_text_06.visible = false;
+	}
+	else if(nXItemCount == 4)
+	{
+		x.S_Home_menubutton_07.visible = false;
+		x.S_Home_text_05.visible = false;
+		x.S_Home_menubutton_06.visible = false;
+		x.S_Home_text_06.visible = false;
+	}
+	else if(nXItemCount == 5)
+	{
+		x.S_Home_menubutton_06.visible = false;
+		x.S_Home_text_06.visible = false;
+	}
+	UpdateSubMenu();
+}
+
+function UpdateRootMeta()
+{
+	var c = theSubMenu.children[0].children[0];
+	var metaString = "";
+	metaString = sXElements[nCurXMenuItem];
+	c.metaPanel.children[0].geometry.text = metaString;
+}
+
+DEF theSubMenuAlternateViewpoint Viewpoint
+{
+	fieldOfView 1.287000
+	orientation 0.130300 -0.000001 -0.000001 -0.700
+	position 203.300003 -0.918000 -22.600006
+	jump false
+}
+DEF theSubMenu Level
+{
+    archive "Settings4.xip"
+
+    children
+    [
+        Inline
+        {
+            url "Settings4/default2.xap"
+
+            function onLoad()
+            {
+			Option();
+			StartSubMenu();
+		}
+
+	  }
+    ]
+    path DEF theSubMenuViewpoint Viewpoint
+    {
+	fieldOfView 1.287000
+	orientation 0.130300 -0.991400 -0.007829 -0.121100
+	position 203.300003 -0.918000 -52.600006
+      jump false
+    }
+
+    control DEF theSubMenujoy Joystick
+    {
+        function OnADown()
+        {
+		SSaver = 0;
+		if(shift == "")
+		{
+ 			if( musicsaver == true)
+			{
+				return;
+			}
+			PlaySoundA();
+			theSubMenu.children[0].children[0].MU_select_pod_HL.children[0].appearance.material.param = 1;
+			magicnumber = nCurXMenuItem + 1;
+			bmenudd01 = false;
+			if (AjDvd == true)
+				magicnumber = magicnumber - 1;
+
+			if( backlauncher == "")
+				backlauncher = Launcher;
+
+			Launcher = "MenuDD";
+			MenuBoutons = false;
+			Action("MenuLancementDD_"+magicnumber+"_2GAM","Menu");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[8] != "0")
+			Action(ConfigBoutonsMainMenu[8],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[16] != "0")
+			Action(ConfigBoutonsMainMenu[16],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[24] != "0")
+			Action(ConfigBoutonsMainMenu[24],"Bouton");
+		}
+        }
+	function OnBDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			PlaySoundB();
+			theSubMenu.children[0].children[0].MU_back_pod_HL.children[0].appearance.material.param = 1;
+			bmenudd01 = false;
+			theSettingsSubMenuOut.Play();
+			if(backlauncher != "")
+				Launcher = backlauncher;
+
+			backlauncher = "";
+			if( Launcher == "MenuConfig")
+				GoToSettings();
+			else if( Launcher == "MainMenu")
+				theMainMenu.GoTo();
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[9] != "0")
+			Action(ConfigBoutonsMainMenu[9],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[17] != "0")
+			Action(ConfigBoutonsMainMenu[17],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[25] != "0")
+			Action(ConfigBoutonsMainMenu[25],"Bouton");
+		}
+	}
+	function OnXDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[2] != "0")
+			Action(ConfigBoutonsMainMenu[2],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[10] != "0")
+			Action(ConfigBoutonsMainMenu[10],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[18] != "0")
+			Action(ConfigBoutonsMainMenu[18],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[26] != "0")
+			Action(ConfigBoutonsMainMenu[26],"Bouton");
+		}
+	}
+
+	function OnYDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[3] != "0")
+			Action(ConfigBoutonsMainMenu[3],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[11] != "0")
+			Action(ConfigBoutonsMainMenu[11],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[19] != "0")
+			Action(ConfigBoutonsMainMenu[19],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[27] != "0")
+			Action(ConfigBoutonsMainMenu[27],"Bouton");
+		}
+	}
+	function OnBlackDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[4] != "0")
+			Action(ConfigBoutonsMainMenu[4],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[12] != "0")
+			Action(ConfigBoutonsMainMenu[12],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[20] != "0")
+			Action(ConfigBoutonsMainMenu[20],"Bouton");
+		}
+	}
+	function OnWhiteDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[5] != "0")
+			Action(ConfigBoutonsMainMenu[5],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[13] != "0")
+			Action(ConfigBoutonsMainMenu[13],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[21] != "0")
+			Action(ConfigBoutonsMainMenu[21],"Bouton");
+		}
+	}
+	function OnRightThumbDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[6] != "0")
+			Action(ConfigBoutonsMainMenu[6],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[14] != "0")
+			Action(ConfigBoutonsMainMenu[14],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[22] != "0")
+			Action(ConfigBoutonsMainMenu[22],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[28] != "0")
+			Action(ConfigBoutonsMainMenu[28],"Bouton");
+		}
+	}
+	function OnLeftThumbDown()
+	{
+		SSaver = 0;
+		if(shift == "")
+		{
+			if ( ConfigBoutonsMainMenu[7] != "0")
+			Action(ConfigBoutonsMainMenu[7],"Bouton");
+		}
+		if(shift == "¤-")
+		{
+			if ( ConfigBoutonsMainMenu[15] != "0")
+			Action(ConfigBoutonsMainMenu[15],"Bouton");
+		}
+		if(shift == "-¤")
+		{
+			if ( ConfigBoutonsMainMenu[23] != "0")
+			Action(ConfigBoutonsMainMenu[23],"Bouton");
+		}
+		if(shift == "¤¤")
+		{
+			if ( ConfigBoutonsMainMenu[29] != "0")
+			Action(ConfigBoutonsMainMenu[29],"Bouton");
+		}
+	}
+	function OnLeftDown()
+	{
+		SSaver = 0;
+		onleft = true;
+		AfficheShift();
+	}
+
+	function OnLeftUp()
+	{
+		SSaver = 0;
+		onleft = false;
+		AfficheShift();
+	}
+	function OnRightDown()
+	{
+		SSaver = 0;
+		onright = true;
+		AfficheShift();
+	}
+
+	function OnRightUp()
+	{
+		SSaver = 0;
+		onright = false;
+		AfficheShift();
+	}
+	function OnMoveUp()
+	{
+		SSaver = 0;
+		if (nCurXMenuItem <= 0)
+			return;
+
+		PlaySoundMenuChange();
+		nCurXMenuItem = nCurXMenuItem - 1;
+            if (nCurXMenuButton == 0)
+            {
+                nXScroll = nXScroll - 1;
+            }
+            else
+            {
+                nCurXMenuButton = nCurXMenuButton - 1;
+            }
+		UpdateSubMenu();
+	}
+	function OnMoveDown()
+	{
+		SSaver = 0;
+		if (nCurXMenuItem == nXItemCount - 1)
+		return;
+
+		PlaySoundMenuChange();
+		nCurXMenuItem = nCurXMenuItem + 1;
+		if (nCurXMenuButton == nNumXMenuItems - 1)
+            {
+                nXScroll = nXScroll + 1;
+            }
+            else
+            {
+                nCurXMenuButton = nCurXMenuButton + 1;
+            }
+		UpdateSubMenu();
+	}
+	function OnPower()
+	{
+			Action("ShutDown_2GAM","Bouton");
+	}
+	function OnPlay()
+	{
+		if(BGMon == false | bgmpause == true)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerPlay();
+		}
+	}
+	function OnStop()
+	{
+		if(BGMon == true)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerStop();
+		}
+	}
+	function OnPause()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerPause();
+			bgmpause = true;
+		}
+	}
+	function OnSkipBack()
+	{
+		SSaver = 0;
+		if(currentMusicPlayerMode == "Continuous")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRewind();
+		}
+		else if(currentMusicPlayerMode == "Playlist")
+		{
+			theControlPanelControlsInline.children[0].PlaylistREW();
+		}
+		else if(currentMusicPlayerMode == "Random")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRandom();
+		}
+	}
+	function OnSkipForward()
+	{
+		SSaver = 0;
+		if(currentMusicPlayerMode == "Continuous")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerFastForward();
+		}
+		else if(currentMusicPlayerMode == "Playlist")
+		{
+			theControlPanelControlsInline.children[0].PlaylistFFW();
+		}
+		else if(currentMusicPlayerMode == "Random")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRandom();
+		}
+	}
+	function OnMenu()
+	{
+		SSaver = 0;
+		StartControlPanel();
+	}
+	function OnReverse()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerVolumeDown();
+			var a = Math.round(theControlPanelControlsInline.children[0].theBGMusicPlayer.volume * 100);
+			var txt = ReadValue(18, "default", "Datas\\Langues\\"+lang+".ini");
+			var aa = txt + " : " + a;
+			SetStatusText(aa);
+		}
+	}
+	function OnForward()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerVolumeUp();
+			var a = Math.round(theControlPanelControlsInline.children[0].theBGMusicPlayer.volume * 100);
+			var txt = ReadValue(18, "default", "Datas\\Langues\\"+lang+".ini");
+			var aa = txt + " : " + a;
+			SetStatusText(aa);
+		}
+	}
+	function On1()
+	{
+		SSaver = 0;
+		Action("MemoryX_2GAM","Bouton");
+	}
+	function On2()
+	{
+		SSaver = 0;
+		Action("ShowHideClock_2GAM","Bouton");
+	}
+	function On3()
+	{
+		SSaver = 0;
+		Action("AffTitre_2GAM","Bouton");
+	}
+	function On4()
+	{
+		SSaver = 0;
+		Action("NextBackground_2GAM","Bouton");
+	}
+	function On5()
+	{
+		SSaver = tmpSaver + 1;
+	}
+	function On6()
+	{
+		SSaver = 0;
+		Action("ChangeSkins_2GAM","Bouton");
+	}
+	}
+	function OnActivate()
+	{
+		CurrentViewpoint = theSubMenuViewpoint;
+		CurrentAltViewpoint = theSubMenuAlternateViewpoint;
+		previousControlType = theSubMenujoy;
+		MajMenu = DisqueType;
+		MenuBoutons = true;
+		if (children[0].children.length() > 0)
+		{
+            	StartSubMenu();
+		}
+	}
+	behavior
+	{
+		sleep 0.2;
+		if (DisqueType != MajMenu & bmenudd01 == true)
+			StartSubMenu();
+	}
+}
+// End Settings SubMenu by Gcue ///////////////////////////////////////
+function Option()
+{
+	var x = theSubMenu.children[0].children[0];
+	if(ConfigSysteme[19] == "Original")
+		x.BackgroundPanel.url = "Pset.xbx";
+	else if(ConfigSysteme[19] == "Verre")
+		x.BackgroundPanel.url = "Fond.xbx";
+
+	x.Spinning_Support2_r.visible = false;
+	x.Spinning_Support2.visible = false;
+	x.Spinning_Support_r.visible = false;
+	x.Spinning_Support.visible = false;
+	if (MatGen != "")
+	{
+		x.GenMat01.name = MatGen;
+		x.GenMat02.name = MatGen;
+		x.GenMat03.name = MatGen;
+	}
+	if (TexGen != "")
+	{
+		x.GenTex01.url = TexGen+".xbx";
+		x.GenTex02.url = TexGen+".xbx";
+		x.GenTex03.url = TexGen+".xbx";
+	}
+
+	if (ApparenceMenusDD[3] == "non")
+	{
+		x.affcell.visible = false;
+	}
+	else
+	{
+		x.affcell.visible = true;
+	}
+	if (ApparenceMenusDD[4] == "non")
+	{
+		x.Group07.visible = false;
+	}
+	else
+	{
+		x.Group07.visible = true;
+	}
+	if (ApparenceMenusDD[5] == "non")
+	{
+		x.Group06.visible = false;
+	}
+	else
+	{
+		x.Group06.visible = true;
+	}
+	if (ApparenceMenusDD[6] == "non")
+	{
+		x.Orbite.visible = false;
+	}
+	else
+	{
+		x.Orbite.visible = true;
+	}
+	if (ApparenceMenusDD[7] == "rien")
+	{
+		x.videoPodMode1.visible = false;
+		x.videoPodMode2.visible = false;
+		x.ConsoleIcon.visible = false;
+		x.IconCube.visible = false;
+	}
+	if (ApparenceMenusDD[7] == "xbox4")
+	{
+		x.videoPodMode1.visible = true;
+		x.videoPodMode2.visible = false;
+		x.ConsoleIcon.visible = false;
+		x.IconCube.visible = false;
+	}
+	if (ApparenceMenusDD[7] == "jbone")
+	{
+		x.videoPodMode1.visible = false;
+		x.videoPodMode2.visible = true;
+		x.ConsoleIcon.visible = false;
+		x.IconCube.visible = false;
+	}
+	if (ApparenceMenusDD[7] == "xbox4+jbone")
+	{
+		x.videoPodMode1.visible = true;
+		x.videoPodMode2.visible = true;
+		x.ConsoleIcon.visible = false;
+		x.IconCube.visible = false;
+	}
+	if (ApparenceMenusDD[7] == "icon")
+	{
+		x.videoPodMode1.visible = false;
+		x.videoPodMode2.visible = false;
+		x.IconCube.visible = true;
+		x.ConsoleIcon.visible = false;
+		x.IconCube.visible = false;
+	}
+	if (ApparenceMenusDD[7] == "icon+jbone")
+	{
+		x.videoPodMode1.visible = false;
+		x.videoPodMode2.visible = true;
+		x.IconCube.visible = true;
+		x.ConsoleIcon.visible = false;
+	}
+	if (ApparenceMenusDD[7] == "xbox")
+	{
+		x.videoPodMode1.visible = false;
+		x.videoPodMode2.visible = false;
+		x.ConsoleIcon.visible = true;
+		x.IconCube.visible = false;
+	}
+	if (ApparenceMenusDD[7] == "xbox+jbone")
+	{
+		x.videoPodMode1.visible = false;
+		x.videoPodMode2.visible = true;
+		x.ConsoleIcon.visible = true;
+		x.IconCube.visible = false;
+	}
+	if(ApparenceMenusDD[8] == "oui")
+	{
+		if(ApparenceMenusDD[9] == "oui")
+		{
+			x.Spinning_Support_r.visible = true;
+		}
+		else
+		{
+			x.Spinning_Support.visible = true;
+		}
+	}
+	if(ApparenceMenusDD[10] == "oui")
+	{
+		if(ApparenceMenusDD[11] == "oui")
+		{
+			x.Spinning_Support2_r.visible = true;
+		}
+		else
+		{
+			x.Spinning_Support2.visible = true;
+		}
+	}
+}

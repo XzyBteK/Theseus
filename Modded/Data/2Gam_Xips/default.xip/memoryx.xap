@@ -1,0 +1,2122 @@
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////   MEMORYX code by BobMcGee  ////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////vars for game board view///////////
+var GameIcon;
+var PickOneFlag;
+var PickTwoFlag;
+var PickOne;
+var PickTwo;
+var RandomArray;
+var UsedTileArray;
+var Matches;
+var Attempts;
+var Remaining;
+var Score;
+var InScoreBoard;
+var resetscore;
+var PickOneValue;
+var PickTwoValue;
+var colposition;
+var rowposition;
+var countU;
+var countD;
+var InQuestionScreen;
+var NameOne;
+var NameTwo;
+var NameThree;
+var ScoreOne;
+var ScoreTwo;
+var ScoreThree;
+
+//////////////////vars of game board end////////////
+
+/////////////////flag for game board view initial///////////
+function InitializeGame()
+{
+GeneraleMT("memoryx");
+PickOne = 20;
+PickTwo = 20;
+theGameBoardJoy.isBound = true;
+GameBoardPreviousControl = previousControlType;
+previousControlType = theGameBoardJoy;
+GameBoardCurrentControl = currentControlType;
+GameIcon = 1;
+PickOneFlag = false;
+PickTwoFlag = false;
+Attempts = 0;
+Matches = 0;
+Score = 0;
+InScoreBoard = true;
+resetscore = false;
+InQuestionScreen = false;
+UsedTileArray = new Array(16);
+UsedTileArray[0] = 0;
+UsedTileArray[1] = 0;
+UsedTileArray[2] = 0;
+UsedTileArray[3] = 0;
+UsedTileArray[4] = 0;
+UsedTileArray[5] = 0;
+UsedTileArray[6] = 0;
+UsedTileArray[7] = 0;
+UsedTileArray[8] = 0;
+UsedTileArray[9] = 0;
+UsedTileArray[10] = 0;
+UsedTileArray[11] = 0;
+UsedTileArray[12] = 0;
+UsedTileArray[13] = 0;
+UsedTileArray[14] = 0;
+UsedTileArray[15] = 0;
+
+RandomArray = new Array(16);
+RandomArray[0] = 1;
+RandomArray[1] = 2;
+RandomArray[2] = 3;
+RandomArray[3] = 4;
+RandomArray[4] = 5;
+RandomArray[5] = 6;
+RandomArray[6] = 7;
+RandomArray[7] = 8;
+RandomArray[8] = 9;
+RandomArray[9] = 10;
+RandomArray[10] = 11;
+RandomArray[11] = 12;
+RandomArray[12] = 13;
+RandomArray[13] = 14;
+RandomArray[14] = 15;
+RandomArray[15] = 16;
+
+ReinitializeAlpha();
+RandomArrayGenerator();
+UpdateGameIconHilight();
+GetScoreInfo();
+UpdateScoreBoard();
+ShowScoreBoard();
+
+}
+//////////////////end initial game board flag///////////////
+
+
+
+
+function HideGameBoard()
+{
+thePlayerPanelIn.Play();
+if (InScoreBoard == true)
+{
+HideScoreBoard();
+InScoreBoard = false;
+}
+StopGameBoard();
+theGameBoardJoy.isBound = false;
+previousControlType = GameBoardPreviousControl;
+previousControlType.isBound = true;
+}
+
+                                                    
+
+function ShowScoreBoard()
+{
+ thePlayerPanelIn.Play();
+ theGameBoardInline.children[0].theScoreBoardUnit.fade = 2;
+ theGameBoardInline.children[0].theScoreBoardUnit.SetTranslation(150, 80, -20);
+}
+
+function HideScoreBoard()
+{
+
+ thePlayerPanelIn.Play();
+ theGameBoardInline.children[0].theScoreBoardUnit.fade = 2;
+ theGameBoardInline.children[0].theScoreBoardUnit.SetTranslation(350, 80, -20);
+}
+
+function ReturnToGame()
+{
+theGameBoardInline.children[0].theGameBoardDisplay.SetTranslation(-47.5,47.5,-20);
+ShowScoreBoard();
+InScoreBoard = true;
+InQuestionScreen = false;
+}
+
+function GetScoreInfo()
+{
+    var info = new Settings;
+    info.file = pathdash + "\\Datas\\memoryx.xbx";
+    NameOne = info.GetValue("NameOne");
+    NameTwo = info.GetValue("NameTwo");
+    NameThree = info.GetValue("NameThree");
+    ScoreOne = info.GetValue("ScoreOne");
+    ScoreTwo = info.GetValue("ScoreTwo");
+    ScoreThree = info.GetValue("ScoreThree");
+}
+
+
+
+function HideIconsHilight()
+{
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+}
+
+function UpdateGameIconHilight()
+{
+
+////////ROW ONE//////////
+
+    HideIconsWithPicks();
+
+    if(GameIcon == 1)
+    {
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 2)
+    {
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 3)
+    {
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 4)
+    {
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "hilight.xbx";
+    }
+////////////END ROW ONE///////////
+/////////////ROW TWO///////////////
+    else if(GameIcon == 5)
+    {
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 6)
+    {
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 7)
+    {
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 8)
+    {
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "hilight.xbx";
+    }
+/////////////END ROW TWO//////////////
+/////////////ROW THREE/////////////////
+    else if(GameIcon == 9)
+    {
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 10)
+    {
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 11)
+    {
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 12)
+    {
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "hilight.xbx";
+    }
+////////////END ROW THREE//////////////////
+/////////////ROW FOUR////////////////////////
+    else if(GameIcon == 13)
+    {
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 14)
+    {
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 15)
+    {
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "hilight.xbx";
+    }
+
+    else if(GameIcon == 16)
+    {
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "hilight.xbx";
+    }
+
+///////////END ROW FOUR//////////
+
+
+
+}
+
+//////////////////////NEW FUNCTIONS/////////
+function HideAllExceptPickOne()
+{
+  if (PickOne == 1)
+
+{
+    //theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 2)
+
+{
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 3)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 4)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 5)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    //theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 6)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 7)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 8)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 9)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+   // theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 10)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 11)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 12)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 13)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    //theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+else if (PickOne == 14)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+
+else if (PickOne == 15)
+{
+
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+
+else if (PickOne == 16)
+{
+    theGameBoardInline.children[0].OneOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].OneFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].TwoOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].TwoFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].ThreeOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].ThreeFourSquare_texture.url = "cube.xbx";
+
+    theGameBoardInline.children[0].FourOneSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourTwoSquare_texture.url = "cube.xbx";
+    theGameBoardInline.children[0].FourThreeSquare_texture.url = "cube.xbx";
+    //theGameBoardInline.children[0].FourFourSquare_texture.url = "cube.xbx";
+
+}
+
+}
+
+///////////ABOVE TESTED OK///////
+
+function HideIconsWithPicks()
+{
+
+if (PickOneFlag == true)
+{
+
+    if (PickTwoFlag == true)
+         {
+         HideIconsHilight();
+         PickOneFlag = false;
+         PickTwoFlag = false;
+         MatchCheck();
+         UpdateScoreBoard();
+         }
+
+    else
+         {
+         HideAllExceptPickOne();
+         }
+
+}
+
+else
+    {
+    HideIconsHilight();
+    }
+
+}
+
+
+
+
+function RandomArrayGenerator()
+{
+
+var RandomNumber;
+var temp;
+
+for(var ArrayPlace = 0; ArrayPlace < 16; ArrayPlace = ArrayPlace + 1)
+{
+                 RandomNumber = Math.floor(Math.random() * 16);
+                 temp = RandomArray[ArrayPlace];
+                 RandomArray[ArrayPlace] = RandomArray[RandomNumber];  ///transfers randomly chosen array position value to array position///
+                 RandomArray[RandomNumber] = temp;      //places the initial value of the array position to the place it was swapped for
+}
+
+}
+
+
+
+function ShowBottom()
+{
+
+if (GameIcon == 1)
+{
+     if (RandomArray[0] == 1) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[0] == 2) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[0] == 3) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[0] == 4) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[0] == 5) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[0] == 6) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[0] == 7) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[0] == 8) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[0] == 9) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[0] == 10) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[0] == 11) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[0] == 12) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[0] == 13) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[0] == 14) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[0] == 15) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[0] == 16) {theGameBoardInline.children[0].OneOneSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 2)
+{
+     if (RandomArray[1] == 1) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[1] == 2) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[1] == 3) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[1] == 4) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[1] == 5) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[1] == 6) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[1] == 7) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[1] == 8) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[1] == 9) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[1] == 10) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[1] == 11) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[1] == 12) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[1] == 13) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[1] == 14) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[1] == 15) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[1] == 16) {theGameBoardInline.children[0].OneTwoSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 3)
+{
+     if (RandomArray[2] == 1) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[2] == 2) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[2] == 3) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[2] == 4) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[2] == 5) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[2] == 6) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[2] == 7) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[2] == 8) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[2] == 9) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[2] == 10) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[2] == 11) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[2] == 12) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[2] == 13) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[2] == 14) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[2] == 15) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[2] == 16) {theGameBoardInline.children[0].OneThreeSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 4)
+{
+     if (RandomArray[3] == 1) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[3] == 2) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[3] == 3) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[3] == 4) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[3] == 5) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[3] == 6) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[3] == 7) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[3] == 8) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[3] == 9) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[3] == 10) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[3] == 11) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[3] == 12) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[3] == 13) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[3] == 14) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[3] == 15) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[3] == 16) {theGameBoardInline.children[0].OneFourSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 5)
+{
+     if (RandomArray[4] == 1) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[4] == 2) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[4] == 3) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[4] == 4) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[4] == 5) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[4] == 6) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[4] == 7) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[4] == 8) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[4] == 9) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[4] == 10) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[4] == 11) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[4] == 12) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[4] == 13) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[4] == 14) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[4] == 15) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[4] == 16) {theGameBoardInline.children[0].TwoOneSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 6)
+{
+     if (RandomArray[5] == 1) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[5] == 2) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[5] == 3) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[5] == 4) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[5] == 5) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[5] == 6) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[5] == 7) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[5] == 8) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[5] == 9) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[5] == 10) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[5] == 11) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[5] == 12) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[5] == 13) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[5] == 14) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[5] == 15) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[5] == 16) {theGameBoardInline.children[0].TwoTwoSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 7)
+{
+     if (RandomArray[6] == 1) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[6] == 2) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[6] == 3) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[6] == 4) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[6] == 5) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[6] == 6) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[6] == 7) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[6] == 8) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[6] == 9) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[6] == 10) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[6] == 11) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[6] == 12) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[6] == 13) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[6] == 14) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[6] == 15) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[6] == 16) {theGameBoardInline.children[0].TwoThreeSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 8)
+{
+     if (RandomArray[7] == 1) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[7] == 2) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[7] == 3) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[7] == 4) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[7] == 5) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[7] == 6) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[7] == 7) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[7] == 8) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[7] == 9) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[7] == 10) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[7] == 11) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[7] == 12) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[7] == 13) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[7] == 14) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[7] == 15) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[7] == 16) {theGameBoardInline.children[0].TwoFourSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 9)
+{
+     if (RandomArray[8] == 1) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[8] == 2) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[8] == 3) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[8] == 4) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[8] == 5) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[8] == 6) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[8] == 7) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[8] == 8) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[8] == 9) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[8] == 10) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[8] == 11) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[8] == 12) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[8] == 13) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[8] == 14) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[8] == 15) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[8] == 16) {theGameBoardInline.children[0].ThreeOneSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 10)
+{
+     if (RandomArray[9] == 1) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[9] == 2) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[9] == 3) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[9] == 4) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[9] == 5) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[9] == 6) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[9] == 7) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[9] == 8) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[9] == 9) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[9] == 10) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[9] == 11) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[9] == 12) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[9] == 13) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[9] == 14) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[9] == 15) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[9] == 16) {theGameBoardInline.children[0].ThreeTwoSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 11)
+{
+     if (RandomArray[10] == 1) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[10] == 2) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[10] == 3) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[10] == 4) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[10] == 5) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[10] == 6) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[10] == 7) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[10] == 8) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[10] == 9) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[10] == 10) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[10] == 11) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[10] == 12) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[10] == 13) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[10] == 14) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[10] == 15) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[10] == 16) {theGameBoardInline.children[0].ThreeThreeSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 12)
+{
+     if (RandomArray[11] == 1) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[11] == 2) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[11] == 3) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[11] == 4) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[11] == 5) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[11] == 6) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[11] == 7) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[11] == 8) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[11] == 9) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[11] == 10) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[11] == 11) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[11] == 12) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[11] == 13) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[11] == 14) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[11] == 15) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[11] == 16) {theGameBoardInline.children[0].ThreeFourSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 13)
+{
+     if (RandomArray[12] == 1) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[12] == 2) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[12] == 3) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[12] == 4) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[12] == 5) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[12] == 6) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[12] == 7) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[12] == 8) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[12] == 9) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[12] == 10) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[12] == 11) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[12] == 12) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[12] == 13) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[12] == 14) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[12] == 15) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[12] == 16) {theGameBoardInline.children[0].FourOneSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 14)
+{
+     if (RandomArray[13] == 1) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[13] == 2) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[13] == 3) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[13] == 4) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[13] == 5) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[13] == 6) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[13] == 7) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[13] == 8) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[13] == 9) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[13] == 10) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[13] == 11) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[13] == 12) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[13] == 13) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[13] == 14) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[13] == 15) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[13] == 16) {theGameBoardInline.children[0].FourTwoSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 15)
+{
+     if (RandomArray[14] == 1) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[14] == 2) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[14] == 3) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[14] == 4) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[14] == 5) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[14] == 6) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[14] == 7) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[14] == 8) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[14] == 9) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[14] == 10) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[14] == 11) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[14] == 12) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[14] == 13) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[14] == 14) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[14] == 15) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[14] == 16) {theGameBoardInline.children[0].FourThreeSquare_texture.url = "bottom_8.bmp";}
+}
+
+else if (GameIcon == 16)
+{
+     if (RandomArray[15] == 1) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[15] == 2) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[15] == 3) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[15] == 4) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[15] == 5) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[15] == 6) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[15] == 7) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[15] == 8) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_8.bmp";}
+else if (RandomArray[15] == 9) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_1.bmp";}
+else if (RandomArray[15] == 10) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_2.bmp";}
+else if (RandomArray[15] == 11) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_3.bmp";}
+else if (RandomArray[15] == 12) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_4.bmp";}
+else if (RandomArray[15] == 13) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_5.bmp";}
+else if (RandomArray[15] == 14) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_6.bmp";}
+else if (RandomArray[15] == 15) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_7.bmp";}
+else if (RandomArray[15] == 16) {theGameBoardInline.children[0].FourFourSquare_texture.url = "bottom_8.bmp";}
+}
+
+}
+
+function MatchCheck()
+{
+if (Math.abs(PickOneValue - PickTwoValue) == 8)      ///Pics in two sets of 8 = 16  (eg pair 9-1 = 8. 10 -2 = 8, 11- 3 = 8)
+    {
+    Matches = Matches + 1;
+    Attempts = Attempts + 1;
+    ClearPickOneMatch();
+    ClearPickTwoMatch();
+    EndGame();
+    }
+
+else
+  {
+        Attempts = Attempts + 1;
+        PickOne = 20;
+        PickTwo = 20;
+  }
+}
+
+function ClearPickOneMatch()
+{       if (PickOne == 1)
+        {theGameBoardInline.children[0].OneOneSquare.SetAlpha(0);
+         UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 2)
+        {theGameBoardInline.children[0].OneTwoSquare.SetAlpha(0);
+        UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 3)
+        {theGameBoardInline.children[0].OneThreeSquare.SetAlpha(0);
+        UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 4)
+        {theGameBoardInline.children[0].OneFourSquare.SetAlpha(0);
+        UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 5)
+        {theGameBoardInline.children[0].TwoOneSquare.SetAlpha(0);
+        UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 6)
+        {theGameBoardInline.children[0].TwoTwoSquare.SetAlpha(0);
+        UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 7)
+        {theGameBoardInline.children[0].TwoThreeSquare.SetAlpha(0);
+        UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 8)
+        {theGameBoardInline.children[0].TwoFourSquare.SetAlpha(0);
+        UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 9)
+        {theGameBoardInline.children[0].ThreeOneSquare.SetAlpha(0);
+         UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 10)
+        {theGameBoardInline.children[0].ThreeTwoSquare.SetAlpha(0);
+        UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 11)
+        {theGameBoardInline.children[0].ThreeThreeSquare.SetAlpha(0);
+        UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 12)
+        {theGameBoardInline.children[0].ThreeFourSquare.SetAlpha(0);
+         UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 13)
+        {theGameBoardInline.children[0].FourOneSquare.SetAlpha(0);
+         UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 14)
+        {theGameBoardInline.children[0].FourTwoSquare.SetAlpha(0);
+         UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 15)
+        {theGameBoardInline.children[0].FourThreeSquare.SetAlpha(0);
+         UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickOne == 16)
+        {theGameBoardInline.children[0].FourFourSquare.SetAlpha(0);
+         UsedTileArray[PickOne - 1] = 1;
+        }
+theMemoryControllerSelectSound.Play();
+}
+
+function ClearPickTwoMatch()
+{ if (PickTwo == 1)
+        {theGameBoardInline.children[0].OneOneSquare.SetAlpha(0);
+         UsedTileArray[PickOne - 1] = 1;
+        }
+        else if (PickTwo == 2)
+        {theGameBoardInline.children[0].OneTwoSquare.SetAlpha(0);
+        UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 3)
+        {theGameBoardInline.children[0].OneThreeSquare.SetAlpha(0);
+        UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 4)
+        {theGameBoardInline.children[0].OneFourSquare.SetAlpha(0);
+        UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 5)
+        {theGameBoardInline.children[0].TwoOneSquare.SetAlpha(0);
+        UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 6)
+        {theGameBoardInline.children[0].TwoTwoSquare.SetAlpha(0);
+        UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 7)
+        {theGameBoardInline.children[0].TwoThreeSquare.SetAlpha(0);
+        UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 8)
+        {theGameBoardInline.children[0].TwoFourSquare.SetAlpha(0);
+        UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 9)
+        {theGameBoardInline.children[0].ThreeOneSquare.SetAlpha(0);
+         UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 10)
+        {theGameBoardInline.children[0].ThreeTwoSquare.SetAlpha(0);
+        UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 11)
+        {theGameBoardInline.children[0].ThreeThreeSquare.SetAlpha(0);
+        UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 12)
+        {theGameBoardInline.children[0].ThreeFourSquare.SetAlpha(0);
+         UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 13)
+        {theGameBoardInline.children[0].FourOneSquare.SetAlpha(0);
+         UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 14)
+        {theGameBoardInline.children[0].FourTwoSquare.SetAlpha(0);
+         UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 15)
+        {theGameBoardInline.children[0].FourThreeSquare.SetAlpha(0);
+         UsedTileArray[PickTwo - 1] = 1;
+        }
+        else if (PickTwo == 16)
+        {theGameBoardInline.children[0].FourFourSquare.SetAlpha(0);
+         UsedTileArray[PickTwo - 1] = 1;
+        }
+
+}
+
+
+function EndGame()
+{
+var b = "";
+var one = ReturnInteger(ScoreOne);
+var two = ReturnInteger(ScoreTwo);
+var three = ReturnInteger(ScoreThree);
+if (Matches == 8)
+{      if (InScoreBoard == true)
+            {
+            HideScoreBoard();
+            theGameBoardInline.children[0].theGameBoardDisplay.SetTranslation(0, -550, -60 );
+            InScoreBoard = false;
+            //function ShowKeyboard(strTitle, strEdit, strDoneFunction, strCancelFunction)
+            }
+
+           if (Score > one)
+            {
+		var txt = ReadValue(19, "default", "Datas\\Langues\\"+lang+".ini");
+             ShowKeyboard(txt, b, "theGameBoardControlsInline.children[0].NewScoreOne(strKeyboardEdit)", "theGameBoardControlsInline.children[0].PlayAgain()");
+            }
+
+            else if ((Score > two) & (Score <= one))
+            {
+		var txt = ReadValue(20, "default", "Datas\\Langues\\"+lang+".ini");
+            ShowKeyboard(txt, b, "theGameBoardControlsInline.children[0].NewScoreTwo(strKeyboardEdit)", "theGameBoardControlsInline.children[0].PlayAgain()");
+            }
+
+            else if ((Score > three) & (Score <= two) )
+            {
+		var txt = ReadValue(21, "default", "Datas\\Langues\\"+lang+".ini");
+            ShowKeyboard(txt, b, "theGameBoardControlsInline.children[0].NewScoreThree(strKeyboardEdit)", "theGameBoardControlsInline.children[0].PlayAgain()");
+            }
+
+           else
+            {
+             InQuestionScreen = true;
+		var txt = ReadValue(22, "default", "Datas\\Langues\\"+lang+".ini");
+		var txt2 = ReadValue(23, "default", "Datas\\Langues\\"+lang+".ini");
+ 		var txt3 = ReadValue(24, "default", "Datas\\Langues\\"+lang+".ini");
+            AskQuestion("\n" + txt + "\n" + txt2 + Score + "% \n" + txt3, "theGameBoardControlsInline.children[0].NewGame()", "theGameBoardControlsInline.children[0].HideGameBoard()", 1);
+            }
+}
+else
+  { Return; }
+
+}
+
+
+function NewScoreOne(x)
+{
+var a = x;
+var info = new Settings;
+info.file = pathdash + "\\Datas\\memoryx.xbx";
+var OldNameOne = info.GetValue("NameOne");
+var OldNameTwo = info.GetValue("NameTwo");
+var OldNameThree = info.GetValue("NameThree");
+var OldScoreOne = info.GetValue("ScoreOne");
+var OldScoreTwo = info.GetValue("ScoreTwo");
+var OldScoreThree = info.GetValue("ScoreThree");
+            info.SetValue("NameTwo", OldNameOne);
+            info.SetValue("ScoreTwo", OldScoreOne);
+
+            info.SetValue("NameThree", OldNameTwo);
+            info.SetValue("ScoreThree", OldScoreTwo);
+
+            info.SetValue("NameOne", a);
+            info.SetValue("ScoreOne", Score);
+GetScoreInfo(); 
+PlayAgain();
+}
+
+function NewScoreTwo(x)
+{
+var a = x;
+var info = new Settings;
+info.file = pathdash + "\\Datas\\memoryx.xbx";
+var OldNameTwo = info.GetValue("NameTwo");
+var OldNameThree = info.GetValue("NameThree");
+var OldScoreTwo = info.GetValue("ScoreTwo");
+var OldScoreThree = info.GetValue("ScoreThree");
+
+            info.SetValue("NameThree", OldNameTwo);
+            info.SetValue("ScoreThree", OldScoreTwo);
+
+              info.SetValue("NameTwo", a);
+              info.SetValue("ScoreTwo", Score);
+GetScoreInfo();
+PlayAgain();
+}
+
+function NewScoreThree(x)
+{
+var a = x;
+var info = new Settings;
+info.file = pathdash + "\\Datas\\memoryx.xbx";
+
+            info.SetValue("NameThree", a);
+            info.SetValue("ScoreThree", Score);
+GetScoreInfo();
+PlayAgain();
+}
+
+
+function PlayAgain()
+{
+GetScoreInfo();
+InQuestionScreen = true;
+var txt = ReadValue(22, "default", "Datas\\Langues\\"+lang+".ini");
+var txt2 = ReadValue(23, "default", "Datas\\Langues\\"+lang+".ini");
+var txt3 = ReadValue(24, "default", "Datas\\Langues\\"+lang+".ini");
+AskQuestion("\n" + txt + "\n" + txt2 + Score + "% \n" + txt3, "theGameBoardControlsInline.children[0].NewGame()", "theGameBoardControlsInline.children[0].HideGameBoard()", 1);
+
+}
+
+
+function NewGame()
+
+{
+	GetScoreInfo();
+      theGameBoardInline.children[0].HighScoreOne_text.text ="1. " + NameOne + "    " + ScoreOne + "%";
+      theGameBoardInline.children[0].HighScoreTwo_text.text ="2. " + NameTwo + "    " + ScoreTwo + "%";
+      theGameBoardInline.children[0].HighScoreThree_text.text ="3. " + NameThree + "    " + ScoreThree + "%";
+      InQuestionScreen = false;
+      theGameBoardInline.children[0].theGameBoardDisplay.SetTranslation( -47.5, 47.5, -20);
+      ShowScoreBoard();
+      InScoreBoard = true;
+      ReinitializeAlpha();
+      RandomArrayGenerator();
+      GameIcon = 1;
+      UpdateGameIconHilight();
+      Attempts = 0;
+      Matches = 0;
+      resetscore = true;
+      Score = 100;
+      Remaining = 8;
+      PickOne = 20;
+      PickTwo = 20;
+      UpdateScoreBoard();
+
+
+      UsedTileArray[0] = 0;
+      UsedTileArray[1] = 0;
+      UsedTileArray[2] = 0;
+      UsedTileArray[3] = 0;
+      UsedTileArray[4] = 0;
+      UsedTileArray[5] = 0;
+      UsedTileArray[6] = 0;
+      UsedTileArray[7] = 0;
+      UsedTileArray[8] = 0;
+      UsedTileArray[9] = 0;
+      UsedTileArray[10] = 0;
+      UsedTileArray[11] = 0;
+      UsedTileArray[12] = 0;
+      UsedTileArray[13] = 0;
+      UsedTileArray[14] = 0;
+      UsedTileArray[15] = 0;
+}
+
+
+function ReinitializeAlpha()
+{
+        theGameBoardInline.children[0].OneOneSquare.SetAlpha(1);
+        theGameBoardInline.children[0].OneTwoSquare.SetAlpha(1);
+        theGameBoardInline.children[0].OneThreeSquare.SetAlpha(1);
+        theGameBoardInline.children[0].OneFourSquare.SetAlpha(1);
+        theGameBoardInline.children[0].TwoOneSquare.SetAlpha(1);
+        theGameBoardInline.children[0].TwoTwoSquare.SetAlpha(1);
+        theGameBoardInline.children[0].TwoThreeSquare.SetAlpha(1);
+        theGameBoardInline.children[0].TwoFourSquare.SetAlpha(1);
+        theGameBoardInline.children[0].ThreeOneSquare.SetAlpha(1);
+        theGameBoardInline.children[0].ThreeTwoSquare.SetAlpha(1);
+        theGameBoardInline.children[0].ThreeThreeSquare.SetAlpha(1);
+        theGameBoardInline.children[0].ThreeFourSquare.SetAlpha(1);
+        theGameBoardInline.children[0].FourOneSquare.SetAlpha(1);
+        theGameBoardInline.children[0].FourTwoSquare.SetAlpha(1);
+        theGameBoardInline.children[0].FourThreeSquare.SetAlpha(1);
+        theGameBoardInline.children[0].FourFourSquare.SetAlpha(1);
+}
+
+
+function UpdateScoreBoard()
+{
+Score = Math.floor((Matches / Attempts) * 100);
+Remaining = (8 - Matches);
+var txt = ReadValue(25, "default", "Datas\\Langues\\"+lang+".ini");
+var txt2 = ReadValue(26, "default", "Datas\\Langues\\"+lang+".ini");
+var txt3 = ReadValue(27, "default", "Datas\\Langues\\"+lang+".ini");
+theGameBoardInline.children[0].Remaining_text.text = txt + Remaining;
+theGameBoardInline.children[0].Matches_text.text =   txt2 + Matches;
+theGameBoardInline.children[0].Attempts_text.text =  txt3 + Attempts;
+
+if (Attempts > 0)
+{
+theGameBoardInline.children[0].Score_text.text =     "SCORE  " + Score + "%";
+}
+
+else if (Attempts == 0)
+{
+theGameBoardInline.children[0].Score_text.text =     "SCORE   100%";
+}
+
+theGameBoardInline.children[0].HighScoreOne_text.text ="1. " + NameOne + "    " + ScoreOne + "%";
+theGameBoardInline.children[0].HighScoreTwo_text.text ="2. " + NameTwo + "    " + ScoreTwo + "%";
+theGameBoardInline.children[0].HighScoreThree_text.text ="3. " + NameThree + "    " + ScoreThree + "%";
+
+
+}
+
+
+function GetRowPosition()
+{
+
+if ((GameIcon == 1) | (GameIcon == 2) | (GameIcon == 3) | (GameIcon == 4))
+   {
+   rowposition = 1;
+   }
+ else  if ((GameIcon == 5) | (GameIcon == 6) | (GameIcon == 7) | (GameIcon == 8))
+   {
+   rowposition = 2;
+   }
+ else if ((GameIcon == 9) | (GameIcon == 10) | (GameIcon == 11) | (GameIcon == 12))
+   {
+   rowposition = 3;
+   }
+ else if ((GameIcon == 13) | (GameIcon == 14) | (GameIcon == 15) | (GameIcon == 16))
+   {
+   rowposition = 4;
+   }
+}
+
+function GetColumnPosition()
+{
+if ((GameIcon == 1) | (GameIcon == 5) | (GameIcon == 9) | (GameIcon == 13))
+   {
+   colposition = 1;
+   }
+ else  if ((GameIcon == 2) | (GameIcon == 6) | (GameIcon == 10) | (GameIcon == 14))
+   {
+   colposition = 2;
+   }
+ else if ((GameIcon == 3) | (GameIcon == 7) | (GameIcon == 11) | (GameIcon == 15))
+   {
+   colposition = 3;
+   }
+ else if ((GameIcon == 4) | (GameIcon == 8) | (GameIcon == 12) | (GameIcon == 16))
+   {
+   colposition = 4;
+   }
+}
+
+
+function MoveRight()
+{
+
+if (colposition == 1)
+{
+     if ((UsedTileArray[GameIcon] == 0) & (GameIcon + 1 != PickOne))
+           {
+            GameIcon = GameIcon + 1;
+           }
+
+       else if ((UsedTileArray[GameIcon + 1] == 0) & (GameIcon + 2 != PickOne) )
+           {
+          GameIcon = GameIcon + 2;
+           }
+
+       else if ((UsedTileArray[GameIcon + 2] == 0) & (GameIcon + 3 != PickOne) )
+           {
+           GameIcon = GameIcon + 3;
+           }
+
+
+       else
+        {
+        FindNextFreeSquareDown();
+        }   ///make function to loop to find next spot and put it here
+}
+
+else if (colposition == 2)
+{
+     if ((UsedTileArray[GameIcon] == 0 ) & (GameIcon + 1 != PickOne))
+           {
+           GameIcon = GameIcon + 1;
+           }
+
+      else if ((UsedTileArray[GameIcon + 1] == 0) & (GameIcon + 2 != PickOne) )
+           {
+           GameIcon = GameIcon + 2;
+           }
+
+        else
+        {
+        FindNextFreeSquareDown();
+        }
+}
+else if (colposition == 3)
+{
+      if ((UsedTileArray[GameIcon] == 0) & (GameIcon + 1 != PickOne))
+           {
+           GameIcon = GameIcon + 1;
+           }
+
+       else
+        {
+        FindNextFreeSquareDown();
+        }
+}
+else if (colposition == 4)
+{
+    return;
+}
+}
+
+function MoveLeft()
+{
+if (colposition == 4)
+{
+     if ((UsedTileArray[GameIcon - 2] == 0) & (GameIcon - 1 != PickOne))
+           {
+           GameIcon = GameIcon - 1;
+           }
+
+      else if((UsedTileArray[GameIcon - 3] == 0)  & (GameIcon - 2 != PickOne))
+           {
+          GameIcon = GameIcon - 2;
+           }
+
+       else if ((UsedTileArray[GameIcon - 4] == 0) & (GameIcon - 3 != PickOne))
+           {
+           GameIcon = GameIcon - 3;
+           }
+
+        else
+        {
+        FindNextFreeSquareUp();
+        }
+}
+else if (colposition == 3)
+{
+      if ((UsedTileArray[GameIcon - 2] == 0) & (GameIcon - 1 != PickOne))
+           {
+           GameIcon = GameIcon - 1;
+           }
+
+      else if((UsedTileArray[GameIcon - 3] == 0) & (GameIcon - 2 != PickOne))
+           {
+          GameIcon = GameIcon - 2;
+           }
+
+        else
+        {
+        FindNextFreeSquareUp();
+        }
+}
+else if (colposition == 2)
+{
+     if ((UsedTileArray[GameIcon - 2] == 0) & (GameIcon - 1 != PickOne))
+           {
+           GameIcon = GameIcon - 1;
+           }
+        else
+        {
+        FindNextFreeSquareUp();
+        }
+}
+else if (colposition == 1)
+{
+    return;
+}
+}
+
+function MoveDown()
+{
+if (rowposition == 1)
+{
+     if ((UsedTileArray[GameIcon + 3] == 0) & (GameIcon + 4  != PickOne))
+           {
+           GameIcon = GameIcon + 4;
+           }
+
+           else if ((UsedTileArray[GameIcon + 7] == 0) & (GameIcon + 8 != PickOne))
+           {
+          GameIcon = GameIcon + 8;
+           }
+
+           else if ((UsedTileArray[GameIcon + 11] == 0) & (GameIcon + 12 != PickOne))
+           {
+           GameIcon = GameIcon + 12;
+           }
+
+      else
+        {
+        FindNextFreeSquareDown();
+        }   ///make function to loop to find next spot and put it here
+}
+else if (rowposition == 2)
+{
+       if ((UsedTileArray[GameIcon + 3] == 0) & (GameIcon + 4  != PickOne))
+           {
+            GameIcon = GameIcon +4;
+           }
+
+       else if ((UsedTileArray[GameIcon + 7] == 0) & (GameIcon + 8 != PickOne))
+           {
+          GameIcon = GameIcon + 8;
+           }
+
+        else
+        {
+        FindNextFreeSquareDown();
+        }
+}
+else if (rowposition == 3)
+{
+       if ((UsedTileArray[GameIcon + 3] == 0) & (GameIcon + 4  != PickOne))
+           {
+            GameIcon = GameIcon + 4;
+           }
+
+
+        else
+        {
+        FindNextFreeSquareDown();
+        }
+}
+else if (rowposition == 4)
+{
+    return;
+}
+}
+
+function MoveUp()
+{
+if (rowposition == 4)
+{
+     if ((UsedTileArray[GameIcon - 5] == 0) & (GameIcon - 4  != PickOne))
+           {
+           GameIcon = GameIcon - 4;
+           }
+
+      else if ((UsedTileArray[GameIcon - 9] == 0) & (GameIcon - 8  != PickOne))
+           {
+          GameIcon = GameIcon - 8;
+           }
+
+       else if ((UsedTileArray[GameIcon - 13] == 0) & (GameIcon - 12  != PickOne))
+           {
+           GameIcon = GameIcon - 12;
+           }
+
+    else
+        {
+        FindNextFreeSquareUp();
+        }
+}
+else if (rowposition == 3)
+{
+      if ((UsedTileArray[GameIcon - 5] == 0) & (GameIcon - 4  != PickOne))
+           {
+           GameIcon = GameIcon - 4;
+           }
+
+      else if ((UsedTileArray[GameIcon - 9] == 0) & (GameIcon - 8  != PickOne))
+           {
+          GameIcon = GameIcon - 8;
+           }
+
+       else
+            {
+            FindNextFreeSquareUp();
+            }
+}
+else if (rowposition == 2)
+{
+     if ((UsedTileArray[GameIcon - 5] == 0) & (GameIcon - 4  != PickOne))
+           {
+           GameIcon = GameIcon - 4;
+           }
+        else
+        {
+        FindNextFreeSquareUp();
+        }
+}
+else if (rowposition == 1)
+{
+    return;
+}
+}
+
+function FindNextFreeSquareUp()
+{
+     if ((UsedTileArray[GameIcon - 2] == 0) & (GameIcon - 1  != PickOne))
+        {
+        GameIcon = GameIcon - 1;
+        UpdateGameIconHilight();
+        }
+     else if ((UsedTileArray[GameIcon - 3] == 0) & (GameIcon - 2  != PickOne))
+        {
+        GameIcon = GameIcon -  2;
+        UpdateGameIconHilight();
+        }
+     else if ((UsedTileArray[GameIcon - 4] == 0) & (GameIcon - 3  != PickOne))
+        {
+        GameIcon = GameIcon - 3;
+        UpdateGameIconHilight();
+        }
+     else if ((UsedTileArray[GameIcon - 5] == 0) & (GameIcon - 4  != PickOne))
+        {
+        GameIcon = GameIcon -4;
+        UpdateGameIconHilight();
+        }
+     else if ((UsedTileArray[GameIcon - 6] == 0) & (GameIcon - 5  != PickOne))
+        {
+        GameIcon = GameIcon -5;
+        UpdateGameIconHilight();
+        }
+     else if ((UsedTileArray[GameIcon - 7] == 0) & (GameIcon - 6  != PickOne))
+        {
+        GameIcon = GameIcon - 6;
+        UpdateGameIconHilight();
+        }
+     else if ((UsedTileArray[GameIcon - 8] == 0) & (GameIcon - 7  != PickOne))
+        {
+        GameIcon = GameIcon - 7;
+        UpdateGameIconHilight();
+        }
+     else if ((UsedTileArray[GameIcon - 9] == 0) & (GameIcon - 8  != PickOne))
+        {
+        GameIcon = GameIcon - 8;
+        UpdateGameIconHilight();
+        }
+     else if ((UsedTileArray[GameIcon - 10] == 0) & (GameIcon - 9  != PickOne))
+        {
+        GameIcon = GameIcon - 9;
+        UpdateGameIconHilight();
+        }
+     else if ((UsedTileArray[GameIcon - 11] == 0) & (GameIcon - 10  != PickOne))
+        {
+        GameIcon = GameIcon - 9;
+        UpdateGameIconHilight();
+        }
+      else if ((UsedTileArray[GameIcon - 12] == 0) & (GameIcon - 11 != PickOne))
+        {
+        GameIcon = GameIcon - 11;
+        UpdateGameIconHilight();
+        }
+      else if ((UsedTileArray[GameIcon - 13] == 0) & (GameIcon - 12  != PickOne))
+        {
+        GameIcon = GameIcon -12;
+        UpdateGameIconHilight();
+        }
+      else if ((UsedTileArray[GameIcon - 14] == 0) & (GameIcon - 13  != PickOne))
+        {
+        GameIcon = GameIcon - 13;
+        UpdateGameIconHilight();
+        }
+      else if ((UsedTileArray[GameIcon - 15] == 0) & (GameIcon - 14  != PickOne))
+        {
+        GameIcon = GameIcon - 14;
+        UpdateGameIconHilight();
+        }
+       else if ((UsedTileArray[GameIcon - 16] == 0) & (GameIcon - 15  != PickOne))
+        {
+        GameIcon = GameIcon - 15;
+        UpdateGameIconHilight();
+        }
+       else
+        {
+        return;
+        }
+}
+
+function FindNextFreeSquareDown()
+{
+     if ((UsedTileArray[GameIcon] == 0) & (GameIcon + 1  != PickOne))
+       {
+       GameIcon = GameIcon + 1;
+       UpdateGameIconHilight();
+
+       }
+      else if ((UsedTileArray[GameIcon + 1] == 0) & (GameIcon + 2  != PickOne))
+       {
+       GameIcon = GameIcon + 2;
+       UpdateGameIconHilight();
+
+       }
+       else if ((UsedTileArray[GameIcon + 2] == 0) & (GameIcon + 3 != PickOne))
+       {
+       GameIcon = GameIcon + 3;
+       UpdateGameIconHilight();
+
+       }
+       else if ((UsedTileArray[GameIcon + 3] == 0) & (GameIcon + 4  != PickOne))
+       {
+       GameIcon = GameIcon + 4;
+       UpdateGameIconHilight();
+
+       }
+       else if ((UsedTileArray[GameIcon + 4] == 0) & (GameIcon + 5  != PickOne))
+       {
+       GameIcon = GameIcon + 5;
+       UpdateGameIconHilight();
+
+       }
+     else if ((UsedTileArray[GameIcon + 5] == 0) & (GameIcon + 6  != PickOne))
+       {
+       GameIcon = GameIcon + 6;
+       UpdateGameIconHilight();
+
+       }
+     else if ((UsedTileArray[GameIcon + 6] == 0) & (GameIcon + 7  != PickOne))
+       {
+       GameIcon = GameIcon + 7;
+       UpdateGameIconHilight();
+
+       }
+     else if ((UsedTileArray[GameIcon + 7] == 0) & (GameIcon + 8  != PickOne))
+       {
+       GameIcon = GameIcon + 8;
+       UpdateGameIconHilight();
+
+       }
+     else if ((UsedTileArray[GameIcon + 8] == 0) & (GameIcon + 9  != PickOne))
+       {
+       GameIcon = GameIcon + 9;
+       UpdateGameIconHilight();
+
+       }
+     else if ((UsedTileArray[GameIcon + 9] == 0) & (GameIcon + 10  != PickOne))
+       {
+       GameIcon = GameIcon + 10;
+       UpdateGameIconHilight();
+
+       }
+     else if ((UsedTileArray[GameIcon + 10] == 0) & (GameIcon + 11  != PickOne))
+       {
+       GameIcon = GameIcon + 11;
+       UpdateGameIconHilight();
+
+       }
+     else if ((UsedTileArray[GameIcon + 11] == 0) & (GameIcon + 12  != PickOne))
+       {
+       GameIcon = GameIcon + 12;
+       UpdateGameIconHilight();
+
+       }
+     else if ((UsedTileArray[GameIcon + 12] == 0) & (GameIcon + 13  != PickOne))
+       {
+       GameIcon = GameIcon + 13;
+       UpdateGameIconHilight();
+
+       }
+     else if ((UsedTileArray[GameIcon + 13] == 0) & (GameIcon + 14  != PickOne))
+       {
+       GameIcon = GameIcon + 14;
+       UpdateGameIconHilight();
+
+       }
+     else if ((UsedTileArray[GameIcon + 14] == 0) & (GameIcon + 15  != PickOne))
+       {
+       GameIcon = GameIcon + 15;
+       UpdateGameIconHilight();
+
+       }
+     else
+      {
+      return;
+      }
+}
+//////////////////////END CODE////////////////////
+/////////////////////GAME BOARD VIEWPOINT////////////////////////
+/////////////////////////////////////////////////
+
+////////////////GAMEBOARD JOYSTICK///////////////
+
+DEF theGameBoardJoy Joystick
+{
+
+function OnADown()
+{
+
+if (PickOneFlag == true)
+{
+PickTwoFlag = true;
+PickTwo = GameIcon;
+PickTwoValue = RandomArray[GameIcon - 1];
+ShowBottom();
+
+if (Matches == 7)
+{
+HideIconsWithPicks();
+}
+
+
+}
+
+else
+{
+PickOneFlag = true;
+PickOne = GameIcon;
+PickOneValue = RandomArray[GameIcon - 1];
+ShowBottom();
+
+}
+
+}
+
+
+function OnBDown()
+{
+
+if (InScoreBoard == true)
+{
+HideScoreBoard();
+InScoreBoard = false;
+
+}
+
+else if (InScoreBoard == false)
+{
+
+ShowScoreBoard();
+InScoreBoard = true;
+
+}
+
+}
+
+function OnYDown()
+{
+theGameBoardInline.children[0].theGameBoardDisplay.SetTranslation(0, -550, -60 );
+
+if (InScoreBoard == true)
+{
+HideScoreBoard();
+InScoreBoard = false;
+}
+
+InQuestionScreen = true;
+var txt = ReadValue(28, "default", "Datas\\Langues\\"+lang+".ini");
+AskQuestion("\n \n" + txt, "theGameBoardControlsInline.children[0].NewGame()", "theGameBoardControlsInline.children[0].ReturnToGame()", 1);
+}
+
+
+    function OnBlackDown()
+    {
+    HideGameBoard();
+    LeftTrigger = false;
+    RightTrigger = false;
+    PlaySoundMenuChange();
+    }
+
+
+        function OnMoveUp()
+       {
+
+            GetRowPosition();
+            GetColumnPosition();
+            MoveUp();
+            PlaySoundMenuChange();
+            UpdateGameIconHilight();
+       }
+
+
+    function OnMoveDown()
+      {
+
+            GetRowPosition();
+            GetColumnPosition();
+            MoveDown();
+            PlaySoundMenuChange();
+            UpdateGameIconHilight();
+       }
+
+    function OnMoveLeft()
+    {
+
+            GetRowPosition();
+            GetColumnPosition();
+            MoveLeft();
+            PlaySoundMenuChange();
+            UpdateGameIconHilight();
+
+    }
+
+    function OnMoveRight()
+    {
+
+            GetRowPosition();
+            GetColumnPosition();
+            MoveRight();
+            PlaySoundMenuChange();
+            UpdateGameIconHilight();
+     }
+	function OnPower()
+	{
+			Action("ShutDown_2GAM","Bouton");
+	}
+	function OnPlay()
+	{
+		if(BGMon == false | bgmpause == true)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerPlay();
+		}
+	}
+	function OnStop()
+	{
+		if(BGMon == true)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerStop();
+		}
+	}
+	function OnPause()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerPause();
+			bgmpause = true;
+		}
+	}
+	function OnSkipBack()
+	{
+		SSaver = 0;
+		if(currentMusicPlayerMode == "Continuous")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRewind();
+		}
+		else if(currentMusicPlayerMode == "Playlist")
+		{
+			theControlPanelControlsInline.children[0].PlaylistREW();
+		}
+		else if(currentMusicPlayerMode == "Random")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRandom();
+		}
+	}
+	function OnSkipForward()
+	{
+		SSaver = 0;
+		if(currentMusicPlayerMode == "Continuous")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerFastForward();
+		}
+		else if(currentMusicPlayerMode == "Playlist")
+		{
+			theControlPanelControlsInline.children[0].PlaylistFFW();
+		}
+		else if(currentMusicPlayerMode == "Random")
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerRandom();
+		}
+	}
+	function OnMenu()
+	{
+		SSaver = 0;
+		StartControlPanel();
+	}
+	function OnReverse()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerVolumeDown();
+			var a = Math.round(theControlPanelControlsInline.children[0].theBGMusicPlayer.volume * 100);
+			var txt = ReadValue(18, "default", "Datas\\Langues\\"+lang+".ini");
+			var aa = txt + " : " + a;
+			SetStatusText(aa);
+		}
+	}
+	function OnForward()
+	{
+		SSaver = 0;
+		if (BGMon == true & bgmpause == false)
+		{
+			theControlPanelControlsInline.children[0].MusicPlayerVolumeUp();
+			var a = Math.round(theControlPanelControlsInline.children[0].theBGMusicPlayer.volume * 100);
+			var txt = ReadValue(18, "default", "Datas\\Langues\\"+lang+".ini");
+			var aa = txt + " : " + a;
+			SetStatusText(aa);
+		}
+	}
+	function On1()
+	{
+		SSaver = 0;
+    		HideGameBoard();
+    		LeftTrigger = false;
+    		RightTrigger = false;
+    		PlaySoundMenuChange();
+	}
+	function On2()
+	{
+		SSaver = 0;
+		Action("ShowHideClock_2GAM","Bouton");
+	}
+	function On3()
+	{
+		SSaver = 0;
+		Action("AffTitre_2GAM","Bouton");
+	}
+	function On4()
+	{
+		SSaver = 0;
+		Action("NextBackground_2GAM","Bouton");
+	}
+	function On5()
+	{
+		SSaver = tmpSaver + 1;
+	}
+	function On6()
+	{
+		SSaver = 0;
+		Action("ChangeSkins_2GAM","Bouton");
+	}
+	function OnRightThumbDown()
+	{
+		SSaver = 0;
+		theConfig.screenshot();
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////THE END/////////////////////////////////////////////
+/////////////////////////   MEMORYX code by BobMcGee  ////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////

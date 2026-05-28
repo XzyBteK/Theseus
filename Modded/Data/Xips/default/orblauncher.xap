@@ -1,0 +1,1173 @@
+var bOrbLauncherVisible0;
+var bInRecentTitles;
+var bRecentToggled;
+// Explicit "we drilled into a category's title list" flag. Mirrors the
+// bInCategoryView pattern MediaPlayer.xap uses. The old code only had
+// bOrbLauncherVisible0 + bInBrowser + bRecentToggled and inferred the title
+// list state by elimination, which made the back-button path brittle:
+// if bOrbLauncherVisible0 stuck true the back went to main menu instead of
+// the category list. With this flag the OnBDown branches are explicit.
+var bInTitleList;
+var nPlayCursor0;
+var nPlayCursor1;
+var nPreviousPlayCursor0;
+var nPlayScroll0;
+var nPlayScroll1;
+var nPlayVisible0;
+var nCurOrbLauncherItem0;
+var nCurOrbLauncherScroll0;
+var nCurOrbLauncherVisible0;
+var nMaxOrbLauncherMenuItems;
+var subTitle0;
+var subTitle1;
+var CurrentSection;
+var TempTitleList;
+var CurFillDir;
+var MaxRecentTitles;
+var arrRecentNames;
+var arrRecentPaths;
+var arrMenuNames;
+var arrMenuPaths;
+var TotalSections;
+var LastTitleLaunched;
+var DefaultIcon;
+var TitleCount;
+var bOrbLauncherMenuTextScroll;
+var nOrbLauncherMenuTextScrollTick;
+var OrbLauncherMenuTextNode;
+
+function initialize()
+{
+	bOrbLauncherVisible0 = true;
+	bInRecentTitles = false;
+	bRecentToggled = false;
+	bInTitleList = false;
+	bOrbLauncherMenuTextScroll = false;
+	nOrbLauncherMenuTextScrollTick = 0;
+	OrbLauncherMenuTextNode = "";
+	nCurOrbLauncherItem0 = 0;
+	nCurOrbLauncherScroll0 = 0;
+	nPlayCursor0 = 0;
+	nPreviousPlayCursor0 = 0;
+	nPlayScroll0 = 0;
+	nPlayVisible0 = 9;
+}
+
+function SetOrbLauncherMenuText(strText)
+{
+	var c = theOrbLauncher.children[0].children[0];
+	OrbLauncherMenuTextNode = c.TitleText1;
+	OrbLauncherMenuTextNode.text = strText + "    ";
+	bOrbLauncherMenuTextScroll = true;
+	nOrbLauncherMenuTextScrollTick = 0;
+}
+
+function ScrollOrbLauncherMenuText()
+{
+	if(bOrbLauncherMenuTextScroll)
+	{
+		var strText = OrbLauncherMenuTextNode.text;
+		var nLength = strText.length();
+		if (nLength > 1)
+		{
+			OrbLauncherMenuTextNode.text = strText.substring(1,nLength) + strText.substring(0,1);
+		}
+	}
+}
+
+function UpdateTrackList()
+{
+	var c = theOrbLauncher.children[0].children[0];
+	var nTracks0 = TempTitleList.length;
+	c.LowerPanelText.text = subTitle0;
+	
+	if (nPlayCursor0 < 0 | nPlayScroll0 < 0)
+	{
+		nPlayScroll0 = 0;
+		nPlayCursor0 = 0;
+	}
+	else if ( (nPlayCursor0 >= (nPlayVisible0 - 1)) & (nPreviousPlayCursor0 < nPlayCursor0) & (nPlayCursor0 > (nPlayScroll0 + (nPlayVisible0 - 1)) ))
+	{    
+		nPlayScroll0 = nPlayCursor0 - (nPlayVisible0 - 1);
+	}
+	else if (nPlayCursor0 < nPlayScroll0)
+	{
+		nPlayScroll0 = nPlayCursor0;
+	}
+
+	nPreviousPlayCursor0 = nPlayCursor0;
+	
+	if (nPlayScroll0 > 0)
+	{
+		c.MU_morearrow_up.visible = true;
+	}
+	else
+	{
+		c.MU_morearrow_up.visible = false;
+	}
+	
+	if ((nPlayScroll0 + nPlayVisible0) < nTracks0)
+	{
+		c.MU_morearrow_down.visible = true;
+	}
+	else
+	{    
+		c.MU_morearrow_down.visible = false;
+	}
+	
+	for (var i = 0; i < nPlayVisible0; i = i + 1)
+	{
+		c.TrackNames.children[i].children[1].visible = false; //Browser Icon
+		var n = nPlayScroll0 + i;
+		if (n >= nTracks0)
+		{
+			c.TrackNames.children[i].children[0].geometry.text = "";
+		}
+		else
+		{
+			var strCacheItem = Split(TempTitleList[n],";");
+			var strName0 = strCacheItem[0];
+			var Trans = c.TrackNames.children[i].translation;
+			if(bInBrowser == false | bRecentToggled)
+			{
+				if(parseTrans(Trans,"X") != -0.41) c.TrackNames.children[i].SetTranslation(-0.42, parseTrans(Trans,"Y"), parseTrans(Trans,"Z"));
+				var strAltName = GetTitleName(strName0);
+				if (strAltName != "") strName0 = strAltName;
+				if(strName0.length() > 42) strName0 = strName0.substr(0,40) + "...";
+			}
+			else
+			{
+				c.TrackNames.children[i].SetTranslation(-0.34, parseTrans(Trans,"Y"), parseTrans(Trans,"Z"));
+				c.TrackNames.children[i].children[1].visible = true;
+				if(sFileType[n] == "folder" | bInRoot)
+				{ 
+					c.TrackNames.children[i].children[1].children[0].appearance.texture.url = "folder.xbx";
+				}
+				else
+				{
+					c.TrackNames.children[i].children[1].children[0].appearance.texture.url = "file.xbx";
+				}
+			}
+			c.TrackNames.children[i].children[0].geometry.text = strName0;
+
+			if (n == nPlayCursor0)
+			{
+				c.TrackNames.children[i].SetScale(0.12, 0.12, 0.12);
+				c.TrackNames.children[i].children[0].appearance.name = "GameHilite";
+				// Reset the orb every cursor move. Previous "SelectedIcon"
+				// material + texture from the last row would otherwise leak
+				// through whenever the current row's icon lookup didn't
+				// land on a match.
+				c.theIcons.children[0].children[0].appearance.material.name = "MainMenuOrb";
+				c.theIcons.children[0].children[0].appearance.texture.url = DefaultIcon;
+				if(bInTitleList & (bRecentToggled == false))
+				{
+					// VGames-backed list: ask theGamesCollection for the icon
+					// URL directly. The returned path (E:\<cat>\<name>\icon.jpg)
+					// goes through xboxfs's redirect to Configs/icons/<titleID>.{jpg,png}
+					// so any VGames entry with a registered icon shows up.
+					var iconUrl = theGamesCollection.GetIcon(n);
+					if(iconUrl != "")
+					{
+						c.theIcons.children[0].children[0].appearance.texture.url = iconUrl;
+					}
+				}
+				else if((bInBrowser == false | bRecentToggled) & bInTitleList == false)
+				{
+					// Recent-titles overlay (or any non-browser mode that
+					// still uses the cache+iconselector path). Keep the
+					// original Icons.ini -> theIconSelector lookup so the
+					// recent list still gets its orb art.
+					var Icon = IconFile.GetValue(strCacheItem[0]).toLowerCase();
+					if(Icon != "Unknown" & Icon != "")
+					{
+						for(var x = 0; x < TitleCount; x = x + 1)
+						{
+							if(c.theIconSelector.GetTitleID(x).toLowerCase() == Icon)
+							{
+								c.theIcons.children[0].children[0].appearance.material.name = "SelectedIcon";
+								c.theIconSelector.curTitle = x;
+								c.theIconSelector.setSelImage();
+								break;
+							}
+						}
+					}
+				}
+			}
+			else
+			{               
+				c.TrackNames.children[i].SetScale(0.12, 0.12, 0.12);
+				c.TrackNames.children[i].children[0].appearance.name = "Material #1335";
+			}
+		}
+	}
+
+	if(bInBrowser & (bRecentToggled == false))
+	{
+		var sPath = arrMenuPaths[nCurOrbLauncherItem0];
+		if(sPath.length() > 20)
+		{
+			if(sPath.length() > 27) sPath = PathEllipsis(sPath,27);
+			c.SubMenuHeader.SetScale(0.110000, 0.100000,0.100000);
+			c.SubMenuHeaderText.width = -22;
+		}
+		else
+		{
+			c.SubMenuHeader.SetScale(0.144000, 0.134000,0.134000);
+			c.SubMenuHeaderText.width = -15;
+		}
+		c.SubMenuHeaderText.text = sPath;
+	}
+	else
+	{
+		c.SubMenuHeader.SetScale(0.144000, 0.134000,0.134000);
+		c.SubMenuHeaderText.width = -15;    
+		c.SubMenuHeaderText.text = nTracks0 + " " + Translate("ORBS");
+	}
+}
+
+DEF theOrbLauncherAlternateViewpoint Viewpoint
+{
+	fieldOfView 1.387000
+	orientation 1.177400 -0.983500 -0.236250 -0.345440
+	position 107.8 1.422000 -216.050006
+	jump false
+}
+
+DEF OrbLauncherViewpoint Viewpoint
+{
+	position 107.8 1.422000 -219.050006
+	orientation 0.200900 0.979000 0.034330 -0.345700
+	fieldOfView 1.287
+	jump false
+}
+
+DEF theTitleListViewpoint Viewpoint
+{
+	fieldOfView 1.316000
+	orientation -0.017440 -0.999800 0.000769 -0.088190
+	position 110.460000 1.570000 -219.050006
+	jump false
+}
+
+function PositionOrbLauncherScene()
+{
+	var c = theOrbLauncher.children[0].children[0];
+	c.theWholeThing.SetRotation(0, 1, 0, 0);
+	c.theWholeThing.SetTranslation(155.600001, -53.178000, -16.750003);
+}
+
+function ShowOrbLauncherMenu()
+{
+	var c = theOrbLauncher.children[0].children[0];
+	PositionOrbLauncherScene();
+	c.MU_L3_text_tracklist01.visible = false;
+	c.theMenuArm.SetRotation(0, 1, 0, 0);
+	c.audio_panel.SetRotation(-1, 0, 0, -3.246000);
+	c.audio_panel.SetTranslation(-45.549999, 57.18, -203.800003);
+	c.back1.SetTranslation(-48.990000, 52.450000, -205.000000); 
+	c.back1.SetRotation(0.000000, 1.000000, 0.000000, -0.130900);
+	c.refresh.SetTranslation(-49.490000, 51.650000, -205.800000);   
+	c.refresh.SetRotation(0.000000, 1.000000, 0.000000, -0.130900);
+	c.select1.SetTranslation(-45.280000, 52.339999, -204.000000);   
+	c.select1.SetRotation(0.000000, 1.000000, 0.000000, -0.497400);
+	c.recent.SetTranslation(-44.480000, 51.579999, -204.300000); 
+	c.recent.SetRotation(0.000000, 1.000000, 0.000000, -0.497400);
+	UpdateOrbLauncherMenu();
+	OrbLauncherViewpoint.isBound = true;
+	bOrbLauncherVisible0 = true;
+	bInRecentTitles = false;
+	bRecentToggled = false;
+	bInBrowser = false;
+	bInTitleList = false;
+	c.theIcons.children[0].children[0].appearance.material.name = "MainMenuOrb";
+	if(c.theIcons.visible) c.theIcons.children[0].children[0].appearance.texture.url = DefaultIcon;
+}
+
+function StartTitleList()
+{
+	var c = theOrbLauncher.children[0].children[0];
+	PositionOrbLauncherScene();
+	c.MU_L3_text_tracklist01.visible = false;
+	c.back1.SetTranslation(-47.340000, 52.810000, -204.300003); 
+	c.back1.SetRotation(0.000000, -1.000000, 0.000000, -0.340300);
+	c.refresh.SetTranslation(-47.690000, 52.380000, -204.300003); 
+	c.refresh.SetRotation(0.000000, -1.000000, 0.000000, -0.340300);
+	c.select1.SetTranslation(-43.539999, 52.740002, -204.800003);   
+	c.select1.SetRotation(-0.014820, 0.970100, -0.242300, -0.143900);
+	c.recent.SetTranslation(-43.250000, 52.340002, -204.800003);   
+	c.recent.SetRotation(-0.014820, 0.970100, -0.242300, -0.143900);
+	c.theMenuArm.SetRotation(0, 1, 0, 2);
+	c.audio_panel.SetRotation(1, 0, 0, -0.02618);
+	c.audio_panel.SetTranslation(-45.549999, 55.07, -204.5);
+	nPlayScroll0 = 0;
+	nPlayCursor0 = 0;
+	UpdateTrackList();
+	theTitleListViewpoint.isBound = true;
+	CurrentViewpoint = theTitleListViewpoint;
+	bOrbLauncherVisible0 = false;
+	bInTitleList = true;
+}
+
+function EnterOrbLauncherMenu()
+{
+	var c = theOrbLauncher.children[0].children[0];
+	c.theIcons.visible = false;
+	c.theIconSelector.isActive = false;
+	DefaultIcon = "";
+	TitleCount = 0;
+	nPlayScroll0 = 0;
+	nCurOrbLauncherScroll0 = 0;
+	nCurOrbLauncherItem0 = 0;
+	SetOrbLauncherMenuText(Translate("Select Your Favorite Orbs"));
+	c.MU_Text_refresh.children[0].geometry.text = Translate("INFO");
+	c.MU_text_recent.children[0].geometry.text = Translate("REFRESH");
+	LoadMenuItems();
+	ShowOrbLauncherMenu();
+	CurrentViewpoint = OrbLauncherViewpoint;
+	CurrentAltViewpoint = theOrbLauncherAlternateViewpoint;
+	TempTitleList = new Array;
+}
+
+function LoadMenuItems()
+{
+	var c = theOrbLauncher.children[0].children[0];
+	TotalSections = 0;
+	arrMenuNames = new Array;
+	arrMenuPaths = new Array;
+	for (var x = 0; x < 5; x = x + 1)
+	{
+		c.theMenuButtons.children[x].visible = false;
+	}
+	arrMenuNames[0] = Translate("Main Orb");
+	arrMenuPaths[0] = "Current Orb";
+	arrMenuNames[1] = Translate("Memory Orb");
+	arrMenuPaths[1] = "Memory Orb";
+	arrMenuNames[2] = Translate("Music Orb");
+	arrMenuPaths[2] = "Music Orb";
+	arrMenuNames[3] = Translate("Online Orb");
+	arrMenuPaths[3] = "Online Orb";
+	arrMenuNames[4] = Translate("Launcher Orb");
+	arrMenuPaths[4] = "Launcher Orb";
+	arrMenuNames[5] = Translate("Settings Orb");
+	arrMenuPaths[5] = "Settings Orb";
+	TotalSections = 6;
+	nCurOrbLauncherVisible0 = 5;
+}
+
+function GetOrbMenuList()
+{
+	var b = new Folder;
+	b.path = "Q:\\orbs";
+	var n = b.subFolders.length();
+	var a = new Array;
+	for(var i = 0; i < n; i = i + 1)
+	{
+		var strName = b.subFolders[i].name;
+		if(strName != "." & strName != ".." & strName != "")
+		{
+			a[a.length] = strName;
+		}
+	}
+	return a.sort();
+}
+
+function ShowOrbLauncherInfo()
+{
+	if(bOrbLauncherVisible0)
+	{
+		TellUser(Translate("Choose the menu orb slot first."),"");
+		return;
+	}
+	if(TempTitleList.length == 0)
+	{
+		TellUser(Translate("No orb found."),"");
+		return;
+	}
+	var OrbName = TempTitleList[nPlayCursor0];
+	var info = new Settings;
+	info.file = "Q:\\orbs\\" + OrbName + "\\" + OrbName + ".xbx";
+	info.section = "OrbInfo";
+	var author = info.GetValue("Author");
+	var version = info.GetValue("Version");
+	TellUser(Translate("Orb: ") + OrbName + "\n" + Translate("Author: ") + author + "\n" + Translate("Version: ") + version,"");
+}
+
+function GetOrbMeshPath(OrbName)
+{
+	var OrbFolder = new Folder;
+	OrbFolder.path = "Q:\\orbs\\" + OrbName;
+	for(var i = 0; i < OrbFolder.files.length(); i = i + 1)
+	{
+		if(OrbFolder.files[i].type.toLowerCase() == "xm")
+		{
+			return "Q:\\Orbs\\" + OrbName + "\\" + OrbFolder.files[i].name + ".xm";
+		}
+	}
+	return "";
+}
+
+function PreviewOrbMesh(OrbName)
+{
+	var OrbMesh = GetOrbMeshPath(OrbName);
+	if(OrbMesh != "")
+	{
+		var c = theOrbLauncher.children[0].children[0];
+		theConfig.FlushMeshCache();
+		c.theIcons.visible = true;
+		c.theIcons.children[0].children[0].appearance.material.name = "MainMenuOrb";
+		c.theIcons.children[0].children[0].appearance.texture.url = "";
+		c.theIcons.children[0].children[0].geometry.url = OrbMesh;
+	}
+}
+
+function SaveOrbForCurrentSlot(OrbName)
+{
+	if(nCurOrbLauncherItem0 == 0)
+	{
+		SetSavedValue("Dashboard Settings","Current Orb",OrbName);
+		SetSavedValue("Dashboard Settings","Use Custom Orb","true");
+		ReloadOrb();
+	}
+	else
+	{
+		SetSavedValue("Orb Settings",arrMenuPaths[nCurOrbLauncherItem0],OrbName);
+		ApplyMenuOrbs();
+	}
+}
+
+function SelectOrbLauncherOrb()
+{
+	if(bOrbLauncherVisible0)
+	{
+		subTitle0 = arrMenuNames[nCurOrbLauncherItem0];
+		TempTitleList = GetOrbMenuList();
+		nPlayScroll0 = 0;
+		nPlayCursor0 = 0;
+		thePlayerPanelIn.Play();
+		StartTitleList();
+		return;
+	}
+	if(TempTitleList.length == 0)
+	{
+		TellUser(Translate("No orb found."),"");
+		return;
+	}
+	var OrbName = TempTitleList[nPlayCursor0];
+	PreviewOrbMesh(OrbName);
+	SaveOrbForCurrentSlot(OrbName);
+	TellUser(Translate("Selected ") + OrbName + Translate(" for ") + arrMenuNames[nCurOrbLauncherItem0],"");
+}
+
+
+function LoadRecentTitles()
+{
+	arrRecentNames = new Array;
+	arrRecentPaths = new Array;
+	MaxRecentTitles = 9;
+	var AllTitles = GetAllTitles();
+	var sAllTitles = AllTitles.join("\n");
+
+	for (var i = 0; i < MaxRecentTitles; i = i + 1)
+	{
+		var v = GetSavedValue("RecentTitles", "Title" + i);
+		if(v != "") 
+		{
+			var arrTemp = Split(v,"|");
+			if(sAllTitles.indexOf(arrTemp[1]) >= 0)
+			{  //If this title is in the cache then add it to the Recent Titles list.
+				arrRecentPaths[arrRecentPaths.length] = arrTemp[0];
+				arrRecentNames[arrRecentNames.length] = arrTemp[1];
+			} 
+		}
+	}
+}
+
+function UpdateRecentTitles(x,y)
+{
+	SetSavedValue("RecentTitles", "Title0", x + "|" + y );
+	var index = 1;
+	for(var i = 0; i < arrRecentNames.length; i = i + 1)
+	{ 
+		if(arrRecentNames[i] != y)
+		{
+			SetSavedValue("RecentTitles", "Title" + index, arrRecentPaths[i] + "|" + arrRecentNames[i] );
+			index = index + 1;
+			if(index == MaxRecentTitles) return;
+		}
+	}
+	while(index < MaxRecentTitles)
+	{   //Ensure the rest of the list is clear
+		SetSavedValue("RecentTitles", "Title" + index, "");
+		index = index + 1;
+	}
+}
+
+//sets up the root menu text etc.
+function UpdateOrbLauncherMenu()
+{
+	var c = theOrbLauncher.children[0].children[0];
+	
+	if (nCurOrbLauncherScroll0 > 0)
+	{
+		c.morearrow_up.visible = true;
+		c.morearrow_up.children[0].appearance.material.name = "NavType";
+	}
+	else
+	{
+		c.morearrow_up.visible = false;
+	}
+	
+	if ((nCurOrbLauncherScroll0 + nCurOrbLauncherVisible0) < TotalSections)
+	{
+		c.morearrow_down.visible = true;
+		c.morearrow_down.children[0].appearance.material.name = "NavType";
+	}
+	else
+	{    
+		c.morearrow_down.visible = false;
+	}
+	
+	for (var i = 0; i < nCurOrbLauncherVisible0; i = i + 1)
+	{
+		var n = nCurOrbLauncherScroll0 + i;
+		var v = arrMenuNames[n];
+		c.theMenuButtons.children[i].visible = true;
+		c.theMenuButtons.children[i].children[1].children[0].geometry.text = v;
+		
+		if (n == nCurOrbLauncherItem0)
+		{
+			c.theMenuButtons.children[i].children[0].appearance.material.name = "GameHilite";
+			c.theMenuButtons.children[i].children[0].appearance.texture.url = "GameHilite_01.bmp";
+			c.theMenuButtons.children[i].children[1].children[0].appearance.name = "HilightedType";
+			c.MenuMetaText.text = v;
+			if(i == 0) c.morearrow_up.children[0].appearance.material.name = "HilightedType";
+			else if(i == 4) c.morearrow_down.children[0].appearance.material.name = "HilightedType";
+		}
+		else
+		{
+			c.theMenuButtons.children[i].children[0].appearance.material.name = "GameHilite";
+			c.theMenuButtons.children[i].children[0].appearance.texture.url = "outline.tga";
+			c.theMenuButtons.children[i].children[1].children[0].appearance.name = "NavType";
+		}
+	}
+	c._button_surround.visible = (TotalSections >= 3);
+	c.New_Line11.visible = (TotalSections >= 3);
+	c._button_surround_0.visible = (TotalSections < 3);
+}
+
+function LaunchItem(x,y)
+{
+	var RelativePath = Split(x,";");
+	var TitleLocation = Split(y,";");
+	var FolderName = TitleLocation[0];
+	var sDrive = DriveLocations[StringToNumber(TitleLocation[1])];
+	if((sDrive != "C:\\" & sDrive != "E:\\" & sDrive != "R:\\") & bHDDInitialized == false) 
+	{  //The title is not on C or E so set the background before continuing.
+		sLocation = x;
+		sFolder = y;
+		bLaunchItem = true;
+		bHDDInitialize = true;
+		return;
+	}
+	
+	launchPath = PartitionLocations[StringToNumber(TitleLocation[1])] + RelativePath[StringToNumber(TitleLocation[2])] + "\\" + FolderName;
+	launchXbe = "default.xbe";
+	
+	if(theConfig.NtFileExists(launchPath + "\\" + launchXbe))
+	{  //We,ve found the title so update the RecentTitles and launch directly.
+		//Bypassing theLaunchGameLevel: on Xbox launch() reboots so the
+		//transition is invisible anyway, on desktop launch() returns and
+		//the engine doesn't tolerate navigating back out of the launch
+		//level (CLevel::Advance crash). Skipping the level keeps the
+		//OrbLauncher scene intact for when focus returns.
+		UpdateRecentTitles(x,y);
+		launch(launchXbe, launchPath);
+		return;
+	}
+	
+	//If we've made it here the title was not found. 
+	//This could be due to a stale cache. So, let's refresh the cache and then reload the list.
+	if(theOrbLauncher.children[0].children[0].theWholeThing.visible == false)
+	{
+		theBackground.isBound = true;
+		theOrbLauncher.children[0].children[0].theWholeThing.visible = true;
+		theOrbLauncher.shell.alpha = 1;
+	}
+	RefreshTitleList();
+}
+
+function RefreshTitleList()
+{
+	RefreshCache();
+	LoadRecentTitles();
+	if (bOrbLauncherVisible0 == false & bInBrowser == false)
+	{
+	   if(bInRecentTitles)
+	   {
+		   TempTitleList = arrRecentNames;
+	   }
+	   else
+	   {
+		   TempTitleList = GetTitleList(arrMenuNames[nCurOrbLauncherItem0]);
+	   }
+	   UpdateTrackList(); 
+	}
+}
+
+function GetTitleList(mnuName)
+{
+	// Desktop: read straight from VGames via theGamesCollection. Old Xbox
+	// code paged through cache.ini in batches of 25, capped by buffer size
+	// and required Y-to-refresh. The node auto-refreshes off VGames'
+	// generation counter, so this is always live.
+	theGamesCollection.SetCategory(mnuName);
+	var TitleList = new Array;
+	var n = theGamesCollection.GetCount();
+	for(var i = 0; i < n; i = i + 1)
+	{
+		// Format matches what cache.ini used to emit so LaunchItem keeps
+		// working unchanged: "FolderName;driveIdx;pathIdx". VGames lives
+		// on drive E (index 1 in DriveLocations C/E/F/...) and the title's
+		// relative subdir is always the first split of CurFillDir (Xbox
+		// scanned multiple alt-named dirs; desktop just has one canonical).
+		TitleList[i] = theGamesCollection.GetTitle(i) + ";1;0";
+	}
+	return TitleList;
+}
+
+DEF theOrbLauncher Level
+{
+	archive "orblauncher_playedit2.xip"
+	children
+	[
+		Inline
+		{
+			url "orblauncher_playedit2/default2.xap"
+			
+			function onLoad()
+			{
+				
+				var c = theOrbLauncher.children[0].children[0];
+				
+				c.MU_L3_panel_tracklist_overlay.visible = bUseUnderlay;
+				nMaxOrbLauncherMenuItems = StringToNumber(GetSavedValue("OrbLauncherMenu","MaxOrbLauncherMenuItems"));
+				if( thcorb == true ) 
+				{
+					c.MU_L3_musicpod.visible = false;
+					c.MU_L3_musicpod_thc.visible = true; 
+					c.Spinning_Support.children[0].rpm = -1.3;
+					c.Spinning_Support2.children[0].rpm = -0.8;
+					c.Spinning_Support3.children[0].rpm = 1.4;
+					c.Spinning_Support4.children[0].rpm = -1.6;
+				}   
+				else
+				{ 
+					c.MU_L3_musicpod.visible = true;
+					c.MU_L3_musicpod_thc.visible = false; 
+					c.Spinning_Support.children[0].rpm = 0;
+					c.Spinning_Support2.children[0].rpm = 0;
+					c.Spinning_Support3.children[0].rpm = 0;
+					c.Spinning_Support4.children[0].rpm = 0;
+				}
+				var YStart;
+				var YStep;
+				var Y = 0;
+				if(bUseUnderlay)
+				{
+					nPlayVisible0 = 9;
+					YStart = .569;
+					YStep = .162;
+				}
+				else
+				{
+					nPlayVisible0 = 12;
+					YStart = .569;
+					YStep = .118;
+				}
+				for(var i = 0; i < 12; i = i + 1)
+				{
+					var Trans = c.TrackNames.children[i].translation;
+					if(i < nPlayVisible0)
+					{
+						Y = YStart - (i * YStep);
+						c.TrackNames.children[i].SetTranslation(parseTrans(Trans,"X"), Y, parseTrans(Trans,"Z"));
+						c.TrackNames.children[i].visible = true;
+					}
+					else
+					{
+						c.TrackNames.children[i].visible = false;
+						c.TrackNames.children[i].SetTranslation(parseTrans(Trans,"X"), Y, parseTrans(Trans,"Z"));
+					}
+				}
+				EnterOrbLauncherMenu();
+			}
+		}
+	]
+	
+	shell Transform
+	{
+		scale 12 12 12
+		//scale 4.3176 4.3176 4.3176
+		translation 109.8 1.622000 -223.050006
+		children
+		[
+			DEF theOrbLauncherWaver Waver
+			{
+				rpm 0.75
+				children
+				[
+					Shape
+					{
+						appearance Appearance
+						{
+							material MaxMaterial
+							{
+								name "InnerWall_01"
+							}
+							texture ImageTexture
+							{
+								alpha true
+								url "cellwall.bmp"
+							}
+						}
+						geometry Mesh { url "Inner_cell-FACES.xm" }
+					}
+					Shape
+					{
+						appearance Appearance
+						{
+							material MaxMaterial
+							{
+								name "InnerWall_02"
+							}
+						}
+						geometry Sphere
+						{
+							radius 1.0
+						}
+					}
+				]
+			}
+		]
+	}
+	
+	tunnel Transform
+	{
+		children
+		[
+			Shape
+			{
+				appearance Appearance { material MaxMaterial { name "Tubes" } }
+				geometry Mesh { url "Music/Tunnel_02-FACES.xm" }
+			}
+		]
+	}
+	
+	path USE OrbLauncherViewpoint
+	
+	control DEF theOrbLauncherJoystick Joystick
+	{
+		function OnADown()
+		{
+			theOrbLauncher.children[0].children[0].MU_select_pod_HL.children[0].appearance.material.param = 1;
+			PlaySoundA();
+			SelectOrbLauncherOrb();
+		}
+		
+		function OnXDown()
+		{
+			theOrbLauncher.children[0].children[0].MU_recent_pod_HL.children[0].appearance.material.param = 1;
+			PlaySoundA();
+			SelectOrbLauncherOrb();
+		}
+		
+		function OnYDown()
+		{
+			theOrbLauncher.children[0].children[0].MU_refresh_pod_HL.children[0].appearance.material.param = 1;
+			PlaySoundA();
+			ShowOrbLauncherInfo();
+		}
+		
+		function OnBDown()
+		{
+			theOrbLauncher.children[0].children[0].MU_back_pod_HL.children[0].appearance.material.param = 1;
+			PlaySoundB();
+
+			// Quicklaunch-B assignment shortcut. Only in file browser, only when
+			// both triggers held on an .xbe row. Bails before any nav.
+			if(bInBrowser & bInRoot == false & LeftTrigger & RightTrigger)
+			{
+				if(sFileType[nPlayCursor0] == "xbe")
+				{
+					var sPath = arrMenuPaths[nCurOrbLauncherItem0] + "\\" + TempTitleList[nPlayCursor0];
+					SetSavedValue("QuickLaunch","QuickLaunchB",sPath);
+					TellUser(Translate("ASSIGNED_QUICKLAUNCH") + "B","");
+					return;
+				}
+			}
+
+			// Recent-titles overlay: pop the overlay and restore whatever view
+			// was underneath (title list or file browser).
+			if (bRecentToggled)
+			{
+				if(bInBrowser)
+				{
+					if(bInRoot)
+					{
+						TempTitleList = RootDirectory;
+						sFileType = new Array(RootDirectory.length);
+					}
+					else
+					{
+						TempTitleList = GetDirectoryContents(arrMenuPaths[nCurOrbLauncherItem0]);
+					}
+				}
+				else
+				{
+					TempTitleList = GetTitleList(arrMenuNames[nCurOrbLauncherItem0]);
+				}
+				nPlayScroll0 = nPlayScroll1;
+				nPlayCursor0 = nPlayCursor1;
+				subTitle0 = subTitle1;
+				bInRecentTitles = false;
+				bRecentToggled = false;
+				UpdateTrackList();
+				return;
+			}
+
+			// Drilled into a title list or file browser: back to OrbLauncher menu
+			// (category tile selection). Checked before bOrbLauncherVisible0 so a
+			// stale-true value can't punt us all the way out to main menu.
+			if (bInTitleList | bInBrowser)
+			{
+				CurrentViewpoint = OrbLauncherViewpoint;
+				ShowOrbLauncherMenu();
+				thePlayerPanelOut.Play();
+				return;
+			}
+
+			// At the OrbLauncher menu (category list). B exits the scene.
+			if(bBackToSettings)
+			{
+				bBackToSettings = false;
+				theSettingsSubMenuOut.Play();
+				GoToSettings();
+			}
+			else
+			{
+				theGamesMenuOut.Play();
+				theMainMenu.GoBackTo();
+			}
+		}
+		function OnRightDown() { RightTrigger = true; if(bInBrowser == false) OnMoveRight(); }
+		function OnRightUp() { RightTrigger = false; }
+		function OnMoveRight()  
+		{ 
+			if (bOrbLauncherVisible0 == false)
+			{
+				var a = (TempTitleList.length - 1);
+				if (nPlayCursor0 + nPlayVisible0 <= a)
+				{
+					nPlayCursor0 = nPlayCursor0 + nPlayVisible0;
+					nPlayScroll0 = nPlayScroll0 + nPlayVisible0;
+				}
+				else if(nPlayCursor0 == a)
+				{
+					return;
+				} 
+				else if(a - nPlayCursor0 < nPlayVisible0)
+				{
+					nPlayCursor0 = a;
+				}
+				PlaySoundMenuChange();
+				UpdateTrackList();
+			}
+		}
+		function OnLeftDown() { LeftTrigger = true; if(bInBrowser == false) OnMoveLeft(); }
+		function OnLeftUp() { LeftTrigger = false; }
+		function OnMoveLeft()  
+		{  
+			if (bOrbLauncherVisible0 == false)
+			{
+				var a = (TempTitleList.length - 1);
+				if (nPlayCursor0 - nPlayVisible0 >= 0)
+				{
+					nPlayCursor0 = nPlayCursor0 - nPlayVisible0;
+					nPlayScroll0 = nPlayScroll0 - nPlayVisible0;
+				}
+				else if(nPlayCursor0 == 0)
+				{
+					return;
+				} 
+				else if(nPlayCursor0 - nPlayVisible0 < nPlayVisible0)
+				{
+					nPlayCursor0 = 0;
+					nPlayScroll0 = 0;
+				}
+				PlaySoundMenuChange();
+				UpdateTrackList();
+			}
+		}
+		
+		function OnMoveUp()
+		{
+			if (bOrbLauncherVisible0)
+			{
+				if (nCurOrbLauncherItem0 <= 0)
+				{
+					PlaySoundMenuChange();
+					nCurOrbLauncherItem0 = TotalSections - 1;
+					if(TotalSections > 5) nCurOrbLauncherScroll0 = TotalSections - 5; 
+				}
+				else
+				{
+					nCurOrbLauncherItem0 = nCurOrbLauncherItem0 - 1;
+					if(nCurOrbLauncherItem0 < nCurOrbLauncherScroll0) nCurOrbLauncherScroll0 = nCurOrbLauncherItem0; 
+					
+				}
+				PlaySoundMenuChange();
+				UpdateOrbLauncherMenu();
+			}
+			else
+			{
+				var a = (TempTitleList.length - 1);
+				if (nPlayCursor0 <= 0)
+				{
+					nPlayCursor0 = a;
+					if(a > nPlayVisible0) nPlayScroll0 = a - nPlayVisible0;
+				}
+				else
+				{
+					nPlayCursor0 = nPlayCursor0 - 1;
+				}
+				PlaySoundMenuChange();
+				UpdateTrackList();
+			}
+		}
+		
+		function OnMoveDown()
+		{
+			if (bOrbLauncherVisible0)
+			{
+				if (nCurOrbLauncherItem0 == TotalSections - 1)
+				{
+					nCurOrbLauncherScroll0 = 0;
+					nCurOrbLauncherItem0 = 0;
+				}
+				else
+				{
+					nCurOrbLauncherItem0 = nCurOrbLauncherItem0 + 1; 
+					if(nCurOrbLauncherItem0 - nCurOrbLauncherScroll0 >= nCurOrbLauncherVisible0) nCurOrbLauncherScroll0 = nCurOrbLauncherScroll0 + 1; 
+				}
+				PlaySoundMenuChange();
+				UpdateOrbLauncherMenu();
+			}
+			else
+			{
+				var a = (TempTitleList.length - 1);
+				if (nPlayCursor0 == a)
+				{
+					nPlayCursor0 = 0;
+				}
+				else
+				{
+					nPlayCursor0 = nPlayCursor0 + 1;
+				}
+				PlaySoundMenuChange();
+				UpdateTrackList();
+			}
+		}
+	}
+
+	behavior
+	{
+		sleep 0.1;
+		if(bOrbLauncherVisible0 & bOrbLauncherMenuTextScroll)
+		{
+			nOrbLauncherMenuTextScrollTick = nOrbLauncherMenuTextScrollTick + 1;
+			if(nOrbLauncherMenuTextScrollTick >= 3)
+			{
+				nOrbLauncherMenuTextScrollTick = 0;
+				ScrollOrbLauncherMenuText();
+			}
+		}
+	}
+	
+	function OnActivate()
+	{
+		if (children[0].children.length() > 0)
+		{
+			EnterOrbLauncherMenu();
+		}
+	}
+	
+	function OnDeactivate()
+	{
+		theOrbLauncher.children[0].children[0].theIconSelector.isActive = false;
+	}
+}
+
+///// File Browser Functions \\\\\
+var bInBrowser;
+var bInRoot;
+var sFileType;
+var RootDirectory;
+var sDirectory;
+
+function LoadDir()
+{
+	TempTitleList = GetDirectoryContents(sDirectory);
+	UpdateTrackList();
+}
+
+function LoadRootContents()
+{
+	bInRoot = true;
+	sFileType = new Array;
+	RootDirectory = new Array;
+	RootDirectory[RootDirectory.length] = "C";
+	RootDirectory[RootDirectory.length] = "E";
+	var nPartitions = StringToNumber(GetSavedValue("ExtendedPartitions","Partitions"));
+	if(nPartitions & 1) RootDirectory[RootDirectory.length] = "F";
+	if(nPartitions & 2) RootDirectory[RootDirectory.length] = "G";
+	if(nPartitions & 16) RootDirectory[RootDirectory.length] = "R";
+	if(nPartitions & 4) RootDirectory[RootDirectory.length] = "H";
+	if(nPartitions & 8) RootDirectory[RootDirectory.length] = "I";
+}
+
+function ChangeDirectory(x)
+{
+	if(bInRoot)
+	{
+		arrMenuPaths[nCurOrbLauncherItem0] = x + ":";
+		bInRoot = false;
+	}
+	else
+	{
+		arrMenuPaths[nCurOrbLauncherItem0] = arrMenuPaths[nCurOrbLauncherItem0] + "\\" + x;
+	}
+	TempTitleList = GetDirectoryContents(arrMenuPaths[nCurOrbLauncherItem0]);
+	if(TempTitleList.length >= 0) UpdateTrackList();
+}
+
+function GoBackDirectory()
+{
+	var CurPath = arrMenuPaths[nCurOrbLauncherItem0];
+	if(CurPath.lastIndexOf("\\") < 0)
+	{
+		nPlayScroll0 = 0;
+		nPlayCursor0 = 0;
+		bInRoot = true;
+		arrMenuPaths[nCurOrbLauncherItem0] = Translate("Xbox Root");
+		TempTitleList = RootDirectory;
+	}
+	else
+	{
+		arrMenuPaths[nCurOrbLauncherItem0] = CurPath.substr(0,CurPath.lastIndexOf("\\"));
+		TempTitleList = GetDirectoryContents(arrMenuPaths[nCurOrbLauncherItem0]);
+	}
+	UpdateTrackList();
+}
+
+function GetDirectoryContents(x)
+{
+	nPlayScroll0 = 0;
+	nPlayCursor0 = 0;
+	var CurFiles = new Array;
+	var CurDirectoryContents = new Array;
+	var sPath = x.substr(x.indexOf(":"));
+	var sDrive = x.substr(0,x.indexOf(":"));
+	if(bHDDInitialized == false)
+	{
+		if(sDrive.charAt(0) == "F" | sDrive.charAt(0) == "G")
+		{
+			sDirectory = x;
+			bLoadDir = true;
+			bHDDInitialize = true;
+			return;
+		}
+	}
+	var c = new Folder;
+	c.path = GetDrive(sDrive) + sPath;
+	sFileType = new Array;
+	CurDirectoryContents[CurDirectoryContents.length] = "..";
+	sFileType[sFileType.length] = "folder";
+	if(c.subFolders.length() > 0)                   //Add folders if any
+	{
+		for(var i = 0; i < c.subFolders.length(); i = i + 1)
+		{
+			CurDirectoryContents[CurDirectoryContents.length] = c.subFolders[i].name;
+			sFileType[sFileType.length] = "folder";
+		}
+		CurDirectoryContents = CurDirectoryContents.sort();
+	}
+	
+	if(c.files.length() > 0)                        //Get files if any
+	{
+		for(var i = 0; i < c.files.length(); i = i + 1)
+		{
+			CurFiles[CurFiles.length] = c.files[i].name + "." + c.files[i].type;
+		}
+		CurFiles = CurFiles.sort();
+	}
+	for(var i = 0; i < CurFiles.length; i = i + 1)  //Add files to folders
+	{
+		var tempFile = CurFiles[i];
+		CurDirectoryContents[CurDirectoryContents.length] = tempFile;
+		if(tempFile.lastIndexOf(".") < 0)
+		{
+			sFileType[sFileType.length] = "unk";
+		}
+		else
+		{
+			sFileType[sFileType.length] = tempFile.substr(tempFile.lastIndexOf(".") + 1).toLowerCase();
+		}
+	}
+	return CurDirectoryContents;
+}
+
+function GetDrive(x)
+{
+	if(x == "C") return "C";
+	if(x == "E") return "E";
+	if(x == "F") return "F";
+	if(x == "G") return "G";
+	if(x == "E2") return "R";
+	if(x == "F2") return "H";
+	if(x == "G2") return "I";
+}
+
+function PathEllipsis(x,MaxCharacters)
+{
+	var sPath, arrPath, center, a, b, c; 
+	sPath = x;
+	c = sPath.length();
+	while(c > MaxCharacters)
+	{
+		arrPath = Split(sPath,"\\");
+		center = Math.ceil(arrPath.length / 2);
+		a = arrPath.slice(0,center - 1);
+		b = arrPath.slice(center,arrPath.length);
+		sPath = a.join("\\") + "\\" + b.join("\\");
+		c = sPath.length();
+	}
+	return a.join("\\") + "\\...\\" + b.join("\\");
+}
+
+
+////////////////////////////////////////////////////////////////////////////
+// Desktop title list, backed by CGamesCollection in desktop_nodes.cpp.
+// Replaces the cache.ini 25-per-segment paging the Xbox harddrive scene
+// used; this just reads VGames straight from RAM. Auto-refreshes when
+// Title Maker mutates games.ini -- no Y-to-refresh dance needed.
+//
+// Placed at end of file so it doesn't shift scene-tree indexing of the
+// viewpoints and theOrbLauncher Level above (same idiom MediaPlayer.xap uses
+// for theMediaCollection / thePlaylistCollection).
+////////////////////////////////////////////////////////////////////////////
+
+
+DEF theGamesCollection GamesCollection
+{
+}

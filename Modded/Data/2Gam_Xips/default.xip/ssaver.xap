@@ -1,0 +1,656 @@
+var MbgStatus;
+var SSaverInline;
+var nstyle;
+var nbstyle;
+var ClockSaver;
+var ClockSaverTmp;
+var posxmin;
+var posxmax;
+var posxv;
+var posxv2;
+var posymin;
+var posymax;
+var posyv;
+var posyv2;
+var zoomxmin;
+var zoomxmax;
+var zoomxv;
+var zoomymin;
+var zoomymax;
+var zoomyv;
+var zoomzmin;
+var zoomzmax;
+var zoomzv;
+var zoomxv2;
+var zoomyv2;
+var zoomzv2;
+var rotx;
+var roty;
+var rotz;
+var rotv;
+var zx;
+var zy;
+var zz;
+var rv;
+var px;
+var py;
+var animlogoX;
+var animlogoY;
+var coordlogoX;
+var coordlogoY;
+var rotationlogoX;
+var rotationlogoV;
+var senslogo;
+function InitializeSSaverPanel()
+{
+	AudiovizuBack.visible = false;
+	MbgStatus = BGMon;
+	if (ScreenSaver[3] == "non" & BGMon == true)
+	{
+		theControlPanelControlsInline.children[0].theBGMusicPlayer.Stop();
+		BGMon = false;
+		EnableAmbientAudio();
+		thePanel.children[0].children[0].theNowPlaying_text.text = "";
+		thePanel.children[0].children[0].theNowPlaying_text2.text = "";
+		thePanel.children[0].children[0].theNowPlaying_text3.text = "";
+		bgmpause = false;
+	}
+	if (ScreenSaver[3] == "oui" & BGMon == false)
+		theControlPanelControlsInline.children[0].MusicPlayerPlay();
+
+	var ttm = ReturnInteger(ConfigMusic[8]);
+	theSSaverPanelLayer.visible = true;
+	theSSaverPanelLayer.transparency = 0.0;
+	theSSaverPanel.SetAlpha(1);
+	SSaverInline = theSSaverPanel.children[0].children[0];
+	SSaverInline.info_txt.SetScale(ttm, ttm, 10);
+	SSaverPanelView = true;
+	nstyle = 0;
+	nbstyle = 0;
+	ClockSaver = new Array;
+	ClockSaverTmp = new Array;
+	posxmin = 0;
+	posxmax = 0;
+	posxv = 0;
+	posxv2 = 0;
+	posymin = 0;
+	posymax = 0;
+	posyv = 0;
+	posyv2 = 0;
+	zoomxmin = 5;
+	zoomxmax = 5;
+	zoomxv = 0;
+	zoomymin = 5;
+	zoomymax = 5;
+	zoomyv = 0;
+	zoomzmin = 5;
+	zoomzmax = 5;
+	zoomzv = 0;
+	zoomxv2 = 0;
+	zoomyv2 = 0;
+	zoomzv2 = 0;
+	rotxmin = 0;
+	rotxmax = 0;
+	rotx = 0;
+	roty = 0;
+	rotz = 0;
+	rotv = 0;
+	zx = true;
+	zy = true;
+	zz = true;
+	rv = 0;
+	px = true;
+	py = true;
+	if (ScreenSaver[2] != "oui")
+	{
+		SSaverInline.AudioVizu.visible = false;
+	}
+	for(var g = 0; g < 47; g = g + 1)
+	{
+		SSaverInline.SSaver_Time00.children[g].visible = false;
+		SSaverInline.SSaver_Time01.children[g].visible = false;
+		SSaverInline.SSaver_Time02.children[g].visible = false;
+		SSaverInline.SSaver_Time03.children[g].visible = false;
+		SSaverInline.SSaver_Time04.children[g].visible = false;
+		SSaverInline.SSaver_Time05.children[g].visible = false;
+		SSaverInline.SSaver_Time06.children[g].visible = false;
+	}
+	SSaverInline.Console.visible = false;
+	SSaverInline.Logo.visible = false;
+	for(var h = 0; h < 8; h = h + 1)
+	{
+		ClockSaverTmp[h] = 44;
+	}
+	TypeSSaver();
+}
+function HideSSaverPanel()
+{
+	if (ConfigSysteme[20] == "oui")
+		AudiovizuBack.visible = true;
+
+	thePlayerPanelOut.Play();
+	theSSaverPanel.SetAlpha(0);
+	theSSaverPanelLayer.transparency = 1;
+	theSSaverJoy.isBound = false;
+	SSaverPanelView = false;
+	SSaver = 0;
+	if (MbgStatus == false & BGMon == true)
+	{
+		theControlPanelControlsInline.children[0].theBGMusicPlayer.Stop();
+		BGMon = false;
+		EnableAmbientAudio();
+		thePanel.children[0].children[0].theNowPlaying_text.text = "";
+		thePanel.children[0].children[0].theNowPlaying_text2.text = "";
+		thePanel.children[0].children[0].theNowPlaying_text3.text = "";
+		bgmpause = false;
+	}
+
+	if (MbgStatus == true & BGMon == false)
+		theControlPanelControlsInline.children[0].MusicPlayerPlay();
+
+	if( currentControlType != "")
+	{
+		currentControlType.isBound = true;
+	}
+	else
+	{
+		previousControlType.isBound = true;
+	}
+}
+
+DEF theSSaverJoy Joystick
+{
+	function OnADown()
+	{
+		HideSSaverPanel();
+	}
+	function OnBDown()
+	{
+		HideSSaverPanel();
+	}
+	function OnXDown()
+	{
+		HideSSaverPanel();
+	}
+	function OnYDown()
+	{
+		HideSSaverPanel();
+	}
+	function OnBlackDown()
+	{
+		HideSSaverPanel();
+	}
+	function OnWhiteDown()
+	{
+		HideSSaverPanel();
+	}
+	function OnRightThumbDown()
+	{
+		theConfig.screenshot();
+	}
+	function OnLeftThumbDown()
+	{
+		HideSSaverPanel();
+	}
+	function OnLeftDown()
+	{
+		HideSSaverPanel();
+	}
+	function OnRightDown()
+	{
+		HideSSaverPanel();
+	}
+	function OnMoveUp()
+	{
+		HideSSaverPanel();
+	}
+	function OnMoveDown()
+	{
+		HideSSaverPanel();
+	}
+	function OnMoveLeft()
+	{
+		HideSSaverPanel();
+	}
+	function OnMoveRight()
+	{
+		HideSSaverPanel();
+	}
+    behavior
+    {
+        sleep 0.05;
+        if (SSaverPanelView == true)
+        {
+		if (BGMon == false & SSaverVisu == false)
+			SSaverInline.info.text ="";
+
+		if (ScreenSaver[4] == "oui")
+			heure();
+
+		if (ScreenSaver[7] == "oui")
+			AnimLogo();
+	  }
+    }
+}
+function heure()
+{
+	var d = new Date;
+	var SClockHour = d.getHours();
+	var SClockMinute = d.getMinutes();
+	var SClockSeconds = d.getSeconds();
+
+	if (SClockHour < 10)
+		ClockSaver[0] = 0;
+	if ((SClockHour >= 10) & (SClockHour < 20))
+		ClockSaver[0] = 1;
+	if (SClockHour >= 20)
+		ClockSaver[0] = 2;
+
+	if (ClockSaver[0] == 0)
+		ClockSaver[1] = SClockHour + 3;
+	if (ClockSaver[0] == 1)
+		ClockSaver[1] = (SClockHour - 10) + 3;
+	if (ClockSaver[0] == 2)
+		ClockSaver[1] = (SClockHour - 20) + 3;
+
+	ClockSaver[2] = 13;
+
+	if (SClockMinute < 10)
+		ClockSaver[3] = 14;
+	if ((SClockMinute >= 10) & (SClockMinute < 20))
+		ClockSaver[3] = 15;
+	if ((SClockMinute >= 20) & (SClockMinute < 30))
+		ClockSaver[3] = 16;
+	if ((SClockMinute >= 30) & (SClockMinute < 40))
+		ClockSaver[3] = 17;
+	if ((SClockMinute >= 40) & (SClockMinute < 50))
+		ClockSaver[3] = 18;
+	if (SClockMinute >= 50)
+		ClockSaver[3] = 19;
+
+	if (ClockSaver[3] == 14)
+		ClockSaver[4] = SClockMinute + 20;
+	if (ClockSaver[3] == 15)
+		ClockSaver[4] = (SClockMinute - 10) + 20;
+	if (ClockSaver[3] == 16)
+		ClockSaver[4] = (SClockMinute - 20) + 20;
+	if (ClockSaver[3] == 17)
+		ClockSaver[4] = (SClockMinute - 30) + 20;
+	if (ClockSaver[3] == 18)
+		ClockSaver[4] = (SClockMinute - 40) + 20;
+	if (ClockSaver[3] == 19)
+		ClockSaver[4] = (SClockMinute - 50) + 20;
+
+	ClockSaver[5] = 30;
+
+	if (SClockSeconds < 10)
+		ClockSaver[6] = 31;
+	if ((SClockSeconds >= 10) & (SClockSeconds < 20))
+		ClockSaver[6] = 32;
+	if ((SClockSeconds >= 20) & (SClockSeconds < 30))
+		ClockSaver[6] = 33;
+	if ((SClockSeconds >= 30) & (SClockSeconds < 40))
+		ClockSaver[6] = 34;
+	if ((SClockSeconds >= 40) & (SClockSeconds < 50))
+		ClockSaver[6] = 35;
+	if (SClockSeconds >= 50)
+		ClockSaver[6] = 36;
+
+	if (ClockSaver[6] == 31)
+		ClockSaver[7] = SClockSeconds + 37;
+	if (ClockSaver[6] == 32)
+		ClockSaver[7] = (SClockSeconds - 10) + 37;
+	if (ClockSaver[6] == 33)
+		ClockSaver[7] = (SClockSeconds - 20) + 37;
+	if (ClockSaver[6] == 34)
+		ClockSaver[7] = (SClockSeconds - 30) + 37;
+	if (ClockSaver[6] == 35)
+		ClockSaver[7] = (SClockSeconds - 40) + 37;
+	if (ClockSaver[6] == 36)
+		ClockSaver[7] = (SClockSeconds - 50) + 37;
+
+	for(var g = 0; g < 8; g = g + 1)
+	{
+		if (ClockSaverTmp[g] != ClockSaver[g])
+		{
+			if ( ScreenSaver[6] == "Blade_Runner" )
+			{
+				SSaverInline.SSaver_Time01.children[ClockSaver[g]].visible = true;
+				SSaverInline.SSaver_Time01.children[ClockSaverTmp[g]].visible = false;
+			}
+			else if ( ScreenSaver[6] == "Halo" )
+			{
+				SSaverInline.SSaver_Time02.children[ClockSaver[g]].visible = true;
+				SSaverInline.SSaver_Time02.children[ClockSaverTmp[g]].visible = false;
+			}
+			else if ( ScreenSaver[6] == "Megadeth" )
+			{
+				SSaverInline.SSaver_Time03.children[ClockSaver[g]].visible = true;
+				SSaverInline.SSaver_Time03.children[ClockSaverTmp[g]].visible = false;
+			}
+			else if ( ScreenSaver[6] == "Metal_Lord" )
+			{
+				SSaverInline.SSaver_Time04.children[ClockSaver[g]].visible = true;
+				SSaverInline.SSaver_Time04.children[ClockSaverTmp[g]].visible = false;
+			}
+			else if ( ScreenSaver[6] == "Xbox" )
+			{
+				SSaverInline.SSaver_Time05.children[ClockSaver[g]].visible = true;
+				SSaverInline.SSaver_Time05.children[ClockSaverTmp[g]].visible = false;
+			}
+			else if ( ScreenSaver[6] == "Tomb_Raider" )
+			{
+				SSaverInline.SSaver_Time06.children[ClockSaver[g]].visible = true;
+				SSaverInline.SSaver_Time06.children[ClockSaverTmp[g]].visible = false;
+			}
+			else
+			{
+				SSaverInline.SSaver_Time00.children[ClockSaver[g]].visible = true;
+				SSaverInline.SSaver_Time00.children[ClockSaverTmp[g]].visible = false;
+			}
+			ClockSaverTmp[g] = ClockSaver[g];
+		}
+
+		if ( ScreenSaver[6] == "Blade_Runner" )
+		{
+			SSaverInline.SSaver_Time01.children[ClockSaver[g]].SetTranslation((g*7)-24.5, 0, 0);
+		}
+		else if ( ScreenSaver[6] == "Halo" )
+		{
+			SSaverInline.SSaver_Time02.children[ClockSaver[g]].SetTranslation((g*7)-24.5, 0, 0);
+		}
+		else if ( ScreenSaver[6] == "Megadeth" )
+		{
+			SSaverInline.SSaver_Time03.children[ClockSaver[g]].SetTranslation((g*7)-24.5, 0, 0);
+		}
+		else if ( ScreenSaver[6] == "Metal_Lord" )
+		{
+			SSaverInline.SSaver_Time04.children[ClockSaver[g]].SetTranslation((g*7)-24.5, 0, 0);
+		}
+		else if ( ScreenSaver[6] == "Xbox" )
+		{
+			SSaverInline.SSaver_Time05.children[ClockSaver[g]].SetTranslation((g*7)-24.5, 0, 0);
+		}
+		else if ( ScreenSaver[6] == "Tomb_Raider" )
+		{
+			SSaverInline.SSaver_Time06.children[ClockSaver[g]].SetTranslation((g*7)-24.5, 0, 0);
+		}
+		else
+		{
+			SSaverInline.SSaver_Time00.children[ClockSaver[g]].SetTranslation((g*7)-24.5, 0, 0);
+		}
+	}
+	if (zx == false)
+		zoomxv2 = zoomxv2 - zoomxv;
+	else if (zx == true)
+		zoomxv2 = zoomxv2 + zoomxv;
+
+	if (zy == false)
+		zoomyv2 = zoomyv2 - zoomyv;
+	else if (zy == true)
+		zoomyv2 = zoomyv2 + zoomyv;
+
+	if (zz == false)
+		zoomzv2 = zoomzv2 - zoomzv;
+	else if (zz == true)
+		zoomzv2 = zoomzv2 + zoomzv;
+
+	if (zoomxv2 >= zoomxmax)
+		zx = false;
+	if (zoomyv2 >= zoomymax)
+		zy = false;
+	if (zoomzv2 >= zoomzmax)
+		zz = false;
+
+	if (zoomxv2 <= zoomxmin)
+		zx = true;
+	if (zoomyv2 <= zoomymin)
+		zy = true;
+	if (zoomzv2 <= zoomzmin)
+		zz = true;
+
+	rv = rv + rotv;
+	if (rv > 6.2)
+		rv = 0;
+	else if (rv < 0)
+		rv = 6.2;
+
+	if (px == false)
+		posxv2 = posxv2 - posxv;
+	else if (px == true)
+		posxv2 = posxv2 + posxv;
+
+	if (py == false)
+		posyv2 = posyv2 - posyv;
+	else if (py == true)
+		posyv2 = posyv2 + posyv;
+
+	if (posxv2 >= posxmax)
+		px = false;
+	if (posyv2 >= posymax)
+		py = false;
+
+	if (posxv2 <= posxmin)
+		px = true;
+	if (posyv2 <= posymin)
+		py = true;
+
+	if ( ScreenSaver[6] == "Blade_Runner" )
+	{
+		SSaverInline.SSaver_Time01.SetScale(zoomxv2, zoomyv2, zoomzv2);
+		SSaverInline.SSaver_Time01.SetRotation(rotx, roty, rotz, rv);
+		SSaverInline.SSaver_Time01.SetTranslation(posxv2, posyv2, 0);
+	}
+	else if ( ScreenSaver[6] == "Halo" )
+	{
+		SSaverInline.SSaver_Time02.SetScale(zoomxv2, zoomyv2, zoomzv2);
+		SSaverInline.SSaver_Time02.SetRotation(rotx, roty, rotz, rv);
+		SSaverInline.SSaver_Time02.SetTranslation(posxv2, posyv2, 0);
+	}
+	else if ( ScreenSaver[6] == "Megadeth" )
+	{
+		SSaverInline.SSaver_Time03.SetScale(zoomxv2, zoomyv2, zoomzv2);
+		SSaverInline.SSaver_Time03.SetRotation(rotx, roty, rotz, rv);
+		SSaverInline.SSaver_Time03.SetTranslation(posxv2, posyv2, 0);
+	}
+	else if ( ScreenSaver[6] == "Metal_Lord" )
+	{
+		SSaverInline.SSaver_Time04.SetScale(zoomxv2, zoomyv2, zoomzv2);
+		SSaverInline.SSaver_Time04.SetRotation(rotx, roty, rotz, rv);
+		SSaverInline.SSaver_Time04.SetTranslation(posxv2, posyv2, 0);
+	}
+	else if ( ScreenSaver[6] == "Xbox" )
+	{
+		SSaverInline.SSaver_Time05.SetScale(zoomxv2, zoomyv2, zoomzv2);
+		SSaverInline.SSaver_Time05.SetRotation(rotx, roty, rotz, rv);
+		SSaverInline.SSaver_Time05.SetTranslation(posxv2, posyv2, 0);
+	}
+	else if ( ScreenSaver[6] == "Tomb_Raider" )
+	{
+		SSaverInline.SSaver_Time06.SetScale(zoomxv2, zoomyv2, zoomzv2);
+		SSaverInline.SSaver_Time06.SetRotation(rotx, roty, rotz, rv);
+		SSaverInline.SSaver_Time06.SetTranslation(posxv2, posyv2, 0);
+	}
+	else
+	{
+		SSaverInline.SSaver_Time00.SetScale(zoomxv2, zoomyv2, zoomzv2);
+		SSaverInline.SSaver_Time00.SetRotation(rotx, roty, rotz, rv);
+		SSaverInline.SSaver_Time00.SetTranslation(posxv2, posyv2, 0);
+	}
+}
+function TypeSSaver()
+{
+	if (ScreenSaver[4] == "oui")
+	{
+		if ( ScreenSaver[6] == "rnd" )
+			RndFonts();
+
+		var cmdd = 1;
+		var tmdd = " ";
+		nbstyle = 0;
+
+		if (ScreenSaver[5] == "rnd")
+		{
+			for(var g = 1; g < cmdd + 1; g = g + 1)
+			{
+				tmdd = ReadValue("posxmin", "Style_"+g, "SSaver\\Heure.ini");
+				if (tmdd != "")
+				{
+					cmdd = cmdd + 1;
+					nbstyle = nbstyle + 1;
+				}
+			}
+			rndstyle();
+		}
+		else
+		{
+			nstyle = ReturnInteger(ScreenSaver[5]);
+		}
+		inistyle();
+	}
+	if (ScreenSaver[7] == "oui")
+	{
+		SSaverInline.Logo.visible = true;
+		initLogo();
+	}
+	if (ScreenSaver[8] == "oui")
+	{
+		SSaverInline.Console.visible = true;
+	}
+	
+	theSSaverJoy.isBound = true;
+}
+function rndstyle()
+{
+	nstyle = Math.round(Math.random() * (nbstyle - 1)) + 1;
+	teststyle(nstyle);
+}
+
+function teststyle(n)
+{
+	if( n == curentstyle )
+	{
+		rndstyle();
+	}
+	else
+	{
+		curentstyle = nstyle;
+	} 
+}
+function inistyle()
+{
+		posxmin = ReturnInteger(ReadValue("posxmin", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		posxmax = ReturnInteger(ReadValue("posxmax", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		posxv = ReturnInteger(ReadValue("posxv", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		posymin = ReturnInteger(ReadValue("posymin", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		posymax = ReturnInteger(ReadValue("posymax", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		posyv = ReturnInteger(ReadValue("posyv", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		zoomxmin = ReturnInteger(ReadValue("zoomxmin", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		zoomxmax = ReturnInteger(ReadValue("zoomxmax", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		zoomxv = ReturnInteger(ReadValue("zoomxv", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		zoomymin = ReturnInteger(ReadValue("zoomymin", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		zoomymax = ReturnInteger(ReadValue("zoomymax", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		zoomyv = ReturnInteger(ReadValue("zoomyv", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		zoomzmin = ReturnInteger(ReadValue("zoomzmin", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		zoomzmax = ReturnInteger(ReadValue("zoomzmax", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		zoomzv = ReturnInteger(ReadValue("zoomzv", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		rotx = ReturnInteger(ReadValue("rotx", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		roty = ReturnInteger(ReadValue("roty", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		rotz = ReturnInteger(ReadValue("rotz", "Style_" + nstyle, "SSaver\\Heure.ini"));
+		rotv = ReturnInteger(ReadValue("rotv", "Style_" + nstyle, "SSaver\\Heure.ini"));
+
+		zoomxv2 = zoomxmin;
+		zoomyv2 = zoomymin;
+		zoomzv2 = zoomzmin;
+		posxv2 = posxmin;
+		posyv2 = posymin;
+}
+function TestFonts()
+{
+	if ( NextFont == CurrentFont )
+	{
+		RndFonts();
+	}
+	else if ( NextFont != CurrentFont )
+	{
+		CurrentFont = NextFont;
+		if( NextFont == 0)
+			ScreenSaver[6] = "Default";
+		else if( NextFont == 1)
+			ScreenSaver[6] = "Blade_Runner";
+		else if( NextFont == 2)
+			ScreenSaver[6] = "Halo";
+		else if( NextFont == 3)
+			ScreenSaver[6] = "Megadeth";
+		else if( NextFont == 4)
+			ScreenSaver[6] = "Metal_Lord";
+		else if( NextFont == 5)
+			ScreenSaver[6] = "Xbox";
+		else if( NextFont == 6)
+			ScreenSaver[6] = "Tomb_Raider";
+
+	}
+}
+function RndFonts()
+{
+	NextFont = Math.round(Math.random() * 6);
+	TestFonts();
+}
+function initLogo()
+{
+	rotationlogoX = 1;
+	coordlogoX = (Math.round(Math.random() * 256))-128;
+	coordlogoY = (Math.round(Math.random() * 146))-80;
+	rotationlogoV = 45;
+	animlogoX = (Math.round(Math.random() * 1));
+	animlogoY = (Math.round(Math.random() * 1));
+	senslogo = 1;
+}
+function AnimLogo()
+{
+	SSaverInline.Logo.SetTranslation(coordlogoX, coordlogoY, 0);
+	SSaverInline.Logo.SetRotation(0, 0, 1, rotationlogoX * 6.283 / rotationlogoV);
+	if( rotationlogoX > rotationlogoV)
+		rotationlogoX = 1;
+
+	if( rotationlogoX < 1)
+		rotationlogoX = rotationlogoV;
+
+	if( animlogoX == 0)
+		coordlogoX = coordlogoX - 3;
+
+	if( animlogoX == 1)
+		coordlogoX = coordlogoX + 3;
+
+	if( animlogoY == 0)
+		coordlogoY = coordlogoY - 3;
+	
+	if( animlogoY == 1)
+		coordlogoY = coordlogoY + 3;
+
+	if( animlogoX == 0 & animlogoY == 1)
+		senslogo = 1;
+
+	if( animlogoX == 0 & animlogoY == 0)
+		senslogo = 1;
+
+	if( animlogoX == 1 & animlogoY == 1)
+		senslogo = -1;
+
+	if( animlogoX == 1 & animlogoY == 0)
+		senslogo = -1;
+
+	if( coordlogoX < -128.0 - VideoMode)
+		animlogoX = 1;
+
+	if( coordlogoX > 128.0 + VideoMode)
+		animlogoX = 0;
+
+	if( coordlogoY < -80)
+		animlogoY = 1;
+
+	if( coordlogoY > 73)
+		animlogoY = 0;
+
+	rotationlogoX = rotationlogoX + senslogo;
+}
