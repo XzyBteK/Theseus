@@ -1707,3 +1707,81 @@ DEF theMemoryMenu Level
 		theMemoryMonitor.enumerationOn = false;
 	}
 }
+
+/*function updateOrbs(){
+
+	var c = theMemoryMenu.children[0].children[0];
+
+	ChangeOrbs("Apps Orb", c.Controller1Unit1);
+	ChangeOrbs("Games Orb", c.Controller2Unit1);
+	ChangeOrbs("Dash Orb", c.Controller3Unit1);
+	ChangeOrbs("Emus Orb", c.Controller4Unit1);
+	ChangeMainOrb("MainHDD Orb", c.console);
+
+}
+
+function ChangeOrbs(Section,OrbRef){
+	var OrbName = GetOrbName(Section);
+
+	var info = new Settings;
+	info.file = OrbName + ".xbx";
+	info.section = "HD Orbs";
+	var scalex;
+	var scaley;
+	var scalez;
+	var sMaterial;
+	sMaterial = info.GetValue("Material");
+	scalex = info.GetValue("Scalex");
+	scaley = info.GetValue("Scaley");
+	scalez = info.GetValue("Scalez");
+
+	if (scalex == "") { scalex = 1.75; }
+	if (scaley == "") { scaley = 1.75; }
+	if (scalez == "") { scalez = 1.75; }
+	OrbRef.SetScale(scalex,scaley,scalez);
+	if (sMaterial != "")
+	{
+		OrbRef.children[0].children[0].appearance.material.name = sMaterial;
+	}
+	OrbRef.children[0].children[0].geometry.url=OrbName + ".xm";
+}
+
+function ChangeMainOrb(Section,OrbRef){
+
+	var OrbName = GetOrbName(Section);
+
+	var info = new Settings;
+	info.file = OrbName + ".xbx";
+	info.section = "MainHD Orb";
+	var scalex;
+	var scaley;
+	var scalez;
+	var sMaterial;
+	sMaterial = info.GetValue("Material");
+	scalex = info.GetValue("Scalex");
+	scaley = info.GetValue("Scaley");
+	scalez = info.GetValue("Scalez");
+
+	if (scalex == "") { scalex = 5; }
+	if (scaley == "") { scaley = 5; }
+	if (scalez == "") { scalez = 5; }
+	OrbRef.SetScale(scalex,scaley,scalez);
+	if (sMaterial != "")
+	{
+		OrbRef.children[0].children[0].appearance.material.name = sMaterial;
+	}
+	OrbRef.children[0].children[0].geometry.url=OrbName + ".xm";
+}
+
+function GetOrbName(Section){
+
+	var OrbName = GetSavedValue("Orb Settings","" + Section);
+    OrbName = "Q:\\Orbs\\" + OrbName + "\\" + OrbName;
+
+	//var IniFile = new Settings;
+	//IniFile.SetIniSection( "Dashboard Settings" );
+	//var OrbName = IniFile.GetIniValue( Section );
+	//IniFile.CloseIniFile();
+	//OrbName = "A:\\orbs\\" + OrbName + "\\" + OrbName;
+	return OrbName;
+}*/

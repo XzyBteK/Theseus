@@ -1837,6 +1837,86 @@ function ApplyMainMenuPanelSelection()
 	}
 }
 
+function updateOrbs(){
+
+	var c = theMemoryInline.children[0].theMemoryMenu.children[0].children[0];
+	TellUser(c,"");
+	//var d = c.theMemoryMenu.children[0].children[0];
+
+	ChangeOrbs("Apps Orb", d.Controller1Unit1);
+	ChangeOrbs("Games Orb", d.Controller2Unit1);
+	ChangeOrbs("Dash Orb", d.Controller3Unit1);
+	ChangeOrbs("Emus Orb", d.Controller4Unit1);
+	ChangeMainOrb("MainHDD Orb", d.console);
+
+}
+
+function ChangeOrbs(Section,OrbRef){
+	var OrbName = GetOrbName(Section);
+
+	var info = new Settings;
+	info.file = OrbName + ".xbx";
+	info.section = "HD Orbs";
+	var scalex;
+	var scaley;
+	var scalez;
+	var sMaterial;
+	sMaterial = info.GetValue("Material");
+	scalex = info.GetValue("Scalex");
+	scaley = info.GetValue("Scaley");
+	scalez = info.GetValue("Scalez");
+
+	if (scalex == "") { scalex = 1.75; }
+	if (scaley == "") { scaley = 1.75; }
+	if (scalez == "") { scalez = 1.75; }
+	OrbRef.SetScale(scalex,scaley,scalez);
+	if (sMaterial != "")
+	{
+		OrbRef.children[0].children[0].appearance.material.name = sMaterial;
+	}
+	OrbRef.children[0].children[0].geometry.url=OrbName + ".xm";
+}
+
+function ChangeMainOrb(Section,OrbRef){
+
+	var OrbName = GetOrbName(Section);
+
+	var info = new Settings;
+	info.file = OrbName + ".xbx";
+	info.section = "MainHD Orb";
+	var scalex;
+	var scaley;
+	var scalez;
+	var sMaterial;
+	sMaterial = info.GetValue("Material");
+	scalex = info.GetValue("Scalex");
+	scaley = info.GetValue("Scaley");
+	scalez = info.GetValue("Scalez");
+
+	if (scalex == "") { scalex = 5; }
+	if (scaley == "") { scaley = 5; }
+	if (scalez == "") { scalez = 5; }
+	OrbRef.SetScale(scalex,scaley,scalez);
+	if (sMaterial != "")
+	{
+		OrbRef.children[0].children[0].appearance.material.name = sMaterial;
+	}
+	OrbRef.children[0].children[0].geometry.url=OrbName + ".xm";
+}
+
+/*function GetOrbName(Section){
+
+	var OrbName = GetSavedValue("Orb Settings","" + Section);
+    OrbName = "Q:\\Orbs\\" + OrbName + "\\" + OrbName;
+
+	//var IniFile = new Settings;
+	//IniFile.SetIniSection( "Dashboard Settings" );
+	//var OrbName = IniFile.GetIniValue( Section );
+	//IniFile.CloseIniFile();
+	//OrbName = "A:\\orbs\\" + OrbName + "\\" + OrbName;
+	return OrbName;
+}*/
+
 function ToggleMainMenuPanelSelection()
 {
 	if(nMainMenuPanelSelection == 1)
@@ -1886,6 +1966,7 @@ function MainMenuAttract()
 	c.ring.SetTranslation(-57.980000,-13.690000,-84.760002);
 	c.main_pod.SetTranslation(-61.689999,-13.400000,0.337400);
 	bMainMenuAttractFinish = true;
+	//FixClockPosition();
 	//SetBackgroundMeshType();
 }
 
@@ -2278,6 +2359,7 @@ DEF theMainMenu Level
 				SetBackgroundMeshType();
 				ApplyMainMenuPanelSelection();
 				theMusicInline.visible = true;
+				//FixClockPosition();
 			}
 		}
 		
@@ -2556,11 +2638,19 @@ DEF theMainMenu Level
 			}
 
 			nMainMenuDateSpinTick = nMainMenuDateSpinTick + 1;
-			if((nMainMenuDateSpinTick >= 200) & (bMainMenuDateSpinActive != true))
+			if((nMainMenuDateSpinTick >= 900) & (bMainMenuDateSpinActive != true))
 			{
 				nMainMenuDateSpinTick = 0;
 				nMainMenuDateSpinPhase = 0;
 				bMainMenuDateSpinActive = true;
+			}
+
+			nMainMenuDatePosition = nMainMenuDatePosition + 1;
+			if(nMainMenuDatePosition >= 20)
+			{
+				nMainMenuDatePosition = 0;
+				FixClockPositionOnce();
+				//bClockFixedOnce = true;
 			}
 
 			if(bMainMenuPanelsSpinActive)
@@ -2920,6 +3010,7 @@ var nMainMenuPanelsSpinTick;
 var nMainMenuPanelsSpinPhase;
 var bMainMenuPanelsSpinActive;
 var nMainMenuDateSpinTick;
+var nMainMenuDatePosition;
 var nMainMenuDateSpinPhase;
 var bMainMenuDateSpinActive;
 var nMainMenuPanelSelection;
@@ -2977,10 +3068,12 @@ var ShowRebootInSettings;
 var ShowShutdownInSettings;
 
 var CurrentGameBoardAltViewpoint;
+var bClockFixedOnce;
 
 function initialize()
 {
 	sBuildDate = "250605"; //Date of commit YYMMDD
+	bClockFixedOnce = false;
 	bLaunchItem = false;
 	bExecuteFile = false;
 	bHDDInitialize = false;
@@ -3010,6 +3103,7 @@ function initialize()
 	nMainMenuPanelsSpinPhase = 0;
 	bMainMenuPanelsSpinActive = false;
 	nMainMenuDateSpinTick = 0;
+	nMainMenuDatePosition = 0;
 	nMainMenuDateSpinPhase = 0;
 	bMainMenuDateSpinActive = false;
 	nMainMenuPanelSelection = 1;
@@ -4722,3 +4816,23 @@ x.theMesh_a5.SetAlpha(alpha5);
 
 //thePlayerPanelOut.Play();
 }
+
+function FixClockPositionOnce()
+{
+    if(bClockFixedOnce == false)
+    {
+        FixClockPosition();
+        bClockFixedOnce = true;
+    }
+}
+
+function FixClockPosition()
+{
+    var x = theMainMenu.children[0].children[0];
+
+	x.theMainMenuClock.SetRotation(0, 0, -1000.1, 0.02);
+	x.theMainMenuClock.SetScale(35.000000, 35.000000, 35.000000);
+    x.theMainMenuClock.SetTranslation(230.1900002, -197.261000, -240.399994);
+}
+
+

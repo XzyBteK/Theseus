@@ -341,16 +341,16 @@ function LoadMenuItems()
 	}
 	arrMenuNames[0] = Translate("Main Orb");
 	arrMenuPaths[0] = "Current Orb";
-	arrMenuNames[1] = Translate("Memory Orb");
-	arrMenuPaths[1] = "Memory Orb";
-	arrMenuNames[2] = Translate("Music Orb");
-	arrMenuPaths[2] = "Music Orb";
-	arrMenuNames[3] = Translate("Online Orb");
-	arrMenuPaths[3] = "Online Orb";
-	arrMenuNames[4] = Translate("Launcher Orb");
-	arrMenuPaths[4] = "Launcher Orb";
-	arrMenuNames[5] = Translate("Settings Orb");
-	arrMenuPaths[5] = "Settings Orb";
+	arrMenuNames[1] = Translate("Emus Orb");
+	arrMenuPaths[1] = "Emus Orb";
+	arrMenuNames[2] = Translate("Games Orb");
+	arrMenuPaths[2] = "Games Orb";
+	arrMenuNames[3] = Translate("Dash Orb");
+	arrMenuPaths[3] = "Dash Orb";
+	arrMenuNames[4] = Translate("Apps Orb");
+	arrMenuPaths[4] = "Apps Orb";
+	arrMenuNames[5] = Translate("MainHDD Orb");
+	arrMenuPaths[5] = "MainHDD Orb";
 	TotalSections = 6;
 	nCurOrbLauncherVisible0 = 5;
 }
@@ -415,6 +415,7 @@ function PreviewOrbMesh(OrbName)
 		var c = theOrbLauncher.children[0].children[0];
 		theConfig.FlushMeshCache();
 		c.theIcons.visible = true;
+		
 		c.theIcons.children[0].children[0].appearance.material.name = "MainMenuOrb";
 		c.theIcons.children[0].children[0].appearance.texture.url = "";
 		c.theIcons.children[0].children[0].geometry.url = OrbMesh;
@@ -432,7 +433,8 @@ function SaveOrbForCurrentSlot(OrbName)
 	else
 	{
 		SetSavedValue("Orb Settings",arrMenuPaths[nCurOrbLauncherItem0],OrbName);
-		ApplyMenuOrbs();
+		//ApplyMenuOrbs();
+		updateOrbs();
 	}
 }
 
@@ -456,7 +458,7 @@ function SelectOrbLauncherOrb()
 	var OrbName = TempTitleList[nPlayCursor0];
 	PreviewOrbMesh(OrbName);
 	SaveOrbForCurrentSlot(OrbName);
-	TellUser(Translate("Selected ") + OrbName + Translate(" for ") + arrMenuNames[nCurOrbLauncherItem0],"");
+	//TellUser(Translate("Selected ") + OrbName + Translate(" for ") + arrMenuNames[nCurOrbLauncherItem0],"");
 }
 
 
@@ -1154,7 +1156,6 @@ function PathEllipsis(x,MaxCharacters)
 	}
 	return a.join("\\") + "\\...\\" + b.join("\\");
 }
-
 
 ////////////////////////////////////////////////////////////////////////////
 // Desktop title list, backed by CGamesCollection in desktop_nodes.cpp.
